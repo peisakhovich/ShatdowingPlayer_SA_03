@@ -1,47 +1,31 @@
-import pygame
 
+from gui.panels.control_panel import ControlPanel
 
 class MainWindow:
 
-    def __init__(self, screen, manager):
-        """
-        Главное окно приложения.
-
-        screen  - поверхность pygame.display
-        manager - pygame_gui.UIManager
-        """
+    def __init__(self, screen, gui, image_loader):
 
         self.screen = screen
-        self.manager = manager
+        self.gui = gui
 
-        # Цвет фона (пока временный)
         self.background_color = (30, 30, 30)
+        self.control_panel = ControlPanel(image_loader)
 
     def handle_event(self, event):
-        """
-        Обработка событий приложения.
-        Пока пусто.
-        """
-        pass
-
+        command = self.control_panel.handle_event(event)
+        if command:
+            print("Команда:", command)
+            
     def update(self):
-        """
-        Обновление состояния окна.
-        Пока пусто.
-        """
-        pass
+        self.control_panel.update()
 
     def draw(self):
-        """
-        Отрисовка окна.
-        """
 
         self.screen.fill(self.background_color)
+        self.control_panel.draw(self.screen)
 
-        self.manager.draw(self.screen)
-
-        # Когда появятся элементы pygame_gui,
-        # они будут рисоваться здесь.
-        self.manager.draw(self.screen)
-
-        pygame.display.flip()
+        # Позже здесь будут вызываться панели:
+        #
+        # self.control_panel.draw(self.screen)
+        # self.info_panel.draw(self.screen)
+        # self.phrase_panel.draw(self.screen)
