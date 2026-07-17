@@ -2,8 +2,10 @@ import pygame
 from core.config import Config 
 from gui.layout import Layout
 from gui.theme import Theme
-
 from gui.widgets.image_button import ImageButton
+
+from gui.widgets.horizontal_slider import HorizontalSlider
+
 
 
 class ControlPanel:
@@ -12,6 +14,9 @@ class ControlPanel:
 
         self.image_loader = image_loader
 
+        self.font = pygame.font.SysFont("Segoe UI", 18)
+       
+
         # --------------------------------------------------
         # Панель
         # --------------------------------------------------
@@ -19,6 +24,21 @@ class ControlPanel:
         self.rect = Layout.CP_RECT
 
         self.buttons = {}
+
+        self.speed_slider = HorizontalSlider(
+
+            caption="Speed",
+
+            rect=(20, 28, 220, 24),
+
+            start_value=1.0,
+
+            value_range=(0.2, 2.0),
+
+            font=self.font,
+
+            formatter=lambda v: f"{v:.2f}x"
+        )
 
         self._create_buttons()
 
@@ -30,7 +50,7 @@ class ControlPanel:
 
 
         for index, name in enumerate(Layout.BTN_DEFS):
-
+  
             x = Layout.BTN_START_X + index * (
                 Layout.BTN_WIDTH +
                 Layout.BTN_INTERVAL
@@ -55,16 +75,20 @@ class ControlPanel:
                 Layout.BTN_HEIGHT
             ),
 
+
             image_normal=self.image_loader.load(
-                f"{Config.ICON_PATH}/{name}.png"
+                f"{Config.ICON_PATH}/{name}.png",
+                default=Config.APP_ICON
             ),
 
             image_hover=self.image_loader.load(
-                f"{Config.ICON_PATH}/{name}_hover.png"
+                f"{Config.ICON_PATH}/{name}_hover.png",
+                default=Config.APP_ICON
             ),
 
             image_pressed=self.image_loader.load(
-                f"{Config.ICON_PATH}/{name}_pressed.png"
+                f"{Config.ICON_PATH}/{name}_pressed.png",
+                default=Config.APP_ICON
             )
         )
 
@@ -73,6 +97,8 @@ class ControlPanel:
     # --------------------------------------------------
 
     def handle_event(self, event):
+
+        self.speed_slider.handle_event(event)
 
         for name, button in self.buttons.items():
 
@@ -96,6 +122,7 @@ class ControlPanel:
                 mouse_pressed
             )
 
+        self.speed_slider.update()
     # --------------------------------------------------
     # Отрисовка
     # --------------------------------------------------
@@ -119,6 +146,9 @@ class ControlPanel:
             Theme.TCP_BORDER_LINE_RADIUS
         )
 
+        # Гор.Слайдеры
+        self.speed_slider.draw(screen)
+        
         # Кнопки
         for button in self.buttons.values():
             button.draw(screen)

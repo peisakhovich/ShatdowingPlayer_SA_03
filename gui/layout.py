@@ -13,13 +13,13 @@ class Layout:
     # UI LAYER: CONTROL_PANEL
     # -------------------------
   
-    CP_HEIGHT=50
+    CP_HEIGHT=80
     CP_RECT=pygame.Rect( 0, HEIGHT-CP_HEIGHT , WIDTH, CP_HEIGHT  )
 
     # -------------------------
     # UI LAYER: BUTTON BAR
     # -------------------------
-    BTN_DEFS = [ "start","prev","play","pause","next","end","stop",    ]
+    BTN_DEFS = [ "start","prev","play","pause","next","end","stop","quit","settings" ]
 
     BTN_WIDTH = 32
     BTN_HEIGHT = 32
