@@ -1,6 +1,8 @@
 import pygame
 from core.config import Config 
 from gui.layout import Layout
+from gui.theme import Theme
+
 from gui.widgets.image_button import ImageButton
 
 
@@ -14,12 +16,7 @@ class ControlPanel:
         # Панель
         # --------------------------------------------------
 
-        self.rect = pygame.Rect(
-            0,
-            Layout.HEIGHT - 80,
-            Layout.WIDTH,
-            80
-        )
+        self.rect = Layout.CP_RECT
 
         self.buttons = {}
 
@@ -31,19 +28,10 @@ class ControlPanel:
 
     def _create_buttons(self):
 
-        count = len(Layout.BUTTON_DEFS)
 
-        total_width = (
-            count * Layout.BTN_WIDTH +
-            (count - 1) * Layout.BTN_INTERVAL
-        )
+        for index, name in enumerate(Layout.BTN_DEFS):
 
-        start_x = self.rect.centerx - total_width // 2
-        y = self.rect.centery - Layout.BTN_HEIGHT // 2
-
-        for index, name in enumerate(Layout.BUTTON_DEFS):
-
-            x = start_x + index * (
+            x = Layout.BTN_START_X + index * (
                 Layout.BTN_WIDTH +
                 Layout.BTN_INTERVAL
             )
@@ -51,7 +39,7 @@ class ControlPanel:
             self.buttons[name] = self._create_button(
                 name,
                 x,
-                y
+                Layout.BTN_START_Y
             )
 
     # --------------------------------------------------
@@ -117,16 +105,18 @@ class ControlPanel:
         # Фон панели
         pygame.draw.rect(
             screen,
-            (45, 45, 45),
-            self.rect
+            Theme.TCP_BACKGROUND_COLOR,
+            self.rect,
+            border_radius=Theme.TCP_BORDER_LINE_RADIUS
         )
 
         # Рамка панели
         pygame.draw.rect(
             screen,
-            (110, 110, 110),
+            Theme.TCP_BORDER_LINE_COLOR,
             self.rect,
-            2
+            Theme.TCP_BORDER_LINE_WIDTH,
+            Theme.TCP_BORDER_LINE_RADIUS
         )
 
         # Кнопки
