@@ -10,11 +10,13 @@ from gui.widgets.horizontal_slider import HorizontalSlider
 
 class ControlPanel:
 
-    def __init__(self, image_loader):
+    def __init__(self, image_loader,font_manager):
 
         self.image_loader = image_loader
+        self.font_manager = font_manager
 
-        self.font = pygame.font.SysFont("Segoe UI", 12)
+        self.font = self.font_manager.load(10,   Config.FONT_BOLD)
+        #self.font = pygame.font.SysFont("Segoe UI", 12)
        
 
         # --------------------------------------------------
@@ -22,9 +24,18 @@ class ControlPanel:
         # --------------------------------------------------
 
         self.rect = Layout.CP_RECT
-
+       
+        self.sliders = []
+        self._create_sliders()
+        
         self.buttons = {}
+        self._create_buttons()
 
+    # --------------------------------------------------
+    # Создание набора слайдеров 
+    # --------------------------------------------------
+
+    def _create_sliders(self):
         self.speed_slider = HorizontalSlider(
 
             caption="Speed",
@@ -43,17 +54,16 @@ class ControlPanel:
             value_range=(0.5, 5.0),
             font=self.font,
             formatter=lambda v: f"{v:.2f} s"
-        )
-
-        self.sliders = [
+        )        
+        self.sliders.extend(
+        [
             self.speed_slider,
             self.pause_slider
-            ]
-
-        self._create_buttons()
+        ]
+        )
 
     # --------------------------------------------------
-    # Создание кнопок
+    # Создание набора кнопок
     # --------------------------------------------------
 
     def _create_buttons(self):

@@ -7,6 +7,8 @@ from gui.layout import Layout
 from gui.main_window import MainWindow
 from core.config import Config
 from gui.services.image_loader import ImageLoader
+from gui.services.font_manager import FontManager
+
 
 class Application:
 
@@ -26,12 +28,15 @@ class Application:
         self.gui = GUIManager(self.size)
 
         self.image_loader = ImageLoader()
+        self.font_manager  = FontManager()
 
         # Главное окно
         self.window = MainWindow(
             self.screen,
             self.gui,
-            self.image_loader
+            self.image_loader,
+            self.font_manager
+
         )
 
     def run(self):

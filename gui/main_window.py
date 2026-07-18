@@ -3,13 +3,13 @@ from gui.panels.control_panel import ControlPanel
 
 class MainWindow:
 
-    def __init__(self, screen, gui, image_loader):
+    def __init__(self, screen, gui, image_loader,font_manager):
 
         self.screen = screen
         self.gui = gui
 
         self.background_color = (30, 30, 30)
-        self.control_panel = ControlPanel(image_loader)
+        self.control_panel = ControlPanel(image_loader,font_manager) 
 
     def handle_event(self, event):
         command = self.control_panel.handle_event(event)
