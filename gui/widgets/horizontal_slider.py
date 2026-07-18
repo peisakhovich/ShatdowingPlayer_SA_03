@@ -2,7 +2,6 @@ import pygame
 
 from gui.theme import Theme
 
-
 class HorizontalSlider:
 
     def __init__(
@@ -15,16 +14,13 @@ class HorizontalSlider:
         formatter=None
     ):
 
-        # -------------------------
-        # Общая область виджета
-        # -------------------------
+        # Состояние мыши
+        self.dragging = False
 
+        # Общая область виджета
         self.rect = pygame.Rect(rect)
 
-        # -------------------------
         # Параметры
-        # -------------------------
-
         self.caption = caption
 
         self.min_value = value_range[0]
@@ -39,22 +35,10 @@ class HorizontalSlider:
         else:
             self.formatter = formatter
 
-        # -------------------------
-        # Состояние
-        # -------------------------
-
-        self.dragging = False
-
-        # -------------------------
         # Дорожка
-        # -------------------------
-
         self.track_rect = pygame.Rect(0, 0, 0, 0)
 
-        # -------------------------
         # Бегунок
-        # -------------------------
-
         self.knob_rect = pygame.Rect(
             0,
             0,
@@ -67,9 +51,8 @@ class HorizontalSlider:
     # --------------------------------------------------
 
     def _update_geometry(self):
-        #
+
         # Дорожка
-        #
         self.track_rect = pygame.Rect(
 
             self.rect.x,
@@ -78,14 +61,10 @@ class HorizontalSlider:
             Theme.HSL_TRACK_HEIGHT // 2,
 
             self.rect.width,
-
             Theme.HSL_TRACK_HEIGHT
         )
 
-        #
         # Положение бегунка
-        #
-
         k = (
             (self.value - self.min_value) /
             (self.max_value - self.min_value)
@@ -104,21 +83,64 @@ class HorizontalSlider:
     # --------------------------------------------------
 
     def handle_event(self, event):
-        pass
+           
+        # Нажата кнопка мыши
+        if event.type == pygame.MOUSEBUTTONDOWN:
+
+            if event.button == 1:
+
+                if self.knob_rect.collidepoint(event.pos):
+
+                    self.dragging = True
+
+                   # print("Drag ON")
+
+        # Движение мыши
+        elif event.type == pygame.MOUSEMOTION:
+
+            if self.dragging:
+
+                x = event.pos[0]
+
+                # Не выходим за пределы дорожки
+
+                x = max(self.track_rect.left, x)
+                x = min(self.track_rect.right, x)
+
+                # Вычисляем новое значение
+                k = (
+                    (x - self.track_rect.left) /
+                    self.track_rect.width
+                )
+
+                self.set_value(
+                    self.min_value +
+                    k * (self.max_value - self.min_value)
+                )
+
+#               print(f"{self.value:.2f}")
+
+        # Кнопка отпущена
+        
+        elif event.type == pygame.MOUSEBUTTONUP:
+
+            if event.button == 1:
+
+                if self.dragging:
+
+                    self.dragging = False
+
+                  #  print("Drag OFF")
 
     # --------------------------------------------------
 
     def update(self):
         pass
-
     # --------------------------------------------------
 
     def draw(self, screen):
 
-        #
         # Дорожка
-        #
-
         pygame.draw.rect(
 
             screen,
@@ -130,10 +152,7 @@ class HorizontalSlider:
             border_radius=Theme.HSL_TRACK_RADIUS
         )
 
-        #
         # Заполненная часть
-        #
-
         progress_rect = pygame.Rect(
 
             self.track_rect.left,
@@ -157,10 +176,7 @@ class HorizontalSlider:
             border_radius=Theme.HSL_TRACK_RADIUS
         )
 
-        #
         # Бегунок
-        #
-
         pygame.draw.rect(
 
             screen,
@@ -185,28 +201,20 @@ class HorizontalSlider:
             border_radius=Theme.HSL_KNOB_RADIUS
         )
 
-        #
         # Подпись
-        #
-
         caption = self.font.render(
-
             self.caption,
-
             True,
-
             Theme.HSL_TEXT_COLOR
         )
 
         screen.blit(
             caption,
-            (self.rect.left, self.rect.top - 22)
+            (self.rect.left, self.rect.top - 18)
         )
 
-        #
-        # Значение
-        #
 
+        # Значение
         value = self.font.render(
 
             self.formatter(self.value),
@@ -225,3 +233,15 @@ class HorizontalSlider:
                 self.rect.top - 2
             )
         )
+
+    def set_value(self, value):
+
+        self.value = max(
+            self.min_value,
+            min(
+                self.max_value,
+                value
+            )
+        )
+
+        self._update_geometry()    

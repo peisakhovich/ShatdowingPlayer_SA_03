@@ -19,8 +19,8 @@ class Theme:
 
     # Дорожка
     HSL_TRACK_COLOR = pygame.Color("#5A5A5A")
-    HSL_TRACK_HEIGHT = 6
-    HSL_TRACK_RADIUS = 3
+    HSL_TRACK_HEIGHT = 5
+    HSL_TRACK_RADIUS = 2
 
     # Заполненная часть дорожки (слева от бегунка)
     HSL_PROGRESS_COLOR = pygame.Color("#3B82F6")
@@ -28,13 +28,13 @@ class Theme:
     # Бегунок
     HSL_KNOB_COLOR = pygame.Color("#F0F0F0")
     HSL_KNOB_BORDER_COLOR = pygame.Color("#404040")
-    HSL_KNOB_BORDER_WIDTH = 1
+    HSL_KNOB_BORDER_WIDTH = 2
 
-    HSL_KNOB_WIDTH = 14
-    HSL_KNOB_HEIGHT = 22
-    HSL_KNOB_RADIUS = 7
+    HSL_KNOB_WIDTH = 12
+    HSL_KNOB_HEIGHT = 20
+    HSL_KNOB_RADIUS = 4
 
     # Текст значения
-    HSL_TEXT_COLOR = pygame.Color("#FFFFFF")
+    HSL_TEXT_COLOR = pygame.Color("#91E5FF")
 
 

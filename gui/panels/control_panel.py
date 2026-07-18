@@ -14,7 +14,7 @@ class ControlPanel:
 
         self.image_loader = image_loader
 
-        self.font = pygame.font.SysFont("Segoe UI", 18)
+        self.font = pygame.font.SysFont("Segoe UI", 12)
        
 
         # --------------------------------------------------
@@ -28,17 +28,27 @@ class ControlPanel:
         self.speed_slider = HorizontalSlider(
 
             caption="Speed",
-
-            rect=(20, 28, 220, 24),
-
+            rect=(self.rect.x + 10, self.rect.y + 24, 180, 12),
             start_value=1.0,
-
-            value_range=(0.2, 2.0),
-
+            value_range=(0.1, 1.2),
             font=self.font,
-
-            formatter=lambda v: f"{v:.2f}x"
+            formatter=lambda v: f"{v:.2f} x"
         )
+
+        self.pause_slider = HorizontalSlider(
+
+            caption="Pause",
+            rect=(self.rect.x + 10, self.rect.y + 56, 180, 12),
+            start_value=1.0,
+            value_range=(0.5, 5.0),
+            font=self.font,
+            formatter=lambda v: f"{v:.2f} s"
+        )
+
+        self.sliders = [
+            self.speed_slider,
+            self.pause_slider
+            ]
 
         self._create_buttons()
 
@@ -98,7 +108,8 @@ class ControlPanel:
 
     def handle_event(self, event):
 
-        self.speed_slider.handle_event(event)
+        for slider in self.sliders:
+            slider.handle_event(event)
 
         for name, button in self.buttons.items():
 
@@ -122,7 +133,8 @@ class ControlPanel:
                 mouse_pressed
             )
 
-        self.speed_slider.update()
+        for slider in self.sliders:
+            slider.update()
     # --------------------------------------------------
     # Отрисовка
     # --------------------------------------------------
@@ -147,7 +159,9 @@ class ControlPanel:
         )
 
         # Гор.Слайдеры
-        self.speed_slider.draw(screen)
+        for slider in self.sliders:
+            slider.draw(screen)
+        
         
         # Кнопки
         for button in self.buttons.values():
