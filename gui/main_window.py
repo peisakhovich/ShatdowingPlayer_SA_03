@@ -43,12 +43,17 @@ class MainWindow:
 
             title="Exit",
 
-            message="Exit application?",
+            message="Хотите завершить приложение Exit application? \n Или еще немного поработаете ",
 
             buttons=[
                 "Yes",
-                "No"
-            ]
+                "No",
+                "Off couse",
+                "Ma yBe", 
+                "Off couse",
+                "Ma yBe",            
+                                 
+                ]
         )
 
         self.active_dialog.show()

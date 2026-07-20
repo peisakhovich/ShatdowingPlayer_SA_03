@@ -39,31 +39,36 @@ class Theme:
 
 
     # --------------------------------------------------
-    # UI LAYER: DIALOG
+    # Dialog
     # --------------------------------------------------
 
-    # Затемнение экрана
-    DIALOG_OVERLAY_COLOR = pygame.Color("#000000")
-    DIALOG_OVERLAY_ALPHA = 120
+    DIALOG_MIN_WIDTH = 320
+    DIALOG_HEIGHT = 160
 
-    # Размеры
-    DIALOG_WIDTH = 360
-    DIALOG_HEIGHT = 180
+    DIALOG_PADDING_X = 20
+    DIALOG_PADDING_Y = 16
 
-    # Скругление
+    DIALOG_HEADER_HEIGHT = 36
     DIALOG_RADIUS = 8
 
-    # Заголовок
-    DIALOG_HEADER_HEIGHT = 42
-    DIALOG_PADDING = 16
+    DIALOG_BUTTON_HEIGHT = 30
+    DIALOG_BUTTON_INTERVAL = 12
 
-    # Фон окна
-    DIALOG_BACKGROUND_COLOR = pygame.Color("#2E3238")
-    # Рамка
-    DIALOG_BORDER_COLOR = pygame.Color("#5A6570")
-    # Разделительная линия
-    DIALOG_SEPARATOR_COLOR = pygame.Color("#4A545E")
-    # Заголовок
+    DIALOG_BUTTON_PADDING_X = 16
+    DIALOG_BUTTON_PADDING_Y = 6
+
+    DIALOG_OVERLAY_ALPHA = 170
+
+    DIALOG_BACKGROUND_COLOR = pygame.Color("#2D343C")
+    DIALOG_BORDER_COLOR = pygame.Color("#1A4D5C")
+    DIALOG_SEPARATOR_COLOR = pygame.Color("#4A5966")
+
     DIALOG_TITLE_COLOR = pygame.Color("#91E5FF")
-    # Основной текст
-    DIALOG_TEXT_COLOR = pygame.Color("#E6E6E6")
+    DIALOG_TEXT_COLOR = pygame.Color("#E0E0E0")
+
+    DIALOG_BUTTON_COLOR = pygame.Color("#364049")
+    DIALOG_BUTTON_HOVER_COLOR = pygame.Color("#4B6274")
+    DIALOG_BUTTON_BORDER_COLOR = pygame.Color("#1085A8")
+    DIALOG_BUTTON_TEXT_COLOR = pygame.Color("#91E5FF")
+
+    DIALOG_OVERLAY_COLOR = pygame.Color("#000000")

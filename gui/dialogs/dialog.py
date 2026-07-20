@@ -14,22 +14,12 @@ class Dialog:
         message,
         buttons
     ):
-
         # --------------------------------------------------
         # Геометрия
         # --------------------------------------------------
 
         self.parent_rect = pygame.Rect(parent_rect)
-
-        self.rect = pygame.Rect(
-            0,
-            0,
-            Theme.DIALOG_WIDTH,
-            Theme.DIALOG_HEIGHT
-        )
-
-        self.rect.center = self.parent_rect.center
-
+  
         # --------------------------------------------------
         # Текст
         # --------------------------------------------------
@@ -66,6 +56,11 @@ class Dialog:
         self.result = None
 
         # --------------------------------------------------
+
+        self.button_widths = []
+        self.button_rects = []
+
+        self._calculate_geometry()
 
         self._create_buttons()
 
@@ -132,52 +127,48 @@ class Dialog:
 
         self.button_rects.clear()
 
-        button_width = 90
-        button_height = 30
-        spacing = 12
+        total_width = sum(self.button_widths)
 
-        count = len(self.button_captions)
+        if len(self.button_widths) > 1:
 
-        total_width = (
+            total_width += (
 
-            count * button_width +
+                len(self.button_widths) - 1
 
-            (count - 1) * spacing
-        )
+            ) * Theme.DIALOG_BUTTON_INTERVAL
 
-        start_x = (
-
-            self.rect.centerx -
-
-            total_width // 2
-        )
+        x = self.rect.centerx - total_width // 2
 
         y = (
 
             self.rect.bottom -
 
-            Theme.DIALOG_PADDING -
+            Theme.DIALOG_PADDING_Y -
 
-            button_height
+            Theme.DIALOG_BUTTON_HEIGHT
         )
 
-        for i in range(count):
+        for width in self.button_widths:
 
             rect = pygame.Rect(
 
-                start_x +
-
-                i * (button_width + spacing),
+                x,
 
                 y,
 
-                button_width,
+                width,
 
-                button_height
+                Theme.DIALOG_BUTTON_HEIGHT
             )
 
             self.button_rects.append(rect)
 
+            x += (
+
+                width +
+
+                Theme.DIALOG_BUTTON_INTERVAL
+            )
     # --------------------------------------------------
 
     def _draw_overlay(self, screen):
@@ -265,7 +256,7 @@ class Dialog:
 
             (
                 self.rect.left +
-                Theme.DIALOG_PADDING,
+                Theme.DIALOG_PADDING_X,
 
                 self.rect.top + 10
             )
@@ -338,3 +329,106 @@ class Dialog:
                 text,
                 text_rect
             )
+    def _calculate_geometry(self):
+
+        #
+        # Ширина заголовка
+        #
+
+        title_width = self.title_font.size(
+            self.title
+        )[0]
+
+        #
+        # Ширина сообщения
+        #
+
+        message_width = self.text_font.size(
+            self.message
+        )[0]
+
+        #
+        # Ширина кнопок
+        #
+
+        self.button_widths = []
+
+        buttons_width = 0
+
+        for caption in self.button_captions:
+
+            text_width = self.text_font.size(
+                caption
+            )[0]
+
+            button_width = (
+
+                text_width +
+
+                Theme.DIALOG_BUTTON_PADDING_X * 2
+            )
+
+            self.button_widths.append(
+                button_width
+            )
+
+            buttons_width += button_width
+
+        #
+        # Интервалы между кнопками
+        #
+
+        if len(self.button_widths) > 1:
+
+            buttons_width += (
+
+                len(self.button_widths) - 1
+
+            ) * Theme.DIALOG_BUTTON_INTERVAL
+
+        #
+        # Максимальная ширина содержимого
+        #
+
+        content_width = max(
+
+            title_width,
+
+            message_width,
+
+            buttons_width
+        )
+
+        #
+        # Итоговая ширина окна
+        #
+
+        dialog_width = max(
+
+            Theme.DIALOG_MIN_WIDTH,
+
+            content_width +
+
+            Theme.DIALOG_PADDING_X  * 2
+        )
+
+        print("title_width:",title_width)
+        print("message_width:",message_width)
+        print("buttons_width:",buttons_width)
+
+        #
+        # Создаем окно
+        #
+
+        self.rect = pygame.Rect(
+
+            0,
+
+            0,
+
+            dialog_width,
+
+            Theme.DIALOG_HEIGHT
+        )
+
+        self.rect.center = self.parent_rect.center
