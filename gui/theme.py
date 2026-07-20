@@ -38,3 +38,32 @@ class Theme:
     HSL_TEXT_COLOR = pygame.Color("#91E5FF")
 
 
+    # --------------------------------------------------
+    # UI LAYER: DIALOG
+    # --------------------------------------------------
+
+    # Затемнение экрана
+    DIALOG_OVERLAY_COLOR = pygame.Color("#000000")
+    DIALOG_OVERLAY_ALPHA = 120
+
+    # Размеры
+    DIALOG_WIDTH = 360
+    DIALOG_HEIGHT = 180
+
+    # Скругление
+    DIALOG_RADIUS = 8
+
+    # Заголовок
+    DIALOG_HEADER_HEIGHT = 42
+    DIALOG_PADDING = 16
+
+    # Фон окна
+    DIALOG_BACKGROUND_COLOR = pygame.Color("#2E3238")
+    # Рамка
+    DIALOG_BORDER_COLOR = pygame.Color("#5A6570")
+    # Разделительная линия
+    DIALOG_SEPARATOR_COLOR = pygame.Color("#4A545E")
+    # Заголовок
+    DIALOG_TITLE_COLOR = pygame.Color("#91E5FF")
+    # Основной текст
+    DIALOG_TEXT_COLOR = pygame.Color("#E6E6E6")

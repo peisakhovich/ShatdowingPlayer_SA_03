@@ -49,11 +49,13 @@ class Application:
 
             for event in pygame.event.get():
 
-                if event.type == pygame.QUIT:
-                    self.running = False
-
                 self.gui.process_events(event)
-                self.window.handle_event(event)
+
+                command = self.window.handle_event(event)
+
+                if command == "quit":
+
+                    self.running = False
 
             self.gui.update(time_delta)
 
