@@ -9,30 +9,68 @@ class TextButton:
         self,
         rect,
         caption,
-        font
+        font,
+        auto_width
     ):
 
-        # -------------------------
-        # Геометрия начальная
-        # -------------------------
-        self.rect = pygame.Rect(rect)
 
         # -------------------------
         # Параметры
         # -------------------------
         self.caption = caption
         self.font = font
+        self.auto_width = auto_width
 
         # -------------------------
         # Состояние покоя
         # -------------------------
         self.state = "normal"
 
+        # -------------------------
+        # Геометрия начальная
+        # -------------------------
+        self.rect = pygame.Rect(rect)
+        self._update_geometry()
+
     # --------------------------------------------------
+    def _update_geometry(self):
+        """
+        Вычисляет геометрию кнопки.
+
+        Ширина заданная при создании экземпляра кнопки остается 
+        без изменений в случае auto_width=False.
+        В противном случае вычисляется ширина по рендерингу capiton
+        """
+        if not self.auto_width:
+            return
+
+        text_width, _ = self.font.size(
+            self.caption
+        )
+ 
+        self.rect.width =  text_width + Theme.TB_PADDING_X * 2
 
     def handle_event(self, event):
-        pass
+       
+        # Нажатие ЛКМ
+        if event.type == pygame.MOUSEBUTTONDOWN:
 
+            if event.button == 1:
+
+                if self.rect.collidepoint(event.pos):
+
+                    self.state = "pressed"
+
+        # Отпускание ЛКМ
+        elif event.type == pygame.MOUSEBUTTONUP:
+
+            if event.button == 1:
+                if self.state == "pressed":
+                    self.state = "hover"
+                    if self.rect.collidepoint(event.pos):
+                        return True
+
+        return False
     # --------------------------------------------------
 
     def update(self):
@@ -83,7 +121,7 @@ class TextButton:
             center=self.rect.center
         )
         # адаптируем ширину клавили по надписи
-        self.rect.width=min( self.rect.width , text_rect.width+Theme.TB_PADDING_X*2  )
+        #self.rect.width=min( self.rect.width , text_rect.width+Theme.TB_PADDING_X*2  )
 
         # Отрисовка Фона
         pygame.draw.rect(

@@ -34,9 +34,10 @@ class ControlPanel:
 
         self.test_button = TextButton(
 
-            rect=(250, self.rect.y + 25, 120, Theme.TB_HEIGHT),
+            rect=(250, self.rect.y + 25, 130, Theme.TB_HEIGHT),
             caption="TEST",
-            font=self.font
+            font=self.font,
+            auto_width=True
             )
 
     # --------------------------------------------------
@@ -133,6 +134,10 @@ class ControlPanel:
 
             if button.handle_event(event):
                 return name
+    
+        if self.test_button.handle_event(event):
+
+            print("TextButton pressed")
 
         return None
 
