@@ -72,3 +72,24 @@ class Theme:
     DIALOG_BUTTON_TEXT_COLOR = pygame.Color("#91E5FF")
 
     DIALOG_OVERLAY_COLOR = pygame.Color("#000000")
+
+    # --------------------------------------------------
+    # UI LAYER: TEXT_BUTTON
+    # --------------------------------------------------
+
+    TB_HEIGHT = 30
+
+    TB_PADDING_X = 16
+    TB_PADDING_Y = 6
+
+    TB_BACKGROUND_COLOR = pygame.Color("#0E4792")
+    TB_BACKGROUND_HOVER_COLOR = pygame.Color("#811165")
+    TB_BACKGROUND_PRESSED_COLOR = pygame.Color("#7EBE52")
+
+    TB_BORDER_COLOR = pygame.Color("#5947F8")
+    TB_BORDER_WIDTH = 1
+
+    TB_RADIUS = 8
+
+    TB_TEXT_COLOR = pygame.Color("#91E5FF")
+    TB_TEXT_PRESSED_COLOR = pygame.Color("#FFFFFF")

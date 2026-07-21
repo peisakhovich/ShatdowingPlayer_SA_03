@@ -5,6 +5,7 @@ from gui.theme import Theme
 from gui.widgets.image_button import ImageButton
 
 from gui.widgets.horizontal_slider import HorizontalSlider
+from gui.widgets.text_button import TextButton
 
 
 
@@ -30,6 +31,13 @@ class ControlPanel:
         
         self.buttons = {}
         self._create_buttons()
+
+        self.test_button = TextButton(
+
+            rect=(250, self.rect.y + 25, 120, Theme.TB_HEIGHT),
+            caption="TEST",
+            font=self.font
+            )
 
     # --------------------------------------------------
     # Создание набора слайдеров 
@@ -145,6 +153,9 @@ class ControlPanel:
 
         for slider in self.sliders:
             slider.update()
+
+        self.test_button.update()
+
     # --------------------------------------------------
     # Отрисовка
     # --------------------------------------------------
@@ -176,3 +187,6 @@ class ControlPanel:
         # Кнопки
         for button in self.buttons.values():
             button.draw(screen)
+
+        # test button
+        self.test_button.draw(screen)            
