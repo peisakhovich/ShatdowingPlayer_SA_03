@@ -43,15 +43,11 @@ class MainWindow:
 
             title="Exit",
 
-            message="Хотите завершить приложение Exit application? \n Или еще немного поработаете ",
+            message="Хотите завершить приложение \n Или еще немного поработаете ",
 
             buttons=[
                 "Yes",
                 "No",
-                "Off couse",
-                "Ma yBe", 
-                "Off couse",
-                "Ma yBe",            
                                  
                 ]
         )
