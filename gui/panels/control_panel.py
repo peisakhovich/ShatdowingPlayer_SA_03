@@ -1,12 +1,11 @@
 import pygame
+
 from core.config import Config 
 from gui.layout import Layout
 from gui.theme import Theme
 from gui.widgets.image_button import ImageButton
-
 from gui.widgets.horizontal_slider import HorizontalSlider
 from gui.widgets.text_button import TextButton
-
 
 
 class ControlPanel:

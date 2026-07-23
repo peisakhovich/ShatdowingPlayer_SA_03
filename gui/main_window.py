@@ -2,6 +2,9 @@ import pygame
 
 from gui.panels.control_panel import ControlPanel
 from gui.dialogs.dialog import Dialog
+from gui.widgets.check_box import CheckBox
+from gui.theme import Theme
+from core.config import Config 
 
 
 class MainWindow:
@@ -28,6 +31,21 @@ class MainWindow:
 
         # Активный модальный диалог
         self.active_dialog = None
+
+        # Проверка для отладки  CheckBox
+        self.cb_test = CheckBox(
+
+            rect=(40, 40, Theme.CB_SIZE, Theme.CB_SIZE),
+
+            caption="Show translation",
+
+            font=self.font_manager.load(
+                14,
+                Config.FONT_REGULAR
+            ),
+
+            checked=False
+        )
 
     # --------------------------------------------------
     # Показать диалог выхода
@@ -107,12 +125,19 @@ class MainWindow:
 
             print("Команда:", command)
 
+        result = self.cb_test.handle_event(event)
+
+        if result is not None:
+            print(result)
+
     # --------------------------------------------------
     # Обновление
     # --------------------------------------------------
 
     def update(self):
 
+        self.cb_test.update()
+        
         if self.active_dialog:
 
             self.active_dialog.update()
@@ -130,6 +155,8 @@ class MainWindow:
         self.screen.fill(
             self.background_color
         )
+
+        self.cb_test.draw(self.screen)
 
         #
         # Основной интерфейс

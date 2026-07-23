@@ -42,8 +42,8 @@ class Theme:
     # Dialog
     # --------------------------------------------------
 
-    DIALOG_MIN_WIDTH = 320
-    DIALOG_HEIGHT = 160
+    DIALOG_MIN_WIDTH = 220
+    DIALOG_HEIGHT = 120
 
     DIALOG_PADDING_X = 20
     DIALOG_PADDING_Y = 16
@@ -95,4 +95,17 @@ class Theme:
 
     TB_TEXT_COLOR = pygame.Color("#91E5FF")
     TB_TEXT_PRESSED_COLOR = pygame.Color("#FFFFFF")
+
+    # --------------------------------------------------
+    # UI LAYER: CHECK_BOX
+    # --------------------------------------------------
+
+    CB_SIZE = 18
+    CB_RADIUS = 3
+    CB_BORDER_WIDTH = 2
+    CB_INTERVAL = 8
+    CB_BACKGROUND_COLOR = pygame.Color("#303030")
+    CB_BACKGROUND_HOVER_COLOR = pygame.Color("#9B1515")
+    CB_BORDER_COLOR = pygame.Color("#5FB8D8")
+    CB_TEXT_COLOR = pygame.Color("#91E5FF")
 

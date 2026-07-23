@@ -1,0 +1,160 @@
+import pygame
+
+from gui.theme import Theme
+
+
+class CheckBox:
+
+    def __init__(
+        self,
+        rect,
+        caption,
+        font,
+        checked=False
+    ):
+
+        # ---------------------------------------
+        # Геометрия
+        # ---------------------------------------
+
+        self.rect = pygame.Rect(rect)
+
+        # ---------------------------------------
+        # Параметры
+        # ---------------------------------------
+
+        self.caption = caption
+        self.font = font
+
+        # ---------------------------------------
+        # Состояние
+        # ---------------------------------------
+
+        self.checked = checked
+        self.state = "normal"
+        self.pressed = False
+
+    # ==================================================
+    # Public
+    # ==================================================
+
+    def handle_event(self, event):
+
+        #
+        # Нажатие ЛКМ
+        #
+
+        if event.type == pygame.MOUSEBUTTONDOWN:
+
+            if event.button == 1:
+
+                if self.rect.collidepoint(event.pos):
+
+                    self.pressed = True
+                    self.state = "pressed"
+
+        #
+        # Отпускание ЛКМ
+        
+        elif event.type == pygame.MOUSEBUTTONUP:
+
+            if event.button == 1:
+
+                if self.pressed :
+
+                    self.pressed = False
+                    self.state = "hover"
+
+                    if self.rect.collidepoint(event.pos):
+
+                        # Меняем состояние
+                        self.checked = not self.checked
+
+                        # Возвращаем новое состояние
+                        return self.checked
+
+        return None
+
+    # --------------------------------------------------
+
+    def update(self):
+
+        mouse_pos = pygame.mouse.get_pos()
+
+        if self.rect.collidepoint(mouse_pos):
+
+            self.state = "hover"
+
+        else:
+
+            self.state = "normal"
+
+    # --------------------------------------------------
+
+    def draw(self, screen):
+
+        #
+        # Пока только рисуем квадрат
+        #
+
+        if self.state == "hover":
+
+            background = Theme.CB_BACKGROUND_HOVER_COLOR
+
+        else:
+
+            background = Theme.CB_BACKGROUND_COLOR
+
+        pygame.draw.rect(
+
+            screen,
+
+            background,
+
+            self.rect,
+
+            border_radius=Theme.CB_RADIUS
+        )
+
+        pygame.draw.rect(
+
+            screen,
+
+            Theme.CB_BORDER_COLOR,
+
+            self.rect,
+
+            width=Theme.CB_BORDER_WIDTH,
+
+            border_radius=Theme.CB_RADIUS
+        )
+
+        #
+        # Подпись
+        #
+
+        text = self.font.render(
+
+            self.caption,
+
+            True,
+
+            Theme.CB_TEXT_COLOR
+        )
+
+        text_rect = text.get_rect(
+
+            midleft=(
+
+                self.rect.right +
+
+                Theme.CB_INTERVAL,
+
+                self.rect.centery
+            )
+        )
+
+        screen.blit(
+            text,
+            text_rect
+        )
