@@ -48,8 +48,11 @@ class MainWindow:
             buttons=[
                 "Yes",
                 "No",
-                                 
-                ]
+                "Later",
+                "Early",
+
+                ],
+            default_button=1     
         )
 
         self.active_dialog.show()

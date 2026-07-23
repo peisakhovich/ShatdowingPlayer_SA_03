@@ -88,8 +88,11 @@ class Theme:
 
     TB_BORDER_COLOR = pygame.Color("#5947F8")
     TB_BORDER_WIDTH = 1
+    TB_FOCUS_BORDER_COLOR = pygame.Color("#7FE8FF")
+    TB_FOCUS_BORDER_WIDTH = 3
 
     TB_RADIUS = 8
 
     TB_TEXT_COLOR = pygame.Color("#91E5FF")
     TB_TEXT_PRESSED_COLOR = pygame.Color("#FFFFFF")
+

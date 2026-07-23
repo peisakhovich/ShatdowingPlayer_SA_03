@@ -27,6 +27,11 @@ class TextButton:
         self.state = "normal"
 
         # -------------------------
+        # Фокус клавиатуры
+        # -------------------------
+        self.focused = False
+
+        # -------------------------
         # Геометрия начальная
         # -------------------------
         self.rect = pygame.Rect(rect)
@@ -141,6 +146,26 @@ class TextButton:
             width=Theme.TB_BORDER_WIDTH,
             border_radius=Theme.TB_RADIUS
         )
+
+        # Рамка фокуса клавиатуры
+        #
+
+        if self.focused:
+
+            pygame.draw.rect(
+
+                screen,
+
+                Theme.TB_FOCUS_BORDER_COLOR,
+
+                self.rect,
+
+                width=Theme.TB_FOCUS_BORDER_WIDTH,
+
+                border_radius=Theme.TB_RADIUS
+            )
+
+
         # выводим на экран
         screen.blit(
             text,

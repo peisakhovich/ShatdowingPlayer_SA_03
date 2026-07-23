@@ -13,7 +13,8 @@ class Dialog:
         font_manager,
         title,
         message,
-        buttons
+        buttons,
+        default_button=0
     ):
 
         # ---------------------------------------
@@ -35,6 +36,9 @@ class Dialog:
 
         self.button_captions = buttons
         self.buttons = []
+
+        # Индекс кнопки, имеющей клавиатурный фокус
+        self.focus_index = default_button
 
         # ---------------------------------------
         # Шрифты
@@ -83,6 +87,39 @@ class Dialog:
 
         if not self.visible:
             return None
+            
+        #
+        # Управление клавиатурой
+        #
+
+        if event.type == pygame.KEYDOWN:
+
+            if event.key == pygame.K_LEFT:
+
+                self._set_focus(
+                    self.focus_index - 1
+                )
+
+                return None
+
+            elif event.key == pygame.K_RIGHT:
+
+                self._set_focus(
+                    self.focus_index + 1
+                )
+
+                return None
+
+            elif event.key in (
+                pygame.K_RETURN,
+                pygame.K_KP_ENTER
+            ):
+
+                return self.focus_index
+
+        #
+        # Управление мышью
+        #
 
         for index, button in enumerate(self.buttons):
 
@@ -202,16 +239,12 @@ class Dialog:
 
     def _create_buttons(self):
         """
-        Создает кнопки и размещает их
-        в нижней части диалога.
+        Создает кнопки и размещает их в нижней части диалога.
         """
-
         self.buttons.clear()
-
         #
         # Создание кнопок
         #
-
         for caption in self.button_captions:
 
             button = TextButton(
@@ -265,9 +298,49 @@ class Dialog:
   
             x += ( button.rect.width +
                 Theme.DIALOG_BUTTON_INTERVAL
-            )        
+            )
+
+        # Устанавливаем фокус на кнопку
+        #
+        if self.buttons:
+
+            self.focus_index = max(
+                0,
+                min(self.focus_index, len(self.buttons) - 1)
+            )
+
+            self.buttons[self.focus_index].focused = True
     # --------------------------------------------------
     
+    def _set_focus(self, index):
+        """
+        Передает клавиатурный фокус
+        указанной кнопке.
+        """
+
+        if not self.buttons:
+            return
+
+        #
+        # Снимаем старый фокус
+        #
+
+        self.buttons[self.focus_index].focused = False
+
+        #
+        # Новый индекс
+        #
+
+        self.focus_index = index % len(self.buttons)
+
+        #
+        # Новый фокус
+        #
+
+        self.buttons[self.focus_index].focused = True
+
+
+
     def _draw_overlay(self, screen):
 
         overlay = pygame.Surface(
