@@ -38,25 +38,10 @@ class TextButton:
         self._update_geometry()
 
     # --------------------------------------------------
-    def _update_geometry(self):
-        """
-        Вычисляет геометрию кнопки.
-
-        Ширина заданная при создании экземпляра кнопки остается 
-        без изменений в случае auto_width=False.
-        В противном случае вычисляется ширина по рендерингу capiton
-        """
-        if not self.auto_width:
-            return
-
-        text_width, _ = self.font.size(
-            self.caption
-        )
- 
-        self.rect.width =  text_width + Theme.TB_PADDING_X * 2
 
     def handle_event(self, event):
-       
+        
+        # Ловим клик на поверхности кнопки
         # Нажатие ЛКМ
         if event.type == pygame.MOUSEBUTTONDOWN:
 
@@ -73,8 +58,8 @@ class TextButton:
                 if self.state == "pressed":
                     self.state = "hover"
                     if self.rect.collidepoint(event.pos):
-                        return True
-
+                        return True  # Клик пойман
+                    
         return False
     # --------------------------------------------------
 
@@ -114,8 +99,6 @@ class TextButton:
 
         #
         # Надпись рендерим
-        #
-
         text = self.font.render(
             self.caption,
             True,
@@ -125,12 +108,9 @@ class TextButton:
         text_rect = text.get_rect(
             center=self.rect.center
         )
-        # адаптируем ширину клавили по надписи
-        #self.rect.width=min( self.rect.width , text_rect.width+Theme.TB_PADDING_X*2  )
 
         # Отрисовка Фона
         pygame.draw.rect(
-
             screen,
             background,
             self.rect,
@@ -139,7 +119,6 @@ class TextButton:
 
         # Отрисовка Рамки
         pygame.draw.rect(
-
             screen,
             Theme.TB_BORDER_COLOR,
             self.rect,
@@ -148,26 +127,33 @@ class TextButton:
         )
 
         # Рамка фокуса клавиатуры
-        #
-
         if self.focused:
-
             pygame.draw.rect(
-
                 screen,
-
                 Theme.TB_FOCUS_BORDER_COLOR,
-
                 self.rect,
-
                 width=Theme.TB_FOCUS_BORDER_WIDTH,
-
                 border_radius=Theme.TB_RADIUS
             )
-
 
         # выводим на экран
         screen.blit(
             text,
             text_rect
         )
+
+    def _update_geometry(self):
+        """
+        Вычисляет геометрию кнопки.
+        Ширина заданная при создании экземпляра кнопки остается 
+        без изменений в случае auto_width=False.
+        В противном случае вычисляется ширина по рендерингу capiton
+        """
+        if not self.auto_width:
+            return
+
+        text_width, _ = self.font.size(
+            self.caption
+        )
+ 
+        self.rect.width =  text_width + Theme.TB_PADDING_X * 2

@@ -1,0 +1,217 @@
+SA_03 — подготовка нового проекта с нуля
+1. Создать структуру проекта
+
+Создать папку проекта:
+
+mkdir SA_03
+cd SA_03
+
+Создать структуру:
+
+.\create_SA_03.ps1
+
+Проверка:
+
+tree /F
+2. Проверить доступные версии Python
+py -0
+
+Ожидаем:
+
+-V:3.14
+-V:3.12
+
+Для проекта используем Python 3.12.
+
+3. Создать виртуальное окружение
+
+ВАЖНО: из корня проекта.
+
+py -3.12 -m venv .venv
+
+Получаем:
+
+SA_03
+│
+├── .venv
+├── main.py
+├── core
+├── gui
+...
+4. Активировать виртуальное окружение
+.venv\Scripts\activate
+
+Проверить:
+
+python --version
+
+Должно быть:
+
+Python 3.12.x
+5. Обновить pip
+python -m pip install --upgrade pip
+
+Проверка:
+
+pip --version
+6. Настроить requirements.txt
+
+Для SA_03:
+
+pygame-ce==2.5.7
+pygame_gui==0.6.14
+edge-tts
+pyodbc
+python-dotenv
+7. Установить библиотеки
+pip install -r requirements.txt
+8. Проверить установленные пакеты
+pip list
+
+Должны быть:
+
+pygame-ce
+pygame_gui
+edge-tts
+pyodbc
+python-dotenv
+9. Проверка импорта библиотек
+
+Запустить Python:
+
+python
+
+Ввести:
+
+import pygame
+print(pygame.version.ver)
+
+import pygame_gui
+print("pygame_gui OK")
+
+import edge_tts
+print("edge_tts OK")
+
+import pyodbc
+print("pyodbc OK")
+
+Выход:
+
+exit()
+10. Проверить pygame + pygame_gui
+
+Создать:
+
+test_environment.py
+
+        import pygame
+        import pygame_gui
+
+
+        print("pygame version:", pygame.version.ver)
+        print("pygame_gui imported OK")
+
+
+        pygame.init()
+
+        screen = pygame.display.set_mode((400, 300))
+
+        pygame.display.set_caption(
+            "SA_03 Environment Test"
+        )
+
+        manager = pygame_gui.UIManager(
+            (400, 300)
+        )
+
+
+        running = True
+        clock = pygame.time.Clock()
+
+
+        while running:
+
+            time_delta = clock.tick(60) / 1000
+
+            for event in pygame.event.get():
+
+                if event.type == pygame.QUIT:
+                    running = False
+
+                manager.process_events(event)
+
+
+            manager.update(time_delta)
+
+            screen.fill(
+                pygame.Color("#202020")
+            )
+
+            manager.draw_ui(screen)
+
+            pygame.display.update()
+
+
+        pygame.quit()
+
+Запустить:
+
+python test_environment.py
+
+Должно открыться окно pygame.
+
+11. Настроить VS Code
+
+Открыть:
+
+Ctrl + Shift + P
+
+Выбрать:
+
+Python: Select Interpreter
+
+Выбрать:
+
+SA_03\.venv\Scripts\python.exe
+
+Проверить в терминале VS Code:
+
+where python
+
+Должно показывать:
+
+...\SA_03\.venv\Scripts\python.exe
+12. Первый запуск приложения
+
+После создания базовых файлов:
+
+python main.py
+
+Ожидаем:
+
+MainWindow created
+
+и окно приложения.
+
+Если проект переносится на другой компьютер
+
+Вместо копирования .venv:
+
+Создать заново:
+
+py -3.12 -m venv .venv
+
+Активировать:
+
+.venv\Scripts\activate
+
+Установить зависимости:
+
+pip install -r requirements.txt
+Полезные команды обслуживания
+Выход из venv
+deactivate
+Очистка pip cache (если странные предупреждения)
+pip cache purge
+Обновить список зависимостей
+pip freeze > requirements.txt
