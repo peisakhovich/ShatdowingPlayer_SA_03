@@ -113,3 +113,15 @@ class Theme:
     CB_CHECK_COLOR = pygame.Color("#91E5FF")
     CB_TEXT_COLOR = pygame.Color("#91E5FF")
 
+    # =====================================================
+    # TextWindow
+    # =====================================================
+
+    TW_BACKGROUND_COLOR = pygame.Color("#303030")
+    TW_BORDER_COLOR = pygame.Color("#6EAEDB")
+    TW_TEXT_COLOR = pygame.Color("#91E5FF")
+    TW_BORDER_WIDTH = 2
+    TW_RADIUS = 6
+    TW_PADDING_X = 8
+    TW_PADDING_Y = 6
+

@@ -3,6 +3,7 @@ import pygame
 from gui.panels.control_panel import ControlPanel
 from gui.dialogs.dialog import Dialog
 from gui.widgets.check_box import CheckBox
+from gui.widgets.text_window import TextWindow
 from gui.theme import Theme
 from core.config import Config 
 
@@ -36,16 +37,24 @@ class MainWindow:
         self.cb_test = CheckBox(
 
             rect=(40, 40, Theme.CB_SIZE, Theme.CB_SIZE),
-
             caption="Show translation",
-
             font=self.font_manager.load(
                 14,
                 Config.FONT_REGULAR
             ),
-
             checked=False
         )
+
+        self.tw_test = TextWindow(
+
+        rect=(40, 60, 400, 300),
+        font=font_manager.load(
+            32,
+            Config.FONT_REGULAR
+        ),
+        text="This is a very long text that should automatically wrap inside the text window.",
+        align="left"
+        )    
 
     # --------------------------------------------------
     # Показать диалог выхода
@@ -156,6 +165,9 @@ class MainWindow:
         self.screen.fill(
             self.background_color
         )
+
+        # Прорисовка TextWindows
+        self.tw_test.draw(self.screen)
 
         # Чек бокс прорисовка
         self.cb_test.draw(self.screen)
