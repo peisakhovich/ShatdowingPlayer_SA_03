@@ -6,6 +6,7 @@ from gui.theme import Theme
 from gui.widgets.image_button import ImageButton
 from gui.widgets.horizontal_slider import HorizontalSlider
 from gui.widgets.text_button import TextButton
+from gui.widgets.check_box import CheckBox
 
 
 class ControlPanel:
@@ -33,12 +34,22 @@ class ControlPanel:
 
         self.test_button = TextButton(
 
-            rect=(250, self.rect.y + 25, 130, Theme.TB_HEIGHT),
+            rect=(250, self.rect.y + 15, 130, Theme.TB_HEIGHT),
             caption="TEST",
             font=self.font,
             auto_width=True
             )
 
+        self.cb_test = CheckBox(
+
+            rect=(250, self.rect.y+55 , Theme.CB_SIZE, Theme.CB_SIZE),
+            caption="With Translation",
+            font=self.font_manager.load(
+                14,
+                Config.FONT_REGULAR
+            ),
+            checked=True
+        )
 
 
     # --------------------------------------------------
@@ -140,7 +151,13 @@ class ControlPanel:
 
             print("TextButton pressed")
 
-        return None
+            return None
+
+        cb_result = self.cb_test.handle_event(event)
+
+        # если пришел сигнал от чек бокса
+        if cb_result is not None:
+            print( self.cb_test.caption,cb_result)
 
     # --------------------------------------------------
     # Обновление
@@ -161,6 +178,8 @@ class ControlPanel:
             slider.update()
 
         self.test_button.update()
+
+        self.cb_test.update()
 
     # --------------------------------------------------
     # Отрисовка
@@ -195,4 +214,7 @@ class ControlPanel:
             button.draw(screen)
 
         # test button
-        self.test_button.draw(screen)            
+        self.test_button.draw(screen)    
+
+        # Чек бокс прорисовка
+        self.cb_test.draw(screen)        
