@@ -101,11 +101,15 @@ class Theme:
     # --------------------------------------------------
 
     CB_SIZE = 18
+    CB_INTERVAL = 8
     CB_RADIUS = 3
     CB_BORDER_WIDTH = 2
-    CB_INTERVAL = 8
-    CB_BACKGROUND_COLOR = pygame.Color("#303030")
-    CB_BACKGROUND_HOVER_COLOR = pygame.Color("#9B1515")
-    CB_BORDER_COLOR = pygame.Color("#5FB8D8")
+    CB_CHECK_WIDTH = 3
+    CB_CHECK_PADDING = 4
+
+    CB_BACKGROUND_COLOR = pygame.Color("#0E4792")
+    CB_BACKGROUND_HOVER_COLOR = pygame.Color("#681515")
+    CB_BORDER_COLOR = pygame.Color("#5947F8")
+    CB_CHECK_COLOR = pygame.Color("#91E5FF")
     CB_TEXT_COLOR = pygame.Color("#91E5FF")
 

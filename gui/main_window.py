@@ -127,6 +127,7 @@ class MainWindow:
 
         result = self.cb_test.handle_event(event)
 
+        # если пришел сигнал от чек бокса
         if result is not None:
             print(result)
 
@@ -137,7 +138,7 @@ class MainWindow:
     def update(self):
 
         self.cb_test.update()
-        
+
         if self.active_dialog:
 
             self.active_dialog.update()
@@ -156,6 +157,7 @@ class MainWindow:
             self.background_color
         )
 
+        # Чек бокс прорисовка
         self.cb_test.draw(self.screen)
 
         #

@@ -94,7 +94,7 @@ class CheckBox:
     def draw(self, screen):
 
         #
-        # Пока только рисуем квадрат
+        # Цвет фона
         #
 
         if self.state == "hover":
@@ -104,6 +104,10 @@ class CheckBox:
         else:
 
             background = Theme.CB_BACKGROUND_COLOR
+
+        #
+        # Корпус CheckBox
+        #
 
         pygame.draw.rect(
 
@@ -128,6 +132,49 @@ class CheckBox:
 
             border_radius=Theme.CB_RADIUS
         )
+
+        #
+        # Галочка
+        #
+
+        if self.checked:
+
+            p = Theme.CB_CHECK_PADDING
+
+            x1 = self.rect.left + p
+            y1 = self.rect.centery
+
+            x2 = self.rect.centerx - 1
+            y2 = self.rect.bottom - p
+
+            x3 = self.rect.right - p
+            y3 = self.rect.top + p
+
+            pygame.draw.line(
+
+                screen,
+
+                Theme.CB_CHECK_COLOR,
+
+                (x1, y1),
+
+                (x2, y2),
+
+                Theme.CB_CHECK_WIDTH
+            )
+
+            pygame.draw.line(
+
+                screen,
+
+                Theme.CB_CHECK_COLOR,
+
+                (x2, y2),
+
+                (x3, y3),
+
+                Theme.CB_CHECK_WIDTH
+            )
 
         #
         # Подпись
@@ -155,6 +202,8 @@ class CheckBox:
         )
 
         screen.blit(
+
             text,
+
             text_rect
         )
