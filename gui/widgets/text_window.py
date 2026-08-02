@@ -1,7 +1,5 @@
 import pygame
-
 from gui.theme import Theme
-
 
 class TextWindow:
 

@@ -1,0 +1,1 @@
+SELECT @@ROWCOUNT AS InsertedRows;
