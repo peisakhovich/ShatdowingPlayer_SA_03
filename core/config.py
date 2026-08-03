@@ -1,3 +1,5 @@
+from pathlib import Path
+
 class Config:
 
     TITLE = "SA_03 Shadowing App"
@@ -5,6 +7,8 @@ class Config:
     THEME = "gui/theme.json"
 
     FPS = 60
+
+    PLAN_SESSION_FILE = Path("data/cache/plan_session.json")
 
     ICON_APP = "SA_AppIconsGirl.png"
 

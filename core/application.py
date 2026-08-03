@@ -2,6 +2,7 @@ import os
 
 import pygame
     
+
 from gui.manager import GUIManager
 from gui.layout import Layout
 from gui.main_window import MainWindow
@@ -9,12 +10,20 @@ from core.config import Config
 from gui.services.image_loader import ImageLoader
 from gui.services.font_manager import FontManager
 
+from session.providers.guest_provider import GuestProvider
+from session.session import Session
+
 
 class Application:
 
     def __init__(self):
 
         pygame.init()
+
+        if not Config.PLAN_SESSION_FILE.exists():
+            GuestProvider.build(Config.PLAN_SESSION_FILE)
+        
+        self.session = Session.load(Config.PLAN_SESSION_FILE)
 
         self.size = Layout.WINDOW_SIZE
 
@@ -35,7 +44,8 @@ class Application:
             self.screen,
             self.gui,
             self.image_loader,
-            self.font_manager
+            self.font_manager,
+            self.session
 
         )
 

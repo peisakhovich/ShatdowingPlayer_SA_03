@@ -1,5 +1,6 @@
 import pygame
 
+
 from gui.panels.control_panel import ControlPanel
 from gui.dialogs.dialog import Dialog
 from gui.widgets.check_box import CheckBox
@@ -15,8 +16,19 @@ class MainWindow:
         screen,
         gui,
         image_loader,
-        font_manager
+        font_manager,
+        session
+
     ):
+        self.session = session
+        print("Session loaded:", self.session._filename)
+        print(self.session)
+        print(self.session.name)
+        print(self.session.count())
+        print(self.session.current())
+        print(self.session.next())
+
+
 
         self.screen = screen
         self.gui = gui
