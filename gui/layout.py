@@ -16,6 +16,22 @@ class Layout:
     CP_HEIGHT=100
     CP_RECT=pygame.Rect( 0, HEIGHT-CP_HEIGHT , WIDTH, CP_HEIGHT  )
 
+
+    # -------------------------
+    # UI LAYER: CHECK BOX BAR
+    # -------------------------
+
+    CB_DEFS = [
+        ("show_text",        "show text",        True),
+        ("voice_text",       "voice text",       True),
+        ("show_translation", "show translation", True),
+        ("voice_translation","voice translation",True),
+    ]
+    CB_X=250
+    CB_Y=5
+    CB_INTERVAL=20
+  
+
     # -------------------------
     # UI LAYER: BUTTON BAR
     # -------------------------

@@ -1,5 +1,4 @@
 import pygame
-from pygame import surface
 
 from core.config import Config 
 from gui.layout import Layout
@@ -44,27 +43,50 @@ class ControlPanel:
         #--------------------------------------------------
         # Создаем чекбоксы для управления отображением  и озвучкой текста и перевода
         #--------------------------------------------------
-        self.checkboxes = {}
-        for i, cb in enumerate(Layout.CB_DEFS):
 
-            checkbox = CheckBox(
-                rect=(
-                    Layout.CB_X,
-                    self.rect.y + Layout.CB_Y + i * Layout.CB_INTERVAL,
-                    Theme.CB_SIZE,
-                    Theme.CB_SIZE
-                ),
-                caption=cb[1],
-                font=self.font_manager.load(
-                    14,
-                    Config.FONT_REGULAR
-                ),
-                checked=cb[2]
-            )
+        self.cb_show_text = CheckBox(
+        
+            rect=(250, self.rect.y+5 , Theme.CB_SIZE, Theme.CB_SIZE),
+            caption="show text",
+            font=self.font_manager.load(
+                14,
+                Config.FONT_REGULAR
+            ),
+            checked=True
+        )
 
-            self.checkboxes[cb[0]] = checkbox
+        self.cb_voice_text  = CheckBox(
 
+            rect=(250, self.rect.y+25 , Theme.CB_SIZE, Theme.CB_SIZE),
+            caption="voice text",
+            font=self.font_manager.load(
+                14,
+                Config.FONT_REGULAR
+            ),
+            checked=True
+        )
+      
+        self.cb_show_translation = CheckBox(
 
+            rect=(250, self.rect.y+45 , Theme.CB_SIZE, Theme.CB_SIZE),
+            caption="show translation",
+            font=self.font_manager.load(
+                14,
+                Config.FONT_REGULAR
+            ),
+            checked=True
+        )
+
+        self.cb_voice_translation = CheckBox(
+        
+            rect=(250, self.rect.y+65 , Theme.CB_SIZE, Theme.CB_SIZE),
+            caption="voice translation",
+            font=self.font_manager.load(
+                14,
+                Config.FONT_REGULAR
+            ),
+            checked=True
+        )
         
 
 
@@ -166,10 +188,29 @@ class ControlPanel:
         # if self.test_button.handle_event(event):
         #     return "TextButtonPressed"
 
-        for name, checkbox in self.checkboxes.items():
+        cb_result = self.cb_show_text.handle_event(event)
 
-            if checkbox.handle_event(event) is not None:
-                return f"{name}: {checkbox.checked}"
+        # если пришел сигнал от чек бокса cb_show_text
+        if cb_result is not None:
+            return self.cb_show_text.caption + ": " + str(cb_result)
+
+        cb_result = self.cb_voice_text.handle_event(event)
+
+        # если пришел сигнал от чек бокса cb_voice_text
+        if cb_result is not None:
+            return self.cb_voice_text.caption + ": " + str(cb_result)
+        
+        cb_result = self.cb_show_translation.handle_event(event)
+
+        # если пришел сигнал от чек бокса cb_show_translation
+        if cb_result is not None:
+            return self.cb_show_translation.caption + ": " + str(cb_result)
+
+        cb_result = self.cb_voice_translation.handle_event(event)
+   
+        # если пришел сигнал от чек бокса cb_voice_translation
+        if cb_result is not None:
+            return self.cb_voice_translation.caption + ": " + str(cb_result)
 
     # --------------------------------------------------
     # Обновление
@@ -191,9 +232,10 @@ class ControlPanel:
 
         # self.test_button.update()
 
-        for checkbox in self.checkboxes.values():
-            checkbox.update()
-
+        self.cb_show_text.update()
+        self.cb_voice_text.update()
+        self.cb_show_translation.update()
+        self.cb_voice_translation.update()
 
     # --------------------------------------------------
     # Отрисовка
@@ -230,6 +272,8 @@ class ControlPanel:
         # test button
         #self.test_button.draw(screen)    
 
-        # Чек боксы прорисовка
-        for checkbox in self.checkboxes.values():
-            checkbox.draw(screen)   
+        # Чек бокс прорисовка
+        self.cb_show_text.draw(screen)        
+        self.cb_voice_text.draw(screen)        
+        self.cb_show_translation.draw(screen)        
+        self.cb_voice_translation.draw(screen)        
