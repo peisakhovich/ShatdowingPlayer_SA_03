@@ -32,24 +32,62 @@ class ControlPanel:
         self.buttons = {}
         self._create_buttons()
 
-        self.test_button = TextButton(
+        # self.test_button = TextButton(
 
-            rect=(250, self.rect.y + 15, 130, Theme.TB_HEIGHT),
-            caption="TEST",
-            font=self.font,
-            auto_width=True
-            )
+        #     rect=(250, self.rect.y + 15, 130, Theme.TB_HEIGHT),
+        #     caption="TEST",
+        #     font=self.font,
+        #     auto_width=True
+        #     )
+        
+        #--------------------------------------------------
+        # Создаем чекбоксы для управления отображением перевода и голосового перевода
+        #--------------------------------------------------
 
-        self.cb_test = CheckBox(
-
-            rect=(250, self.rect.y+55 , Theme.CB_SIZE, Theme.CB_SIZE),
-            caption="With Translation",
+        self.cb_show_text = CheckBox(
+        
+            rect=(250, self.rect.y+5 , Theme.CB_SIZE, Theme.CB_SIZE),
+            caption="show text",
             font=self.font_manager.load(
                 14,
                 Config.FONT_REGULAR
             ),
             checked=True
         )
+
+        self.cb_voice_text  = CheckBox(
+
+            rect=(250, self.rect.y+25 , Theme.CB_SIZE, Theme.CB_SIZE),
+            caption="voice text",
+            font=self.font_manager.load(
+                14,
+                Config.FONT_REGULAR
+            ),
+            checked=True
+        )
+      
+        self.cb_show_translation = CheckBox(
+
+            rect=(250, self.rect.y+45 , Theme.CB_SIZE, Theme.CB_SIZE),
+            caption="show translation",
+            font=self.font_manager.load(
+                14,
+                Config.FONT_REGULAR
+            ),
+            checked=True
+        )
+
+        self.cb_voice_translation = CheckBox(
+        
+            rect=(250, self.rect.y+65 , Theme.CB_SIZE, Theme.CB_SIZE),
+            caption="voice translation",
+            font=self.font_manager.load(
+                14,
+                Config.FONT_REGULAR
+            ),
+            checked=True
+        )
+        
 
 
     # --------------------------------------------------
@@ -147,18 +185,32 @@ class ControlPanel:
             if button.handle_event(event):
                 return name
     
-        if self.test_button.handle_event(event):
+        # if self.test_button.handle_event(event):
+        #     return "TextButtonPressed"
 
-            #print("TextButton pressed")
+        cb_result = self.cb_show_text.handle_event(event)
 
-            return "TextButton pressed"
-
-        cb_result = self.cb_test.handle_event(event)
-
-        # если пришел сигнал от чек бокса
+        # если пришел сигнал от чек бокса cb_show_text
         if cb_result is not None:
-            #print( self.cb_test.caption,cb_result)
-            return self.cb_test.caption + ": " + str(cb_result)
+            return self.cb_show_text.caption + ": " + str(cb_result)
+
+        cb_result = self.cb_voice_text.handle_event(event)
+
+        # если пришел сигнал от чек бокса cb_voice_text
+        if cb_result is not None:
+            return self.cb_voice_text.caption + ": " + str(cb_result)
+        
+        cb_result = self.cb_show_translation.handle_event(event)
+
+        # если пришел сигнал от чек бокса cb_show_translation
+        if cb_result is not None:
+            return self.cb_show_translation.caption + ": " + str(cb_result)
+
+        cb_result = self.cb_voice_translation.handle_event(event)
+   
+        # если пришел сигнал от чек бокса cb_voice_translation
+        if cb_result is not None:
+            return self.cb_voice_translation.caption + ": " + str(cb_result)
 
     # --------------------------------------------------
     # Обновление
@@ -178,9 +230,12 @@ class ControlPanel:
         for slider in self.sliders:
             slider.update()
 
-        self.test_button.update()
+        # self.test_button.update()
 
-        self.cb_test.update()
+        self.cb_show_text.update()
+        self.cb_voice_text.update()
+        self.cb_show_translation.update()
+        self.cb_voice_translation.update()
 
     # --------------------------------------------------
     # Отрисовка
@@ -215,7 +270,10 @@ class ControlPanel:
             button.draw(screen)
 
         # test button
-        self.test_button.draw(screen)    
+        #self.test_button.draw(screen)    
 
         # Чек бокс прорисовка
-        self.cb_test.draw(screen)        
+        self.cb_show_text.draw(screen)        
+        self.cb_voice_text.draw(screen)        
+        self.cb_show_translation.draw(screen)        
+        self.cb_voice_translation.draw(screen)        

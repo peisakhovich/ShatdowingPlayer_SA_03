@@ -13,7 +13,7 @@ class Layout:
     # UI LAYER: CONTROL_PANEL
     # -------------------------
   
-    CP_HEIGHT=80
+    CP_HEIGHT=100
     CP_RECT=pygame.Rect( 0, HEIGHT-CP_HEIGHT , WIDTH, CP_HEIGHT  )
 
     # -------------------------
