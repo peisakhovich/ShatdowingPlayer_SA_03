@@ -12,6 +12,7 @@ from gui.services.font_manager import FontManager
 
 from session.providers.guest_provider import GuestProvider
 from session.session import Session
+from audio.player import Player
 
 
 class Application:
@@ -24,6 +25,7 @@ class Application:
             GuestProvider.build(Config.PLAN_SESSION_FILE)
         
         self.session = Session.load(Config.PLAN_SESSION_FILE)
+        self.player = Player(self.session)
 
         self.size = Layout.WINDOW_SIZE
 
@@ -45,8 +47,8 @@ class Application:
             self.gui,
             self.image_loader,
             self.font_manager,
-            self.session
-
+            self.session,
+            self.player
         )
 
     def run(self):
@@ -70,6 +72,9 @@ class Application:
             self.gui.update(time_delta)
 
             self.window.update()
+
+            # Обновление состояния Player 
+            self.player.update()
 
             self.window.draw()
 

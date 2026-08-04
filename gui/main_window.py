@@ -17,16 +17,19 @@ class MainWindow:
         gui,
         image_loader,
         font_manager,
-        session
+        session,
+        player
 
     ):
         self.session = session
-        print("Session loaded:", self.session._filename)
-        print(self.session)
-        print(self.session.name)
-        print(self.session.count())
-        print(self.session.current())
-        print(self.session.next())
+        self.player = player
+
+        # print("Session loaded:", self.session._filename)
+        # print(self.session)
+        # print(self.session.name)
+        # print(self.session.count())
+        # print(self.session.current())
+        # print(self.session.next())
 
 
 
@@ -144,7 +147,30 @@ class MainWindow:
 
         if command:
 
+            if command == "play":
+                self.player.play()
+
+            elif command == "pause":
+                self.player.pause()
+
+            elif command == "stop":
+                self.player.stop()
+
+            elif command == "next":
+                self.player.next()
+                
+            elif command == "prev":
+                self.player.prev()
+
+
+
+
+
+
+
+            print(self.player.state)
             print("Команда:", command)
+
 
         result = self.cb_test.handle_event(event)
 

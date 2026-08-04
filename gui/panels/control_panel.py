@@ -149,15 +149,16 @@ class ControlPanel:
     
         if self.test_button.handle_event(event):
 
-            print("TextButton pressed")
+            #print("TextButton pressed")
 
-            return None
+            return "TextButton pressed"
 
         cb_result = self.cb_test.handle_event(event)
 
         # если пришел сигнал от чек бокса
         if cb_result is not None:
-            print( self.cb_test.caption,cb_result)
+            #print( self.cb_test.caption,cb_result)
+            return self.cb_test.caption + ": " + str(cb_result)
 
     # --------------------------------------------------
     # Обновление
