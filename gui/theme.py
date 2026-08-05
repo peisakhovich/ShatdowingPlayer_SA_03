@@ -31,7 +31,7 @@ class Theme:
     HSL_KNOB_BORDER_WIDTH = 2
 
     HSL_KNOB_WIDTH = 12
-    HSL_KNOB_HEIGHT = 20
+    HSL_KNOB_HEIGHT = 25
     HSL_KNOB_RADIUS = 4
 
     # Текст значения

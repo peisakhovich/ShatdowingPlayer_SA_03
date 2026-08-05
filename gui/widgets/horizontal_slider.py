@@ -130,7 +130,8 @@ class HorizontalSlider:
 
                     self.dragging = False
 
-                  #  print("Drag OFF")
+                    return True
+                    #print("Drag OFF")
 
     # --------------------------------------------------
 

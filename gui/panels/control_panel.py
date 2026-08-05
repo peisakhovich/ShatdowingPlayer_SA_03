@@ -18,8 +18,6 @@ class ControlPanel:
         self.font_manager = font_manager
 
         self.font = self.font_manager.load(10,   Config.FONT_BOLD)
-        #self.font = pygame.font.SysFont("Segoe UI", 12)
-       
 
         # --------------------------------------------------
         # Панель
@@ -27,25 +25,22 @@ class ControlPanel:
 
         self.rect = Layout.CP_RECT
        
-        self.sliders = []
+        self.sliders = {}
         self._create_sliders()
         
         self.buttons = {}
         self._create_buttons()
 
-        # self.test_button = TextButton(
-
-        #     rect=(250, self.rect.y + 15, 130, Theme.TB_HEIGHT),
-        #     caption="TEST",
-        #     font=self.font,
-        #     auto_width=True
-        #     )
-        
-        #--------------------------------------------------
-        # Создаем чекбоксы для управления отображением  и озвучкой текста и перевода
-        #--------------------------------------------------
         self.checkboxes = {}
-        for i, cb in enumerate(Layout.CB_DEFS):
+        self._create_checkboxes()
+        
+
+    #--------------------------------------------------
+    # Создаем чекбоксы для управления отображением  и озвучкой текста и перевода
+    #--------------------------------------------------
+    def _create_checkboxes(self):    
+        
+        for i, (name, (caption, value)) in enumerate(Layout.CB_DEFS.items()):
 
             checkbox = CheckBox(
                 rect=(
@@ -54,18 +49,15 @@ class ControlPanel:
                     Theme.CB_SIZE,
                     Theme.CB_SIZE
                 ),
-                caption=cb[1],
+                caption=caption,
                 font=self.font_manager.load(
-                    14,
+                    Layout.CB_FONT_SIZE,
                     Config.FONT_REGULAR
                 ),
-                checked=cb[2]
+                checked=value   
             )
 
-            self.checkboxes[cb[0]] = checkbox
-
-
-        
+            self.checkboxes[name] = checkbox
 
 
     # --------------------------------------------------
@@ -73,31 +65,31 @@ class ControlPanel:
     # --------------------------------------------------
 
     def _create_sliders(self):
-        self.speed_slider = HorizontalSlider(
 
-            caption="Speed",
-            rect=(self.rect.x + 10, self.rect.y + 24, 180, 12),
-            start_value=1.0,
-            value_range=(0.1, 1.2),
-            font=self.font,
-            formatter=lambda v: f"{v:.2f} x"
-        )
+        for i, slider_def in enumerate(Layout.SLIDER_DEFS):
 
-        self.pause_slider = HorizontalSlider(
+            slider = HorizontalSlider(
 
-            caption="Pause",
-            rect=(self.rect.x + 10, self.rect.y + 56, 180, 12),
-            start_value=1.0,
-            value_range=(0.5, 5.0),
-            font=self.font,
-            formatter=lambda v: f"{v:.2f} s"
-        )        
-        self.sliders.extend(
-        [
-            self.speed_slider,
-            self.pause_slider
-        ]
-        )
+                caption=slider_def["caption"],
+
+                rect=(
+                    self.rect.x + Layout.HSL_X,
+                    self.rect.y + Layout.HSL_Y + i * (Theme.HSL_KNOB_HEIGHT*1.6),
+                    Layout.HSL_TRACK_WIDTH,
+                    Theme.HSL_KNOB_HEIGHT-7
+                ),
+
+                start_value=slider_def["start"],
+                value_range=slider_def["range"],
+                font=self.font_manager.load(
+                    Layout.HSL_FONT_SIZE,
+                    Config.FONT_REGULAR
+                ),
+
+                formatter=slider_def["formatter"]
+            )
+
+            self.sliders[slider_def["name"]] = slider
 
     # --------------------------------------------------
     # Создание набора кнопок
@@ -155,17 +147,17 @@ class ControlPanel:
 
     def handle_event(self, event):
 
-        for slider in self.sliders:
-            slider.handle_event(event)
+        for name, slider in self.sliders.items():
+
+            if slider.handle_event(event):
+                return f"{name}: {slider.value}"
+
 
         for name, button in self.buttons.items():
 
             if button.handle_event(event):
                 return name
     
-        # if self.test_button.handle_event(event):
-        #     return "TextButtonPressed"
-
         for name, checkbox in self.checkboxes.items():
 
             if checkbox.handle_event(event) is not None:
@@ -186,7 +178,7 @@ class ControlPanel:
                 mouse_pressed
             )
 
-        for slider in self.sliders:
+        for slider in self.sliders.values():
             slider.update()
 
         # self.test_button.update()
@@ -219,8 +211,8 @@ class ControlPanel:
         )
 
         # Гор.Слайдеры
-        for slider in self.sliders:
-            slider.draw(screen)
+        for slider in self.sliders.values():
+            slider.draw(screen)    
         
         
         # Кнопки

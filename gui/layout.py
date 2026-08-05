@@ -4,7 +4,7 @@ class Layout:
     # --------------------------------------------------
     # UI LAYER: WINDOWS Размеры окна
     # --------------------------------------------------
-    WIDTH = 800
+    WIDTH = 900
     HEIGHT = 600
 
     WINDOW_SIZE = (WIDTH, HEIGHT)
@@ -13,27 +13,28 @@ class Layout:
     # UI LAYER: CONTROL_PANEL
     # -------------------------
   
-    CP_HEIGHT=100
+    CP_HEIGHT=130
     CP_RECT=pygame.Rect( 0, HEIGHT-CP_HEIGHT , WIDTH, CP_HEIGHT  )
 
 
     # -------------------------
-    # UI LAYER: CHECK BOX BAR
+    # UI LAYER: CHECK BOX BAR in ControlPanel
     # -------------------------
 
-    CB_DEFS = [
-        ("show_text",        "show text",        True),
-        ("voice_text",       "voice text",       True),
-        ("show_translation", "show translation", True),
-        ("voice_translation","voice translation",True),
-    ]
-    CB_X=250
-    CB_Y=5
-    CB_INTERVAL=20
+    CB_DEFS = {
+        "show_text": ("show text", True),
+        "voice_text": ("voice text", True),
+        "show_translation": ("show translation", True),
+        "voice_translation": ("voice translation", True),
+    }
+    CB_X=280
+    CB_Y=10
+    CB_INTERVAL=22
+    CB_FONT_SIZE=12
   
 
     # -------------------------
-    # UI LAYER: BUTTON BAR
+    # UI LAYER: BUTTON BAR in ControlPanel
     # -------------------------
     BTN_DEFS = [ "start","prev","play","pause","next","end","stop","quit","settings" ]
 
@@ -51,3 +52,34 @@ class Layout:
     BTN_START_X = CP_RECT.width - CP_RECT.x - LEN_BUTTONS - BTN_WIDTH
     BTN_START_Y = CP_RECT.centery - BTN_HEIGHT // 2
 
+    # -------------------------
+    # UI LAYER: SLIDER BAR in ControlPanel
+    # -------------------------
+    SLIDER_DEFS = [
+        {
+            "name": "voice_speed",
+            "caption": "Voice Speed",
+            "start": 1.0,
+            "range": (0.1, 1.2),
+            "formatter": lambda v: f"{v:.2f}x",
+        },
+        {
+            "name": "pause_before_translation",
+            "caption": "Pause before Translation",
+            "start": 3000,
+            "range": (0, 6000),
+            "formatter": lambda v: f"{int(v)} ms",
+        },
+                {
+            "name": "pause_between_sentences",
+            "caption": "Pause between Sentences",
+            "start": 2000,
+            "range": (0, 5000),
+            "formatter": lambda v: f"{int(v)} ms",
+        }
+    ]
+    HSL_X=10
+    HSL_Y=24
+    HSL_TRACK_WIDTH=180
+    HSL_FONT_SIZE=11
+ 
