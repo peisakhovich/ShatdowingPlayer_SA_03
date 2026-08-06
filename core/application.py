@@ -57,7 +57,9 @@ class Application:
 
         while self.running:
 
-            time_delta = self.clock.tick(Config.FPS) / 1000.0
+            dt = self.clock.tick(Config.FPS)
+
+            time_delta = dt / 1000.0
 
             for event in pygame.event.get():
 
@@ -73,8 +75,8 @@ class Application:
 
             self.window.update()
 
-            # Обновление состояния Player 
-            self.player.update()
+            # Обновление состояния Player
+            self.player.update(dt)
 
             self.window.draw()
 

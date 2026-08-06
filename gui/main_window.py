@@ -41,10 +41,11 @@ class MainWindow:
         # Активный модальный диалог
         self.active_dialog = None
 
+       
+        self.text=self.session.current_item.get("phrase_text")
+        self.translate=self.session.current_item.get("translate_text")
+        self.info=self.session.description
 
-        self.text="We have carefully reviewed your proposal and found it very promising."
-        self.translate="Мы внимательно рассмотрели ваше предложение и нашли его очень перспективным."
-        self.info="English B2 001 description: Dialogue for several different themes"
 
         Height_Texts = Layout.HEIGHT - Layout.CP_HEIGHT - 40
 
@@ -163,6 +164,7 @@ class MainWindow:
 
                     if name == "play":
                         self.player.play()
+                        
 
                     elif name == "next":
                         self.player.next()

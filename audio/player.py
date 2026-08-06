@@ -10,15 +10,24 @@ Player — центральный объект управления воспро
 Воспроизведение звука будет добавлено позже.
 """
 
-
 class PlayerState:
-    """Состояния Player."""
 
+    #Состояния Player
     IDLE = 0
     PLAYING = 1
     PAUSED = 2
     STOPPED = 3
 
+class PlaybackPhase:
+
+    #Этап воспроизведения одной фразы.
+    PREPARE_ITEM = 0
+    PLAY_TEXT = 1
+    WAIT_TEXT_END = 2
+    PAUSE = 3
+    PLAY_TRANSLATION = 4
+    WAIT_TRANSLATION_END = 5
+    FINISH_ITEM = 6
 
 class Player:
 
@@ -26,11 +35,15 @@ class Player:
 
         self._session = session
         self._state = PlayerState.IDLE
+        self._phase = PlaybackPhase.PREPARE_ITEM
 
         # Параметры воспроизведения
         self._voice_speed = 1.0
         self._pause_before_translation = 2000
-        self._pause_between_sentences = 2000        
+        self._pause_between_sentences = 2000  
+
+        self._timer_ms = 0
+        self._current_item = None      
 
 
     # ---------------------------------------------------------
@@ -74,7 +87,12 @@ class Player:
     # ---------------------------------------------------------
 
     def play(self):
+
+        if self._session is None:
+            return
+
         self._state = PlayerState.PLAYING
+        self._phase = PlaybackPhase.PREPARE_ITEM
 
     def pause(self):
         if self._state == PlayerState.PLAYING:
@@ -112,9 +130,23 @@ class Player:
     # Main update
     # ---------------------------------------------------------
 
-    def update(self):
-        """
-        Вызывается один раз за кадр главным циклом приложения.
-        Пока ничего не делает.
-        """
-        pass
+    def update(self, dt: int):
+
+        if self._state != PlayerState.PLAYING:
+            return
+
+        if self._phase == PlaybackPhase.PREPARE_ITEM:
+
+            print("PREPARE_ITEM")
+
+            self._current_item = self.session.current_item
+
+            self._phase = PlaybackPhase.PLAY_TEXT
+
+        elif self._phase == PlaybackPhase.PLAY_TEXT:
+
+            print("PLAY_TEXT")
+
+            # позже здесь будет запуск TTS
+
+            self._phase = PlaybackPhase.WAIT_TEXT_END

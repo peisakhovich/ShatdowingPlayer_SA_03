@@ -115,6 +115,10 @@ class Session:
     def current_index(self, value):
         self._state["current_index"] = value
 
+    @property
+    def current_item(self):
+        return self._items[self.current_index]        
+
     # ==========================================================
     # Navigation
     # ==========================================================
