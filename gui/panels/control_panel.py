@@ -150,18 +150,18 @@ class ControlPanel:
         for name, slider in self.sliders.items():
 
             if slider.handle_event(event):
-                return f"{name}: {slider.value}"
+                return ("slider", name, slider.value)
 
 
         for name, button in self.buttons.items():
 
             if button.handle_event(event):
-                return name
+                return ("button", name)
     
         for name, checkbox in self.checkboxes.items():
 
             if checkbox.handle_event(event) is not None:
-                return f"{name}: {checkbox.checked}"
+                return ("checkbox", name, checkbox.checked)
 
     # --------------------------------------------------
     # Обновление

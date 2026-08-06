@@ -7,6 +7,7 @@ from gui.widgets.check_box import CheckBox
 from gui.widgets.text_window import TextWindow
 from gui.theme import Theme
 from core.config import Config 
+from gui.layout import Layout
 
 
 class MainWindow:
@@ -24,14 +25,6 @@ class MainWindow:
         self.session = session
         self.player = player
 
-        # print("Session loaded:", self.session._filename)
-        # print(self.session)
-        # print(self.session.name)
-        # print(self.session.count())
-        # print(self.session.current())
-        # print(self.session.next())
-
-
 
         self.screen = screen
         self.gui = gui
@@ -48,28 +41,48 @@ class MainWindow:
         # Активный модальный диалог
         self.active_dialog = None
 
-        # Проверка для отладки  CheckBox
-        self.cb_test = CheckBox(
 
-            rect=(40, 40, Theme.CB_SIZE, Theme.CB_SIZE),
-            caption="Show translation",
-            font=self.font_manager.load(
+        self.text="We have carefully reviewed your proposal and found it very promising."
+        self.translate="Мы внимательно рассмотрели ваше предложение и нашли его очень перспективным."
+        self.info="English B2 001 description: Dialogue for several different themes"
+
+        Height_Texts = Layout.HEIGHT - Layout.CP_HEIGHT - 40
+
+
+        self.tw_text = TextWindow(
+
+            rect=(20, 20, Layout.WIDTH-40, Height_Texts*60/100),
+            font=font_manager.load(
+                32,
+                Config.FONT_REGULAR
+            ),
+            text=self.text,
+            align="left"
+        )    
+
+        self.tw_translate = TextWindow(
+        
+            rect=(20, 20+Height_Texts*60/100+10, Layout.WIDTH*0.6, Height_Texts*40/100),
+            font=font_manager.load(
+                23,
+                Config.FONT_REGULAR
+            ),
+            text=self.translate,
+            align="left"
+            )
+
+        self.tw_info = TextWindow(
+        
+            rect=(35+Layout.WIDTH*0.6, 20+Height_Texts*60/100+10, Layout.WIDTH*0.4-55, Height_Texts*40/100),
+            font=font_manager.load(
                 14,
                 Config.FONT_REGULAR
             ),
-            checked=False
-        )
+            text=self.info,
+            align="left"
+            )    
 
-        self.tw_test = TextWindow(
-
-        rect=(40, 60, 400, 300),
-        font=font_manager.load(
-            32,
-            Config.FONT_REGULAR
-        ),
-        text="This is a very long text that should automatically wrap inside the text window.",
-        align="left"
-        )    
+    
 
     # --------------------------------------------------
     # Показать диалог выхода
@@ -140,43 +153,41 @@ class MainWindow:
 
         command = self.control_panel.handle_event(event)
 
-        if command == "quit":
+        if command is not None:
 
-            self.show_exit_dialog()
-            return None
+            match command:
 
-        if command:
+                case ("button", name):
 
-            if command == "play":
-                self.player.play()
+                    print(f"Button: {name}")
 
-            elif command == "pause":
-                self.player.pause()
+                    if name == "play":
+                        self.player.play()
 
-            elif command == "stop":
-                self.player.stop()
+                    elif name == "next":
+                        self.player.next()
 
-            elif command == "next":
-                self.player.next()
-                
-            elif command == "prev":
-                self.player.prev()
+                case ("slider", name, value):
 
+                    print(f"Slider: {name} = {value}")
 
+                    if name == "voice_speed":
+                        self.player.set_speed(value)
 
+                    elif name == "pause_before_translation":
+                        self.player.set_pause_before_translation(int(value))
 
+                    elif name == "pause_between_sentences":
+                        self.player.set_pause_between_sentences(int(value))
 
+                case ("checkbox", name, checked):
 
+                    print(f"Checkbox: {name} = {checked}")
 
-            print(self.player.state)
-            print("Команда:", command)
+                    # Пока просто выводим.
+                    # Позже Player будет менять режим воспроизведения.
 
-
-        result = self.cb_test.handle_event(event)
-
-        # если пришел сигнал от чек бокса
-        if result is not None:
-            print(result)
+       
 
     # --------------------------------------------------
     # Обновление
@@ -184,8 +195,7 @@ class MainWindow:
 
     def update(self):
 
-        self.cb_test.update()
-
+        
         if self.active_dialog:
 
             self.active_dialog.update()
@@ -205,11 +215,10 @@ class MainWindow:
         )
 
         # Прорисовка TextWindows
-        self.tw_test.draw(self.screen)
+        self.tw_text.draw(self.screen)
 
-        # Чек бокс прорисовка
-        self.cb_test.draw(self.screen)
-
+        self.tw_translate.draw(self.screen)
+        self.tw_info.draw(self.screen)
         #
         # Основной интерфейс
         #
