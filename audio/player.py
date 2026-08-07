@@ -27,7 +27,8 @@ class PlaybackPhase:
     PAUSE = 3
     PLAY_TRANSLATION = 4
     WAIT_TRANSLATION_END = 5
-    FINISH_ITEM = 6
+    PAUSE_BETWEEN_SENTENCES = 6
+    FINISH_ITEM = 7
 
 class Player:
 
@@ -138,15 +139,71 @@ class Player:
         if self._phase == PlaybackPhase.PREPARE_ITEM:
 
             print("PREPARE_ITEM")
-
             self._current_item = self.session.current_item
-
             self._phase = PlaybackPhase.PLAY_TEXT
 
         elif self._phase == PlaybackPhase.PLAY_TEXT:
 
-            print("PLAY_TEXT")
-
+            print("PLAY_TEXT: " + self._current_item.get("phrase_text"))
             # позже здесь будет запуск TTS
-
+            self._timer_ms = 1000
             self._phase = PlaybackPhase.WAIT_TEXT_END
+
+        elif self._phase == PlaybackPhase.WAIT_TEXT_END:
+
+            self._timer_ms -= dt
+
+            if self._timer_ms <= 0:
+
+                print("TEXT_END")
+                self._timer_ms = self.pause_before_translation
+                self._phase = PlaybackPhase.PAUSE
+
+        elif self._phase == PlaybackPhase.PAUSE:
+
+            self._timer_ms -= dt
+
+            if self._timer_ms <= 0:
+
+                print("PAUSE_END")
+                self._phase = PlaybackPhase.PLAY_TRANSLATION                
+
+        elif self._phase == PlaybackPhase.PLAY_TRANSLATION:
+
+            print("PLAY_TRANSLATION: " + self._current_item.get("translate_text"))
+            # позже здесь будет запуск TTS
+            self._timer_ms = 1000
+            self._phase = PlaybackPhase.WAIT_TRANSLATION_END
+
+        elif self._phase == PlaybackPhase.WAIT_TRANSLATION_END:
+
+            self._timer_ms -= dt
+
+            if self._timer_ms <= 0:
+                
+                print("TRANSLATION_END")
+                self._timer_ms = self.pause_between_sentences
+                self._phase = PlaybackPhase.PAUSE_BETWEEN_SENTENCES
+
+        elif self._phase == PlaybackPhase.PAUSE_BETWEEN_SENTENCES:
+
+            self._timer_ms -= dt
+
+            if self._timer_ms <= 0:
+
+                print("PAUSE_BETWEEN_SENTENCES_END")
+                self._phase = PlaybackPhase.FINISH_ITEM
+
+        elif self._phase == PlaybackPhase.FINISH_ITEM:
+
+            print("FINISH_ITEM")
+
+            if self.session.is_last():
+
+                self.session.next()
+                self._phase = PlaybackPhase.PREPARE_ITEM
+
+            else:
+
+                print("PLAYBACK_FINISHED")
+                self._state = PlayerState.IDLE

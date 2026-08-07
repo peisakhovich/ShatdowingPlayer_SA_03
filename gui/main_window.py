@@ -44,7 +44,7 @@ class MainWindow:
        
         self.text=self.session.current_item.get("phrase_text")
         self.translate=self.session.current_item.get("translate_text")
-        self.info=self.session.description
+        self.info=self.session.description+" | "+self.session.name+" | "+str(self.session.current_index+1)+"/"+str(self.session.items_count) 
 
 
         Height_Texts = Layout.HEIGHT - Layout.CP_HEIGHT - 40
