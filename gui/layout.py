@@ -36,7 +36,7 @@ class Layout:
     # -------------------------
     # UI LAYER: BUTTON BAR in ControlPanel
     # -------------------------
-    BTN_DEFS = [ "start","prev","play","pause","next","end","stop","quit","settings" ]
+    BTN_DEFS = [ "first","prev","play","pause","next","last","stop","quit","settings" ]
 
     BTN_WIDTH = 32
     BTN_HEIGHT = 32

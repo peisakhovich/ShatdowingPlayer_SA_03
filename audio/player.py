@@ -7,7 +7,6 @@ Player — центральный объект управления воспро
 - навигацию по Session;
 - публичный API.
 
-Воспроизведение звука будет добавлено позже.
 """
 
 class PlayerState:
@@ -89,17 +88,31 @@ class Player:
 
     def play(self):
 
+        #print("PLAYER PLAY:", self._state)
+
         if self._session is None:
             return
+
+        if self._state == PlayerState.PAUSED:
+
+            self._state = PlayerState.PLAYING
+            return
+
 
         self._state = PlayerState.PLAYING
         self._phase = PlaybackPhase.PREPARE_ITEM
 
     def pause(self):
+
+        #print("PLAYER PAUSE:", self._state)
+
         if self._state == PlayerState.PLAYING:
             self._state = PlayerState.PAUSED
 
     def stop(self):
+
+        #print("PLAYER STOP:", self._state)
+
         self._state = PlayerState.STOPPED
 
     # --------------------------------------------------
@@ -127,20 +140,32 @@ class Player:
     def prev(self):
         self._session.prev()
 
+    def first(self):
+        self._session.first()
+
+    def last(self):
+        self._session.last()
+
     # ---------------------------------------------------------
     # Main update
     # ---------------------------------------------------------
 
     def update(self, dt: int):
 
+    
+        # if self._state != PlayerState.PLAYING:
+        #     print("UPDATE SKIP:", self._state)
+        #     return
+
+
         if self._state != PlayerState.PLAYING:
             return
 
         if self._phase == PlaybackPhase.PREPARE_ITEM:
-
-            print("PREPARE_ITEM")
+            
             self._current_item = self.session.current_item
             self._phase = PlaybackPhase.PLAY_TEXT
+            print("PREPARE_ITEM #" + str(self.session.current_index))
 
         elif self._phase == PlaybackPhase.PLAY_TEXT:
 
@@ -200,10 +225,10 @@ class Player:
 
             if self.session.is_last():
 
-                self.session.next()
-                self._phase = PlaybackPhase.PREPARE_ITEM
+                print("PLAYBACK_FINISHED")
+                self._state = PlayerState.IDLE
 
             else:
 
-                print("PLAYBACK_FINISHED")
-                self._state = PlayerState.IDLE
+                self.session.next()
+                self._phase = PlaybackPhase.PREPARE_ITEM

@@ -164,10 +164,28 @@ class MainWindow:
 
                     if name == "play":
                         self.player.play()
-                        
+
+                    elif name == "pause":
+                        self.player.pause()
+
+                    elif name == "stop":
+                        self.player.stop()                            
 
                     elif name == "next":
                         self.player.next()
+
+                    elif name == "prev":
+                        self.player.prev()
+
+                    elif name == "first":
+                        self.player.first()
+
+                    elif name == "last":
+                        self.player.last()
+
+                    elif name == "quit":
+                        self.show_exit_dialog()
+                        return None        
 
                 case ("slider", name, value):
 
@@ -205,6 +223,11 @@ class MainWindow:
         else:
 
             self.control_panel.update()
+
+            self.tw_text.text=self.session.current_item.get("phrase_text")
+            self.tw_translate.text=self.session.current_item.get("translate_text")
+            self.tw_info.text=self.session.description+" | "+self.session.name+" | " \
+                +str(self.session.current_index+1)+"/"+str(self.session.items_count) 
 
     # --------------------------------------------------
     # Отрисовка
