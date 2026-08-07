@@ -227,7 +227,14 @@ class MainWindow:
             self.tw_text.text=self.session.current_item.get("phrase_text")
             self.tw_translate.text=self.session.current_item.get("translate_text")
             self.tw_info.text=self.session.description+" | "+self.session.name+" | " \
-                +str(self.session.current_index+1)+"/"+str(self.session.items_count) 
+                +str(self.session.current_index+1)+"/"+str(self.session.items_count) + "|  " \
+                + "translate_voice: " + self.session.current_item.get("translate_voice") \
+                + " | translate_voice_gender: " + self.session.current_item.get("translate_voice_gender") \
+                + " | pause_ms: " + str(self.session.current_item.get("pause_ms")) \
+                + " | speed: " + str(self.session.current_item.get("speed")) \
+                + " | repeat_count: " + str(self.session.current_item.get("repeat_count"))   
+
+            
 
     # --------------------------------------------------
     # Отрисовка
