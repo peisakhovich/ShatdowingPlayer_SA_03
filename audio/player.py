@@ -1,12 +1,11 @@
 """
+Player lifecycle and playback FSM
 Player — центральный объект управления воспроизведением.
-
 На данном этапе отвечает только за:
 - хранение Session;
 - состояние проигрывателя;
 - навигацию по Session;
 - публичный API.
-
 """
 
 class PlayerState:
