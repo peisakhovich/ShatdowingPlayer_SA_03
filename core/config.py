@@ -22,3 +22,7 @@ class Config:
     FONT_BOLD = "Inter_Bold.ttf"
     FONT_BOLDITALIC = "Inter_BoldItalic.ttf"
     FONT_ITALIC = "Inter_Italic.ttf"
+
+    #AUDIO_CACHE_PATH = "SA_O3/data/audio_cache"
+    AUDIO_CACHE_PATH = f"C:\\Users\\liudm\\SadowingApp\\tmp\\audio_cache"
+    

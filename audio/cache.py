@@ -1,6 +1,7 @@
 from pathlib import Path
 import hashlib
 import shutil
+from core.config import Config
 
 
 class AudioCache:
@@ -8,10 +9,10 @@ class AudioCache:
 
     SPEED_STEP = 0.1
 
-    def __init__(self, cache_dir="data/audio_cache"):
+    def __init__(self, cache_dir=Config.AUDIO_CACHE_PATH):
         self.cache_dir = Path(cache_dir)
         self.cache_dir.mkdir(parents=True, exist_ok=True)
-
+       
     def _normalize_speed(self, speed: float) -> float:
         """Округляет скорость до ближайшего шага 0.1."""
 
