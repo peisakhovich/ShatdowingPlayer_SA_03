@@ -1,47 +1,27 @@
-import asyncio
+import time
+import pygame
 
-from audio.cache import AudioCache
-from audio.tts import TTS
+from audio.mixer import AudioMixer
 
 
-async def test_tts_cache():
+def test_mixer():
 
-    cache = AudioCache("data/audio_cache")
-    tts = TTS()
+    mixer = AudioMixer()
 
-    text = "To jest test pamięci podręcznej."
-    voice = "pl-PL-ZofiaNeural"
-    speed = 0.6
+    path = "data\\audio_cache\\19ee8b061f0b2d2ed6a09450bd2e87cceb0a7754198575cbadefa0f10a64011f.mp3"
 
-    path = cache.get_path(
-        text=text,
-        voice=voice,
-        speed=speed,
-    )
+    mixer.load(path)
+    mixer.play()
 
-    print(f"Cache path: {path}")
+    print("Playing...")
 
-    if cache.exists(
-        text=text,
-        voice=voice,
-        speed=speed,
-    ):
-        print("CACHE HIT")
-        print("TTS не вызываем")
+    while mixer.is_playing():
+        time.sleep(0.1)
 
-    else:
-        print("CACHE MISS")
-        print("Вызываем TTS...")
-
-        await tts.synthesize(
-            text=text,
-            voice=voice,
-            speed=speed,
-            output_path=path,
-        )
-
-        print("TTS завершён")
+    print("Playback finished")
 
 
 if __name__ == "__main__":
-    asyncio.run(test_tts_cache())
+    pygame.init()
+    test_mixer()
+    pygame.quit()
