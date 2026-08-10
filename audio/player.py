@@ -32,10 +32,11 @@ class PlaybackPhase:
     PLAY_TEXT = 2
     WAIT_TEXT_END = 3
     PAUSE = 4
-    PLAY_TRANSLATION = 5
-    WAIT_TRANSLATION_END = 6
-    PAUSE_BETWEEN_SENTENCES = 7
-    FINISH_ITEM = 8
+    PREPARE_TRANSLATION_AUDIO = 5
+    PLAY_TRANSLATION = 6
+    WAIT_TRANSLATION_END = 7
+    PAUSE_BETWEEN_SENTENCES = 8
+    FINISH_ITEM = 9
 
 class Player:
 
@@ -96,13 +97,30 @@ class Player:
 
 
     # ---------------------------------------------------------    
-    # Внедряем аудио провайдер и микшер для тестирования
+    # Async audio controls preparation
+    # ---------------------------------------------------------
+    def _cancel_audio_task(self):
 
+        if self._audio_task is not None:
+
+            if not self._audio_task.done():
+                self._audio_task.cancel()
+
+            self._audio_task = None
 
     async def _prepare_text_audio(self):
         path = await self._audio_provider.get_audio(
             text=self._current_item["phrase_text"],
             voice=self._current_item["phrase_voice"],
+            speed=self.voice_speed,
+        )
+
+        self._audio_mixer.load(path)
+
+    async def _prepare_translation_audio(self):
+        path = await self._audio_provider.get_audio(
+            text=self._current_item["translate_text"],
+            voice=self._current_item["translate_voice"],
             speed=self.voice_speed,
         )
 
@@ -155,6 +173,7 @@ class Player:
 
         if self._state == PlayerState.PAUSED:
 
+            self._audio_mixer.resume()    
             self._state = PlayerState.PLAYING
             return
 
@@ -167,12 +186,13 @@ class Player:
         #print("PLAYER PAUSE:", self._state)
 
         if self._state == PlayerState.PLAYING:
+            self._audio_mixer.pause()
             self._state = PlayerState.PAUSED
 
     def stop(self):
 
         #print("PLAYER STOP:", self._state)
-
+        self._audio_mixer.stop()
         self._state = PlayerState.STOPPED
 
     # --------------------------------------------------
@@ -194,17 +214,23 @@ class Player:
     # Navigation
     # ---------------------------------------------------------
 
+    def _navigate(self, action):
+        self._cancel_audio_task()
+        self._audio_mixer.stop()
+        action()
+        self._phase = PlaybackPhase.PREPARE_ITEM
+
     def next(self):
-        self._session.next()
+        self._navigate(self._session.next)
 
     def prev(self):
-        self._session.prev()
+        self._navigate(self._session.prev)
 
     def first(self):
-        self._session.first()
+        self._navigate(self._session.first)
 
     def last(self):
-        self._session.last()
+        self._navigate(self._session.last)
 
     # ---------------------------------------------------------
     # Main update
@@ -236,9 +262,14 @@ class Player:
 
             if self._audio_task.done():
 
-                self._audio_task.result()
-
+                task = self._audio_task
                 self._audio_task = None
+
+                try:
+                    task.result()
+
+                except asyncio.CancelledError:
+                    return
 
                 self._audio_mixer.play()
 
@@ -262,24 +293,37 @@ class Player:
             if self._timer_ms <= 0:
 
                 print("PAUSE_END")
-                self._phase = PlaybackPhase.PLAY_TRANSLATION
+                self._phase = PlaybackPhase.PREPARE_TRANSLATION_AUDIO
 
-        elif self._phase == PlaybackPhase.PLAY_TRANSLATION:
+        elif self._phase == PlaybackPhase.PREPARE_TRANSLATION_AUDIO:
 
-            print(
-                "PLAY_TRANSLATION: "
-                + self._current_item.get("translate_text")
-            )
+            if self._audio_task is None:
 
-            # пока старая заглушка
-            self._timer_ms = 1000
-            self._phase = PlaybackPhase.WAIT_TRANSLATION_END
+                self._audio_task = self._async_runner.submit(
+                    self._prepare_translation_audio()
+                )
+
+            if self._audio_task.done():
+
+                task = self._audio_task
+                self._audio_task = None
+
+                try:
+                    task.result()
+
+                except asyncio.CancelledError:
+                    return
+
+                self._audio_mixer.play()
+
+                print("TRANSLATION PLAY")
+
+                self._phase = PlaybackPhase.WAIT_TRANSLATION_END
+  
 
         elif self._phase == PlaybackPhase.WAIT_TRANSLATION_END:
 
-            self._timer_ms -= dt
-
-            if self._timer_ms <= 0:
+            if not self._audio_mixer.is_playing():
 
                 print("TRANSLATION_END")
 

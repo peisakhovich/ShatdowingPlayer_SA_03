@@ -29,7 +29,7 @@ class Application:
         self.player = Player(self.session)
 
         # Тестирование аудио
-        asyncio.run(self.player.test_audio())
+        #asyncio.run(self.player.test_audio())
 
 
 
