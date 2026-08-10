@@ -7,6 +7,14 @@ Player — центральный объект управления воспро
 - навигацию по Session;
 - публичный API.
 """
+import asyncio
+from pathlib import Path
+
+from audio.cache import AudioCache
+from audio.provider import AudioProvider
+from audio.mixer import AudioMixer
+from audio.tts import TTS
+from audio.async_runner import AsyncRunner
 
 class PlayerState:
 
@@ -20,13 +28,14 @@ class PlaybackPhase:
 
     #Этап воспроизведения одной фразы.
     PREPARE_ITEM = 0
-    PLAY_TEXT = 1
-    WAIT_TEXT_END = 2
-    PAUSE = 3
-    PLAY_TRANSLATION = 4
-    WAIT_TRANSLATION_END = 5
-    PAUSE_BETWEEN_SENTENCES = 6
-    FINISH_ITEM = 7
+    PREPARE_TEXT_AUDIO = 1
+    PLAY_TEXT = 2
+    WAIT_TEXT_END = 3
+    PAUSE = 4
+    PLAY_TRANSLATION = 5
+    WAIT_TRANSLATION_END = 6
+    PAUSE_BETWEEN_SENTENCES = 7
+    FINISH_ITEM = 8
 
 class Player:
 
@@ -44,6 +53,10 @@ class Player:
         self._timer_ms = 0
         self._current_item = None      
 
+        self._audio_provider = AudioProvider(cache=AudioCache(), tts=TTS())
+        self._audio_mixer = AudioMixer()
+        self._async_runner = AsyncRunner()
+        self._audio_task = None
 
     # ---------------------------------------------------------
     # Properties
@@ -80,6 +93,54 @@ class Player:
     @pause_between_sentences.setter
     def pause_between_sentences(self, value):
         self._pause_between_sentences = value
+
+
+    # ---------------------------------------------------------    
+    # Внедряем аудио провайдер и микшер для тестирования
+
+
+    async def _prepare_text_audio(self):
+        path = await self._audio_provider.get_audio(
+            text=self._current_item["phrase_text"],
+            voice=self._current_item["phrase_voice"],
+            speed=self.voice_speed,
+        )
+
+        self._audio_mixer.load(path)
+
+
+    async def _prepare_audio(self, text: str, voice: str) -> Path:
+
+        return await self._audio_provider.get_audio(
+            text=text,
+            voice=voice,
+            speed=self.voice_speed,
+        )
+
+    # tmp test method
+    async def test_audio(self):
+
+        item = self.session.current_item
+
+        path = await self._prepare_audio(
+            text=item["phrase_text"],
+            voice=item["phrase_voice"],
+        )
+        self._audio_mixer.load(path)
+        self._audio_mixer.play()
+        while self._audio_mixer.is_playing():
+            await asyncio.sleep(0.1)
+
+        path = await self._prepare_audio(
+            text=item["translate_text"],
+            voice=item["translate_voice"],
+        )
+        self._audio_mixer.load(path)
+        self._audio_mixer.play()
+
+
+
+        print(f"Player audio: {path}")
 
     # ---------------------------------------------------------
     # Playback control
@@ -151,35 +212,46 @@ class Player:
 
     def update(self, dt: int):
 
-    
-        # if self._state != PlayerState.PLAYING:
-        #     print("UPDATE SKIP:", self._state)
-        #     return
-
-
         if self._state != PlayerState.PLAYING:
             return
 
         if self._phase == PlaybackPhase.PREPARE_ITEM:
-            
+
             self._current_item = self.session.current_item
-            self._phase = PlaybackPhase.PLAY_TEXT
-            print("PREPARE_ITEM #" + str(self.session.current_index))
 
-        elif self._phase == PlaybackPhase.PLAY_TEXT:
+            print(
+                "PREPARE_ITEM #"
+                + str(self.session.current_index)
+            )
 
-            print("PLAY_TEXT: " + self._current_item.get("phrase_text"))
-            # позже здесь будет запуск TTS
-            self._timer_ms = 1000
-            self._phase = PlaybackPhase.WAIT_TEXT_END
+            self._phase = PlaybackPhase.PREPARE_TEXT_AUDIO
+
+        elif self._phase == PlaybackPhase.PREPARE_TEXT_AUDIO:
+
+            if self._audio_task is None:
+
+                self._audio_task = self._async_runner.submit(
+                    self._prepare_text_audio()
+                )
+
+            if self._audio_task.done():
+
+                self._audio_task.result()
+
+                self._audio_task = None
+
+                self._audio_mixer.play()
+
+                print("TEXT PLAY")
+
+                self._phase = PlaybackPhase.WAIT_TEXT_END
 
         elif self._phase == PlaybackPhase.WAIT_TEXT_END:
 
-            self._timer_ms -= dt
-
-            if self._timer_ms <= 0:
+            if not self._audio_mixer.is_playing():
 
                 print("TEXT_END")
+
                 self._timer_ms = self.pause_before_translation
                 self._phase = PlaybackPhase.PAUSE
 
@@ -190,12 +262,16 @@ class Player:
             if self._timer_ms <= 0:
 
                 print("PAUSE_END")
-                self._phase = PlaybackPhase.PLAY_TRANSLATION                
+                self._phase = PlaybackPhase.PLAY_TRANSLATION
 
         elif self._phase == PlaybackPhase.PLAY_TRANSLATION:
 
-            print("PLAY_TRANSLATION: " + self._current_item.get("translate_text"))
-            # позже здесь будет запуск TTS
+            print(
+                "PLAY_TRANSLATION: "
+                + self._current_item.get("translate_text")
+            )
+
+            # пока старая заглушка
             self._timer_ms = 1000
             self._phase = PlaybackPhase.WAIT_TRANSLATION_END
 
@@ -204,8 +280,9 @@ class Player:
             self._timer_ms -= dt
 
             if self._timer_ms <= 0:
-                
+
                 print("TRANSLATION_END")
+
                 self._timer_ms = self.pause_between_sentences
                 self._phase = PlaybackPhase.PAUSE_BETWEEN_SENTENCES
 

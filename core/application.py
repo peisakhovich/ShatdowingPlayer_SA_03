@@ -1,3 +1,4 @@
+import asyncio
 import os
 
 import pygame
@@ -26,6 +27,11 @@ class Application:
         
         self.session = Session.load(Config.PLAN_SESSION_FILE)
         self.player = Player(self.session)
+
+        # Тестирование аудио
+        asyncio.run(self.player.test_audio())
+
+
 
         self.size = Layout.WINDOW_SIZE
 

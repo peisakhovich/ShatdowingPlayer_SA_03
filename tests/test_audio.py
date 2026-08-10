@@ -1,19 +1,37 @@
+import asyncio
 import time
-import pygame
 
+from audio.cache import AudioCache
+from audio.tts import TTS
+from audio.provider import AudioProvider
 from audio.mixer import AudioMixer
 
 
-def test_mixer():
+async def test_provider_mixer():
+
+    cache = AudioCache("data/audio_cache")
+    tts = TTS()
+
+    provider = AudioProvider(
+        cache=cache,
+        tts=tts,
+    )
 
     mixer = AudioMixer()
 
-    path = "data\\audio_cache\\19ee8b061f0b2d2ed6a09450bd2e87cceb0a7754198575cbadefa0f10a64011f.mp3"
+    path = await provider.get_audio(
+        text="To jest test pełnego cyklu audio.",
+        voice="pl-PL-ZofiaNeural",
+        speed=0.6,
+    )
+
+    print(f"Audio path: {path}")
+    print(f"Exists: {path.exists()}")
 
     mixer.load(path)
-    mixer.play()
 
     print("Playing...")
+    mixer.play()
 
     while mixer.is_playing():
         time.sleep(0.1)
@@ -22,6 +40,4 @@ def test_mixer():
 
 
 if __name__ == "__main__":
-    pygame.init()
-    test_mixer()
-    pygame.quit()
+    asyncio.run(test_provider_mixer())
