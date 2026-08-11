@@ -83,6 +83,12 @@ class Player:
         # Может быть отменена при навигации.
         self._audio_task = None
 
+        # Опции воспроизведения.
+        self._show_text = True
+        self._voice_text = True
+        self._show_translation = True
+        self._voice_translation = True
+
     # ---------------------------------------------------------
     # Properties
     # ---------------------------------------------------------
@@ -154,6 +160,13 @@ class Player:
         )
 
         self._audio_mixer.load(path)
+
+    # ---------------------------------------------------------
+    # options
+    # ---------------------------------------------------------
+
+    def set_option(self, name, checked):
+        self._options[name] = checked
 
     # ---------------------------------------------------------
     # Playback control

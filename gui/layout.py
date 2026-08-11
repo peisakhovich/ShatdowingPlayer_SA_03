@@ -82,4 +82,18 @@ class Layout:
     HSL_Y=24
     HSL_TRACK_WIDTH=180
     HSL_FONT_SIZE=11
+
+    # -------------------------
+    # UI LAYER: SETTINGS WINDOW
+    # -------------------------
+
+    SETTINGS_WIDTH = 500
+    SETTINGS_HEIGHT = 400
+
+    SETTINGS_RECT = pygame.Rect(
+        (WIDTH - SETTINGS_WIDTH) // 2,
+        (HEIGHT - SETTINGS_HEIGHT) // 2,
+        SETTINGS_WIDTH,
+        SETTINGS_HEIGHT
+    )
  

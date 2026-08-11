@@ -8,6 +8,7 @@ from gui.widgets.text_window import TextWindow
 from gui.theme import Theme
 from core.config import Config 
 from gui.layout import Layout
+from gui.settings_window import SettingsWindow
 
 
 class MainWindow:
@@ -84,6 +85,10 @@ class MainWindow:
             )    
 
     
+        self.settings_window = SettingsWindow(
+            pygame.Rect(150, 100, 500, 400)
+        )
+    
 
     # --------------------------------------------------
     # Показать диалог выхода
@@ -138,6 +143,10 @@ class MainWindow:
 
             return None
 
+        if self.settings_window.visible:
+            self.settings_window.handle_event(event)
+            return None
+
         #
         # Если диалогов нет
         #
@@ -186,6 +195,8 @@ class MainWindow:
                     elif name == "quit":
                         self.show_exit_dialog()
                         return None        
+                    elif name == "settings":
+                        self.settings_window.show()
 
                 case ("slider", name, value):
 
@@ -203,6 +214,7 @@ class MainWindow:
                 case ("checkbox", name, checked):
 
                     print(f"Checkbox: {name} = {checked}")
+                    self.player.set_option(name, checked)
 
                     # Пока просто выводим.
                     # Позже Player будет менять режим воспроизведения.
@@ -268,3 +280,5 @@ class MainWindow:
             self.active_dialog.draw(
                 self.screen
             )
+
+        self.settings_window.draw(self.screen)
