@@ -12,7 +12,7 @@ class AudioMixer:
         """Загружает аудиофайл."""
 
         pygame.mixer.music.load(str(path))
-
+      
     def play(self):
         """Начинает воспроизведение."""
 

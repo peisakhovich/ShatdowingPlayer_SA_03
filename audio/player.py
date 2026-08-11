@@ -1,14 +1,19 @@
+
 """
-Player lifecycle and playback FSM
+Player lifecycle and playback FSM.
+
 Player — центральный объект управления воспроизведением.
-На данном этапе отвечает только за:
+
+Отвечает за:
 - хранение Session;
 - состояние проигрывателя;
+- FSM воспроизведения;
 - навигацию по Session;
-- публичный API.
+- подготовку и запуск аудио;
+- публичный API управления воспроизведением.
 """
+
 import asyncio
-from pathlib import Path
 
 from audio.cache import AudioCache
 from audio.provider import AudioProvider
@@ -16,47 +21,66 @@ from audio.mixer import AudioMixer
 from audio.tts import TTS
 from audio.async_runner import AsyncRunner
 
-class PlayerState:
 
-    #Состояния Player
-    IDLE = 0
-    PLAYING = 1
-    PAUSED = 2
-    STOPPED = 3
+class PlayerState:
+    """Состояния жизненного цикла Player."""
+
+    IDLE = 0       # Не воспроизводит; готов к запуску
+    PLAYING = 1    # Воспроизведение активно
+    PAUSED = 2     # Воспроизведение временно приостановлено
+    STOPPED = 3    # Воспроизведение принудительно остановлено
+
 
 class PlaybackPhase:
+    """Этапы воспроизведения одной фразы."""
 
-    #Этап воспроизведения одной фразы.
-    PREPARE_ITEM = 0
-    PREPARE_TEXT_AUDIO = 1
-    PLAY_TEXT = 2
-    WAIT_TEXT_END = 3
-    PAUSE = 4
-    PREPARE_TRANSLATION_AUDIO = 5
-    PLAY_TRANSLATION = 6
-    WAIT_TRANSLATION_END = 7
-    PAUSE_BETWEEN_SENTENCES = 8
-    FINISH_ITEM = 9
+    PREPARE_ITEM = 0                  # Получение текущего item
+    PREPARE_TEXT_AUDIO = 1            # Получение/генерация аудио текста
+    WAIT_TEXT_END = 2                 # Ожидание окончания текста
+    PAUSE = 3                         # Пауза перед переводом
+    PREPARE_TRANSLATION_AUDIO = 4     # Получение/генерация аудио перевода
+    WAIT_TRANSLATION_END = 5          # Ожидание окончания перевода
+    PAUSE_BETWEEN_SENTENCES = 6       # Пауза перед следующей фразой
+    FINISH_ITEM = 7                   # Завершение текущего item
+
 
 class Player:
 
     def __init__(self, session):
 
         self._session = session
+
+        # Состояние жизненного цикла Player.
         self._state = PlayerState.IDLE
+
+        # Текущий этап FSM.
         self._phase = PlaybackPhase.PREPARE_ITEM
 
-        # Параметры воспроизведения
+        # Параметры воспроизведения.
         self._voice_speed = 1.0
         self._pause_before_translation = 2000
-        self._pause_between_sentences = 2000  
+        self._pause_between_sentences = 2000
 
+        # Таймер используется только для пауз FSM.
+        # Окончание аудио определяется через AudioMixer.is_playing().
         self._timer_ms = 0
-        self._current_item = None      
 
-        self._audio_provider = AudioProvider(cache=AudioCache(), tts=TTS())
+        # Текущий элемент Session.
+        self._current_item = None
+
+        # Аудио-компоненты Player.
+        self._audio_provider = AudioProvider(
+            cache=AudioCache(),
+            tts=TTS()
+        )
+
         self._audio_mixer = AudioMixer()
+
+        # Выполняет async-корутину в отдельном рабочем потоке.
         self._async_runner = AsyncRunner()
+
+        # Текущая фоновая задача подготовки аудио.
+        # Может быть отменена при навигации.
         self._audio_task = None
 
     # ---------------------------------------------------------
@@ -95,10 +119,10 @@ class Player:
     def pause_between_sentences(self, value):
         self._pause_between_sentences = value
 
-
-    # ---------------------------------------------------------    
-    # Async audio controls preparation
     # ---------------------------------------------------------
+    # Async audio preparation
+    # ---------------------------------------------------------
+
     def _cancel_audio_task(self):
 
         if self._audio_task is not None:
@@ -109,16 +133,21 @@ class Player:
             self._audio_task = None
 
     async def _prepare_text_audio(self):
+
+        
         path = await self._audio_provider.get_audio(
             text=self._current_item["phrase_text"],
             voice=self._current_item["phrase_voice"],
             speed=self.voice_speed,
         )
-
+            
         self._audio_mixer.load(path)
 
+
     async def _prepare_translation_audio(self):
+
         path = await self._audio_provider.get_audio(
+
             text=self._current_item["translate_text"],
             voice=self._current_item["translate_voice"],
             speed=self.voice_speed,
@@ -126,78 +155,41 @@ class Player:
 
         self._audio_mixer.load(path)
 
-
-    async def _prepare_audio(self, text: str, voice: str) -> Path:
-
-        return await self._audio_provider.get_audio(
-            text=text,
-            voice=voice,
-            speed=self.voice_speed,
-        )
-
-    # tmp test method
-    async def test_audio(self):
-
-        item = self.session.current_item
-
-        path = await self._prepare_audio(
-            text=item["phrase_text"],
-            voice=item["phrase_voice"],
-        )
-        self._audio_mixer.load(path)
-        self._audio_mixer.play()
-        while self._audio_mixer.is_playing():
-            await asyncio.sleep(0.1)
-
-        path = await self._prepare_audio(
-            text=item["translate_text"],
-            voice=item["translate_voice"],
-        )
-        self._audio_mixer.load(path)
-        self._audio_mixer.play()
-
-
-
-        print(f"Player audio: {path}")
-
     # ---------------------------------------------------------
     # Playback control
     # ---------------------------------------------------------
 
     def play(self):
 
-        #print("PLAYER PLAY:", self._state)
-
         if self._session is None:
             return
 
+        # После Pause продолжаем текущее аудио
+        # с того же места.
         if self._state == PlayerState.PAUSED:
 
-            self._audio_mixer.resume()    
+            self._audio_mixer.resume()
             self._state = PlayerState.PLAYING
             return
-
 
         self._state = PlayerState.PLAYING
         self._phase = PlaybackPhase.PREPARE_ITEM
 
     def pause(self):
 
-        #print("PLAYER PAUSE:", self._state)
-
         if self._state == PlayerState.PLAYING:
+
             self._audio_mixer.pause()
             self._state = PlayerState.PAUSED
 
     def stop(self):
 
-        #print("PLAYER STOP:", self._state)
         self._audio_mixer.stop()
         self._state = PlayerState.STOPPED
 
-    # --------------------------------------------------
-    # Скорость воспроизведения, пауза между предложениями и перед переводом
-    # --------------------------------------------------
+    # ---------------------------------------------------------
+    # Playback parameters
+    # ---------------------------------------------------------
 
     def set_speed(self, value: float):
         self.voice_speed = value
@@ -208,16 +200,20 @@ class Player:
     def set_pause_between_sentences(self, value: int):
         self.pause_between_sentences = value
 
-
-
     # ---------------------------------------------------------
     # Navigation
     # ---------------------------------------------------------
 
     def _navigate(self, action):
+
+        # При навигации текущее аудио и незавершённая
+        # подготовка аудио должны быть остановлены.
         self._cancel_audio_task()
         self._audio_mixer.stop()
+
         action()
+
+        # Следующий update() начнёт подготовку нового item.
         self._phase = PlaybackPhase.PREPARE_ITEM
 
     def next(self):
@@ -233,13 +229,17 @@ class Player:
         self._navigate(self._session.last)
 
     # ---------------------------------------------------------
-    # Main update
+    # Main update / Playback FSM
     # ---------------------------------------------------------
 
     def update(self, dt: int):
 
         if self._state != PlayerState.PLAYING:
             return
+
+        # -----------------------------------------------------
+        # Получение текущего item
+        # -----------------------------------------------------
 
         if self._phase == PlaybackPhase.PREPARE_ITEM:
 
@@ -251,6 +251,10 @@ class Player:
             )
 
             self._phase = PlaybackPhase.PREPARE_TEXT_AUDIO
+
+        # -----------------------------------------------------
+        # Подготовка аудио текста
+        # -----------------------------------------------------
 
         elif self._phase == PlaybackPhase.PREPARE_TEXT_AUDIO:
 
@@ -277,6 +281,10 @@ class Player:
 
                 self._phase = PlaybackPhase.WAIT_TEXT_END
 
+        # -----------------------------------------------------
+        # Ожидание окончания текста
+        # -----------------------------------------------------
+
         elif self._phase == PlaybackPhase.WAIT_TEXT_END:
 
             if not self._audio_mixer.is_playing():
@@ -286,6 +294,10 @@ class Player:
                 self._timer_ms = self.pause_before_translation
                 self._phase = PlaybackPhase.PAUSE
 
+        # -----------------------------------------------------
+        # Пауза перед переводом
+        # -----------------------------------------------------
+
         elif self._phase == PlaybackPhase.PAUSE:
 
             self._timer_ms -= dt
@@ -293,7 +305,12 @@ class Player:
             if self._timer_ms <= 0:
 
                 print("PAUSE_END")
+
                 self._phase = PlaybackPhase.PREPARE_TRANSLATION_AUDIO
+
+        # -----------------------------------------------------
+        # Подготовка аудио перевода
+        # -----------------------------------------------------
 
         elif self._phase == PlaybackPhase.PREPARE_TRANSLATION_AUDIO:
 
@@ -319,7 +336,10 @@ class Player:
                 print("TRANSLATION PLAY")
 
                 self._phase = PlaybackPhase.WAIT_TRANSLATION_END
-  
+
+        # -----------------------------------------------------
+        # Ожидание окончания перевода
+        # -----------------------------------------------------
 
         elif self._phase == PlaybackPhase.WAIT_TRANSLATION_END:
 
@@ -330,6 +350,10 @@ class Player:
                 self._timer_ms = self.pause_between_sentences
                 self._phase = PlaybackPhase.PAUSE_BETWEEN_SENTENCES
 
+        # -----------------------------------------------------
+        # Пауза перед следующей фразой
+        # -----------------------------------------------------
+
         elif self._phase == PlaybackPhase.PAUSE_BETWEEN_SENTENCES:
 
             self._timer_ms -= dt
@@ -337,7 +361,12 @@ class Player:
             if self._timer_ms <= 0:
 
                 print("PAUSE_BETWEEN_SENTENCES_END")
+
                 self._phase = PlaybackPhase.FINISH_ITEM
+
+        # -----------------------------------------------------
+        # Завершение текущего item
+        # -----------------------------------------------------
 
         elif self._phase == PlaybackPhase.FINISH_ITEM:
 
@@ -346,9 +375,11 @@ class Player:
             if self.session.is_last():
 
                 print("PLAYBACK_FINISHED")
+
                 self._state = PlayerState.IDLE
 
             else:
 
                 self.session.next()
                 self._phase = PlaybackPhase.PREPARE_ITEM
+
