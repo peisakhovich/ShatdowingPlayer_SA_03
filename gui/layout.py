@@ -22,7 +22,7 @@ class Layout:
     # -------------------------
 
     CB_DEFS = {
-        "show_text": ("show text", True),
+        "loop": ("repeat current", False),
         "voice_text": ("voice text", True),
         "show_translation": ("show translation", True),
         "voice_translation": ("voice translation", True),

@@ -68,6 +68,9 @@ class Player:
         # Текущий элемент Session.
         self._current_item = None
 
+        # Повторы
+        self._repeat_index = 0
+
         # Аудио-компоненты Player.
         self._audio_provider = AudioProvider(
             cache=AudioCache(),
@@ -84,7 +87,7 @@ class Player:
         self._audio_task = None
 
         # Опции воспроизведения.
-        self._show_text = True
+        self._loop = False
         self._voice_text = True
         self._show_translation = True
         self._voice_translation = True
@@ -166,7 +169,7 @@ class Player:
     # ---------------------------------------------------------
 
     def set_option(self, name, checked):
-        self._options[name] = checked
+        setattr(self, "_" + name, checked)
 
     # ---------------------------------------------------------
     # Playback control
@@ -257,6 +260,7 @@ class Player:
         if self._phase == PlaybackPhase.PREPARE_ITEM:
 
             self._current_item = self.session.current_item
+            self._repeat_index = 0
 
             print(
                 "PREPARE_ITEM #"
@@ -383,12 +387,28 @@ class Player:
 
         elif self._phase == PlaybackPhase.FINISH_ITEM:
 
-            print("FINISH_ITEM")
+            if self._loop:
+                print("LOOP: repeat current item")
+                self._phase = PlaybackPhase.PREPARE_TEXT_AUDIO
+                return
 
-            if self.session.is_last():
+            repeat_count = self._current_item.get("repeat_count", 1)
+
+            self._repeat_index += 1
+
+            print(
+                f"FINISH_ITEM: "
+                f"repeat {self._repeat_index}/{repeat_count}"
+            )
+
+            if self._repeat_index < repeat_count:
+
+                # Повторяем тот же item.
+                self._phase = PlaybackPhase.PREPARE_TEXT_AUDIO
+
+            elif self.session.is_last():
 
                 print("PLAYBACK_FINISHED")
-
                 self._state = PlayerState.IDLE
 
             else:

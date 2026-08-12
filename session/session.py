@@ -37,6 +37,7 @@ class Session:
         self._set: dict = {}
         self._items: list = []
         self._state: dict = {}
+        
 
     # ==========================================================
     # Factory
@@ -58,7 +59,7 @@ class Session:
         session._set = data.get("set", {})
         session._items = data.get("items", [])
         session._state = data.get("state", {})
-
+        
         return session
 
     # ==========================================================
@@ -114,10 +115,14 @@ class Session:
     @current_index.setter
     def current_index(self, value):
         self._state["current_index"] = value
+        
 
     @property
     def current_item(self):
-        return self._items[self.current_index]        
+        return self._items[self.current_index]    
+
+  
+        
 
     # ==========================================================
     # Navigation
@@ -127,7 +132,7 @@ class Session:
 
         if self.is_empty():
             return None
-
+        
         return self._items[self.current_index]
 
     def first(self):
@@ -145,7 +150,8 @@ class Session:
     def next(self):
 
         if self.current_index < len(self._items) - 1:
-            self.current_index += 1
+            
+           self.current_index += 1
 
         return self.current()
 
