@@ -64,18 +64,18 @@ class Layout:
             "formatter": lambda v: f"{v:.2f}x",
         },
         {
-            "name": "pause_before_translation",
-            "caption": "Pause before Translation",
-            "start": 3000,
-            "range": (0, 6000),
-            "formatter": lambda v: f"{int(v)} ms",
+            "name": "factor_pause_before_translation",
+            "caption": "Factor Pause before Translation",
+            "start": 1.0,
+            "range": (0.1, 4.0),
+            "formatter": lambda v: f"{v:.2f}x",
         },
-                {
+        {
             "name": "pause_between_sentences",
             "caption": "Pause between Sentences",
             "start": 2000,
-            "range": (0, 5000),
-            "formatter": lambda v: f"{int(v)} ms",
+            "range": (0, 8000),
+            "formatter": lambda v: f"{v/1000:.1f} s",
         }
     ]
     HSL_X=10

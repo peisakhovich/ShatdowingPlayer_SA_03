@@ -58,8 +58,10 @@ class Player:
 
         # Параметры воспроизведения.
         self._voice_speed = 1.0
-        self._pause_before_translation = 2000
+        self._pause_before_translation = 0
+        self._factor_pause_before_translation = 1.0 
         self._pause_between_sentences = 2000
+        
 
         # Таймер используется только для пауз FSM.
         # Окончание аудио определяется через AudioMixer.is_playing().
@@ -127,6 +129,16 @@ class Player:
     @pause_between_sentences.setter
     def pause_between_sentences(self, value):
         self._pause_between_sentences = value
+
+    @property    
+    def factor_pause_before_translation(self):
+        return self._factor_pause_before_translation
+
+    @factor_pause_before_translation.setter
+    def factor_pause_before_translation(self, value):
+        self._factor_pause_before_translation = value
+
+    
 
     # ---------------------------------------------------------
     # Async audio preparation
@@ -211,10 +223,16 @@ class Player:
         self.voice_speed = value
 
     def set_pause_before_translation(self, value: int):
-        self.pause_before_translation = value
+        self.pause_before_translation = value*self._factor_pause_before_translation
+
+    def set_factor_pause_before_translation(self, value: float):
+        self._factor_pause_before_translation = value   
 
     def set_pause_between_sentences(self, value: int):
-        self.pause_between_sentences = value
+        self._pause_between_sentences = value
+
+
+  
 
     # ---------------------------------------------------------
     # Navigation
@@ -261,6 +279,21 @@ class Player:
 
             self._current_item = self.session.current_item
             self._repeat_index = 0
+
+            self.set_pause_before_translation(
+                self._current_item.get("pause_ms", 2000)
+            )
+
+
+            print(
+                "PAUSE_BEFORE_TRANSLATION = "
+                + str(self.pause_before_translation)
+            )
+
+            print(
+                "PAUSE_BETWEEN_SENTENCES = "
+                      + str(self.pause_between_sentences)
+            )
 
             print(
                 "PREPARE_ITEM #"

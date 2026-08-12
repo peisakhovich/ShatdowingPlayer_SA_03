@@ -85,10 +85,7 @@ class MainWindow:
             )    
 
     
-        self.settings_window = SettingsWindow(
-            pygame.Rect(150, 100, 500, 400)
-        )
-    
+        self.settings_window = SettingsWindow(Layout.SETTINGS_RECT)
 
     # --------------------------------------------------
     # Показать диалог выхода
@@ -205,8 +202,8 @@ class MainWindow:
                     if name == "voice_speed":
                         self.player.set_speed(value)
 
-                    elif name == "pause_before_translation":
-                        self.player.set_pause_before_translation(int(value))
+                    elif name == "factor_pause_before_translation":
+                        self.player.set_factor_pause_before_translation(float(value))
 
                     elif name == "pause_between_sentences":
                         self.player.set_pause_between_sentences(int(value))
