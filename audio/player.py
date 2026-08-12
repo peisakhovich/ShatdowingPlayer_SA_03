@@ -61,7 +61,6 @@ class Player:
         self._pause_before_translation = 0
         self._factor_pause_before_translation = 1.0 
         self._pause_between_sentences = 2000
-        
 
         # Таймер используется только для пауз FSM.
         # Окончание аудио определяется через AudioMixer.is_playing().
@@ -281,7 +280,7 @@ class Player:
             self._repeat_index = 0
 
             self.set_pause_before_translation(
-                self._current_item.get("pause_ms", 2000)
+                self._current_item.get("pause_ms", 2000) 
             )
 
 
