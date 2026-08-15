@@ -42,16 +42,19 @@ class MainWindow:
         # Активный модальный диалог
         self.active_dialog = None
 
-       
-        self.text=self.session.current_item.get("phrase_text")
-        self.translate=self.session.current_item.get("translate_text")
-        self.info=self.session.description+" | "+self.session.name+" | "+str(self.session.current_index+1)+"/"+str(self.session.items_count) 
+        
+        # self.text=self.session.current_item.get("phrase_text")
+        # self.translate=self.session.current_item.get("translate_text")
+        # self.info=self.session.description+" | "+self.session.name+" | "+str(self.session.current_index+1)+"/"+str(self.session.items_count) 
+        self.text=self.player.get_msg_top()
+        self.translate=self.player.get_msg_bottom()
+        self.info=self.player.get_msg_info()
 
 
         Height_Texts = Layout.HEIGHT - Layout.CP_HEIGHT - 40
 
 
-        self.tw_text = TextWindow(
+        self.tw_top = TextWindow(
 
             rect=(20, 20, Layout.WIDTH-40, Height_Texts*60/100),
             font=font_manager.load(
@@ -62,7 +65,7 @@ class MainWindow:
             align="left"
         )    
 
-        self.tw_translate = TextWindow(
+        self.tw_bottom = TextWindow(
         
             rect=(20, 20+Height_Texts*60/100+10, Layout.WIDTH*0.6, Height_Texts*40/100),
             font=font_manager.load(
@@ -233,15 +236,20 @@ class MainWindow:
 
             self.control_panel.update()
 
-            self.tw_text.text=self.session.current_item.get("phrase_text")
-            self.tw_translate.text=self.session.current_item.get("translate_text")
-            self.tw_info.text=self.session.description+" | "+self.session.name+" | " \
-                +str(self.session.current_index+1)+"/"+str(self.session.items_count) + "|  " \
-                + "translate_voice: " + self.session.current_item.get("translate_voice") \
-                + " | translate_voice_gender: " + self.session.current_item.get("translate_voice_gender") \
-                + " | pause_ms: " + str(self.session.current_item.get("pause_ms")) \
-                + " | speed: " + str(self.session.current_item.get("speed")) \
-                + " | repeat_count: " + str(self.session.current_item.get("repeat_count"))   
+            #self.tw_top.text=self.session.current_item.get("phrase_text")
+            #self.tw_bottom.text=self.session.current_item.get("translate_text")
+            self.tw_top.text=self.player.get_msg_top()
+            self.tw_bottom.text=self.player.get_msg_bottom()
+            self.tw_info.text=self.player.get_msg_info()
+
+
+            # self.tw_info.text=self.session.description+" | "+self.session.name+" | " \
+            #     +str(self.session.current_index+1)+"/"+str(self.session.items_count) + "|  " \
+            #     + "translate_voice: " + self.session.current_item.get("translate_voice") \
+            #     + " | translate_voice_gender: " + self.session.current_item.get("translate_voice_gender") \
+            #     + " | pause_ms: " + str(self.session.current_item.get("pause_ms")) \
+            #     + " | speed: " + str(self.session.current_item.get("speed")) \
+            #     + " | repeat_count: " + str(self.session.current_item.get("repeat_count"))   
 
             
 
@@ -256,9 +264,9 @@ class MainWindow:
         )
 
         # Прорисовка TextWindows
-        self.tw_text.draw(self.screen)
+        self.tw_top.draw(self.screen)
 
-        self.tw_translate.draw(self.screen)
+        self.tw_bottom.draw(self.screen)
         self.tw_info.draw(self.screen)
         #
         # Основной интерфейс

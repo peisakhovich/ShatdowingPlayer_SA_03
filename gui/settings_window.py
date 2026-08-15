@@ -2,14 +2,19 @@ import pygame
 
 from gui.theme import Theme
 from gui.widgets.list_selection import ListSelection
+from audio.scenario_provider import ScenarioProvider
 
 
 class SettingsWindow:
     """Модальное окно настроек."""
 
     def __init__(self, rect):
+
+        self.scenario_provider = ScenarioProvider("audio/scenarios.json")
+        
         self.rect = pygame.Rect(rect)
         self.visible = False
+
 
         self.close_rect = pygame.Rect(
             self.rect.right - 30,
@@ -25,14 +30,10 @@ class SettingsWindow:
                 400,
                 30
             ),
-            [
-                ("shadowing", "Shadowing"),
-                ("shadowing_no_translation", "Shadowing without translation"),
-                ("translation_first", "Translation first"),
-                ("reading", "Reading"),
-            ]
+            self.scenario_provider.get_scenario_list(),
+            self.scenario_provider.get_current_scenario_index()
         )
-
+        
 
     def show(self):
         self.visible = True

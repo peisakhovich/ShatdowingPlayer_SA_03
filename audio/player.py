@@ -20,6 +20,7 @@ from audio.provider import AudioProvider
 from audio.mixer import AudioMixer
 from audio.tts import TTS
 from audio.async_runner import AsyncRunner
+from audio.scenario_provider import ScenarioProvider
 
 
 class PlayerState:
@@ -35,13 +36,14 @@ class PlaybackPhase:
     """Этапы воспроизведения одной фразы."""
 
     PREPARE_ITEM = 0                  # Получение текущего item
-    PREPARE_TEXT_AUDIO = 1            # Получение/генерация аудио текста
-    WAIT_TEXT_END = 2                 # Ожидание окончания текста
-    PAUSE = 3                         # Пауза перед переводом
-    PREPARE_TRANSLATION_AUDIO = 4     # Получение/генерация аудио перевода
-    WAIT_TRANSLATION_END = 5          # Ожидание окончания перевода
-    PAUSE_BETWEEN_SENTENCES = 6       # Пауза перед следующей фразой
-    FINISH_ITEM = 7                   # Завершение текущего item
+    EXECUTE_ACTION = 1
+    PREPARE_TEXT_AUDIO = 2            # Получение/генерация аудио текста
+    WAIT_TEXT_END = 3                 # Ожидание окончания текста
+    PAUSE = 4                         # Пауза перед переводом
+    PREPARE_TRANSLATION_AUDIO = 5     # Получение/генерация аудио перевода
+    WAIT_TRANSLATION_END = 6          # Ожидание окончания перевода
+    PAUSE_BETWEEN_SENTENCES = 7       # Пауза перед следующей фразой
+    FINISH_ITEM = 8                   # Завершение текущего item
 
 
 class Player:
@@ -49,6 +51,16 @@ class Player:
     def __init__(self, session):
 
         self._session = session
+
+        # Plugin scenario 
+        self._scenario_provider = ScenarioProvider("audio/scenarios.json")
+
+        self._scenario = self._scenario_provider.get_scenario(
+            self._scenario_provider.get_current()
+        )
+
+        self._action_index = 0
+    
 
         # Состояние жизненного цикла Player.
         self._state = PlayerState.IDLE
@@ -61,6 +73,11 @@ class Player:
         self._pause_before_translation = 0
         self._factor_pause_before_translation = 1.0 
         self._pause_between_sentences = 2000
+
+        # Сообщения окон
+        self._msg_top='Start'
+        self._msg_bottom='Press button play for Start'
+        self._msg_info='Hello user'
 
         # Таймер используется только для пауз FSM.
         # Окончание аудио определяется через AudioMixer.is_playing().
@@ -113,6 +130,7 @@ class Player:
     def voice_speed(self, value):
         self._voice_speed = value
 
+    # pauses
     @property
     def pause_before_translation(self):
         return self._pause_before_translation
@@ -137,7 +155,28 @@ class Player:
     def factor_pause_before_translation(self, value):
         self._factor_pause_before_translation = value
 
+   
+    # ---------------------------------------------------------
+    # Get/set info metods 
+    # ---------------------------------------------------------
+
+    def get_msg_top(self):
+        return self._msg_top
     
+    def get_msg_bottom(self):
+        return self._msg_bottom
+
+    def get_msg_info(self):
+        return self._msg_info
+
+    def set_msg_top(self, value):
+        self._msg_top = value
+
+    def set_msg_bottom(self, value):
+        self._msg_bottom = value
+
+    def set_msg_info(self, value):
+        self._msg_info = value        
 
     # ---------------------------------------------------------
     # Async audio preparation
@@ -283,23 +322,36 @@ class Player:
                 self._current_item.get("pause_ms", 2000) 
             )
 
-
-            print(
-                "PAUSE_BEFORE_TRANSLATION = "
-                + str(self.pause_before_translation)
-            )
-
-            print(
-                "PAUSE_BETWEEN_SENTENCES = "
-                      + str(self.pause_between_sentences)
-            )
+            self.set_msg_top(self._current_item.get("phrase_text"))
+            self.set_msg_bottom("read and repeat out loud")
+               
+            self._action_index = 0
 
             print(
                 "PREPARE_ITEM #"
                 + str(self.session.current_index)
             )
 
-            self._phase = PlaybackPhase.PREPARE_TEXT_AUDIO
+            self._phase = PlaybackPhase.EXECUTE_ACTION
+
+
+        # -----------------------------------------------------
+        # Выполнение акции сценария
+        # -----------------------------------------------------
+        elif self._phase == PlaybackPhase.EXECUTE_ACTION:
+
+            if self._action_index >= len(self._scenario["actions"]):
+                    print("SCENARIO FINISHED")
+                    self._phase = PlaybackPhase.FINISH_ITEM
+                    return
+
+            action = self._scenario["actions"][self._action_index]
+
+            print("ACTION:", action)
+
+            self._action_index += 1
+
+            self._phase=PlaybackPhase.PREPARE_TEXT_AUDIO
 
         # -----------------------------------------------------
         # Подготовка аудио текста
@@ -362,6 +414,8 @@ class Player:
         # -----------------------------------------------------
 
         elif self._phase == PlaybackPhase.PREPARE_TRANSLATION_AUDIO:
+
+            self.set_msg_bottom(self._current_item.get("translate_text"))
 
             if self._audio_task is None:
 
