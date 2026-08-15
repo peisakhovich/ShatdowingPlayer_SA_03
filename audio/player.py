@@ -14,7 +14,7 @@ Player — центральный объект управления воспро
 """
 
 import asyncio
-
+from datetime import datetime
 from audio.cache import AudioCache
 from audio.provider import AudioProvider
 from audio.mixer import AudioMixer
@@ -178,6 +178,30 @@ class Player:
     def set_msg_info(self, value):
         self._msg_info = value        
 
+    def update_info(self, current_item_index):
+        session = self.session
+
+        set_data = session._set
+        item = session._items[current_item_index]
+
+        created = datetime.fromisoformat(
+            set_data["set_create_date"]
+        ).strftime("%d.%m.%Y")
+
+        self._msg_info = (
+            f'{set_data["user_nickname"]}  •  Set #{set_data["set_index"]}\n'
+            f'{set_data["set_name"]}\n'
+            f'{set_data["set_description"]}\n'
+            f'Created: {created}\n'
+            f'\n'
+            f'----------------------------\n'
+            f'Phrase {current_item_index + 1} / {len(session._items)}\n'
+            f'Pause: {self.pause_before_translation / 1000:.2f} s\n'
+            f'The End Pause: {self.pause_between_sentences / 1000:.2f} s'
+        )
+
+        
+
     # ---------------------------------------------------------
     # Async audio preparation
     # ---------------------------------------------------------
@@ -332,6 +356,7 @@ class Player:
 
             self._phase = PlaybackPhase.EXECUTE_ACTION
 
+            self.update_info(self.session.current_index)
 
         # -----------------------------------------------------
         # Выполнение акции сценария
@@ -542,5 +567,6 @@ class Player:
             else:
 
                 self.session.next()
+                self.update_info(self.session.current_index)
                 self._phase = PlaybackPhase.PREPARE_ITEM
 

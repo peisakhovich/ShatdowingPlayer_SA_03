@@ -195,17 +195,9 @@ class TextWindow:
         #
 
         max_width = (
-
             self.rect.width -
-
             Theme.TW_PADDING_X * 2
         )
-
-        #
-        # Разбиваем текст на слова
-        #
-
-        words = self.text.split()
 
         #
         # Результат
@@ -213,58 +205,64 @@ class TextWindow:
 
         lines = []
 
-        current_line = ""
-
         #
-        # Формируем строки
+        # Явные строки
         #
 
-        for word in words:
+        for text_line in self.text.split("\n"):
 
             #
-            # Проверяем строку с новым словом
+            # Разбиваем строку на слова
             #
 
-            if current_line:
-
-                test_line = current_line + " " + word
-
-            else:
-
-                test_line = word
+            words = text_line.split()
 
             #
-            # Измеряем ширину
+            # Пустая строка
             #
 
-            text_width, _ = self.font.size(test_line)
+            if not words:
+                lines.append("")
+                continue
 
-            if text_width <= max_width:
+            current_line = ""
 
-                current_line = test_line
+            #
+            # Формируем строки
+            #
 
-            else:
-
-                #
-                # Сохраняем предыдущую строку
-                #
+            for word in words:
 
                 if current_line:
 
-                    lines.append(current_line)
+                    test_line = current_line + " " + word
+
+                else:
+
+                    test_line = word
 
                 #
-                # Начинаем новую
+                # Измеряем ширину
                 #
 
-                current_line = word
+                text_width, _ = self.font.size(test_line)
 
-        #
-        # Последняя строка
-        #
+                if text_width <= max_width:
 
-        if current_line:
+                    current_line = test_line
 
-            lines.append(current_line)
+                else:
+
+                    if current_line:
+                        lines.append(current_line)
+
+                    current_line = word
+
+            #
+            # Последняя строка
+            #
+
+            if current_line:
+                lines.append(current_line)
 
         return lines
