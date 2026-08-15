@@ -157,7 +157,7 @@ class Player:
 
    
     # ---------------------------------------------------------
-    # Get/set info metods 
+    # Message get/set metods 
     # ---------------------------------------------------------
 
     def get_msg_top(self):
@@ -322,9 +322,7 @@ class Player:
                 self._current_item.get("pause_ms", 2000) 
             )
 
-            self.set_msg_top(self._current_item.get("phrase_text"))
-            self.set_msg_bottom("read and repeat out loud")
-               
+                          
             self._action_index = 0
 
             print(
@@ -351,7 +349,51 @@ class Player:
 
             self._action_index += 1
 
-            self._phase=PlaybackPhase.PREPARE_TEXT_AUDIO
+            if action["action"] == "SHOW":
+
+                if action["target"] == "top":
+                    self.set_msg_top(
+                        self._current_item.get(action["content"], "")
+                    )
+
+                elif action["target"] == "bottom":
+                    self.set_msg_bottom(
+                        self._current_item.get(action["content"], "")
+                    )
+
+            elif action["action"] == "PLAY":
+
+                self._play_source = action["source"]
+
+                if self._play_source == "phrase_text":
+                    self._phase = PlaybackPhase.PREPARE_TEXT_AUDIO
+
+                elif self._play_source == "translate_text":
+                    self._phase = PlaybackPhase.PREPARE_TRANSLATION_AUDIO
+
+            elif action["action"] == "WAIT":
+
+                source = action["source"]
+
+                if source == "pause_before_translation":
+                    self._timer_ms = self.pause_before_translation
+
+                elif source == "pause_between_sentences":
+                    self._timer_ms = self.pause_between_sentences
+
+                else:
+                    self._timer_ms = 0
+
+                self._phase = PlaybackPhase.PAUSE
+
+            elif action["action"] == "HIDE":
+
+                if action["target"] == "top":
+                    self.set_msg_top("")
+
+                elif action["target"] == "bottom":
+                    self.set_msg_bottom("")
+
 
         # -----------------------------------------------------
         # Подготовка аудио текста
@@ -392,8 +434,8 @@ class Player:
 
                 print("TEXT_END")
 
-                self._timer_ms = self.pause_before_translation
-                self._phase = PlaybackPhase.PAUSE
+                #self._timer_ms = self.pause_before_translation
+                self._phase = PlaybackPhase.EXECUTE_ACTION
 
         # -----------------------------------------------------
         # Пауза перед переводом
@@ -407,7 +449,7 @@ class Player:
 
                 print("PAUSE_END")
 
-                self._phase = PlaybackPhase.PREPARE_TRANSLATION_AUDIO
+                self._phase = PlaybackPhase.EXECUTE_ACTION
 
         # -----------------------------------------------------
         # Подготовка аудио перевода
@@ -450,8 +492,8 @@ class Player:
 
                 print("TRANSLATION_END")
 
-                self._timer_ms = self.pause_between_sentences
-                self._phase = PlaybackPhase.PAUSE_BETWEEN_SENTENCES
+                #self._timer_ms = self.pause_between_sentences
+                self._phase = PlaybackPhase.EXECUTE_ACTION
 
         # -----------------------------------------------------
         # Пауза перед следующей фразой
@@ -473,24 +515,24 @@ class Player:
 
         elif self._phase == PlaybackPhase.FINISH_ITEM:
 
-            if self._loop:
+            if self._loop: # endless repetition
                 print("LOOP: repeat current item")
-                self._phase = PlaybackPhase.PREPARE_TEXT_AUDIO
+                self._action_index = 0
+                self._phase = PlaybackPhase.EXECUTE_ACTION
                 return
 
+
             repeat_count = self._current_item.get("repeat_count", 1)
-
             self._repeat_index += 1
-
             print(
                 f"FINISH_ITEM: "
                 f"repeat {self._repeat_index}/{repeat_count}"
             )
-
             if self._repeat_index < repeat_count:
-
+                self._action_index = 0
                 # Повторяем тот же item.
-                self._phase = PlaybackPhase.PREPARE_TEXT_AUDIO
+                self._phase = PlaybackPhase.EXECUTE_ACTION #    PREPARE_TEXT_AUDIO
+
 
             elif self.session.is_last():
 
