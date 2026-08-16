@@ -82,10 +82,11 @@ class Player:
         self._timer_ms = 0
 
         # Текущий элемент Session.
-        self._current_item = None
+        self._current_item = self.session.current_item
 
         # Повторы
         self._repeat_index = 0
+
 
         # Аудио-компоненты Player.
         self._audio_provider = AudioProvider(
@@ -181,9 +182,13 @@ class Player:
         set_data = session._set
         item = session._items[current_item_index]
 
-        created = datetime.fromisoformat(
-            set_data["set_create_date"]
-        ).strftime("%d.%m.%Y")
+        date_value = set_data["set_create_date"]
+
+        created = (
+            datetime.fromisoformat(date_value).strftime("%d.%m.%Y")
+            if date_value
+            else ""
+        )
 
         self._msg_info = (
             f'{set_data["user_nickname"]}  •  Set #{set_data["set_index"]}\n'
@@ -193,6 +198,7 @@ class Player:
             f'----------------------------\n'
             f'Scenario: {self._scenario["caption"]}\n'
             f'Phrase {current_item_index + 1} / {len(session._items)}\n'
+            f"repeat {self._repeat_index+1}/{self._current_item.get("repeat_count", 1)}\n"
             f'Pause: {self.pause_before_translation / 1000:.2f} s\n'
             f'The End Pause: {self.pause_between_sentences / 1000:.2f} s'
         )
@@ -236,13 +242,14 @@ class Player:
         self._audio_mixer.load(path)
 
     # ---------------------------------------------------------
-    # options
+    # options takes value from  Mainwindow's checkbox 
     # ---------------------------------------------------------
 
     def set_option(self, name, checked):
         setattr(self, "_" + name, checked)
         if name == "randomize":
             self.session.set_randomize(checked)
+            self.randomize=checked
             
 
     # ---------------------------------------------------------
@@ -253,7 +260,6 @@ class Player:
 
         if self._session is None:
             return
-
         
         # -----------------------------------------------------
         # Продолжение после Pause
@@ -302,8 +308,6 @@ class Player:
 
     def set_pause_between_sentences(self, value: int):
         self._pause_between_sentences = value
-
-
   
 
     # ---------------------------------------------------------
@@ -350,12 +354,12 @@ class Player:
         if self._phase == PlaybackPhase.PREPARE_ITEM:
 
             self._current_item = self.session.current_item
+
             self._repeat_index = 0
 
             self.set_pause_before_translation(
                 self._current_item.get("pause_ms", 2000) 
             )
-
                           
             self._action_index = 0
 
@@ -363,10 +367,8 @@ class Player:
                 "PREPARE_ITEM #"
                 + str(self.session.current_index)
             )
-
+            
             self._phase = PlaybackPhase.EXECUTE_ACTION
-
-            self.update_info(self.session.current_index)
 
         # -----------------------------------------------------
         # Выполнение акции сценария
@@ -377,6 +379,8 @@ class Player:
                     print("SCENARIO FINISHED")
                     self._phase = PlaybackPhase.FINISH_ITEM
                     return
+
+            self.update_info(self.session.current_index)
 
             action = self._scenario["actions"][self._action_index]
 
@@ -428,7 +432,6 @@ class Player:
 
                 elif action["target"] == "bottom":
                     self.set_msg_bottom("")
-
 
         # -----------------------------------------------------
         # Подготовка аудио текста
@@ -491,7 +494,6 @@ class Player:
         # -----------------------------------------------------
 
         elif self._phase == PlaybackPhase.PREPARE_TRANSLATION_AUDIO:
-
             
             if self._audio_task is None:
 
@@ -529,8 +531,6 @@ class Player:
                 #self._timer_ms = self.pause_between_sentences
                 self._phase = PlaybackPhase.EXECUTE_ACTION
 
-
-
         # -----------------------------------------------------
         # Завершение текущего item
         # -----------------------------------------------------
@@ -546,7 +546,7 @@ class Player:
             repeat_count = self._current_item.get("repeat_count", 1)
 
             self._repeat_index += 1
-
+            
             print(
                 f"FINISH_ITEM: "
                 f"repeat {self._repeat_index}/{repeat_count}"
@@ -557,7 +557,7 @@ class Player:
                 self._action_index = 0
                 self._phase = PlaybackPhase.EXECUTE_ACTION
 
-            elif self._randomize:
+            elif self.randomize:
 
                 print("RANDOMIZE: next random item")
 
@@ -567,6 +567,7 @@ class Player:
             elif self.session.is_last():
 
                 print("PLAYBACK_FINISHED")
+                self.set_msg_top("END OF TRAINING")
                 self._state = PlayerState.IDLE
 
             else:

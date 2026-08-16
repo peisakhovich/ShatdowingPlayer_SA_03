@@ -1,5 +1,5 @@
 {
-    "current_scenario": "shadowing",
+    "current_scenario": "shadowing_no_translation",
     "scenarios": {
         "shadowing": {
             "caption": "Shadowing",
@@ -43,6 +43,10 @@
         "shadowing_no_translation": {
             "caption": "Shadowing without translation",
             "actions": [
+                {
+                    "action": "HIDE",
+                    "target": "bottom"
+                },
                 {
                     "action": "SHOW",
                     "target": "top",
