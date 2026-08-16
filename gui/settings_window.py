@@ -2,15 +2,15 @@ import pygame
 
 from gui.theme import Theme
 from gui.widgets.list_selection import ListSelection
-from audio.scenario_provider import ScenarioProvider
+#from audio.scenario_provider import ScenarioProvider
 
 
 class SettingsWindow:
     """Модальное окно настроек."""
 
-    def __init__(self, rect):
+    def __init__(self, rect,scenario):
 
-        self.scenario_provider = ScenarioProvider("audio/scenarios.json")
+        self.scenario_provider = scenario
         
         self.rect = pygame.Rect(rect)
         self.visible = False

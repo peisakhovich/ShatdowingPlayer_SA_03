@@ -20,7 +20,7 @@ from audio.provider import AudioProvider
 from audio.mixer import AudioMixer
 from audio.tts import TTS
 from audio.async_runner import AsyncRunner
-from audio.scenario_provider import ScenarioProvider
+#from audio.scenario_provider import ScenarioProvider
 
 
 class PlayerState:
@@ -47,12 +47,12 @@ class PlaybackPhase:
 
 class Player:
 
-    def __init__(self, session):
+    def __init__(self, session,scenario):
 
         self._session = session
 
         # Plugin scenario 
-        self._scenario_provider = ScenarioProvider("audio/scenarios.json")
+        self._scenario_provider = scenario
 
         self._scenario_id = self._scenario_provider.get_current()
 

@@ -14,6 +14,7 @@ from gui.services.font_manager import FontManager
 from session.providers.guest_provider import GuestProvider
 from session.session import Session
 from audio.player import Player
+from audio.scenario_provider import ScenarioProvider
 
 
 class Application:
@@ -26,12 +27,10 @@ class Application:
             GuestProvider.build(Config.PLAN_SESSION_FILE)
         
         self.session = Session.load(Config.PLAN_SESSION_FILE)
-        self.player = Player(self.session)
 
-        # Тестирование аудио
-        #asyncio.run(self.player.test_audio())
+        self.scenario_provider = ScenarioProvider("audio/scenarios.json")
 
-
+        self.player = Player(self.session,self.scenario_provider)
 
         self.size = Layout.WINDOW_SIZE
 
@@ -54,7 +53,8 @@ class Application:
             self.image_loader,
             self.font_manager,
             self.session,
-            self.player
+            self.player,
+            self.scenario_provider
         )
 
     def run(self):

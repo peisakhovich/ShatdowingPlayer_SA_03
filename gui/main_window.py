@@ -20,7 +20,8 @@ class MainWindow:
         image_loader,
         font_manager,
         session,
-        player
+        player,
+        scenario
 
     ):
         self.session = session
@@ -87,7 +88,7 @@ class MainWindow:
             )    
 
     
-        self.settings_window = SettingsWindow(Layout.SETTINGS_RECT)
+        self.settings_window = SettingsWindow(Layout.SETTINGS_RECT,scenario)
 
     # --------------------------------------------------
     # Показать диалог выхода
