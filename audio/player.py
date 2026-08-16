@@ -42,8 +42,7 @@ class PlaybackPhase:
     PAUSE = 4                         # Пауза перед переводом
     PREPARE_TRANSLATION_AUDIO = 5     # Получение/генерация аудио перевода
     WAIT_TRANSLATION_END = 6          # Ожидание окончания перевода
-    PAUSE_BETWEEN_SENTENCES = 7       # Пауза перед следующей фразой
-    FINISH_ITEM = 8                   # Завершение текущего item
+    FINISH_ITEM = 7                   # Завершение текущего item
 
 
 class Player:
@@ -55,12 +54,13 @@ class Player:
         # Plugin scenario 
         self._scenario_provider = ScenarioProvider("audio/scenarios.json")
 
+        self._scenario_id = self._scenario_provider.get_current()
+
         self._scenario = self._scenario_provider.get_scenario(
-            self._scenario_provider.get_current()
+            self._scenario_id
         )
 
         self._action_index = 0
-    
 
         # Состояние жизненного цикла Player.
         self._state = PlayerState.IDLE
@@ -193,8 +193,8 @@ class Player:
             f'{set_data["set_name"]}\n'
             f'{set_data["set_description"]}\n'
             f'Created: {created}\n'
-            f'\n'
             f'----------------------------\n'
+            f'Scenario: {self._scenario["caption"]}\n'
             f'Phrase {current_item_index + 1} / {len(session._items)}\n'
             f'Pause: {self.pause_before_translation / 1000:.2f} s\n'
             f'The End Pause: {self.pause_between_sentences / 1000:.2f} s'
@@ -254,13 +254,38 @@ class Player:
         if self._session is None:
             return
 
-        # После Pause продолжаем текущее аудио
-        # с того же места.
+        current_scenario_id = self._scenario_provider.get_current()
+
+        # -----------------------------------------------------
+        # Продолжение после Pause
+        # -----------------------------------------------------
+
         if self._state == PlayerState.PAUSED:
 
-            self._audio_mixer.resume()
-            self._state = PlayerState.PLAYING
-            return
+            # Сценарий не изменился — продолжаем его.
+            if current_scenario_id == self._scenario_id:
+
+                self._audio_mixer.resume()
+                self._state = PlayerState.PLAYING
+                return
+
+            # Сценарий изменился — начинаем новый сценарий.
+            print(
+                f"SCENARIO CHANGED: "
+                f"{self._scenario_id} -> {current_scenario_id}"
+            )
+            self._audio_mixer.stop()
+            self._cancel_audio_task()
+
+        # -----------------------------------------------------
+        # Новый запуск / новый сценарий
+        # -----------------------------------------------------
+
+        self._scenario_id = current_scenario_id
+
+        self._scenario = self._scenario_provider.get_scenario(
+            self._scenario_id
+        )
 
         self._state = PlayerState.PLAYING
         self._phase = PlaybackPhase.PREPARE_ITEM
@@ -388,12 +413,12 @@ class Player:
 
             elif action["action"] == "PLAY":
 
-                self._play_source = action["source"]
+                source = action["source"]
 
-                if self._play_source == "phrase_text":
+                if source == "phrase_text":
                     self._phase = PlaybackPhase.PREPARE_TEXT_AUDIO
 
-                elif self._play_source == "translate_text":
+                elif source == "translate_text":
                     self._phase = PlaybackPhase.PREPARE_TRANSLATION_AUDIO
 
             elif action["action"] == "WAIT":
@@ -482,8 +507,7 @@ class Player:
 
         elif self._phase == PlaybackPhase.PREPARE_TRANSLATION_AUDIO:
 
-            self.set_msg_bottom(self._current_item.get("translate_text"))
-
+            
             if self._audio_task is None:
 
                 self._audio_task = self._async_runner.submit(
@@ -520,19 +544,7 @@ class Player:
                 #self._timer_ms = self.pause_between_sentences
                 self._phase = PlaybackPhase.EXECUTE_ACTION
 
-        # -----------------------------------------------------
-        # Пауза перед следующей фразой
-        # -----------------------------------------------------
 
-        elif self._phase == PlaybackPhase.PAUSE_BETWEEN_SENTENCES:
-
-            self._timer_ms -= dt
-
-            if self._timer_ms <= 0:
-
-                print("PAUSE_BETWEEN_SENTENCES_END")
-
-                self._phase = PlaybackPhase.FINISH_ITEM
 
         # -----------------------------------------------------
         # Завершение текущего item

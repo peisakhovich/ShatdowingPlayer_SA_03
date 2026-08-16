@@ -1,55 +1,122 @@
 {
     "current_scenario": "shadowing",
-
     "scenarios": {
         "shadowing": {
             "caption": "Shadowing",
             "actions": [
-                {"action": "SHOW", "target": "top", "content": "phrase_text"},
-                {"action": "PLAY", "source": "phrase_text"},
-                {"action": "WAIT", "source": "pause_before_translation"},
-
-                {"action": "SHOW", "target": "bottom", "content": "translate_text"},
-                {"action": "PLAY", "source": "translate_text"},
-                {"action": "WAIT", "source": "pause_between_sentences"},
-
-                {"action": "HIDE", "target": "top"},
-                {"action": "HIDE", "target": "bottom"}
+                {
+                    "action": "SHOW",
+                    "target": "top",
+                    "content": "phrase_text"
+                },
+                {
+                    "action": "PLAY",
+                    "source": "phrase_text"
+                },
+                {
+                    "action": "WAIT",
+                    "source": "pause_before_translation"
+                },
+                {
+                    "action": "SHOW",
+                    "target": "bottom",
+                    "content": "translate_text"
+                },
+                {
+                    "action": "PLAY",
+                    "source": "translate_text"
+                },
+                {
+                    "action": "WAIT",
+                    "source": "pause_between_sentences"
+                },
+                {
+                    "action": "HIDE",
+                    "target": "top"
+                },
+                {
+                    "action": "HIDE",
+                    "target": "bottom"
+                }
             ]
         },
-
         "shadowing_no_translation": {
             "caption": "Shadowing without translation",
             "actions": [
-                {"action": "SHOW", "target": "top", "content": "phrase_text"},
-                {"action": "PLAY", "source": "phrase_text"},
-                {"action": "WAIT", "source": "pause_between_sentences"},
-                {"action": "HIDE", "target": "top"}
+                {
+                    "action": "SHOW",
+                    "target": "top",
+                    "content": "phrase_text"
+                },
+                {
+                    "action": "PLAY",
+                    "source": "phrase_text"
+                },
+                {
+                    "action": "WAIT",
+                    "source": "pause_between_sentences"
+                },
+                {
+                    "action": "HIDE",
+                    "target": "top"
+                }
             ]
         },
-
         "translation_first": {
             "caption": "Translation first",
             "actions": [
-                {"action": "SHOW", "target": "bottom", "content": "translate_text"},
-                {"action": "PLAY", "source": "translate_text"},
-                {"action": "WAIT", "source": "pause_before_translation"},
-
-                {"action": "SHOW", "target": "top", "content": "phrase_text"},
-                {"action": "PLAY", "source": "phrase_text"},
-                {"action": "WAIT", "source": "pause_between_sentences"},
-
-                {"action": "HIDE", "target": "top"},
-                {"action": "HIDE", "target": "bottom"}
+                {
+                    "action": "SHOW",
+                    "target": "bottom",
+                    "content": "translate_text"
+                },
+                {
+                    "action": "PLAY",
+                    "source": "translate_text"
+                },
+                {
+                    "action": "WAIT",
+                    "source": "pause_before_translation"
+                },
+                {
+                    "action": "SHOW",
+                    "target": "top",
+                    "content": "phrase_text"
+                },
+                {
+                    "action": "PLAY",
+                    "source": "phrase_text"
+                },
+                {
+                    "action": "WAIT",
+                    "source": "pause_between_sentences"
+                },
+                {
+                    "action": "HIDE",
+                    "target": "top"
+                },
+                {
+                    "action": "HIDE",
+                    "target": "bottom"
+                }
             ]
         },
-
         "reading": {
             "caption": "Reading",
             "actions": [
-                {"action": "SHOW", "target": "top", "content": "phrase_text"},
-                {"action": "WAIT", "source": "pause_between_sentences"},
-                {"action": "HIDE", "target": "top"}
+                {
+                    "action": "SHOW",
+                    "target": "top",
+                    "content": "phrase_text"
+                },
+                {
+                    "action": "WAIT",
+                    "source": "pause_before_translation"
+                },
+                {
+                    "action": "HIDE",
+                    "target": "top"
+                }
             ]
         }
     }

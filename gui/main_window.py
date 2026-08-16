@@ -42,10 +42,7 @@ class MainWindow:
         # Активный модальный диалог
         self.active_dialog = None
 
-        
-        # self.text=self.session.current_item.get("phrase_text")
-        # self.translate=self.session.current_item.get("translate_text")
-        # self.info=self.session.description+" | "+self.session.name+" | "+str(self.session.current_index+1)+"/"+str(self.session.items_count) 
+  
         self.text=self.player.get_msg_top()
         self.translate=self.player.get_msg_bottom()
         player.update_info(0)

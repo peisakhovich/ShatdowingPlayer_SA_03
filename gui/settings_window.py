@@ -48,7 +48,8 @@ class SettingsWindow:
 
         result = self.list_selection.handle_event(event)
         if result is not None:
-            print("ListSelection:", result)
+            self.scenario_provider.set_current(result[1])
+            print("ListSelection:", result[1])
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.close_rect.collidepoint(event.pos):
