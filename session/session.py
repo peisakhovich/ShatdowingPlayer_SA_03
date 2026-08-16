@@ -19,6 +19,7 @@ session.py
 from __future__ import annotations
 
 import json
+import random
 from pathlib import Path
 
 
@@ -59,6 +60,7 @@ class Session:
         session._set = data.get("set", {})
         session._items = data.get("items", [])
         session._state = data.get("state", {})
+        session._is_randomize = False
         
         return session
 
@@ -121,6 +123,9 @@ class Session:
     def current_item(self):
         return self._items[self.current_index]    
 
+
+    def set_randomize(self,value: bool):
+        self._is_randomize = value
   
         
 
@@ -149,9 +154,16 @@ class Session:
 
     def next(self):
 
-        if self.current_index < len(self._items) - 1:
-            
-           self.current_index += 1
+        if self._is_randomize:
+
+            self.current_index = random.randint(
+                0,
+                len(self._items) - 1
+            )
+
+        elif self.current_index < len(self._items) - 1:
+
+            self.current_index += 1
 
         return self.current()
 

@@ -53,11 +53,9 @@ class Player:
 
         # Plugin scenario 
         self._scenario_provider = scenario
-
-        self._scenario_id = self._scenario_provider.get_current()
-
+       
         self._scenario = self._scenario_provider.get_scenario(
-            self._scenario_id
+            self._scenario_provider.get_current()
         )
 
         self._action_index = 0
@@ -106,9 +104,8 @@ class Player:
 
         # Опции воспроизведения.
         self._loop = False
-        self._voice_text = True
-        self._show_translation = True
-        self._voice_translation = True
+        self.randomize = False
+
 
     # ---------------------------------------------------------
     # Properties
@@ -244,6 +241,9 @@ class Player:
 
     def set_option(self, name, checked):
         setattr(self, "_" + name, checked)
+        if name == "randomize":
+            self.session.set_randomize(checked)
+            
 
     # ---------------------------------------------------------
     # Playback control
@@ -254,26 +254,13 @@ class Player:
         if self._session is None:
             return
 
-        current_scenario_id = self._scenario_provider.get_current()
-
+        
         # -----------------------------------------------------
         # Продолжение после Pause
         # -----------------------------------------------------
 
         if self._state == PlayerState.PAUSED:
-
-            # Сценарий не изменился — продолжаем его.
-            if current_scenario_id == self._scenario_id:
-
-                self._audio_mixer.resume()
-                self._state = PlayerState.PLAYING
-                return
-
-            # Сценарий изменился — начинаем новый сценарий.
-            print(
-                f"SCENARIO CHANGED: "
-                f"{self._scenario_id} -> {current_scenario_id}"
-            )
+    
             self._audio_mixer.stop()
             self._cancel_audio_task()
 
@@ -281,10 +268,8 @@ class Player:
         # Новый запуск / новый сценарий
         # -----------------------------------------------------
 
-        self._scenario_id = current_scenario_id
-
         self._scenario = self._scenario_provider.get_scenario(
-            self._scenario_id
+            self._scenario_provider.get_current()
         )
 
         self._state = PlayerState.PLAYING
@@ -329,7 +314,7 @@ class Player:
 
         # При навигации текущее аудио и незавершённая
         # подготовка аудио должны быть остановлены.
-        self._cancel_audio_task()
+        self._cancel_audio_task() 
         self._audio_mixer.stop()
 
         action()
@@ -552,24 +537,32 @@ class Player:
 
         elif self._phase == PlaybackPhase.FINISH_ITEM:
 
-            if self._loop: # endless repetition
+            if self._loop:
                 print("LOOP: repeat current item")
                 self._action_index = 0
                 self._phase = PlaybackPhase.EXECUTE_ACTION
                 return
 
-
             repeat_count = self._current_item.get("repeat_count", 1)
+
             self._repeat_index += 1
+
             print(
                 f"FINISH_ITEM: "
                 f"repeat {self._repeat_index}/{repeat_count}"
             )
-            if self._repeat_index < repeat_count:
-                self._action_index = 0
-                # Повторяем тот же item.
-                self._phase = PlaybackPhase.EXECUTE_ACTION #    PREPARE_TEXT_AUDIO
 
+            if self._repeat_index < repeat_count:
+
+                self._action_index = 0
+                self._phase = PlaybackPhase.EXECUTE_ACTION
+
+            elif self._randomize:
+
+                print("RANDOMIZE: next random item")
+
+                self.session.next()
+                self._phase = PlaybackPhase.PREPARE_ITEM
 
             elif self.session.is_last():
 
@@ -579,6 +572,4 @@ class Player:
             else:
 
                 self.session.next()
-                self.update_info(self.session.current_index)
                 self._phase = PlaybackPhase.PREPARE_ITEM
-

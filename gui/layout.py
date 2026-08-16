@@ -23,9 +23,7 @@ class Layout:
 
     CB_DEFS = {
         "loop": ("repeat current", False),
-        "voice_text": ("voice text", True),
-        "show_translation": ("show translation", True),
-        "voice_translation": ("voice translation", True),
+        "randomize": ("random order", False),
     }
     CB_X=280
     CB_Y=10

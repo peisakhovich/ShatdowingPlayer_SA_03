@@ -1,5 +1,5 @@
 {
-    "current_scenario": "translation_first",
+    "current_scenario": "shadowing",
     "scenarios": {
         "shadowing": {
             "caption": "Shadowing",
@@ -66,6 +66,10 @@
             "caption": "Translation first",
             "actions": [
                 {
+                    "action": "HIDE",
+                    "target": "top"
+                },
+                {
                     "action": "SHOW",
                     "target": "bottom",
                     "content": "translate_text"
@@ -104,6 +108,10 @@
         "reading": {
             "caption": "Reading",
             "actions": [
+                {
+                    "action": "HIDE",
+                    "target": "bottom"
+                },
                 {
                     "action": "SHOW",
                     "target": "top",
