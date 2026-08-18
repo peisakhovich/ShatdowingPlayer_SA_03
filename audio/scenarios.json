@@ -1,5 +1,5 @@
 {
-    "current_scenario": "shadowing_no_translation",
+    "current_scenario": "shadowing",
     "scenarios": {
         "shadowing": {
             "caption": "Shadowing",
