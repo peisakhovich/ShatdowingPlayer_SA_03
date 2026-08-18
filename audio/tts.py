@@ -13,6 +13,9 @@ class TTS:
     ):
         """Генерирует MP3 для заданного текста, голоса и скорости."""
 
+        if not text or not voice:
+            return
+
         rate_value = (speed - 1) * 100
         rate_str = f"{rate_value:+.0f}%"
 

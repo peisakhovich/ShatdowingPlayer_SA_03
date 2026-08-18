@@ -238,6 +238,8 @@ class Player:
             voice=self._current_item["translate_voice"],
             speed=self.voice_speed,
         )
+        if path is None:
+            return
 
         self._audio_mixer.load(path)
 

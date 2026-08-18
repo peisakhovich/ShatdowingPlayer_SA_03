@@ -1,5 +1,5 @@
 {
-    "current_scenario": "shadowing",
+    "current_scenario": "dictation",
     "scenarios": {
         "shadowing": {
             "caption": "Shadowing",
@@ -120,6 +120,32 @@
                     "action": "SHOW",
                     "target": "top",
                     "content": "phrase_text"
+                },
+                {
+                    "action": "WAIT",
+                    "source": "pause_before_translation"
+                },
+                {
+                    "action": "HIDE",
+                    "target": "top"
+                }
+            ]
+        },
+        "dictation": {
+            "caption": "Dictation",
+            "actions": [
+                {
+                    "action": "HIDE",
+                    "target": "bottom"
+                },
+                {
+                    "action": "SHOW",
+                    "target": "top",
+                    "content": "phrase_text"
+                },
+                {
+                    "action": "PLAY",
+                    "source": "phrase_text"
                 },
                 {
                     "action": "WAIT",
