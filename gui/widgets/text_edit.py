@@ -42,6 +42,12 @@ class TextEdit:
         self.cursor_column = None
 
         # -------------------------
+        # Выделение текста
+        # -------------------------
+        self.selection_start = None
+        self.selection_end = None
+
+        # -------------------------
         # Состояние мыши
         # -------------------------
         self.mouse_over = False
@@ -147,8 +153,7 @@ class TextEdit:
                 event.mod & pygame.KMOD_CTRL
             ):
 
-                self.cursor_position = len(self.text)
-                self.cursor_column = None
+                self._select_all()
                 return
 
             # -------------------------
@@ -296,6 +301,9 @@ class TextEdit:
 
     def _backspace(self):
 
+        if self._delete_selection():
+            return
+
         if self.cursor_position <= 0:
             return
 
@@ -310,6 +318,9 @@ class TextEdit:
     # --------------------------------------------------
 
     def _delete(self):
+
+        if self._delete_selection():
+            return
 
         if self.cursor_position >= len(self.text):
             return
@@ -623,6 +634,21 @@ class TextEdit:
 
         line_height = self.font.get_linesize()
 
+        # -------------------------
+        # Selection
+        # -------------------------
+
+        self._draw_selection(
+            screen,
+            visual_lines,
+            x,
+            line_height
+        )
+
+        # -------------------------
+        # Visual lines
+        # -------------------------        
+
         for line in visual_lines:
 
             line_text = self.text[
@@ -793,3 +819,146 @@ class TextEdit:
         )
 
         self.cursor_column = best_position
+
+    #---------------
+    # Selection
+    #---------------
+    def _has_selection(self):
+
+        return (
+            self.selection_start is not None
+            and self.selection_end is not None
+            and self.selection_start != self.selection_end
+        )
+
+    # --------------------------------------------------
+
+    def _selection_bounds(self):
+
+        if not self._has_selection():
+            return None, None
+
+        return (
+            min(self.selection_start, self.selection_end),
+            max(self.selection_start, self.selection_end)
+        )
+
+    # --------------------------------------------------
+
+    def _clear_selection(self):
+
+        self.selection_start = None
+        self.selection_end = None
+
+    # --------------------------------------------------
+
+    def _select_all(self):
+
+        self.selection_start = 0
+        self.selection_end = len(self.text)
+
+        self.cursor_position = len(self.text)
+        self.cursor_column = None
+
+    #---------------
+    # Deletation
+    #---------------
+    def _delete_selection(self):
+
+        start, end = self._selection_bounds()
+
+        if start is None:
+            return False
+
+        self.text = (
+            self.text[:start]
+            + self.text[end:]
+        )
+
+        self.cursor_position = start
+        self.cursor_column = None
+
+        self._clear_selection()
+
+        return True
+    
+    #---------------
+    # Draw selection
+    #---------------
+    def _draw_selection(
+        self,
+        screen,
+        visual_lines,
+        x,
+        line_height
+    ):
+
+        start, end = self._selection_bounds()
+
+        if start is None:
+            return
+
+        for line_index, line in enumerate(visual_lines):
+
+            line_start = line["start"]
+            line_end = line["end"]
+
+            # Нет пересечения с выделением
+            if end <= line_start or start >= line_end:
+                continue
+
+            selection_start = max(
+                start,
+                line_start
+            )
+
+            selection_end = min(
+                end,
+                line_end
+            )
+
+            start_column = (
+                selection_start - line_start
+            )
+
+            end_column = (
+                selection_end - line_start
+            )
+
+            line_text = self.text[
+                line_start:line_end
+            ]
+
+            before = line_text[
+                :start_column
+            ]
+
+            selected = line_text[
+                start_column:end_column
+            ]
+
+            start_x = (
+                x
+                + self.font.size(before)[0]
+            )
+
+            selection_width = self.font.size(
+                selected
+            )[0]
+
+            y = (
+                self.rect.y
+                + Theme.TE_PADDING_Y
+                + line_index * line_height
+            )
+
+            pygame.draw.rect(
+                screen,
+                Theme.TE_SELECTION_COLOR,
+                pygame.Rect(
+                    start_x,
+                    y,
+                    max(selection_width, 2),
+                    line_height
+                )
+            )        

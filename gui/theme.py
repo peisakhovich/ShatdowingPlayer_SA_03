@@ -21,6 +21,7 @@ class Theme:
 
     TE_PADDING_X = 8
     TE_PADDING_Y = 6
+    TE_SELECTION_COLOR = pygame.Color("#405A7A")
 
     #--------------------------------------
     # fore control_panel (prefix:TCP)
