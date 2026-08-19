@@ -216,10 +216,7 @@ class MainWindow:
                     print(f"Checkbox: {name} = {checked}")
                     self.player.set_option(name, checked)
 
-                    # Пока просто выводим.
-                    # Позже Player будет менять режим воспроизведения.
-
-       
+     
 
     # --------------------------------------------------
     # Обновление
@@ -241,16 +238,6 @@ class MainWindow:
             self.tw_bottom.text=self.player.get_msg_bottom()
             self.tw_info.text=self.player.get_msg_info()
 
-
-            # self.tw_info.text=self.session.description+" | "+self.session.name+" | " \
-            #     +str(self.session.current_index+1)+"/"+str(self.session.items_count) + "|  " \
-            #     + "translate_voice: " + self.session.current_item.get("translate_voice") \
-            #     + " | translate_voice_gender: " + self.session.current_item.get("translate_voice_gender") \
-            #     + " | pause_ms: " + str(self.session.current_item.get("pause_ms")) \
-            #     + " | speed: " + str(self.session.current_item.get("speed")) \
-            #     + " | repeat_count: " + str(self.session.current_item.get("repeat_count"))   
-
-            
 
     # --------------------------------------------------
     # Отрисовка
