@@ -103,8 +103,9 @@ class TextEdit:
 
                     self.focused = True
 
-                    self.cursor_position = len(self.text)
-                    self.cursor_column = None
+                    self._set_cursor_from_mouse(
+                        event.pos
+                    )
 
                     pygame.key.start_text_input()
 
@@ -713,3 +714,82 @@ class TextEdit:
             (cursor_x, cursor_y + line_height),
             2
         )
+
+    def _set_cursor_from_mouse(self, mouse_pos):
+
+        visual_lines = self._build_visual_lines()
+
+        x = (
+            mouse_pos[0]
+            - self.rect.x
+            - Theme.TE_PADDING_X
+        )
+
+        y = (
+            mouse_pos[1]
+            - self.rect.y
+            - Theme.TE_PADDING_Y
+        )
+
+        line_height = self.font.get_linesize()
+
+        # -------------------------
+        # Определяем визуальную строку
+        # -------------------------
+
+        line_index = int(
+            y // line_height
+        )
+
+        if line_index < 0:
+            line_index = 0
+
+        if line_index >= len(visual_lines):
+            line_index = len(visual_lines) - 1
+
+        line = visual_lines[line_index]
+
+        line_text = self.text[
+            line["start"]:line["end"]
+        ]
+
+        # -------------------------
+        # Курсор левее текста
+        # -------------------------
+
+        if x <= 0:
+
+            self.cursor_position = line["start"]
+            self.cursor_column = 0
+
+            return
+
+        # -------------------------
+        # Ищем ближайшую позицию
+        # -------------------------
+
+        best_position = 0
+        best_distance = float("inf")
+
+        for i in range(len(line_text) + 1):
+
+            candidate = line_text[:i]
+
+            candidate_width = self.font.size(
+                candidate
+            )[0]
+
+            distance = abs(
+                x - candidate_width
+            )
+
+            if distance < best_distance:
+
+                best_distance = distance
+                best_position = i
+
+        self.cursor_position = (
+            line["start"] + best_position
+        )
+
+        self.cursor_column = best_position
