@@ -3,6 +3,25 @@ import pygame
 # темы для виджетов на базе pgame.rect
 #--------------------------------------
 class Theme:
+
+    # =====================================================
+    # TextEdit
+    # =====================================================
+
+    TE_BACKGROUND_COLOR = pygame.Color("#303030")
+    TE_BORDER_COLOR = pygame.Color("#6EAEDB")
+    TE_BORDER_WIDTH = 2
+    TE_RADIUS = 6
+
+    TE_FOCUS_BORDER_COLOR = pygame.Color("#7FE8FF")
+    TE_FOCUS_BORDER_WIDTH = 2
+
+    TE_TEXT_COLOR = pygame.Color("#91E5FF")
+    TE_CURSOR_COLOR = pygame.Color("#FFFFFF")
+
+    TE_PADDING_X = 8
+    TE_PADDING_Y = 6
+
     #--------------------------------------
     # fore control_panel (prefix:TCP)
     #--------------------------------------

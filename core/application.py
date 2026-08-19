@@ -83,6 +83,7 @@ class Application:
 
             # Обновление состояния Player
             self.player.update(dt)
+            #settings_window.update()
 
             self.window.draw()
 

@@ -86,7 +86,7 @@ class Layout:
     # -------------------------
 
     SETTINGS_WIDTH = 500
-    SETTINGS_HEIGHT = 400
+    SETTINGS_HEIGHT = 600
 
     SETTINGS_RECT = pygame.Rect(
         (WIDTH - SETTINGS_WIDTH) // 2,

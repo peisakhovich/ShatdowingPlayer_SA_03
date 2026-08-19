@@ -4,12 +4,17 @@ from pathlib import Path
 from gui.theme import Theme
 from gui.widgets.list_selection import ListSelection
 from gui.file_dialog import FileDialog
+from gui.widgets.text_edit import TextEdit
 
 
 class SettingsWindow:
     """Модальное окно настроек."""
 
     def __init__(self, rect, scenario):
+
+
+        self.source_file = ""
+        self.source_text = ""
 
         self.scenario_provider = scenario
 
@@ -43,6 +48,16 @@ class SettingsWindow:
             32
         )
 
+        self.text_edit = TextEdit(
+            pygame.Rect(
+                self.rect.x + 30,
+                self.rect.y + 240,
+                self.rect.width - 60,
+                180
+            ),
+            pygame.font.Font(None, 24)
+        )        
+
     def show(self):
         self.visible = True
 
@@ -64,10 +79,21 @@ class SettingsWindow:
 
         return "..."
 
+    def update(self):
+
+        if not self.visible:
+            return
+
+       # print("SettingsWindow.update")
+
+        self.text_edit.update()
+
     def handle_event(self, event):
 
         if not self.visible:
             return
+
+        self.text_edit.handle_event(event)
 
         # --------------------------------------------------
         # Playback scenario
@@ -116,6 +142,7 @@ class SettingsWindow:
                             encoding="utf-16"
                         )
                     self.source_text = text
+                    self.text_edit.set_text(text)
 
 
     def draw(self, screen):
@@ -282,6 +309,26 @@ class SettingsWindow:
                     self.file_button_rect.y + 7
                 )
             )
+
+        # --------------------------------------------------
+        # TextEdit
+        # --------------------------------------------------
+
+        caption = caption_font.render(
+            "Text",
+            True,
+            Theme.DIALOG_TEXT_COLOR
+        )
+
+        screen.blit(
+            caption,
+            (
+                self.text_edit.rect.x,
+                self.text_edit.rect.y - 25
+            )
+        )
+
+        self.text_edit.draw(screen)
 
         # --------------------------------------------------
         # ListSelection

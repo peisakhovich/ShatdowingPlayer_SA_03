@@ -238,6 +238,7 @@ class MainWindow:
             self.tw_bottom.text=self.player.get_msg_bottom()
             self.tw_info.text=self.player.get_msg_info()
 
+            self.settings_window.update()
 
     # --------------------------------------------------
     # Отрисовка
