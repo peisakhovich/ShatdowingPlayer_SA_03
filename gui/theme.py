@@ -23,6 +23,9 @@ class Theme:
     TE_PADDING_Y = 6
     TE_SELECTION_COLOR = pygame.Color("#405A7A")
 
+    TE_SCROLL_SPEED = 3
+    TE_SCROLLBAR_WIDTH = 8
+
     #--------------------------------------
     # fore control_panel (prefix:TCP)
     #--------------------------------------

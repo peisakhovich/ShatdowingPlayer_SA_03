@@ -32,6 +32,7 @@ class TextEdit:
         # Позиция курсора
         # -------------------------
         self.cursor_position = len(self.text)
+        self._last_cursor_position = self.cursor_position
 
         # -------------------------
         # Желаемая колонка
@@ -40,6 +41,12 @@ class TextEdit:
         # Up / Down
         # -------------------------
         self.cursor_column = None
+
+        # -------------------------
+        # Вертикальная прокрутка
+        # -------------------------
+        self.scroll_y = 0
+        self.scroll_speed = 30
 
         # -------------------------
         # Выделение текста
@@ -66,6 +73,9 @@ class TextEdit:
         # Многострочный текст
         # -------------------------
         self.lines = []
+
+     
+       
 
     # ==================================================
     # TEXT
@@ -96,6 +106,25 @@ class TextEdit:
     # ==================================================
 
     def handle_event(self, event):
+
+        # --------------------------------------------------
+        # Mouse wheel
+        # --------------------------------------------------
+
+        if event.type == pygame.MOUSEWHEEL:
+
+            mouse_pos = pygame.mouse.get_pos()
+
+            if self.rect.collidepoint(mouse_pos):
+
+                self.scroll_y -= (
+                    event.y * self.scroll_speed
+                )
+
+                self._limit_scroll()
+
+            return
+
 
         # --------------------------------------------------
         # Mouse
@@ -156,40 +185,72 @@ class TextEdit:
                 self._select_all()
                 return
 
+            # Ctrl+C
+            if event.key == pygame.K_c and (
+                event.mod & pygame.KMOD_CTRL
+            ):
+
+                self._copy_selection()
+                return
+
+            # Ctrl+X
+            if event.key == pygame.K_x and (
+                event.mod & pygame.KMOD_CTRL
+            ):
+
+                self._cut_selection()
+                return
+
+            # Ctrl+V
+            if event.key == pygame.K_v and (
+                event.mod & pygame.KMOD_CTRL
+            ):
+
+                self._paste()
+                return
+
+
+
             # -------------------------
             # Navigation / editing
             # -------------------------
 
             if event.key == pygame.K_LEFT:
 
+                self._clear_selection()
                 self._move_left()
                 self._start_repeat(event.key)
 
             elif event.key == pygame.K_RIGHT:
 
+                self._clear_selection()
                 self._move_right()
                 self._start_repeat(event.key)
 
             elif event.key == pygame.K_UP:
 
+                self._clear_selection()
                 self._move_up()
                 self._start_repeat(event.key)
 
             elif event.key == pygame.K_DOWN:
 
+                self._clear_selection()
                 self._move_down()
                 self._start_repeat(event.key)
 
             elif event.key == pygame.K_HOME:
 
+                self._clear_selection()
                 self._move_home()
                 self._start_repeat(event.key)
 
             elif event.key == pygame.K_END:
 
+                self._clear_selection()
                 self._move_end()
                 self._start_repeat(event.key)
-
+                
             elif event.key == pygame.K_BACKSPACE:
 
                 self._backspace()
@@ -214,32 +275,38 @@ class TextEdit:
             pygame.mouse.get_pos()
         )
 
-        if not self.focused:
-            return
+        if self.focused:
 
-        if self.repeat_key is None:
-            return
+            if self.repeat_key is not None:
 
-        keys = pygame.key.get_pressed()
+                keys = pygame.key.get_pressed()
 
-        if not keys[self.repeat_key]:
-            self.repeat_key = None
-            return
+                if not keys[self.repeat_key]:
 
-        now = pygame.time.get_ticks()
+                    self.repeat_key = None
 
-        # Ждём задержку перед началом повтора
-        if now - self.repeat_start_time < self.repeat_delay:
-            return
+                else:
 
-        # Проверяем интервал между повторениями
-        if now - self.repeat_last_time >= self.repeat_interval:
+                    now = pygame.time.get_ticks()
 
-            self.repeat_last_time = now
+                    if now - self.repeat_start_time >= self.repeat_delay:
 
-            self._repeat_action(
-                self.repeat_key
-            )
+                        if (
+                            now - self.repeat_last_time
+                            >= self.repeat_interval
+                        ):
+
+                            self.repeat_last_time = now
+
+                            self._repeat_action(
+                                self.repeat_key
+                            )
+
+        if self.cursor_position != self._last_cursor_position:
+
+            self._ensure_cursor_visible()
+
+            self._last_cursor_position = self.cursor_position
 
     # ==================================================
     # REPEAT
@@ -389,7 +456,9 @@ class TextEdit:
 
     def _move_down(self):
 
+
         self._move_vertical(1)
+
 
     # --------------------------------------------------
 
@@ -624,15 +693,31 @@ class TextEdit:
 
         x = (
             self.rect.x
-            + Theme.TE_PADDING_X
+            + Theme.TE_PADDING_X 
         )
 
         y = (
             self.rect.y
-            + Theme.TE_PADDING_Y
+            + Theme.TE_PADDING_Y - self.scroll_y
         )
 
         line_height = self.font.get_linesize()
+
+        # -------------------------
+        # Clip text area
+        # -------------------------
+
+        old_clip = screen.get_clip()
+
+        screen.set_clip(
+            pygame.Rect(
+                self.rect.x + Theme.TE_BORDER_WIDTH,
+                self.rect.y + Theme.TE_BORDER_WIDTH,
+                self.rect.width - Theme.TE_BORDER_WIDTH * 2,
+                self.rect.height - Theme.TE_BORDER_WIDTH * 2
+            )
+        )
+
 
         # -------------------------
         # Selection
@@ -682,6 +767,12 @@ class TextEdit:
                 line_height
             )
 
+        # -------------------------
+        # Restore clip
+        # -------------------------
+
+        screen.set_clip(old_clip)
+
     # ==================================================
     # CURSOR
     # ==================================================
@@ -730,7 +821,7 @@ class TextEdit:
         cursor_y = (
             self.rect.y
             + Theme.TE_PADDING_Y
-            + cursor_line * line_height
+            + cursor_line * line_height - self.scroll_y
         )
 
         pygame.draw.line(
@@ -754,7 +845,7 @@ class TextEdit:
         y = (
             mouse_pos[1]
             - self.rect.y
-            - Theme.TE_PADDING_Y
+            - Theme.TE_PADDING_Y + self.scroll_y
         )
 
         line_height = self.font.get_linesize()
@@ -949,7 +1040,7 @@ class TextEdit:
             y = (
                 self.rect.y
                 + Theme.TE_PADDING_Y
-                + line_index * line_height
+                + line_index * line_height - self.scroll_y
             )
 
             pygame.draw.rect(
@@ -961,4 +1052,130 @@ class TextEdit:
                     max(selection_width, 2),
                     line_height
                 )
-            )        
+            )    
+    def _copy_selection(self):
+
+        start, end = self._selection_bounds()
+
+        if start is None:
+            return
+
+        selected_text = self.text[start:end]
+
+        pygame.scrap.put_text(
+            selected_text
+        )
+
+    # --------------------------------------------------
+
+    def _cut_selection(self):
+
+        if not self._has_selection():
+            return
+
+        self._copy_selection()
+        self._delete_selection()
+
+    # --------------------------------------------------
+
+    def _paste(self):
+
+        try:
+            text = pygame.scrap.get_text()
+
+        except pygame.error:
+            return
+
+       
+        if not text:
+            return
+
+        # Нормализуем окончания строк
+        text = text.replace("\r\n", "\n")
+        text = text.replace("\r", "\n")
+
+        # Если есть выделение,
+        # сначала его удаляем.
+        self._delete_selection()
+
+        self._insert_text(text)    
+
+    def _limit_scroll(self):
+
+        visual_lines = self._build_visual_lines()
+
+        line_height = self.font.get_linesize()
+
+        content_height = (
+            len(visual_lines) * line_height
+            + Theme.TE_PADDING_Y * 2
+        )
+
+        visible_height = self.rect.height
+
+        max_scroll = max(
+            0,
+            content_height - visible_height
+        )
+
+        self.scroll_y = max(
+            0,
+            min(
+                self.scroll_y,
+                max_scroll
+            )
+        )
+
+    # автоматическое перемещение к курсору
+    def _ensure_cursor_visible(self):
+
+        visual_lines = self._build_visual_lines()
+
+        cursor_line = 0
+
+        for index, line in enumerate(visual_lines):
+
+            if (
+                line["start"]
+                <= self.cursor_position
+                <= line["end"]
+            ):
+
+                cursor_line = index
+                break
+
+        line_height = self.font.get_linesize()
+
+        cursor_top = (
+            Theme.TE_PADDING_Y
+            + cursor_line * line_height
+        )
+
+        cursor_bottom = (
+            cursor_top
+            + line_height
+        )
+
+        visible_top = self.scroll_y
+
+        visible_bottom = (
+            self.scroll_y
+            + self.rect.height
+            - Theme.TE_PADDING_Y * 2
+        )
+
+        if cursor_top < visible_top:
+
+            self.scroll_y = cursor_top
+
+        elif cursor_bottom > visible_bottom:
+
+            self.scroll_y = (
+                cursor_bottom
+                - (
+                    self.rect.height
+                    - Theme.TE_PADDING_Y * 2
+                )
+            )
+
+        self._limit_scroll()
