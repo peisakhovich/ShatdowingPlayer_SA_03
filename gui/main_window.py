@@ -88,7 +88,7 @@ class MainWindow:
             )    
 
     
-        self.settings_window = SettingsWindow(Layout.SETTINGS_RECT,scenario)
+        self.settings_window = SettingsWindow(Layout.SETTINGS_RECT,scenario,session)
 
     # --------------------------------------------------
     # Показать диалог выхода
