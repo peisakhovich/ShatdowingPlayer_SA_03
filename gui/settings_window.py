@@ -12,6 +12,7 @@ from audio.tts import TTS
 from audio.async_runner import AsyncRunner
 from ai.dictation_segmenter import DictationSegmenter
 from ai.dictation_plan import DictationPlanBuilder
+from core.config import Config
 
 
 class SettingsWindow:
@@ -487,6 +488,12 @@ class SettingsWindow:
             print("Dictation generation error:", e)
             return
 
+        self.session.load_data(plan)
+
+        self.session.save(
+            Config.PLAN_SESSION_FILE
+        )
+        
         print()
         print("==============================")
         print("DICTATION PLAN GENERATED")
@@ -507,7 +514,7 @@ class SettingsWindow:
 
         print("==============================")
         print()
-
+        
     # ==================================================
     # EVENTS
     # ==================================================
@@ -764,19 +771,17 @@ class SettingsWindow:
         # Current item parameters
         # --------------------------------------------------
 
-        phrase_code = item.get(
-            "phrase_code",
-            ""
-        )
+        # --------------------------------------------------
+        # Selected language / voice
+        # --------------------------------------------------
 
-        phrase_locale = item.get(
-            "phrase_locale",
-            ""
-        )
+        phrase_locale = self.language_selection.value
+        phrase_voice = self.voice_selection.value
 
-        phrase_voice = item.get(
-            "phrase_voice",
-            ""
+        phrase_code = (
+            phrase_locale.split("-")[0].lower()
+            if phrase_locale
+            else ""
         )
 
         phrase_voice_gender = item.get(

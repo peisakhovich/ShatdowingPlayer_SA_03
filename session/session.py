@@ -54,15 +54,43 @@ class Session:
 
         session._filename = Path(filename)
 
-        with open(session._filename, "r", encoding="utf-8") as f:
+        with open(
+            session._filename,
+            "r",
+            encoding="utf-8"
+        ) as f:
+
             data = json.load(f)
 
-        session._set = data.get("set", {})
-        session._items = data.get("items", [])
-        session._state = data.get("state", {})
-        session._is_randomize = False
+        session.load_data(data)
         
         return session
+
+    # ==========================================================
+    # Load data
+    # ==========================================================
+
+    def load_data(self, data: dict):
+        """
+        Загрузить данные сессии из словаря.
+        """
+
+        self._set = data.get(
+            "set",
+            {}
+        )
+
+        self._items = data.get(
+            "items",
+            []
+        )
+
+        self._state = data.get(
+            "state",
+            {}
+        )
+
+        self._is_randomize = False
 
     # ==========================================================
     # Save
