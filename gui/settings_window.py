@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import asyncio
 from pathlib import Path
 
@@ -10,8 +12,11 @@ from gui.widgets.text_edit import TextEdit
 
 from audio.tts import TTS
 from audio.async_runner import AsyncRunner
+
 from ai.dictation_segmenter import DictationSegmenter
 from ai.dictation_plan import DictationPlanBuilder
+from ai.language_detector import LanguageDetector
+
 from core.config import Config
 
 
@@ -24,17 +29,20 @@ class SettingsWindow:
         # Основные данные
         # --------------------------------------------------
 
-        # цепляем наш AI генератор 
-        self._locale_task = None
-        self._voice_task = None
-        self._generate_task = None
-        
-
         self.rect = pygame.Rect(rect)
         self.visible = False
 
         self.scenario_provider = scenario
         self.session = session
+
+        # --------------------------------------------------
+        # Async tasks
+        # --------------------------------------------------
+
+        self._locale_task = None
+        self._voice_task = None
+        self._language_task = None
+        self._generate_task = None
 
         # --------------------------------------------------
         # Source text
@@ -50,8 +58,11 @@ class SettingsWindow:
         self._tts = TTS()
         self._async_runner = AsyncRunner()
 
-        self._locale_task = None
-        self._voice_task = None
+        # --------------------------------------------------
+        # AI language detection
+        # --------------------------------------------------
+
+        self._language_detector = LanguageDetector()
 
         # --------------------------------------------------
         # Close button
@@ -105,7 +116,10 @@ class SettingsWindow:
         )
 
         # --------------------------------------------------
-        # Language
+        # Language / Locale
+        #
+        # Здесь отображаются locale:
+        # en-AU, en-CA, en-GB, ...
         # --------------------------------------------------
 
         self.language_selection = ListSelection(
@@ -180,6 +194,86 @@ class SettingsWindow:
         self._load_current_item_parameters()
 
     # ==================================================
+    # LANGUAGE DETECTION
+    # ==================================================
+
+    def _detect_language(self, text):
+
+        if not text.strip():
+            return
+
+        # --------------------------------------------------
+        # Берём только начало текста
+        # --------------------------------------------------
+
+        sample = text[:1000]
+
+        # --------------------------------------------------
+        # Отменяем предыдущий запрос
+        # --------------------------------------------------
+
+        if self._language_task is not None:
+
+            if not self._language_task.done():
+                self._language_task.cancel()
+
+        # --------------------------------------------------
+        # Запускаем AI в фоне
+        # --------------------------------------------------
+
+        self._language_task = self._async_runner.submit(
+            self._detect_language_async(sample)
+        )
+
+        print("Detecting language...")
+
+    async def _detect_language_async(self, text):
+
+        return self._language_detector.detect(text)
+
+    def _process_language_task(self):
+
+        if self._language_task is None:
+            return
+
+        if not self._language_task.done():
+            return
+
+        task = self._language_task
+        self._language_task = None
+
+        try:
+
+            language = task.result()
+
+        except asyncio.CancelledError:
+
+            return
+
+        except Exception as e:
+
+            print(
+                "AI language detection error:",
+                e
+            )
+
+            return
+
+        if not language:
+            return
+
+        print(
+            "Detected language:",
+            language
+        )
+
+        # --------------------------------------------------
+        # Загружаем locale для языка
+        # --------------------------------------------------
+
+        self._load_locales(language)
+
+    # ==================================================
     # INITIAL PARAMETERS
     # ==================================================
 
@@ -191,22 +285,25 @@ class SettingsWindow:
             return
 
         # --------------------------------------------------
-        # Language
+        # Language / Locale
         # --------------------------------------------------
 
-        locale = item.get("phrase_locale", "")
+        locale = item.get(
+            "phrase_locale",
+            ""
+        )
 
         if locale:
 
-            language = locale.split("-")[0].lower()
-
+            # Показываем текущий locale.
             self.language_selection.options = [
-                (language, language)
+                (locale, locale)
             ]
 
             self.language_selection.selected = 0
 
-            self._load_locales(language)
+            # Загружаем голоса именно этого locale.
+            self._load_voices(locale)
 
         # --------------------------------------------------
         # Repeat count
@@ -225,7 +322,9 @@ class SettingsWindow:
         # Pause factor
         # --------------------------------------------------
 
-        self.pause_factor_edit.set_text("1.0")
+        self.pause_factor_edit.set_text(
+            "1.0"
+        )
 
     # ==================================================
     # TTS
@@ -236,9 +335,43 @@ class SettingsWindow:
         if not language:
             return
 
+        # --------------------------------------------------
+        # Отменяем предыдущую загрузку locale
+        # --------------------------------------------------
+
         if self._locale_task is not None:
+
             if not self._locale_task.done():
                 self._locale_task.cancel()
+
+        # --------------------------------------------------
+        # Очищаем voice.
+        # --------------------------------------------------
+
+        if self._voice_task is not None:
+
+            if not self._voice_task.done():
+                self._voice_task.cancel()
+
+        self.voice_selection.options = [
+            ("", "No voice")
+        ]
+
+        self.voice_selection.selected = 0
+
+        # --------------------------------------------------
+        # Показываем Loading...
+        # --------------------------------------------------
+
+        self.language_selection.options = [
+            ("", "Loading...")
+        ]
+
+        self.language_selection.selected = 0
+
+        # --------------------------------------------------
+        # Загружаем locale
+        # --------------------------------------------------
 
         self._locale_task = self._async_runner.submit(
             self._tts.get_locales_for_language(
@@ -253,9 +386,33 @@ class SettingsWindow:
         if not locale:
             return
 
+        # --------------------------------------------------
+        # Отменяем предыдущий запрос
+        # --------------------------------------------------
+
         if self._voice_task is not None:
+
             if not self._voice_task.done():
                 self._voice_task.cancel()
+
+        # --------------------------------------------------
+        # Показываем Loading...
+        # --------------------------------------------------
+
+        self.voice_selection.options = [
+            ("", "Loading...")
+        ]
+
+        self.voice_selection.selected = 0
+
+        print(
+            "Loading voices for locale:",
+            locale
+        )
+
+        # --------------------------------------------------
+        # Запускаем загрузку голосов
+        # --------------------------------------------------
 
         self._voice_task = self._async_runner.submit(
             self._tts.get_voices_for_locale(
@@ -277,21 +434,45 @@ class SettingsWindow:
         self._locale_task = None
 
         try:
+
             locales = task.result()
 
         except asyncio.CancelledError:
+
             return
 
         except Exception as e:
-            print("TTS locale error:", e)
+
+            print(
+                "TTS locale error:",
+                e
+            )
+
+            self.language_selection.options = [
+                ("", "Error")
+            ]
+
+            self.language_selection.selected = 0
+
             return
 
+        # --------------------------------------------------
+        # Нет locale
+        # --------------------------------------------------
+
         if not locales:
-            self.voice_selection.options = [
-                ("", "No voices")
+
+            self.language_selection.options = [
+                ("", "No locales")
             ]
-            self.voice_selection.selected = 0
+
+            self.language_selection.selected = 0
+
             return
+
+        # --------------------------------------------------
+        # Создаём список locale
+        # --------------------------------------------------
 
         options = [
             (locale, locale)
@@ -301,27 +482,52 @@ class SettingsWindow:
         self.language_selection.options = options
 
         # --------------------------------------------------
-        # Стараемся сохранить текущий locale
+        # По умолчанию выбираем первый locale
         # --------------------------------------------------
 
-        current_locale = (
-            self.language_selection.value
-            if self.language_selection.options
-            else ""
-        )
+        selected_index = 0
 
-        index = 0
+        # --------------------------------------------------
+        # Если текущий item имеет такой locale,
+        # сохраняем его.
+        # --------------------------------------------------
 
-        for i, (value, _) in enumerate(options):
+        current_locale = ""
+
+        item = self.session.current_item
+
+        if item:
+
+            current_locale = item.get(
+                "phrase_locale",
+                ""
+            )
+
+        for index, (value, _) in enumerate(options):
 
             if value == current_locale:
-                index = i
+
+                selected_index = index
                 break
 
-        self.language_selection.selected = index
+        self.language_selection.selected = selected_index
+
+        # --------------------------------------------------
+        # ВАЖНО:
+        # сразу загружаем голоса выбранного locale
+        # --------------------------------------------------
+
+        selected_locale = (
+            self.language_selection.value
+        )
+
+        print(
+            "Locale:",
+            selected_locale
+        )
 
         self._load_voices(
-            options[index][0]
+            selected_locale
         )
 
     # --------------------------------------------------
@@ -338,14 +544,36 @@ class SettingsWindow:
         self._voice_task = None
 
         try:
+
             voices = task.result()
 
         except asyncio.CancelledError:
+
             return
 
         except Exception as e:
-            print("TTS voice error:", e)
+
+            print(
+                "TTS voice error:",
+                e
+            )
+
+            self.voice_selection.options = [
+                ("", "Error")
+            ]
+
+            self.voice_selection.selected = 0
+
             return
+
+        print(
+            "VOICE TASK RESULT:",
+            voices
+        )
+
+        # --------------------------------------------------
+        # Нет голосов
+        # --------------------------------------------------
 
         if not voices:
 
@@ -356,6 +584,10 @@ class SettingsWindow:
             self.voice_selection.selected = 0
 
             return
+
+        # --------------------------------------------------
+        # Формируем список голосов
+        # --------------------------------------------------
 
         options = []
 
@@ -374,7 +606,10 @@ class SettingsWindow:
             caption = short_name
 
             if gender:
-                caption += f" | {gender}"
+
+                caption += (
+                    f" | {gender}"
+                )
 
             options.append(
                 (
@@ -386,7 +621,7 @@ class SettingsWindow:
         self.voice_selection.options = options
 
         # --------------------------------------------------
-        # Пытаемся сохранить голос текущего item
+        # Пытаемся сохранить текущий голос
         # --------------------------------------------------
 
         current_voice = ""
@@ -394,20 +629,22 @@ class SettingsWindow:
         item = self.session.current_item
 
         if item:
+
             current_voice = item.get(
                 "phrase_voice",
                 ""
             )
 
-        index = 0
+        selected_index = 0
 
-        for i, (value, _) in enumerate(options):
+        for index, (value, _) in enumerate(options):
 
             if value == current_voice:
-                index = i
+
+                selected_index = index
                 break
 
-        self.voice_selection.selected = index
+        self.voice_selection.selected = selected_index
 
     # ==================================================
     # VISIBILITY
@@ -463,11 +700,15 @@ class SettingsWindow:
         self.repeat_edit.update()
         self.pause_factor_edit.update()
 
+        self._process_language_task()
         self._process_locale_task()
         self._process_voice_task()
         self._process_generate_task()
 
-    # process_generate_task
+    # ==================================================
+    # GENERATE TASK
+    # ==================================================
+
     def _process_generate_task(self):
 
         if self._generate_task is None:
@@ -485,20 +726,31 @@ class SettingsWindow:
 
         except Exception as e:
 
-            print("Dictation generation error:", e)
+            print(
+                "Dictation generation error:",
+                e
+            )
+
             return
+
+        # --------------------------------------------------
+        # Обновляем текущую Session
+        # --------------------------------------------------
 
         self.session.load_data(plan)
 
         self.session.save(
             Config.PLAN_SESSION_FILE
         )
-        
+
         print()
         print("==============================")
         print("DICTATION PLAN GENERATED")
         print("==============================")
-        print("Items:", len(plan["items"]))
+        print(
+            "Items:",
+            len(plan["items"])
+        )
         print("------------------------------")
 
         for item in plan["items"]:
@@ -514,7 +766,7 @@ class SettingsWindow:
 
         print("==============================")
         print()
-        
+
     # ==================================================
     # EVENTS
     # ==================================================
@@ -542,12 +794,14 @@ class SettingsWindow:
 
                 for edit in text_edits:
 
-                    if edit.rect.collidepoint(event.pos):
+                    if edit.rect.collidepoint(
+                        event.pos
+                    ):
 
                         clicked_edit = edit
                         break
 
-                # Снимаем фокус со всех
+                # Снимаем фокус со всех остальных
                 for edit in text_edits:
 
                     if edit is not clicked_edit:
@@ -555,35 +809,46 @@ class SettingsWindow:
                         edit.focused = False
                         edit.repeat_key = None
 
-                # Передаём событие только выбранному
+                # Передаём событие выбранному TextEdit
                 if clicked_edit is not None:
 
-                    clicked_edit.handle_event(event)
+                    clicked_edit.handle_event(
+                        event
+                    )
 
                 else:
 
-                    # Клик вне всех TextEdit
+                    # Клик вне TextEdit
                     for edit in text_edits:
-                        edit.handle_event(event)
+
+                        edit.handle_event(
+                            event
+                        )
 
             else:
 
                 for edit in text_edits:
-                    edit.handle_event(event)
+
+                    edit.handle_event(
+                        event
+                    )
 
         else:
 
             # KEYDOWN / TEXTINPUT / MOUSEWHEEL
-            # Передаём событие всем, но только один
-            # TextEdit имеет focus.
             for edit in text_edits:
-                edit.handle_event(event)
+
+                edit.handle_event(
+                    event
+                )
 
         # --------------------------------------------------
         # Scenario
         # --------------------------------------------------
 
-        result = self.scenario_selection.handle_event(event)
+        result = self.scenario_selection.handle_event(
+            event
+        )
 
         if result is not None:
 
@@ -597,7 +862,12 @@ class SettingsWindow:
             )
 
         # --------------------------------------------------
-        # Language
+        # Language / Locale
+        #
+        # Здесь language_selection уже содержит locale:
+        # en-AU, en-CA, en-GB...
+        #
+        # Поэтому после выбора загружаем VOICES.
         # --------------------------------------------------
 
         result = self.language_selection.handle_event(
@@ -606,14 +876,18 @@ class SettingsWindow:
 
         if result is not None:
 
-            language = result[1]
+            locale = result[1]
 
             print(
-                "Language:",
-                language
+                "Locale:",
+                locale
             )
 
-            self._load_locales(language)
+            # ВАЖНО:
+            # locale -> voices
+            self._load_voices(
+                locale
+            )
 
         # --------------------------------------------------
         # Voice
@@ -644,7 +918,9 @@ class SettingsWindow:
         # Close
         # --------------------------------------------------
 
-        if self.close_rect.collidepoint(event.pos):
+        if self.close_rect.collidepoint(
+            event.pos
+        ):
 
             self.hide()
             return
@@ -691,6 +967,14 @@ class SettingsWindow:
                     text
                 )
 
+                # --------------------------------------------------
+                # AI определяет язык текста
+                # --------------------------------------------------
+
+                self._detect_language(
+                    text
+                )
+
             return
 
         # --------------------------------------------------
@@ -717,7 +1001,10 @@ class SettingsWindow:
 
         if not text:
 
-            print("Source text is empty")
+            print(
+                "Source text is empty"
+            )
+
             return
 
         # --------------------------------------------------
@@ -728,7 +1015,10 @@ class SettingsWindow:
 
         if not item:
 
-            print("Current session item is missing")
+            print(
+                "Current session item is missing"
+            )
+
             return
 
         # --------------------------------------------------
@@ -742,11 +1032,15 @@ class SettingsWindow:
             )
 
             if repeat_count < 1:
+
                 raise ValueError
 
         except ValueError:
 
-            print("Invalid repeat count")
+            print(
+                "Invalid repeat count"
+            )
+
             return
 
         # --------------------------------------------------
@@ -760,23 +1054,28 @@ class SettingsWindow:
             )
 
             if pause_factor <= 0:
+
                 raise ValueError
 
         except ValueError:
 
-            print("Invalid pause factor")
+            print(
+                "Invalid pause factor"
+            )
+
             return
 
         # --------------------------------------------------
-        # Current item parameters
+        # Selected locale / voice
         # --------------------------------------------------
 
-        # --------------------------------------------------
-        # Selected language / voice
-        # --------------------------------------------------
+        phrase_locale = (
+            self.language_selection.value
+        )
 
-        phrase_locale = self.language_selection.value
-        phrase_voice = self.voice_selection.value
+        phrase_voice = (
+            self.voice_selection.value
+        )
 
         phrase_code = (
             phrase_locale.split("-")[0].lower()
@@ -784,14 +1083,23 @@ class SettingsWindow:
             else ""
         )
 
-        phrase_voice_gender = item.get(
-            "phrase_voice_gender",
-            ""
+        phrase_voice_gender = (
+            item.get(
+                "phrase_voice_gender",
+                ""
+            )
         )
 
-        if not phrase_code or not phrase_locale or not phrase_voice:
+        if (
+            not phrase_code
+            or not phrase_locale
+            or not phrase_voice
+        ):
 
-            print("Incomplete voice parameters")
+            print(
+                "Incomplete voice parameters"
+            )
+
             return
 
         # --------------------------------------------------
@@ -808,28 +1116,38 @@ class SettingsWindow:
 
         if self._generate_task is not None:
 
-            print("Generation already in progress")
+            print(
+                "Generation already in progress"
+            )
+
             return
 
         # --------------------------------------------------
         # Generate
         # --------------------------------------------------
 
-        self._generate_task = self._async_runner.submit(
-            self._generate_plan(
-                text=text,
-                scenario=scenario,
-                phrase_code=phrase_code,
-                phrase_locale=phrase_locale,
-                phrase_voice=phrase_voice,
-                phrase_voice_gender=phrase_voice_gender,
-                repeat_count=repeat_count,
-                pause_factor=pause_factor,
+        self._generate_task = (
+            self._async_runner.submit(
+                self._generate_plan(
+                    text=text,
+                    scenario=scenario,
+                    phrase_code=phrase_code,
+                    phrase_locale=phrase_locale,
+                    phrase_voice=phrase_voice,
+                    phrase_voice_gender=phrase_voice_gender,
+                    repeat_count=repeat_count,
+                    pause_factor=pause_factor,
+                )
             )
         )
 
-        print("Generating dictation plan...")
+        print(
+            "Generating dictation plan..."
+        )
 
+    # ==================================================
+    # GENERATE PLAN
+    # ==================================================
 
     async def _generate_plan(
         self,
@@ -856,18 +1174,20 @@ class SettingsWindow:
 
         # --------------------------------------------------
         # Convert Pydantic model
-        # to DictationPlanBuilder format
         # --------------------------------------------------
 
         validated_data = {
             "original_text": result.original_text,
+
             "chunks": [
                 {
                     "text": chunk.text,
                     "ends_sentence": chunk.ends_sentence,
                 }
+
                 for chunk in result.chunks
             ],
+
             "total_chunks": result.total_chunks,
         }
 
@@ -876,13 +1196,17 @@ class SettingsWindow:
         # --------------------------------------------------
 
         builder = DictationPlanBuilder(
+
             phrase_code=phrase_code,
             phrase_locale=phrase_locale,
             phrase_voice=phrase_voice,
             phrase_voice_gender=phrase_voice_gender,
+
             speed=1.0,
             repeat_count=repeat_count,
+
             pause_factor=pause_factor,
+
             set_name="Dictation",
             set_description="Generated dictation session",
         )
@@ -899,7 +1223,7 @@ class SettingsWindow:
             f"Dictation - {scenario}"
         )
 
-        return plan        
+        return plan
 
     # ==================================================
     # DRAW
@@ -1110,10 +1434,12 @@ class SettingsWindow:
             )
         )
 
-        self.text_edit.draw(screen)
+        self.text_edit.draw(
+            screen
+        )
 
         # --------------------------------------------------
-        # Language
+        # Language / Locale
         # --------------------------------------------------
 
         caption = caption_font.render(
@@ -1129,7 +1455,6 @@ class SettingsWindow:
                 self.language_selection.rect.y - 25
             )
         )
-
 
         # --------------------------------------------------
         # Voice
@@ -1149,7 +1474,6 @@ class SettingsWindow:
             )
         )
 
-
         # --------------------------------------------------
         # Repeat count
         # --------------------------------------------------
@@ -1168,7 +1492,9 @@ class SettingsWindow:
             )
         )
 
-        self.repeat_edit.draw(screen)
+        self.repeat_edit.draw(
+            screen
+        )
 
         # --------------------------------------------------
         # Pause factor
@@ -1188,7 +1514,9 @@ class SettingsWindow:
             )
         )
 
-        self.pause_factor_edit.draw(screen)
+        self.pause_factor_edit.draw(
+            screen
+        )
 
         # --------------------------------------------------
         # Generate button
@@ -1214,10 +1542,12 @@ class SettingsWindow:
                 self.generate_button_rect.y + 7
             )
         )
+
         # --------------------------------------------------
-        # ListSelection dropdowns
+        # Dropdowns
         #
-        # Draw LAST so dropdowns are above other controls.
+        # Рисуем последними, чтобы они были поверх
+        # остальных элементов.
         # --------------------------------------------------
 
         self.language_selection.draw(

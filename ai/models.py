@@ -10,3 +10,6 @@ class DictationSegmentation(BaseModel):
     original_text: str
     chunks: list[DictationChunk]
     total_chunks: int
+    
+class DetectedLanguage(BaseModel):
+    language_code: str    
