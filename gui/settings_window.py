@@ -10,6 +10,8 @@ from gui.widgets.text_edit import TextEdit
 
 from audio.tts import TTS
 from audio.async_runner import AsyncRunner
+from ai.dictation_segmenter import DictationSegmenter
+from ai.dictation_plan import DictationPlanBuilder
 
 
 class SettingsWindow:
@@ -20,6 +22,12 @@ class SettingsWindow:
         # --------------------------------------------------
         # Основные данные
         # --------------------------------------------------
+
+        # цепляем наш AI генератор 
+        self._locale_task = None
+        self._voice_task = None
+        self._generate_task = None
+        
 
         self.rect = pygame.Rect(rect)
         self.visible = False
@@ -456,6 +464,49 @@ class SettingsWindow:
 
         self._process_locale_task()
         self._process_voice_task()
+        self._process_generate_task()
+
+    # process_generate_task
+    def _process_generate_task(self):
+
+        if self._generate_task is None:
+            return
+
+        if not self._generate_task.done():
+            return
+
+        task = self._generate_task
+        self._generate_task = None
+
+        try:
+
+            plan = task.result()
+
+        except Exception as e:
+
+            print("Dictation generation error:", e)
+            return
+
+        print()
+        print("==============================")
+        print("DICTATION PLAN GENERATED")
+        print("==============================")
+        print("Items:", len(plan["items"]))
+        print("------------------------------")
+
+        for item in plan["items"]:
+
+            print(
+                item["item_order"],
+                item["phrase_text"],
+                "| pause:",
+                item["pause_ms"],
+                "| repeat:",
+                item["repeat_count"]
+            )
+
+        print("==============================")
+        print()
 
     # ==================================================
     # EVENTS
@@ -651,19 +702,27 @@ class SettingsWindow:
 
     def _generate(self):
 
-        scenario = (
-            self.scenario_provider.get_current()
-        )
+        # --------------------------------------------------
+        # Source text
+        # --------------------------------------------------
 
-        text = self.text_edit.get_text()
+        text = self.text_edit.get_text().strip()
 
-        language = (
-            self.language_selection.value
-        )
+        if not text:
 
-        voice = (
-            self.voice_selection.value
-        )
+            print("Source text is empty")
+            return
+
+        # --------------------------------------------------
+        # Current item
+        # --------------------------------------------------
+
+        item = self.session.current_item
+
+        if not item:
+
+            print("Current session item is missing")
+            return
 
         # --------------------------------------------------
         # Repeat count
@@ -680,10 +739,7 @@ class SettingsWindow:
 
         except ValueError:
 
-            print(
-                "Invalid repeat count"
-            )
-
+            print("Invalid repeat count")
             return
 
         # --------------------------------------------------
@@ -701,30 +757,144 @@ class SettingsWindow:
 
         except ValueError:
 
-            print(
-                "Invalid pause factor"
-            )
-
+            print("Invalid pause factor")
             return
 
         # --------------------------------------------------
-        # Current state
+        # Current item parameters
         # --------------------------------------------------
 
-        print()
-        print("==============================")
-        print("GENERATE")
-        print("==============================")
-        print("Scenario:", scenario)
-        print("Language:", language)
-        print("Voice:", voice)
-        print("Repeat count:", repeat_count)
-        print("Pause factor:", pause_factor)
-        print("Text length:", len(text))
-        print("------------------------------")
-        print(text)
-        print("==============================")
-        print()
+        phrase_code = item.get(
+            "phrase_code",
+            ""
+        )
+
+        phrase_locale = item.get(
+            "phrase_locale",
+            ""
+        )
+
+        phrase_voice = item.get(
+            "phrase_voice",
+            ""
+        )
+
+        phrase_voice_gender = item.get(
+            "phrase_voice_gender",
+            ""
+        )
+
+        if not phrase_code or not phrase_locale or not phrase_voice:
+
+            print("Incomplete voice parameters")
+            return
+
+        # --------------------------------------------------
+        # Scenario
+        # --------------------------------------------------
+
+        scenario = (
+            self.scenario_provider.get_current()
+        )
+
+        # --------------------------------------------------
+        # Prevent duplicate generation
+        # --------------------------------------------------
+
+        if self._generate_task is not None:
+
+            print("Generation already in progress")
+            return
+
+        # --------------------------------------------------
+        # Generate
+        # --------------------------------------------------
+
+        self._generate_task = self._async_runner.submit(
+            self._generate_plan(
+                text=text,
+                scenario=scenario,
+                phrase_code=phrase_code,
+                phrase_locale=phrase_locale,
+                phrase_voice=phrase_voice,
+                phrase_voice_gender=phrase_voice_gender,
+                repeat_count=repeat_count,
+                pause_factor=pause_factor,
+            )
+        )
+
+        print("Generating dictation plan...")
+
+
+    async def _generate_plan(
+        self,
+        *,
+        text,
+        scenario,
+        phrase_code,
+        phrase_locale,
+        phrase_voice,
+        phrase_voice_gender,
+        repeat_count,
+        pause_factor,
+    ):
+
+        # --------------------------------------------------
+        # AI segmentation
+        # --------------------------------------------------
+
+        segmenter = DictationSegmenter()
+
+        result = segmenter.segment(
+            text
+        )
+
+        # --------------------------------------------------
+        # Convert Pydantic model
+        # to DictationPlanBuilder format
+        # --------------------------------------------------
+
+        validated_data = {
+            "original_text": result.original_text,
+            "chunks": [
+                {
+                    "text": chunk.text,
+                    "ends_sentence": chunk.ends_sentence,
+                }
+                for chunk in result.chunks
+            ],
+            "total_chunks": result.total_chunks,
+        }
+
+        # --------------------------------------------------
+        # Build plan
+        # --------------------------------------------------
+
+        builder = DictationPlanBuilder(
+            phrase_code=phrase_code,
+            phrase_locale=phrase_locale,
+            phrase_voice=phrase_voice,
+            phrase_voice_gender=phrase_voice_gender,
+            speed=1.0,
+            repeat_count=repeat_count,
+            pause_factor=pause_factor,
+            set_name="Dictation",
+            set_description="Generated dictation session",
+        )
+
+        plan = builder.build(
+            validated_data
+        )
+
+        # --------------------------------------------------
+        # Store scenario information
+        # --------------------------------------------------
+
+        plan["set"]["set_name"] = (
+            f"Dictation - {scenario}"
+        )
+
+        return plan        
 
     # ==================================================
     # DRAW
