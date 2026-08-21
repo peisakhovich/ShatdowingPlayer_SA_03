@@ -188,11 +188,6 @@ class SettingsWindow:
             32
         )
 
-        # --------------------------------------------------
-        # Initial parameters
-        # --------------------------------------------------
-
-        self._load_current_item_parameters()
 
         # --------------------------------------------------
         # Busy indicator
@@ -202,6 +197,12 @@ class SettingsWindow:
             self.rect,
             pygame.font.Font(None, 22)
         )
+
+        # --------------------------------------------------
+        # Initial parameters
+        # --------------------------------------------------
+
+        self._load_current_item_parameters()
 
     # ==================================================
     # LANGUAGE DETECTION
@@ -231,11 +232,14 @@ class SettingsWindow:
         # Запускаем AI в фоне
         # --------------------------------------------------
 
+        self.busy_indicator.show(
+            "Detecting language..."
+        )
+
         self._language_task = self._async_runner.submit(
             self._detect_language_async(sample)
         )
 
-        print("Detecting language...")
 
     async def _detect_language_async(self, text):
 
@@ -382,6 +386,10 @@ class SettingsWindow:
         # --------------------------------------------------
         # Загружаем locale
         # --------------------------------------------------
+        
+        self.busy_indicator.show(
+            "Loading locales..."
+        )
 
         self._locale_task = self._async_runner.submit(
             self._tts.get_locales_for_language(
@@ -414,10 +422,9 @@ class SettingsWindow:
         ]
 
         self.voice_selection.selected = 0
-
-        print(
-            "Loading voices for locale:",
-            locale
+        
+        self.busy_indicator.show(
+            "Loading voices..."
         )
 
         # --------------------------------------------------
@@ -574,12 +581,14 @@ class SettingsWindow:
 
             self.voice_selection.selected = 0
 
+            self.busy_indicator.hide()
+
             return
 
-        print(
-            "VOICE TASK RESULT:",
-            voices
-        )
+        # print(
+        #     "VOICE TASK RESULT:",
+        #     voices
+        # )
 
         # --------------------------------------------------
         # Нет голосов
@@ -656,6 +665,8 @@ class SettingsWindow:
 
         self.voice_selection.selected = selected_index
 
+        self.busy_indicator.hide()
+
     # ==================================================
     # VISIBILITY
     # ==================================================
@@ -670,7 +681,31 @@ class SettingsWindow:
 
     def hide(self):
 
+        self._cancel_tasks()
         self.visible = False
+
+    def _cancel_tasks(self):
+
+        tasks = (
+            self._locale_task,
+            self._voice_task,
+            self._language_task,
+            self._generate_task,
+        )
+
+        for task in tasks:
+
+            if task is not None:
+
+                if not task.done():
+                    task.cancel()
+
+        self._locale_task = None
+        self._voice_task = None
+        self._language_task = None
+        self._generate_task = None
+
+        self.busy_indicator.hide()
 
     # ==================================================
     # TEXT FIT
@@ -736,6 +771,9 @@ class SettingsWindow:
 
             plan = task.result()
 
+        except asyncio.CancelledError:
+            return
+
         except Exception as e:
 
             print(
@@ -790,6 +828,21 @@ class SettingsWindow:
         if not self.visible:
             return
 
+        # --------------------------------------------------
+        # Close button must remain available while busy
+        # --------------------------------------------------
+        if (
+            self.busy_indicator.visible
+            and event.type == pygame.MOUSEBUTTONDOWN
+            and event.button == 1
+            and self.close_rect.collidepoint(event.pos)
+        ):
+            self.hide()
+            return
+
+        # --------------------------------------------------
+        # Block all other interaction while busy
+        # --------------------------------------------------        
         if self.busy_indicator.visible:
             return
         
