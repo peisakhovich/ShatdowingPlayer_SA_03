@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from ai.generators.dictation_generator import DictationGenerator
+from ai.generators.shadowing_generator import ShadowingGenerator
 
 
 class GeneratorRouter:
@@ -9,19 +10,20 @@ class GeneratorRouter:
     def __init__(self):
 
         self._generators = {
-            "dictation": DictationGenerator(),
+            "dictation": DictationGenerator,
+            "shadowing": ShadowingGenerator,
         }
 
     def get_generator(self, scenario):
 
-        generator = self._generators.get(
+        generator_class = self._generators.get(
             scenario
         )
 
-        if generator is None:
+        if generator_class is None:
 
             raise ValueError(
                 f"Unsupported generator scenario: {scenario}"
             )
 
-        return generator
+        return generator_class()
