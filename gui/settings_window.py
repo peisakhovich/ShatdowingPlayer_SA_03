@@ -14,9 +14,8 @@ from gui.widgets.busy_indicator import BusyIndicator
 from audio.tts import TTS
 from audio.async_runner import AsyncRunner
 
-from ai.dictation_segmenter import DictationSegmenter
-from ai.dictation_plan import DictationPlanBuilder
 from ai.language_detector import LanguageDetector
+from ai.generators.generator_router import GeneratorRouter
 
 from core.config import Config
 
@@ -60,10 +59,11 @@ class SettingsWindow:
         self._async_runner = AsyncRunner()
 
         # --------------------------------------------------
-        # AI language detection
+        # AI service
         # --------------------------------------------------
 
         self._language_detector = LanguageDetector()
+        self._generator_router = GeneratorRouter()
 
         # --------------------------------------------------
         # Close button
@@ -1181,6 +1181,24 @@ class SettingsWindow:
         )
 
         # --------------------------------------------------
+        # Generator
+        # --------------------------------------------------
+
+        try:
+
+            generator = self._generator_router.get_generator(
+                scenario
+            )
+
+        except ValueError as e:
+
+            print(
+                e
+            )
+
+            return
+
+        # --------------------------------------------------
         # Prevent duplicate generation
         # --------------------------------------------------
 
@@ -1202,7 +1220,7 @@ class SettingsWindow:
 
         self._generate_task = (
             self._async_runner.submit(
-                self._generate_plan(
+                generator.generate(
                     text=text,
                     scenario=scenario,
                     phrase_code=phrase_code,
@@ -1218,86 +1236,7 @@ class SettingsWindow:
         print(
             "Generating dictation plan..."
         )
-
-    # ==================================================
-    # GENERATE PLAN
-    # ==================================================
-
-    async def _generate_plan(
-        self,
-        *,
-        text,
-        scenario,
-        phrase_code,
-        phrase_locale,
-        phrase_voice,
-        phrase_voice_gender,
-        repeat_count,
-        pause_factor,
-    ):
-
-        # --------------------------------------------------
-        # AI segmentation
-        # --------------------------------------------------
-
-        segmenter = DictationSegmenter()
-
-        result = segmenter.segment(
-            text
-        )
-
-        # --------------------------------------------------
-        # Convert Pydantic model
-        # --------------------------------------------------
-
-        validated_data = {
-            "original_text": result.original_text,
-
-            "chunks": [
-                {
-                    "text": chunk.text,
-                    "ends_sentence": chunk.ends_sentence,
-                }
-
-                for chunk in result.chunks
-            ],
-
-            "total_chunks": result.total_chunks,
-        }
-
-        # --------------------------------------------------
-        # Build plan
-        # --------------------------------------------------
-
-        builder = DictationPlanBuilder(
-
-            phrase_code=phrase_code,
-            phrase_locale=phrase_locale,
-            phrase_voice=phrase_voice,
-            phrase_voice_gender=phrase_voice_gender,
-
-            speed=1.0,
-            repeat_count=repeat_count,
-
-            pause_factor=pause_factor,
-
-            set_name="Dictation",
-            set_description="Generated dictation session",
-        )
-
-        plan = builder.build(
-            validated_data
-        )
-
-        # --------------------------------------------------
-        # Store scenario information
-        # --------------------------------------------------
-
-        plan["set"]["set_name"] = (
-            f"Dictation - {scenario}"
-        )
-
-        return plan
+    
 
     # ==================================================
     # DRAW
