@@ -9,6 +9,7 @@ from gui.theme import Theme
 from gui.widgets.list_selection import ListSelection
 from gui.file_dialog import FileDialog
 from gui.widgets.text_edit import TextEdit
+from gui.widgets.busy_indicator import BusyIndicator
 
 from audio.tts import TTS
 from audio.async_runner import AsyncRunner
@@ -192,6 +193,15 @@ class SettingsWindow:
         # --------------------------------------------------
 
         self._load_current_item_parameters()
+
+        # --------------------------------------------------
+        # Busy indicator
+        # --------------------------------------------------
+
+        self.busy_indicator = BusyIndicator(
+            self.rect,
+            pygame.font.Font(None, 22)
+        )
 
     # ==================================================
     # LANGUAGE DETECTION
@@ -705,6 +715,8 @@ class SettingsWindow:
         self._process_voice_task()
         self._process_generate_task()
 
+        self.busy_indicator.update()
+
     # ==================================================
     # GENERATE TASK
     # ==================================================
@@ -730,7 +742,7 @@ class SettingsWindow:
                 "Dictation generation error:",
                 e
             )
-
+            self.busy_indicator.hide()
             return
 
         # --------------------------------------------------
@@ -738,6 +750,8 @@ class SettingsWindow:
         # --------------------------------------------------
 
         self.session.load_data(plan)
+        self.busy_indicator.hide()
+
 
         self.session.save(
             Config.PLAN_SESSION_FILE
@@ -776,6 +790,9 @@ class SettingsWindow:
         if not self.visible:
             return
 
+        if self.busy_indicator.visible:
+            return
+        
         # --------------------------------------------------
         # TextEdit
         # --------------------------------------------------
@@ -1125,6 +1142,10 @@ class SettingsWindow:
         # --------------------------------------------------
         # Generate
         # --------------------------------------------------
+
+        self.busy_indicator.show(
+            "Generating dictation..."
+        )
 
         self._generate_task = (
             self._async_runner.submit(
@@ -1563,4 +1584,13 @@ class SettingsWindow:
         self.scenario_selection.draw(
             screen,
             list_font
+        )
+        # --------------------------------------------------
+        # Busy indicator
+        # Рисуем последним, чтобы overlay был поверх
+        # всего окна.
+        # --------------------------------------------------
+
+        self.busy_indicator.draw(
+            screen
         )
