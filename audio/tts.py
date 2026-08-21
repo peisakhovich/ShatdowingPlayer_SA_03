@@ -133,3 +133,23 @@ class TTS:
         )
 
         await communicate.save(output_path)
+
+    async def get_languages(self):
+        """Возвращает список доступных двухбуквенных кодов языков."""
+
+        voices = await self.get_voices()
+
+        languages = set()
+
+        for voice in voices:
+
+            locale = voice.get("Locale", "")
+
+            if not locale:
+                continue
+
+            language = locale.split("-")[0].lower()
+
+            languages.add(language)
+
+        return sorted(languages)        

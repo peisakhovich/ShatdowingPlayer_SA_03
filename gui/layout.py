@@ -5,7 +5,7 @@ class Layout:
     # UI LAYER: WINDOWS Размеры окна
     # --------------------------------------------------
     WIDTH = 900
-    HEIGHT = 600
+    HEIGHT = 800
 
     WINDOW_SIZE = (WIDTH, HEIGHT)
 
@@ -85,8 +85,8 @@ class Layout:
     # UI LAYER: SETTINGS WINDOW
     # -------------------------
 
-    SETTINGS_WIDTH = 500
-    SETTINGS_HEIGHT = 600
+    SETTINGS_WIDTH = 560
+    SETTINGS_HEIGHT = 760
 
     SETTINGS_RECT = pygame.Rect(
         (WIDTH - SETTINGS_WIDTH) // 2,

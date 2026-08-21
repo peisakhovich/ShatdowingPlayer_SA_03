@@ -11,7 +11,7 @@ class ShadowingGenerator:
             client=client
         )
 
-    def generate(
+    async def generate(
         self,
         *,
         text: str,
