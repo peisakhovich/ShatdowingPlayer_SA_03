@@ -17,6 +17,7 @@ from audio.async_runner import AsyncRunner
 from ai.dictation_segmenter import DictationSegmenter
 from ai.dictation_plan import DictationPlanBuilder
 from ai.language_detector import LanguageDetector
+from ai.generators.generator_router import GeneratorRouter
 
 from core.config import Config
 
@@ -64,6 +65,7 @@ class SettingsWindow:
         # --------------------------------------------------
 
         self._language_detector = LanguageDetector()
+        self._generator_router = GeneratorRouter()
 
         # --------------------------------------------------
         # Close button
@@ -96,8 +98,8 @@ class SettingsWindow:
         # --------------------------------------------------
 
         self.file_button_rect = pygame.Rect(
-            self.rect.x + 30,
-            self.rect.y + 180,
+            self.rect.x + 450,
+            self.rect.y + 80,
             120,
             32
         )
@@ -109,25 +111,25 @@ class SettingsWindow:
         self.text_edit = TextEdit(
             pygame.Rect(
                 self.rect.x + 30,
-                self.rect.y + 240,
+                self.rect.y + 150,
                 self.rect.width - 60,
-                130
+                200
             ),
             pygame.font.Font(None, 24)
         )
 
         # --------------------------------------------------
         # Language / Locale
-        #
-        # Здесь отображаются locale:
-        # en-AU, en-CA, en-GB, ...
+        # --------------------------------------------------
+        # --------------------------------------------------
+        # SOURCE LANGUAGE
         # --------------------------------------------------
 
         self.language_selection = ListSelection(
             pygame.Rect(
                 self.rect.x + 30,
                 self.rect.y + 405,
-                120,
+                170,
                 30
             ),
             [("", "Loading...")],
@@ -135,14 +137,29 @@ class SettingsWindow:
         )
 
         # --------------------------------------------------
-        # Voice
+        # SOURCE LOCALE
+        # --------------------------------------------------
+
+        self.source_locale_selection = ListSelection(
+            pygame.Rect(
+                self.rect.x + 215,
+                self.rect.y + 405,
+                self.rect.width - 245,
+                30
+            ),
+            [("", "Loading...")],
+            0
+        )
+
+        # --------------------------------------------------
+        # SOURCE VOICE
         # --------------------------------------------------
 
         self.voice_selection = ListSelection(
             pygame.Rect(
-                self.rect.x + 170,
-                self.rect.y + 405,
-                self.rect.width - 200,
+                self.rect.x + 30,
+                self.rect.y + 470,
+                self.rect.width - 60,
                 30
             ),
             [("", "Loading...")],
@@ -150,13 +167,58 @@ class SettingsWindow:
         )
 
         # --------------------------------------------------
-        # Repeat count
+        # TARGET LANGUAGE
+        # --------------------------------------------------
+
+        self.target_language_selection = ListSelection(
+            pygame.Rect(
+                self.rect.x + 30,
+                self.rect.y + 565,
+                170,
+                30
+            ),
+            [("", "Loading...")],
+            0
+        )
+
+        # --------------------------------------------------
+        # TARGET LOCALE
+        # --------------------------------------------------
+
+        self.target_locale_selection = ListSelection(
+            pygame.Rect(
+                self.rect.x + 215,
+                self.rect.y + 565,
+                self.rect.width - 245,
+                30
+            ),
+            [("", "Loading...")],
+            0
+        )
+
+        # --------------------------------------------------
+        # TARGET VOICE
+        # --------------------------------------------------
+
+        self.target_voice_selection = ListSelection(
+            pygame.Rect(
+                self.rect.x + 30,
+                self.rect.y + 630,
+                self.rect.width - 60,
+                30
+            ),
+            [("", "Loading...")],
+            0
+        )
+
+        # --------------------------------------------------
+        # REPEAT COUNT
         # --------------------------------------------------
 
         self.repeat_edit = TextEdit(
             pygame.Rect(
                 self.rect.x + 30,
-                self.rect.y + 475,
+                self.rect.y + 700,
                 100,
                 30
             ),
@@ -164,13 +226,13 @@ class SettingsWindow:
         )
 
         # --------------------------------------------------
-        # Pause factor
+        # PAUSE FACTOR
         # --------------------------------------------------
 
         self.pause_factor_edit = TextEdit(
             pygame.Rect(
                 self.rect.x + 240,
-                self.rect.y + 475,
+                self.rect.y + 700,
                 100,
                 30
             ),
@@ -178,17 +240,15 @@ class SettingsWindow:
         )
 
         # --------------------------------------------------
-        # Generate button
+        # GENERATE BUTTON
         # --------------------------------------------------
 
         self.generate_button_rect = pygame.Rect(
-            self.rect.x + 30,
-            self.rect.y + 530,
-            120,
-            32
+            self.rect.x + 440,
+            self.rect.y + 700,
+            100,
+            30
         )
-
-
         # --------------------------------------------------
         # Busy indicator
         # --------------------------------------------------
@@ -975,6 +1035,73 @@ class SettingsWindow:
             )
 
         # --------------------------------------------------
+        # Locale
+        # --------------------------------------------------
+
+        result = self.source_locale_selection.handle_event(
+            event
+        )
+
+        if result is not None:
+
+            print(
+                "Locale:",
+                result[1]
+            )
+
+
+        # --------------------------------------------------
+        # Target language
+        # --------------------------------------------------
+
+        if self.scenario_provider.get_current() == "shadowing":
+
+            result = self.target_language_selection.handle_event(
+                event
+            )
+
+            if result is not None:
+
+                print(
+                    "Target language:",
+                    result[1]
+                )
+
+        # --------------------------------------------------
+        # Target locale
+        # --------------------------------------------------
+
+        if self.scenario_provider.get_current() == "shadowing":
+
+            result = self.target_locale_selection.handle_event(
+                event
+            )
+
+            if result is not None:
+
+                print(
+                    "Target locale:",
+                    result[1]
+                )
+
+        # --------------------------------------------------
+        # Target voice
+        # --------------------------------------------------
+
+        if self.scenario_provider.get_current() == "shadowing":
+
+            result = self.target_voice_selection.handle_event(
+                event
+            )
+
+            if result is not None:
+
+                print(
+                    "Target voice:",
+                    result[1]
+                )
+
+        # --------------------------------------------------
         # Mouse
         # --------------------------------------------------
 
@@ -1195,6 +1322,27 @@ class SettingsWindow:
         # --------------------------------------------------
         # Generate
         # --------------------------------------------------
+
+        # --------------------------------------------------
+        # Generator Router
+        # --------------------------------------------------
+
+        try:
+
+            generator = self._generator_router.get_generator(
+                scenario
+            )
+
+        except ValueError as e:
+
+            print(e)
+            return
+
+        print(
+            "Generator:",
+            type(generator).__name__
+        )
+
 
         self.busy_indicator.show(
             "Generating dictation..."
@@ -1428,8 +1576,10 @@ class SettingsWindow:
         screen.blit(
             caption,
             (
-                self.rect.x + 30,
-                self.rect.y + 145
+                #self.rect.x + 30,
+                #self.rect.y + 145
+                self.scenario_selection.rect.x + 425,
+                self.scenario_selection.rect.y -25
             )
         )
 
@@ -1531,6 +1681,25 @@ class SettingsWindow:
         )
 
         # --------------------------------------------------
+        # Source / Locale
+        # --------------------------------------------------
+
+        caption = caption_font.render(
+            "Locale",
+            True,
+            Theme.DIALOG_TEXT_COLOR
+        )
+
+        screen.blit(
+            caption,
+            (
+                self.source_locale_selection.rect.x,
+                self.source_locale_selection.rect.y - 25
+            )
+        )
+
+
+        # --------------------------------------------------
         # Voice
         # --------------------------------------------------
 
@@ -1617,6 +1786,51 @@ class SettingsWindow:
             )
         )
 
+        if self.scenario_provider.get_current() == "shadowing":
+
+            caption = caption_font.render(
+                "Target language",
+                True,
+                Theme.DIALOG_TEXT_COLOR
+            )
+
+            screen.blit(
+                caption,
+                (
+                    self.target_language_selection.rect.x,
+                    self.target_language_selection.rect.y - 25
+                )
+            )
+
+            caption = caption_font.render(
+                "Target locale",
+                True,
+                Theme.DIALOG_TEXT_COLOR
+            )
+
+            screen.blit(
+                caption,
+                (
+                    self.target_locale_selection.rect.x,
+                    self.target_locale_selection.rect.y - 25
+                )
+            )
+
+            caption = caption_font.render(
+                "Target voice",
+                True,
+                Theme.DIALOG_TEXT_COLOR
+            )
+
+            screen.blit(
+                caption,
+                (
+                    self.target_voice_selection.rect.x,
+                    self.target_voice_selection.rect.y - 25
+                )
+            )
+
+
         # --------------------------------------------------
         # Dropdowns
         #
@@ -1624,20 +1838,46 @@ class SettingsWindow:
         # остальных элементов.
         # --------------------------------------------------
 
-        self.language_selection.draw(
+
+
+        self.scenario_selection.draw(
             screen,
             list_font
         )
+
+
+        if self.scenario_provider.get_current() == "shadowing":
+
+            self.target_language_selection.draw(
+                screen,
+                list_font
+            )
+
+            self.target_locale_selection.draw(
+                screen,
+                list_font
+            )
+
+            self.target_voice_selection.draw(
+                screen,
+                list_font
+            )
 
         self.voice_selection.draw(
             screen,
             list_font
         )
 
-        self.scenario_selection.draw(
+        self.language_selection.draw(
             screen,
             list_font
         )
+
+        self.source_locale_selection.draw(
+            screen,
+            list_font
+        )
+
         # --------------------------------------------------
         # Busy indicator
         # Рисуем последним, чтобы overlay был поверх

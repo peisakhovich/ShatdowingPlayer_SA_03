@@ -85,7 +85,7 @@ class Layout:
     # UI LAYER: SETTINGS WINDOW
     # -------------------------
 
-    SETTINGS_WIDTH = 560
+    SETTINGS_WIDTH = 600
     SETTINGS_HEIGHT = 760
 
     SETTINGS_RECT = pygame.Rect(
