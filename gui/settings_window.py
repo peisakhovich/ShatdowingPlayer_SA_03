@@ -46,6 +46,10 @@ class SettingsWindow:
         self._language_task = None
         self._generate_task = None
 
+        self._target_language_task = None
+        self._target_locale_task = None
+        self._target_voice_task = None
+
         # --------------------------------------------------
         # Source text
         # --------------------------------------------------
@@ -458,6 +462,319 @@ class SettingsWindow:
         )
 
     # --------------------------------------------------
+    
+    def _load_target_languages(self):
+
+        if self._target_language_task is not None:
+
+            if not self._target_language_task.done():
+                self._target_language_task.cancel()
+
+        self.target_language_selection.options = [
+            ("", "Loading...")
+        ]
+
+        self.target_language_selection.selected = 0
+
+        self._target_language_task = (
+            self._async_runner.submit(
+                self._tts.get_languages()
+            )
+        )
+    def _process_target_language_task(self):
+
+        if self._target_language_task is None:
+            return
+
+        if not self._target_language_task.done():
+            return
+
+        task = self._target_language_task
+        self._target_language_task = None
+
+        try:
+
+            languages = task.result()
+
+        except asyncio.CancelledError:
+
+            return
+
+        except Exception as e:
+
+            print(
+                "TTS target language error:",
+                e
+            )
+
+            self.target_language_selection.options = [
+                ("", "Error")
+            ]
+
+            self.target_language_selection.selected = 0
+
+            return
+
+        if not languages:
+
+            self.target_language_selection.options = [
+                ("", "No languages")
+            ]
+
+            self.target_language_selection.selected = 0
+
+            return
+
+        options = [
+            (language, language)
+            for language in languages
+        ]
+
+        self.target_language_selection.options = options
+
+        # --------------------------------------------------
+        # По умолчанию TARGET LANGUAGE = en
+        # --------------------------------------------------
+
+        selected_index = 0
+
+        for index, (value, _) in enumerate(options):
+
+            if value == "en":
+
+                selected_index = index
+                break
+
+        self.target_language_selection.selected = selected_index
+
+        # --------------------------------------------------
+        # После выбора языка загружаем TARGET LOCALE
+        # --------------------------------------------------
+
+        selected_language = (
+            self.target_language_selection.value
+        )
+
+        print(
+            "Target language:",
+            selected_language
+        )
+
+        self._load_target_locales(
+            selected_language
+        )
+
+    def _load_target_locales(self, language):
+
+        if not language:
+            return
+
+        if self._target_locale_task is not None:
+
+            if not self._target_locale_task.done():
+                self._target_locale_task.cancel()
+
+        if self._target_voice_task is not None:
+
+            if not self._target_voice_task.done():
+                self._target_voice_task.cancel()
+
+        self.target_locale_selection.options = [
+            ("", "Loading...")
+        ]
+
+        self.target_locale_selection.selected = 0
+
+        self.target_voice_selection.options = [
+            ("", "No voice")
+        ]
+
+        self.target_voice_selection.selected = 0
+
+        self._target_locale_task = (
+            self._async_runner.submit(
+                self._tts.get_locales_for_language(
+                    language
+                )
+            )
+        )
+
+    def _process_target_locale_task(self):
+
+        if self._target_locale_task is None:
+            return
+
+        if not self._target_locale_task.done():
+            return
+
+        task = self._target_locale_task
+        self._target_locale_task = None
+
+        try:
+
+            locales = task.result()
+
+        except asyncio.CancelledError:
+
+            return
+
+        except Exception as e:
+
+            print(
+                "TTS target locale error:",
+                e
+            )
+
+            self.target_locale_selection.options = [
+                ("", "Error")
+            ]
+
+            self.target_locale_selection.selected = 0
+
+            return
+
+        if not locales:
+
+            self.target_locale_selection.options = [
+                ("", "No locales")
+            ]
+
+            self.target_locale_selection.selected = 0
+
+            return
+
+        options = [
+            (locale, locale)
+            for locale in locales
+        ]
+
+        self.target_locale_selection.options = options
+
+        # --------------------------------------------------
+        # По умолчанию TARGET LOCALE = en-US
+        # --------------------------------------------------
+
+        selected_index = 0
+
+        for index, (value, _) in enumerate(options):
+
+            if value == "en-US":
+
+                selected_index = index
+                break
+
+        self.target_locale_selection.selected = selected_index
+
+        selected_locale = (
+            self.target_locale_selection.value
+        )
+
+        print(
+            "Target locale:",
+            selected_locale
+        )
+
+        self._load_target_voices(
+            selected_locale
+        )
+
+    def _load_target_voices(self, locale):
+
+        if not locale:
+            return
+
+        if self._target_voice_task is not None:
+
+            if not self._target_voice_task.done():
+                self._target_voice_task.cancel()
+
+        self.target_voice_selection.options = [
+            ("", "Loading...")
+        ]
+
+        self.target_voice_selection.selected = 0
+
+        self._target_voice_task = (
+            self._async_runner.submit(
+                self._tts.get_voices_for_locale(
+                    locale
+                )
+            )
+        )
+
+    def _process_target_voice_task(self):
+
+        if self._target_voice_task is None:
+            return
+
+        if not self._target_voice_task.done():
+            return
+
+        task = self._target_voice_task
+        self._target_voice_task = None
+
+        try:
+
+            voices = task.result()
+
+        except asyncio.CancelledError:
+
+            return
+
+        except Exception as e:
+
+            print(
+                "TTS target voice error:",
+                e
+            )
+
+            self.target_voice_selection.options = [
+                ("", "Error")
+            ]
+
+            self.target_voice_selection.selected = 0
+
+            return
+
+        if not voices:
+
+            self.target_voice_selection.options = [
+                ("", "No voices")
+            ]
+
+            self.target_voice_selection.selected = 0
+
+            return
+
+        options = []
+
+        for voice in voices:
+
+            short_name = voice.get(
+                "short_name",
+                ""
+            )
+
+            gender = voice.get(
+                "gender",
+                ""
+            )
+
+            caption = short_name
+
+            if gender:
+                caption += f" | {gender}"
+
+            options.append(
+                (
+                    short_name,
+                    caption
+                )
+            )
+
+        self.target_voice_selection.options = options
+        self.target_voice_selection.selected = 0
+
 
     def _load_voices(self, locale):
 
@@ -737,6 +1054,8 @@ class SettingsWindow:
 
         self._load_current_item_parameters()
 
+        self._load_target_languages()
+
     # --------------------------------------------------
 
     def hide(self):
@@ -808,6 +1127,11 @@ class SettingsWindow:
         self._process_language_task()
         self._process_locale_task()
         self._process_voice_task()
+                
+        self._process_target_language_task()
+        self._process_target_locale_task()
+        self._process_target_voice_task()
+
         self._process_generate_task()
 
         self.busy_indicator.update()
@@ -1062,10 +1386,24 @@ class SettingsWindow:
 
             if result is not None:
 
+                language = result[1]
+
                 print(
                     "Target language:",
-                    result[1]
+                    language
                 )
+
+                # --------------------------------------------------
+                # При изменении TARGET LANGUAGE
+                # заново загружаем TARGET LOCALE.
+                # TARGET VOICE будет обновлён
+                # автоматически после загрузки locale.
+                # --------------------------------------------------
+
+                self._load_target_locales(
+                    language
+                )
+
 
         # --------------------------------------------------
         # Target locale
@@ -1079,9 +1417,20 @@ class SettingsWindow:
 
             if result is not None:
 
+                locale = result[1]
+
                 print(
                     "Target locale:",
-                    result[1]
+                    locale
+                )
+
+                # --------------------------------------------------
+                # При изменении TARGET LOCALE
+                # загружаем соответствующие TARGET VOICES.
+                # --------------------------------------------------
+
+                self._load_target_voices(
+                    locale
                 )
 
         # --------------------------------------------------
@@ -1197,11 +1546,9 @@ class SettingsWindow:
         text = self.text_edit.get_text().strip()
 
         if not text:
-
             print(
                 "Source text is empty"
             )
-
             return
 
         # --------------------------------------------------
@@ -1211,11 +1558,9 @@ class SettingsWindow:
         item = self.session.current_item
 
         if not item:
-
             print(
                 "Current session item is missing"
             )
-
             return
 
         # --------------------------------------------------
@@ -1698,7 +2043,6 @@ class SettingsWindow:
             )
         )
 
-
         # --------------------------------------------------
         # Voice
         # --------------------------------------------------
@@ -1830,23 +2174,21 @@ class SettingsWindow:
                 )
             )
 
-
         # --------------------------------------------------
-        # Dropdowns
-        #
-        # Рисуем последними, чтобы они были поверх
-        # остальных элементов.
+        # Dropdowns Рисуем последними, чтобы они были поверх остальных элементов.
         # --------------------------------------------------
-
-
 
         self.scenario_selection.draw(
             screen,
             list_font
         )
 
-
         if self.scenario_provider.get_current() == "shadowing":
+
+            self.target_voice_selection.draw(
+                screen,
+                list_font
+            )
 
             self.target_language_selection.draw(
                 screen,
@@ -1858,10 +2200,6 @@ class SettingsWindow:
                 list_font
             )
 
-            self.target_voice_selection.draw(
-                screen,
-                list_font
-            )
 
         self.voice_selection.draw(
             screen,
@@ -1879,9 +2217,7 @@ class SettingsWindow:
         )
 
         # --------------------------------------------------
-        # Busy indicator
-        # Рисуем последним, чтобы overlay был поверх
-        # всего окна.
+        # Busy indicator  Рисуем последним, чтобы overlay был поверх всего окна.
         # --------------------------------------------------
 
         self.busy_indicator.draw(

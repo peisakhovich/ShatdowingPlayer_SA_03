@@ -2,12 +2,10 @@ from __future__ import annotations
 
 import asyncio
 from pathlib import Path
-import inspect
 
 import pygame
 
 from gui.theme import Theme
-from gui.layout import Layout
 from gui.widgets.list_selection import ListSelection
 from gui.file_dialog import FileDialog
 from gui.widgets.text_edit import TextEdit
@@ -16,6 +14,8 @@ from gui.widgets.busy_indicator import BusyIndicator
 from audio.tts import TTS
 from audio.async_runner import AsyncRunner
 
+from ai.dictation_segmenter import DictationSegmenter
+from ai.dictation_plan import DictationPlanBuilder
 from ai.language_detector import LanguageDetector
 from ai.generators.generator_router import GeneratorRouter
 
@@ -24,10 +24,6 @@ from core.config import Config
 
 class SettingsWindow:
     """Модальное окно настроек."""
-
-    # ==================================================
-    # INIT
-    # ==================================================
 
     def __init__(self, rect, scenario, session):
 
@@ -45,469 +41,237 @@ class SettingsWindow:
         # Async tasks
         # --------------------------------------------------
 
-        self._languages_task = None
-
-        self._source_locale_task = None
-        self._target_locale_task = None
-
-        self._source_voice_task = None
-        self._target_voice_task = None
-
+        self._locale_task = None
+        self._voice_task = None
         self._language_task = None
         self._generate_task = None
 
+        # TARGET tasks
+        self._target_language_task = None
+        self._target_locale_task = None
+        self._target_voice_task = None
+
         # --------------------------------------------------
-        # Source
+        # Source text
         # --------------------------------------------------
 
         self.source_file = ""
         self.source_text = ""
 
         # --------------------------------------------------
-        # Services
+        # TTS
         # --------------------------------------------------
 
         self._tts = TTS()
         self._async_runner = AsyncRunner()
 
+        # --------------------------------------------------
+        # AI language detection
+        # --------------------------------------------------
+
         self._language_detector = LanguageDetector()
         self._generator_router = GeneratorRouter()
 
         # --------------------------------------------------
-        # Close
+        # Close button
         # --------------------------------------------------
 
         self.close_rect = pygame.Rect(
-            self.rect.right - 35,
-            self.rect.top + 12,
-            22,
-            22,
+            self.rect.right - 30,
+            self.rect.top + 10,
+            20,
+            20,
         )
 
-        # ==================================================
-        # SCENARIO
-        # ==================================================
+        # --------------------------------------------------
+        # Playback scenario
+        # --------------------------------------------------
 
         self.scenario_selection = ListSelection(
             pygame.Rect(
                 self.rect.x + 30,
-                self.rect.y + 90,
-                self.rect.width - 60,
-                34,
+                self.rect.y + 80,
+                400,
+                30
             ),
             self.scenario_provider.get_scenario_list(),
-            self.scenario_provider.get_current_scenario_index(),
-            max_visible_items=6,
+            self.scenario_provider.get_current_scenario_index()
         )
 
-        # ==================================================
-        # SOURCE FILE
-        # ==================================================
+        # --------------------------------------------------
+        # Source file
+        # --------------------------------------------------
 
         self.file_button_rect = pygame.Rect(
-            self.rect.x + 30,
-            self.rect.y + 175,
-            125,
-            34,
+            self.rect.x + 450,
+            self.rect.y + 80,
+            120,
+            32
         )
 
-        # ==================================================
-        # SOURCE TEXT
-        # ==================================================
+        # --------------------------------------------------
+        # Source text
+        # --------------------------------------------------
 
         self.text_edit = TextEdit(
             pygame.Rect(
                 self.rect.x + 30,
-                self.rect.y + 240,
+                self.rect.y + 150,
                 self.rect.width - 60,
-                135,
+                200
             ),
-            pygame.font.Font(None, 24),
+            pygame.font.Font(None, 24)
         )
 
-        # ==================================================
+        # --------------------------------------------------
         # SOURCE LANGUAGE
-        # ==================================================
+        # --------------------------------------------------
 
-        self.source_language_selection = ListSelection(
+        self.language_selection = ListSelection(
             pygame.Rect(
                 self.rect.x + 30,
-                self.rect.y + 415,
-                self.rect.width - 60,
-                34,
+                self.rect.y + 405,
+                170,
+                30
             ),
             [("", "Loading...")],
-            0,
-            max_visible_items=8,
+            0
         )
 
-        # ==================================================
+        # --------------------------------------------------
+        # SOURCE LOCALE
+        # --------------------------------------------------
+
+        self.source_locale_selection = ListSelection(
+            pygame.Rect(
+                self.rect.x + 215,
+                self.rect.y + 405,
+                self.rect.width - 245,
+                30
+            ),
+            [("", "Loading...")],
+            0
+        )
+
+        # --------------------------------------------------
+        # SOURCE VOICE
+        # --------------------------------------------------
+
+        self.voice_selection = ListSelection(
+            pygame.Rect(
+                self.rect.x + 30,
+                self.rect.y + 470,
+                self.rect.width - 60,
+                30
+            ),
+            [("", "Loading...")],
+            0
+        )
+
+        # --------------------------------------------------
         # TARGET LANGUAGE
-        # ==================================================
+        # --------------------------------------------------
 
         self.target_language_selection = ListSelection(
             pygame.Rect(
                 self.rect.x + 30,
-                self.rect.y + 480,
-                self.rect.width - 60,
-                34,
+                self.rect.y + 565,
+                170,
+                30
             ),
             [("", "Loading...")],
-            0,
-            max_visible_items=8,
+            0
         )
 
-        # ==================================================
-        # SOURCE VOICE
-        # ==================================================
+        # --------------------------------------------------
+        # TARGET LOCALE
+        # --------------------------------------------------
 
-        self.source_voice_selection = ListSelection(
+        self.target_locale_selection = ListSelection(
             pygame.Rect(
-                self.rect.x + 30,
-                self.rect.y + 545,
-                self.rect.width - 60,
-                34,
+                self.rect.x + 215,
+                self.rect.y + 565,
+                self.rect.width - 245,
+                30
             ),
             [("", "Loading...")],
-            0,
-            max_visible_items=8,
+            0
         )
 
-        # ==================================================
+        # --------------------------------------------------
         # TARGET VOICE
-        # ==================================================
+        # --------------------------------------------------
 
         self.target_voice_selection = ListSelection(
             pygame.Rect(
                 self.rect.x + 30,
-                self.rect.y + 610,
+                self.rect.y + 630,
                 self.rect.width - 60,
-                34,
+                30
             ),
             [("", "Loading...")],
-            0,
-            max_visible_items=8,
+            0
         )
 
-        # ==================================================
+        # --------------------------------------------------
         # REPEAT COUNT
-        # ==================================================
+        # --------------------------------------------------
 
         self.repeat_edit = TextEdit(
             pygame.Rect(
                 self.rect.x + 30,
-                self.rect.y + 680,
+                self.rect.y + 700,
                 100,
-                34,
+                30
             ),
-            pygame.font.Font(None, 24),
+            pygame.font.Font(None, 24)
         )
 
-        # ==================================================
+        # --------------------------------------------------
         # PAUSE FACTOR
-        # ==================================================
+        # --------------------------------------------------
 
         self.pause_factor_edit = TextEdit(
             pygame.Rect(
                 self.rect.x + 240,
-                self.rect.y + 680,
+                self.rect.y + 700,
                 100,
-                34,
+                30
             ),
-            pygame.font.Font(None, 24),
+            pygame.font.Font(None, 24)
         )
 
-        # ==================================================
-        # GENERATE
-        # ==================================================
+        # --------------------------------------------------
+        # GENERATE BUTTON
+        # --------------------------------------------------
 
         self.generate_button_rect = pygame.Rect(
-            self.rect.x + 30,
-            self.rect.y + 730,
-            125,
-            34,
+            self.rect.x + 440,
+            self.rect.y + 700,
+            100,
+            30
         )
 
-        # ==================================================
-        # BUSY
-        # ==================================================
+        # --------------------------------------------------
+        # Busy indicator
+        # --------------------------------------------------
 
         self.busy_indicator = BusyIndicator(
             self.rect,
-            pygame.font.Font(None, 22),
+            pygame.font.Font(None, 22)
         )
 
-        # ==================================================
-        # INITIAL DATA
-        # ==================================================
+        # --------------------------------------------------
+        # Initial parameters
+        # --------------------------------------------------
 
         self._load_current_item_parameters()
 
-        self._load_languages()
-
-    # ==================================================
-    # SCENARIO
-    # ==================================================
-
-    def _get_scenario(self):
-
-        return self.scenario_provider.get_current()
-
-    # --------------------------------------------------
-
-    def _is_shadowing(self):
-
-        return self._get_scenario() == "shadowing"
-
-    # --------------------------------------------------
-
-    def _is_dictation(self):
-
-        return self._get_scenario() == "dictation"
-
-    # ==================================================
-    # LANGUAGE LIST
-    # ==================================================
-
-    def _load_languages(self):
-
-        if self._languages_task is not None:
-
-            if not self._languages_task.done():
-                self._languages_task.cancel()
-
-        self.source_language_selection.options = [
-            ("", "Loading...")
-        ]
-
-        self.source_language_selection.selected = 0
-
-        self.target_language_selection.options = [
-            ("", "Loading...")
-        ]
-
-        self.target_language_selection.selected = 0
-
-        self.busy_indicator.show(
-            "Loading languages..."
-        )
-
-        self._languages_task = (
-            self._async_runner.submit(
-                self._tts.get_languages()
-            )
-        )
-
-    # --------------------------------------------------
-
-    def _process_languages_task(self):
-
-        if self._languages_task is None:
-            return
-
-        if not self._languages_task.done():
-            return
-
-        task = self._languages_task
-        self._languages_task = None
-
-        try:
-
-            languages = task.result()
-
-        except asyncio.CancelledError:
-
-            return
-
-        except Exception as e:
-
-            print(
-                "TTS language error:",
-                e
-            )
-
-            self.source_language_selection.options = [
-                ("", "Error")
-            ]
-
-            self.target_language_selection.options = [
-                ("", "Error")
-            ]
-
-            self.busy_indicator.hide()
-
-            return
-
-        if not languages:
-
-            self.source_language_selection.options = [
-                ("", "No languages")
-            ]
-
-            self.target_language_selection.options = [
-                ("", "No languages")
-            ]
-
-            self.busy_indicator.hide()
-
-            return
-
-        options = []
-
-        for language in languages:
-
-            options.append(
-                (
-                    language,
-                    language
-                )
-            )
-
         # --------------------------------------------------
-        # Source language
+        # TARGET defaults
         # --------------------------------------------------
 
-        self.source_language_selection.options = options
-
-        source_code = self._get_current_source_language()
-
-        self.source_language_selection.selected = (
-            self._find_option_index(
-                options,
-                source_code
-            )
-        )
-
-        # --------------------------------------------------
-        # Target language
-        # --------------------------------------------------
-
-        self.target_language_selection.options = options
-
-        target_code = self._get_current_target_language()
-
-        self.target_language_selection.selected = (
-            self._find_option_index(
-                options,
-                target_code
-            )
-        )
-
-        # --------------------------------------------------
-        # Load source locale
-        # --------------------------------------------------
-
-        source_language = (
-            self.source_language_selection.value
-        )
-
-        if source_language:
-
-            self._load_source_locales(
-                source_language
-            )
-
-        # --------------------------------------------------
-        # Load target locale
-        # --------------------------------------------------
-
-        if self._is_shadowing():
-
-            target_language = (
-                self.target_language_selection.value
-            )
-
-            if target_language:
-
-                self._load_target_locales(
-                    target_language
-                )
-
-        else:
-
-            self.busy_indicator.hide()
-
-    # ==================================================
-    # CURRENT PARAMETERS
-    # ==================================================
-
-    def _load_current_item_parameters(self):
-
-        item = self.session.current_item
-
-        if not item:
-            return
-
-        # --------------------------------------------------
-        # Repeat
-        # --------------------------------------------------
-
-        repeat_count = item.get(
-            "repeat_count",
-            1
-        )
-
-        self.repeat_edit.set_text(
-            str(repeat_count)
-        )
-
-        # --------------------------------------------------
-        # Pause
-        # --------------------------------------------------
-
-        self.pause_factor_edit.set_text(
-            "1.0"
-        )
-
-    # --------------------------------------------------
-
-    def _get_current_source_language(self):
-
-        item = self.session.current_item
-
-        if not item:
-            return ""
-
-        language = item.get(
-            "phrase_code",
-            ""
-        )
-
-        return language.lower()
-
-    # --------------------------------------------------
-
-    def _get_current_target_language(self):
-
-        item = self.session.current_item
-
-        if not item:
-            return ""
-
-        language = item.get(
-            "translate_code",
-            ""
-        )
-
-        return language.lower()
-
-    # --------------------------------------------------
-
-    def _find_option_index(
-        self,
-        options,
-        value,
-    ):
-
-        for index, (option_value, _) in enumerate(
-            options
-        ):
-
-            if option_value.lower() == value.lower():
-
-                return index
-
-        return 0
+        self._load_target_languages()
 
     # ==================================================
     # LANGUAGE DETECTION
@@ -529,26 +293,13 @@ class SettingsWindow:
             "Detecting language..."
         )
 
-        self._language_task = (
-            self._async_runner.submit(
-                self._detect_language_async(
-                    sample
-                )
-            )
+        self._language_task = self._async_runner.submit(
+            self._detect_language_async(sample)
         )
 
-    # --------------------------------------------------
+    async def _detect_language_async(self, text):
 
-    async def _detect_language_async(
-        self,
-        text,
-    ):
-
-        return self._language_detector.detect(
-            text
-        )
-
-    # --------------------------------------------------
+        return self._language_detector.detect(text)
 
     def _process_language_task(self):
 
@@ -576,105 +327,134 @@ class SettingsWindow:
                 e
             )
 
-            self.busy_indicator.hide()
-
             return
 
         if not language:
-            self.busy_indicator.hide()
             return
-
-        language = language.lower()
 
         print(
-            "Detected source language:",
+            "Detected language:",
             language
         )
 
-        # --------------------------------------------------
-        # Выбираем обнаруженный язык
-        # --------------------------------------------------
-
-        self._select_language(
-            self.source_language_selection,
-            language
-        )
-
-        # --------------------------------------------------
-        # Загружаем locale
-        # --------------------------------------------------
-
-        self._load_source_locales(
-            language
-        )
-
-    # --------------------------------------------------
-
-    def _select_language(
-        self,
-        selection,
-        language,
-    ):
-
-        for index, (value, _) in enumerate(
-            selection.options
-        ):
-
-            if value.lower() == language.lower():
-
-                selection.selected = index
-                return
+        self._load_locales(language)
 
     # ==================================================
-    # SOURCE LOCALES
+    # INITIAL PARAMETERS
     # ==================================================
 
-    def _load_source_locales(
-        self,
-        language,
-    ):
+    def _load_current_item_parameters(self):
+
+        item = self.session.current_item
+
+        if not item:
+            return
+
+        locale = item.get(
+            "phrase_locale",
+            ""
+        )
+
+        if locale:
+
+            self.language_selection.options = [
+                (locale, locale)
+            ]
+
+            self.language_selection.selected = 0
+
+            self._load_voices(locale)
+
+        repeat_count = item.get(
+            "repeat_count",
+            1
+        )
+
+        self.repeat_edit.set_text(
+            str(repeat_count)
+        )
+
+        self.pause_factor_edit.set_text(
+            "1.0"
+        )
+
+    # ==================================================
+    # TTS - SOURCE
+    # ==================================================
+
+    def _load_locales(self, language):
 
         if not language:
             return
 
-        if self._source_locale_task is not None:
+        if self._locale_task is not None:
 
-            if not self._source_locale_task.done():
-                self._source_locale_task.cancel()
+            if not self._locale_task.done():
+                self._locale_task.cancel()
 
-        if self._source_voice_task is not None:
+        if self._voice_task is not None:
 
-            if not self._source_voice_task.done():
-                self._source_voice_task.cancel()
+            if not self._voice_task.done():
+                self._voice_task.cancel()
 
-        self.source_voice_selection.options = [
+        self.voice_selection.options = [
             ("", "No voice")
         ]
 
-        self.source_voice_selection.selected = 0
+        self.voice_selection.selected = 0
 
-        self.source_language_selection.opened = False
+        self.language_selection.options = [
+            ("", "Loading...")
+        ]
 
-        self._source_locale_task = (
-            self._async_runner.submit(
-                self._tts.get_locales_for_language(
-                    language
-                )
+        self.language_selection.selected = 0
+
+        self.busy_indicator.show(
+            "Loading locales..."
+        )
+
+        self._locale_task = self._async_runner.submit(
+            self._tts.get_locales_for_language(
+                language
             )
         )
 
-    # --------------------------------------------------
+    def _load_voices(self, locale):
 
-    def _process_source_locale_task(self):
-
-        if self._source_locale_task is None:
+        if not locale:
             return
 
-        if not self._source_locale_task.done():
+        if self._voice_task is not None:
+
+            if not self._voice_task.done():
+                self._voice_task.cancel()
+
+        self.voice_selection.options = [
+            ("", "Loading...")
+        ]
+
+        self.voice_selection.selected = 0
+
+        self.busy_indicator.show(
+            "Loading voices..."
+        )
+
+        self._voice_task = self._async_runner.submit(
+            self._tts.get_voices_for_locale(
+                locale
+            )
+        )
+
+    def _process_locale_task(self):
+
+        if self._locale_task is None:
             return
 
-        task = self._source_locale_task
-        self._source_locale_task = None
+        if not self._locale_task.done():
+            return
+
+        task = self._locale_task
+        self._locale_task = None
 
         try:
 
@@ -687,25 +467,25 @@ class SettingsWindow:
         except Exception as e:
 
             print(
-                "Source locale error:",
+                "TTS locale error:",
                 e
             )
 
-            self.source_voice_selection.options = [
+            self.language_selection.options = [
                 ("", "Error")
             ]
 
-            self.busy_indicator.hide()
+            self.language_selection.selected = 0
 
             return
 
         if not locales:
 
-            self.source_voice_selection.options = [
+            self.language_selection.options = [
                 ("", "No locales")
             ]
 
-            self.busy_indicator.hide()
+            self.language_selection.selected = 0
 
             return
 
@@ -713,6 +493,10 @@ class SettingsWindow:
             (locale, locale)
             for locale in locales
         ]
+
+        self.language_selection.options = options
+
+        selected_index = 0
 
         current_locale = ""
 
@@ -725,59 +509,38 @@ class SettingsWindow:
                 ""
             )
 
-        selected = self._find_option_index(
-            options,
-            current_locale
+        for index, (value, _) in enumerate(options):
+
+            if value == current_locale:
+
+                selected_index = index
+                break
+
+        self.language_selection.selected = selected_index
+
+        selected_locale = (
+            self.language_selection.value
         )
 
-        self.source_language_selection.opened = False
-
-        # Locale is stored separately from language.
-        self._source_locale_options = options
-
-        # Load voices.
-        self._load_source_voice_for_locale(
-            options[selected][0]
+        print(
+            "Locale:",
+            selected_locale
         )
 
-    # --------------------------------------------------
-
-    def _load_source_voice_for_locale(
-        self,
-        locale,
-    ):
-
-        if self._source_voice_task is not None:
-
-            if not self._source_voice_task.done():
-                self._source_voice_task.cancel()
-
-        self.source_voice_selection.options = [
-            ("", "Loading...")
-        ]
-
-        self.source_voice_selection.selected = 0
-
-        self._source_voice_task = (
-            self._async_runner.submit(
-                self._tts.get_voices_for_locale(
-                    locale
-                )
-            )
+        self._load_voices(
+            selected_locale
         )
 
-    # --------------------------------------------------
+    def _process_voice_task(self):
 
-    def _process_source_voice_task(self):
-
-        if self._source_voice_task is None:
+        if self._voice_task is None:
             return
 
-        if not self._source_voice_task.done():
+        if not self._voice_task.done():
             return
 
-        task = self._source_voice_task
-        self._source_voice_task = None
+        task = self._voice_task
+        self._voice_task = None
 
         try:
 
@@ -790,225 +553,27 @@ class SettingsWindow:
         except Exception as e:
 
             print(
-                "Source voice error:",
+                "TTS voice error:",
                 e
             )
 
-            self.source_voice_selection.options = [
+            self.voice_selection.options = [
                 ("", "Error")
             ]
 
-            self.busy_indicator.hide()
-
-            return
-
-        self._set_voice_options(
-            self.source_voice_selection,
-            voices,
-            "phrase_voice"
-        )
-
-        if not self._is_shadowing():
-
-            self.busy_indicator.hide()
-
-    # ==================================================
-    # TARGET LOCALES
-    # ==================================================
-
-    def _load_target_locales(
-        self,
-        language,
-    ):
-
-        if not language:
-            return
-
-        if self._target_locale_task is not None:
-
-            if not self._target_locale_task.done():
-                self._target_locale_task.cancel()
-
-        if self._target_voice_task is not None:
-
-            if not self._target_voice_task.done():
-                self._target_voice_task.cancel()
-
-        self.target_voice_selection.options = [
-            ("", "No voice")
-        ]
-
-        self.target_voice_selection.selected = 0
-
-        self._target_locale_task = (
-            self._async_runner.submit(
-                self._tts.get_locales_for_language(
-                    language
-                )
-            )
-        )
-
-    # --------------------------------------------------
-
-    def _process_target_locale_task(self):
-
-        if self._target_locale_task is None:
-            return
-
-        if not self._target_locale_task.done():
-            return
-
-        task = self._target_locale_task
-        self._target_locale_task = None
-
-        try:
-
-            locales = task.result()
-
-        except asyncio.CancelledError:
-
-            return
-
-        except Exception as e:
-
-            print(
-                "Target locale error:",
-                e
-            )
-
-            self.target_voice_selection.options = [
-                ("", "Error")
-            ]
+            self.voice_selection.selected = 0
 
             self.busy_indicator.hide()
 
             return
-
-        if not locales:
-
-            self.target_voice_selection.options = [
-                ("", "No locales")
-            ]
-
-            self.busy_indicator.hide()
-
-            return
-
-        options = [
-            (locale, locale)
-            for locale in locales
-        ]
-
-        current_locale = ""
-
-        item = self.session.current_item
-
-        if item:
-
-            current_locale = item.get(
-                "translate_locale",
-                ""
-            )
-
-        selected = self._find_option_index(
-            options,
-            current_locale
-        )
-
-        self._target_locale_options = options
-
-        self._load_target_voice_for_locale(
-            options[selected][0]
-        )
-
-    # --------------------------------------------------
-
-    def _load_target_voice_for_locale(
-        self,
-        locale,
-    ):
-
-        if self._target_voice_task is not None:
-
-            if not self._target_voice_task.done():
-                self._target_voice_task.cancel()
-
-        self.target_voice_selection.options = [
-            ("", "Loading...")
-        ]
-
-        self.target_voice_selection.selected = 0
-
-        self._target_voice_task = (
-            self._async_runner.submit(
-                self._tts.get_voices_for_locale(
-                    locale
-                )
-            )
-        )
-
-    # --------------------------------------------------
-
-    def _process_target_voice_task(self):
-
-        if self._target_voice_task is None:
-            return
-
-        if not self._target_voice_task.done():
-            return
-
-        task = self._target_voice_task
-        self._target_voice_task = None
-
-        try:
-
-            voices = task.result()
-
-        except asyncio.CancelledError:
-
-            return
-
-        except Exception as e:
-
-            print(
-                "Target voice error:",
-                e
-            )
-
-            self.target_voice_selection.options = [
-                ("", "Error")
-            ]
-
-            self.busy_indicator.hide()
-
-            return
-
-        self._set_voice_options(
-            self.target_voice_selection,
-            voices,
-            "translate_voice"
-        )
-
-        self.busy_indicator.hide()
-
-    # ==================================================
-    # VOICE OPTIONS
-    # ==================================================
-
-    def _set_voice_options(
-        self,
-        selection,
-        voices,
-        item_key,
-    ):
 
         if not voices:
 
-            selection.options = [
+            self.voice_selection.options = [
                 ("", "No voices")
             ]
 
-            selection.selected = 0
+            self.voice_selection.selected = 0
 
             return
 
@@ -1041,7 +606,7 @@ class SettingsWindow:
                 )
             )
 
-        selection.options = options
+        self.voice_selection.options = options
 
         current_voice = ""
 
@@ -1050,15 +615,354 @@ class SettingsWindow:
         if item:
 
             current_voice = item.get(
-                item_key,
+                "phrase_voice",
                 ""
             )
 
-        selection.selected = (
-            self._find_option_index(
-                options,
-                current_voice
+        selected_index = 0
+
+        for index, (value, _) in enumerate(options):
+
+            if value == current_voice:
+
+                selected_index = index
+                break
+
+        self.voice_selection.selected = selected_index
+
+        self.busy_indicator.hide()
+
+    # ==================================================
+    # TTS - TARGET
+    # ==================================================
+
+    def _load_target_languages(self):
+
+        print("TARGET: start loading languages")
+
+        if self._target_language_task is not None:
+
+            if not self._target_language_task.done():
+                self._target_language_task.cancel()
+
+        self.target_language_selection.options = [
+            ("", "Loading...")
+        ]
+
+        self.target_language_selection.selected = 0
+
+        self._target_language_task = (
+            self._async_runner.submit(
+                self._tts.get_languages()
             )
+        )
+
+    def _process_target_language_task(self):
+
+        print(">>> PROCESS TARGET LANGUAGE TASK")
+
+        if self._target_language_task is None:
+            return
+
+        if not self._target_language_task.done():
+            return
+
+        task = self._target_language_task
+        self._target_language_task = None
+
+        try:
+
+            languages = task.result()
+
+        except asyncio.CancelledError:
+
+            return
+
+        except Exception as e:
+
+            print(
+                "Target language error:",
+                e
+            )
+
+
+            self.target_language_selection.options = [
+                ("", "Error")
+            ]
+
+            self.target_language_selection.selected = 0
+
+            return
+        print("TARGET LANGUAGES:", languages)
+
+        if not languages:
+
+            self.target_language_selection.options = [
+                ("", "No languages")
+            ]
+
+            self.target_language_selection.selected = 0
+
+            return
+
+        options = [
+            (
+                language,
+                language
+            )
+            for language in languages
+        ]
+
+        self.target_language_selection.options = options
+
+        # --------------------------------------------------
+        # По умолчанию TARGET = English
+        # --------------------------------------------------
+
+        selected_index = 0
+
+        for index, (value, _) in enumerate(options):
+
+            if value.lower() == "en":
+
+                selected_index = index
+                break
+
+        self.target_language_selection.selected = selected_index
+
+        selected_language = (
+            self.target_language_selection.value
+        )
+
+        print(
+            "Target language:",
+            selected_language
+        )
+
+        self._load_target_locales(
+            selected_language
+        )
+
+    def _load_target_locales(self, language):
+
+        if not language:
+            return
+
+        if self._target_locale_task is not None:
+
+            if not self._target_locale_task.done():
+                self._target_locale_task.cancel()
+
+        if self._target_voice_task is not None:
+
+            if not self._target_voice_task.done():
+                self._target_voice_task.cancel()
+
+        self.target_locale_selection.options = [
+            ("", "Loading...")
+        ]
+
+        self.target_locale_selection.selected = 0
+
+        self.target_voice_selection.options = [
+            ("", "No voice")
+        ]
+
+        self.target_voice_selection.selected = 0
+
+        self._target_locale_task = (
+            self._async_runner.submit(
+                self._tts.get_locales_for_language(
+                    language
+                )
+            )
+        )
+
+    def _process_target_locale_task(self):
+
+        if self._target_locale_task is None:
+            return
+
+        if not self._target_locale_task.done():
+            return
+
+        task = self._target_locale_task
+        self._target_locale_task = None
+
+        try:
+
+            locales = task.result()
+
+        except asyncio.CancelledError:
+
+            return
+
+        except Exception as e:
+
+            print(
+                "Target locale error:",
+                e
+            )
+
+            self.target_locale_selection.options = [
+                ("", "Error")
+            ]
+
+            self.target_locale_selection.selected = 0
+
+            return
+
+        print("TARGET LOCALES:", locales)
+
+        if not locales:
+
+            self.target_locale_selection.options = [
+                ("", "No locales")
+            ]
+
+            self.target_locale_selection.selected = 0
+
+            return
+
+        options = [
+            (
+                locale,
+                locale
+            )
+            for locale in locales
+        ]
+
+        self.target_locale_selection.options = options
+
+        # --------------------------------------------------
+        # Первый locale
+        # --------------------------------------------------
+
+        self.target_locale_selection.selected = 0
+
+        selected_locale = (
+            self.target_locale_selection.value
+        )
+
+        print(
+            "Target locale:",
+            selected_locale
+        )
+
+        self._load_target_voices(
+            selected_locale
+        )
+
+    def _load_target_voices(self, locale):
+
+        if not locale:
+            return
+
+        if self._target_voice_task is not None:
+
+            if not self._target_voice_task.done():
+                self._target_voice_task.cancel()
+
+        self.target_voice_selection.options = [
+            ("", "Loading...")
+        ]
+
+        self.target_voice_selection.selected = 0
+
+        self._target_voice_task = (
+            self._async_runner.submit(
+                self._tts.get_voices_for_locale(
+                    locale
+                )
+            )
+        )
+
+    def _process_target_voice_task(self):
+
+        if self._target_voice_task is None:
+            return
+
+        if not self._target_voice_task.done():
+            return
+
+        task = self._target_voice_task
+        self._target_voice_task = None
+
+        try:
+
+            voices = task.result()
+
+        except asyncio.CancelledError:
+
+            return
+
+        except Exception as e:
+
+            print(
+                "Target voice error:",
+                e
+            )
+
+            self.target_voice_selection.options = [
+                ("", "Error")
+            ]
+
+            self.target_voice_selection.selected = 0
+
+            return
+
+        print("TARGET VOICES:", voices)
+
+        if not voices:
+
+            self.target_voice_selection.options = [
+                ("", "No voices")
+            ]
+
+            self.target_voice_selection.selected = 0
+
+            return
+
+        options = []
+
+        for voice in voices:
+
+            short_name = voice.get(
+                "short_name",
+                ""
+            )
+
+            gender = voice.get(
+                "gender",
+                ""
+            )
+
+            caption = short_name
+
+            if gender:
+
+                caption += (
+                    f" | {gender}"
+                )
+
+            options.append(
+                (
+                    short_name,
+                    caption
+                )
+            )
+
+        self.target_voice_selection.options = options
+
+        # --------------------------------------------------
+        # Первый голос
+        # --------------------------------------------------
+
+        self.target_voice_selection.selected = 0
+
+        print(
+            "Target voice:",
+            self.target_voice_selection.value
         )
 
     # ==================================================
@@ -1071,28 +975,26 @@ class SettingsWindow:
 
         self._load_current_item_parameters()
 
-        self._load_languages()
-
-    # --------------------------------------------------
+        # TARGET всегда имеет свои независимые параметры.
+        # При каждом открытии окна гарантируем наличие
+        # цепочки language -> locale -> voice.
+        self._load_target_languages()
 
     def hide(self):
 
         self._cancel_tasks()
-
         self.visible = False
-
-    # --------------------------------------------------
 
     def _cancel_tasks(self):
 
         tasks = (
-            self._languages_task,
-            self._source_locale_task,
-            self._target_locale_task,
-            self._source_voice_task,
-            self._target_voice_task,
+            self._locale_task,
+            self._voice_task,
             self._language_task,
             self._generate_task,
+            self._target_language_task,
+            self._target_locale_task,
+            self._target_voice_task,
         )
 
         for task in tasks:
@@ -1102,13 +1004,14 @@ class SettingsWindow:
                 if not task.done():
                     task.cancel()
 
-        self._languages_task = None
-        self._source_locale_task = None
-        self._target_locale_task = None
-        self._source_voice_task = None
-        self._target_voice_task = None
+        self._locale_task = None
+        self._voice_task = None
         self._language_task = None
         self._generate_task = None
+
+        self._target_language_task = None
+        self._target_locale_task = None
+        self._target_voice_task = None
 
         self.busy_indicator.hide()
 
@@ -1120,7 +1023,7 @@ class SettingsWindow:
         self,
         text,
         font,
-        max_width,
+        max_width
     ):
 
         if font.size(text)[0] <= max_width:
@@ -1138,26 +1041,6 @@ class SettingsWindow:
         return "..."
 
     # ==================================================
-    # GENERATOR RUNNER
-    # ==================================================
-
-    async def _run_generator(
-        self,
-        generator,
-        kwargs,
-    ):
-
-        result = generator.generate(
-            **kwargs
-        )
-
-        if inspect.isawaitable(result):
-
-            result = await result
-
-        return result
-
-    # ==================================================
     # UPDATE
     # ==================================================
 
@@ -1167,24 +1050,17 @@ class SettingsWindow:
             return
 
         self.text_edit.update()
-
         self.repeat_edit.update()
-
         self.pause_factor_edit.update()
 
-        self._process_languages_task()
-
         self._process_language_task()
-
-        self._process_source_locale_task()
-
-        self._process_target_locale_task()
-
-        self._process_source_voice_task()
-
-        self._process_target_voice_task()
-
+        self._process_locale_task()
+        self._process_voice_task()
         self._process_generate_task()
+
+        self._process_target_language_task()
+        self._process_target_locale_task()
+        self._process_target_voice_task()
 
         self.busy_indicator.update()
 
@@ -1208,56 +1084,47 @@ class SettingsWindow:
             plan = task.result()
 
         except asyncio.CancelledError:
-
             return
 
         except Exception as e:
 
             print(
-                "Generation error:",
+                "Dictation generation error:",
                 e
             )
 
             self.busy_indicator.hide()
-
             return
 
-        if not plan:
+        self.session.load_data(plan)
 
-            print(
-                "Generator returned empty plan"
-            )
-
-            self.busy_indicator.hide()
-
-            return
-
-        # --------------------------------------------------
-        # Session
-        # --------------------------------------------------
-
-        self.session.load_data(
-            plan
-        )
+        self.busy_indicator.hide()
 
         self.session.save(
             Config.PLAN_SESSION_FILE
         )
 
-        self.busy_indicator.hide()
-
         print()
         print("==============================")
-        print("PLAN GENERATED")
+        print("DICTATION PLAN GENERATED")
         print("==============================")
         print(
-            "Scenario:",
-            self._get_scenario()
-        )
-        print(
             "Items:",
-            len(plan.get("items", []))
+            len(plan["items"])
         )
+        print("------------------------------")
+
+        for item in plan["items"]:
+
+            print(
+                item["item_order"],
+                item["phrase_text"],
+                "| pause:",
+                item["pause_ms"],
+                "| repeat:",
+                item["repeat_count"]
+            )
+
         print("==============================")
         print()
 
@@ -1280,7 +1147,6 @@ class SettingsWindow:
             and event.button == 1
             and self.close_rect.collidepoint(event.pos)
         ):
-
             self.hide()
             return
 
@@ -1291,9 +1157,9 @@ class SettingsWindow:
         if self.busy_indicator.visible:
             return
 
-        # ==================================================
-        # TEXT EDITS
-        # ==================================================
+        # --------------------------------------------------
+        # TextEdit
+        # --------------------------------------------------
 
         text_edits = (
             self.text_edit,
@@ -1353,9 +1219,9 @@ class SettingsWindow:
                     event
                 )
 
-        # ==================================================
-        # SCENARIO
-        # ==================================================
+        # --------------------------------------------------
+        # Scenario
+        # --------------------------------------------------
 
         result = self.scenario_selection.handle_event(
             event
@@ -1372,49 +1238,79 @@ class SettingsWindow:
                 result[1]
             )
 
-            self._load_current_item_parameters()
+            # --------------------------------------------------
+            # При переходе на Shadowing TARGET уже должен
+            # быть заполнен. Если нет — запускаем цепочку.
+            # --------------------------------------------------
 
-            # Перезагружаем языковые данные,
-            # чтобы интерфейс соответствовал сценарию.
-            self._load_languages()
+            if result[1] == "shadowing":
 
-            return
+                if (
+                    not self.target_language_selection.options
+                    or self.target_language_selection.value == ""
+                ):
 
-        # ==================================================
-        # SOURCE LANGUAGE
-        # ==================================================
+                    self._load_target_languages()
 
-        result = (
-            self.source_language_selection.handle_event(
-                event
-            )
+        # --------------------------------------------------
+        # SOURCE language / locale
+        # --------------------------------------------------
+
+        result = self.language_selection.handle_event(
+            event
         )
 
         if result is not None:
 
-            language = result[1]
+            locale = result[1]
 
             print(
-                "Source language:",
-                language
+                "Locale:",
+                locale
             )
 
-            self._load_source_locales(
-                language
+            self._load_voices(
+                locale
             )
 
-            return
+        # --------------------------------------------------
+        # SOURCE voice
+        # --------------------------------------------------
 
-        # ==================================================
-        # TARGET LANGUAGE
-        # ==================================================
+        result = self.voice_selection.handle_event(
+            event
+        )
 
-        if self._is_shadowing():
+        if result is not None:
 
-            result = (
-                self.target_language_selection.handle_event(
-                    event
-                )
+            print(
+                "Voice:",
+                result[1]
+            )
+
+        # --------------------------------------------------
+        # SOURCE locale
+        # --------------------------------------------------
+
+        result = self.source_locale_selection.handle_event(
+            event
+        )
+
+        if result is not None:
+
+            print(
+                "Locale:",
+                result[1]
+            )
+
+        # --------------------------------------------------
+        # TARGET language
+        # --------------------------------------------------
+
+        if self.scenario_provider.get_current() == "shadowing":
+
+            result = self.target_language_selection.handle_event(
+                event
             )
 
             if result is not None:
@@ -1430,37 +1326,37 @@ class SettingsWindow:
                     language
                 )
 
-                return
+        # --------------------------------------------------
+        # TARGET locale
+        # --------------------------------------------------
 
-        # ==================================================
-        # SOURCE VOICE
-        # ==================================================
+        if self.scenario_provider.get_current() == "shadowing":
 
-        result = (
-            self.source_voice_selection.handle_event(
+            result = self.target_locale_selection.handle_event(
                 event
             )
-        )
 
-        if result is not None:
+            if result is not None:
 
-            print(
-                "Source voice:",
-                result[1]
-            )
+                locale = result[1]
 
-            return
-
-        # ==================================================
-        # TARGET VOICE
-        # ==================================================
-
-        if self._is_shadowing():
-
-            result = (
-                self.target_voice_selection.handle_event(
-                    event
+                print(
+                    "Target locale:",
+                    locale
                 )
+
+                self._load_target_voices(
+                    locale
+                )
+
+        # --------------------------------------------------
+        # TARGET voice
+        # --------------------------------------------------
+
+        if self.scenario_provider.get_current() == "shadowing":
+
+            result = self.target_voice_selection.handle_event(
+                event
             )
 
             if result is not None:
@@ -1470,11 +1366,9 @@ class SettingsWindow:
                     result[1]
                 )
 
-                return
-
-        # ==================================================
-        # MOUSE BUTTONS
-        # ==================================================
+        # --------------------------------------------------
+        # Mouse
+        # --------------------------------------------------
 
         if event.type != pygame.MOUSEBUTTONDOWN:
             return
@@ -1494,7 +1388,7 @@ class SettingsWindow:
             return
 
         # --------------------------------------------------
-        # File
+        # Choose source file
         # --------------------------------------------------
 
         if self.file_button_rect.collidepoint(
@@ -1557,26 +1451,7 @@ class SettingsWindow:
 
     def _generate(self):
 
-        # --------------------------------------------------
-        # Duplicate generation
-        # --------------------------------------------------
-
-        if self._generate_task is not None:
-
-            print(
-                "Generation already in progress"
-            )
-
-            return
-
-        # --------------------------------------------------
-        # Text
-        # --------------------------------------------------
-
-        text = (
-            self.text_edit.get_text()
-            .strip()
-        )
+        text = self.text_edit.get_text().strip()
 
         if not text:
 
@@ -1585,10 +1460,6 @@ class SettingsWindow:
             )
 
             return
-
-        # --------------------------------------------------
-        # Session item
-        # --------------------------------------------------
 
         item = self.session.current_item
 
@@ -1599,10 +1470,6 @@ class SettingsWindow:
             )
 
             return
-
-        # --------------------------------------------------
-        # Repeat
-        # --------------------------------------------------
 
         try:
 
@@ -1620,10 +1487,6 @@ class SettingsWindow:
             )
 
             return
-
-        # --------------------------------------------------
-        # Pause factor
-        # --------------------------------------------------
 
         try:
 
@@ -1643,36 +1506,21 @@ class SettingsWindow:
             return
 
         # --------------------------------------------------
-        # Scenario
+        # SOURCE parameters
         # --------------------------------------------------
 
-        scenario = self._get_scenario()
-
-        # --------------------------------------------------
-        # Source language
-        # --------------------------------------------------
-
-        source_language = (
-            self.source_language_selection.value
-        )
-
-        # --------------------------------------------------
-        # Source locale / voice
-        # --------------------------------------------------
-
-        phrase_locale = self._get_selected_locale(
-            source_language,
-            source=True
+        phrase_locale = (
+            self.language_selection.value
         )
 
         phrase_voice = (
-            self.source_voice_selection.value
+            self.voice_selection.value
         )
 
         phrase_code = (
             phrase_locale.split("-")[0].lower()
             if phrase_locale
-            else source_language
+            else ""
         )
 
         phrase_voice_gender = (
@@ -1682,83 +1530,52 @@ class SettingsWindow:
             )
         )
 
-        # --------------------------------------------------
-        # Basic validation
-        # --------------------------------------------------
-
         if (
-            not source_language
+            not phrase_code
             or not phrase_locale
             or not phrase_voice
         ):
 
             print(
-                "Incomplete source voice parameters"
+                "Incomplete voice parameters"
             )
 
             return
 
-        # ==================================================
-        # DICTATION
-        # ==================================================
+        # --------------------------------------------------
+        # Scenario
+        # --------------------------------------------------
 
-        if scenario == "dictation":
+        scenario = (
+            self.scenario_provider.get_current()
+        )
 
-            kwargs = {
-                "text": text,
-                "scenario": scenario,
+        # --------------------------------------------------
+        # TARGET parameters
+        # --------------------------------------------------
 
-                "phrase_code": phrase_code,
-                "phrase_locale": phrase_locale,
-                "phrase_voice": phrase_voice,
-                "phrase_voice_gender": (
-                    phrase_voice_gender
-                ),
+        target_language = ""
+        target_locale = ""
+        target_voice = ""
 
-                "repeat_count": repeat_count,
-                "pause_factor": pause_factor,
-            }
-
-        # ==================================================
-        # SHADOWING
-        # ==================================================
-
-        elif scenario == "shadowing":
+        if scenario == "shadowing":
 
             target_language = (
                 self.target_language_selection.value
             )
 
-            translate_locale = (
-                self._get_selected_locale(
-                    target_language,
-                    source=False
-                )
+            target_locale = (
+                self.target_locale_selection.value
             )
 
-            translate_voice = (
+            target_voice = (
                 self.target_voice_selection.value
-            )
-
-            translate_code = (
-                translate_locale
-                .split("-")[0]
-                .lower()
-                if translate_locale
-                else target_language
-            )
-
-            translate_voice_gender = (
-                item.get(
-                    "translate_voice_gender",
-                    ""
-                )
             )
 
             if (
                 not target_language
-                or not translate_locale
-                or not translate_voice
+                or not target_locale
+                or not target_voice
             ):
 
                 print(
@@ -1767,149 +1584,135 @@ class SettingsWindow:
 
                 return
 
-            kwargs = {
-                "text": text,
+        # --------------------------------------------------
+        # Prevent duplicate generation
+        # --------------------------------------------------
 
-                "source_language": source_language,
-                "target_language": target_language,
-
-                "phrase_code": phrase_code,
-                "phrase_locale": phrase_locale,
-                "phrase_voice": phrase_voice,
-                "phrase_voice_gender": (
-                    phrase_voice_gender
-                ),
-
-                "translate_code": translate_code,
-                "translate_locale": translate_locale,
-                "translate_voice": translate_voice,
-                "translate_voice_gender": (
-                    translate_voice_gender
-                ),
-
-                "speed": 1.0,
-                "repeat_count": repeat_count,
-
-                "pause_factor": pause_factor,
-
-                "pause_min": 500,
-                "pause_max": 5000,
-
-                "set_name": "Shadowing",
-                "set_description": (
-                    "Generated shadowing session"
-                ),
-            }
-
-        else:
+        if self._generate_task is not None:
 
             print(
-                f"Unsupported scenario: {scenario}"
+                "Generation already in progress"
             )
 
             return
 
-        # ==================================================
-        # ROUTER
-        # ==================================================
+        # --------------------------------------------------
+        # Generator Router
+        # --------------------------------------------------
 
         try:
 
-            generator = (
-                self._generator_router.get_generator(
-                    scenario
-                )
+            generator = self._generator_router.get_generator(
+                scenario
             )
 
         except ValueError as e:
 
             print(e)
-
             return
 
-        # ==================================================
-        # START
-        # ==================================================
-
         print(
-            "Generating:",
-            scenario
+            "Generator:",
+            type(generator).__name__
         )
 
         self.busy_indicator.show(
-            f"Generating {scenario}..."
+            "Generating dictation..."
         )
 
         self._generate_task = (
             self._async_runner.submit(
-                self._run_generator(
-                    generator,
-                    kwargs
+                self._generate_plan(
+                    text=text,
+                    scenario=scenario,
+                    phrase_code=phrase_code,
+                    phrase_locale=phrase_locale,
+                    phrase_voice=phrase_voice,
+                    phrase_voice_gender=phrase_voice_gender,
+                    repeat_count=repeat_count,
+                    pause_factor=pause_factor,
+                    target_language=target_language,
+                    target_locale=target_locale,
+                    target_voice=target_voice,
                 )
             )
         )
 
-    # ==================================================
-    # SELECTED LOCALE
-    # ==================================================
-
-    def _get_selected_locale(
-        self,
-        language,
-        source=True,
-    ):
-
-        if source:
-
-            options = getattr(
-                self,
-                "_source_locale_options",
-                []
-            )
-
-        else:
-
-            options = getattr(
-                self,
-                "_target_locale_options",
-                []
-            )
-
-        if not options:
-            return ""
-
-        # --------------------------------------------------
-        # Try current session locale
-        # --------------------------------------------------
-
-        item = self.session.current_item
-
-        key = (
-            "phrase_locale"
-            if source
-            else "translate_locale"
+        print(
+            "Generating dictation plan..."
         )
 
-        current_locale = ""
+    # ==================================================
+    # GENERATE PLAN
+    # ==================================================
 
-        if item:
-
-            current_locale = item.get(
-                key,
-                ""
-            )
-
-        for value, _ in options:
-
-            if value == current_locale:
-
-                return value
+    async def _generate_plan(
+        self,
+        *,
+        text,
+        scenario,
+        phrase_code,
+        phrase_locale,
+        phrase_voice,
+        phrase_voice_gender,
+        repeat_count,
+        pause_factor,
+        target_language="",
+        target_locale="",
+        target_voice="",
+    ):
 
         # --------------------------------------------------
-        # Otherwise first locale
+        # Пока сохраняем существующую рабочую реализацию
+        # генерации Dictation.
         # --------------------------------------------------
 
-        return options[0][0]
+        segmenter = DictationSegmenter()
+
+        result = segmenter.segment(
+            text
+        )
+
+        validated_data = {
+            "original_text": result.original_text,
+
+            "chunks": [
+                {
+                    "text": chunk.text,
+                    "ends_sentence": chunk.ends_sentence,
+                }
+
+                for chunk in result.chunks
+            ],
+
+            "total_chunks": result.total_chunks,
+        }
+
+        builder = DictationPlanBuilder(
+
+            phrase_code=phrase_code,
+            phrase_locale=phrase_locale,
+            phrase_voice=phrase_voice,
+            phrase_voice_gender=phrase_voice_gender,
+
+            speed=1.0,
+            repeat_count=repeat_count,
+
+            pause_factor=pause_factor,
+
+            set_name="Dictation",
+            set_description="Generated dictation session",
+        )
+
+        plan = builder.build(
+            validated_data
+        )
+
+        plan["set"]["set_name"] = (
+            f"Dictation - {scenario}"
+        )
+
+        return plan
 
     # ==================================================
     # DRAW
@@ -1919,10 +1722,6 @@ class SettingsWindow:
 
         if not self.visible:
             return
-
-        # --------------------------------------------------
-        # Fonts
-        # --------------------------------------------------
 
         title_font = pygame.font.Font(
             None,
@@ -1944,9 +1743,9 @@ class SettingsWindow:
             22
         )
 
-        # ==================================================
-        # BACKGROUND
-        # ==================================================
+        # --------------------------------------------------
+        # Background
+        # --------------------------------------------------
 
         pygame.draw.rect(
             screen,
@@ -1963,9 +1762,9 @@ class SettingsWindow:
             border_radius=Theme.DIALOG_RADIUS,
         )
 
-        # ==================================================
-        # TITLE
-        # ==================================================
+        # --------------------------------------------------
+        # Header
+        # --------------------------------------------------
 
         title = title_font.render(
             "Settings",
@@ -1981,9 +1780,15 @@ class SettingsWindow:
             )
         )
 
-        # ==================================================
-        # CLOSE
-        # ==================================================
+        # --------------------------------------------------
+        # Close
+        # --------------------------------------------------
+
+        pygame.draw.rect(
+            screen,
+            Theme.DIALOG_BACKGROUND_COLOR,
+            self.close_rect
+        )
 
         x = self.close_rect
 
@@ -2003,32 +1808,45 @@ class SettingsWindow:
             2,
         )
 
-        # ==================================================
-        # SCENARIO
-        # ==================================================
+        # --------------------------------------------------
+        # Scenario
+        # --------------------------------------------------
 
-        self._draw_caption(
-            screen,
-            caption_font,
+        caption = caption_font.render(
             "Playback scenario",
-            self.scenario_selection.rect
+            True,
+            Theme.DIALOG_TEXT_COLOR
         )
 
-        # ==================================================
-        # SOURCE FILE
-        # ==================================================
-
-        self._draw_caption(
-            screen,
-            caption_font,
-            "Source text",
-            pygame.Rect(
-                self.file_button_rect.x,
-                self.file_button_rect.y,
-                self.file_button_rect.width,
-                self.file_button_rect.height
+        screen.blit(
+            caption,
+            (
+                self.scenario_selection.rect.x,
+                self.scenario_selection.rect.y - 25
             )
         )
+
+        # --------------------------------------------------
+        # Source text
+        # --------------------------------------------------
+
+        caption = caption_font.render(
+            "Source text",
+            True,
+            Theme.DIALOG_TEXT_COLOR
+        )
+
+        screen.blit(
+            caption,
+            (
+                self.scenario_selection.rect.x + 425,
+                self.scenario_selection.rect.y - 25
+            )
+        )
+
+        # --------------------------------------------------
+        # File button
+        # --------------------------------------------------
 
         pygame.draw.rect(
             screen,
@@ -2051,6 +1869,10 @@ class SettingsWindow:
             )
         )
 
+        # --------------------------------------------------
+        # File name
+        # --------------------------------------------------
+
         if self.source_file:
 
             filename = Path(
@@ -2062,7 +1884,7 @@ class SettingsWindow:
                 caption_font,
                 self.rect.right
                 - self.file_button_rect.right
-                - 45
+                - 30
             )
 
             file_text = caption_font.render(
@@ -2079,102 +1901,129 @@ class SettingsWindow:
                 )
             )
 
-        # ==================================================
-        # TEXT
-        # ==================================================
+        # --------------------------------------------------
+        # TextEdit
+        # --------------------------------------------------
 
-        self._draw_caption(
-            screen,
-            caption_font,
+        caption = caption_font.render(
             "Text",
-            self.text_edit.rect
+            True,
+            Theme.DIALOG_TEXT_COLOR
+        )
+
+        screen.blit(
+            caption,
+            (
+                self.text_edit.rect.x,
+                self.text_edit.rect.y - 25
+            )
         )
 
         self.text_edit.draw(
             screen
         )
 
-        # ==================================================
-        # SOURCE LANGUAGE
-        # ==================================================
+        # --------------------------------------------------
+        # SOURCE Language
+        # --------------------------------------------------
 
-        self._draw_caption(
-            screen,
-            caption_font,
-            "Source language",
-            self.source_language_selection.rect
+        caption = caption_font.render(
+            "Language",
+            True,
+            Theme.DIALOG_TEXT_COLOR
         )
 
-        # ==================================================
-        # TARGET LANGUAGE
-        # ==================================================
-
-        if self._is_shadowing():
-
-            self._draw_caption(
-                screen,
-                caption_font,
-                "Target language",
-                self.target_language_selection.rect
+        screen.blit(
+            caption,
+            (
+                self.language_selection.rect.x,
+                self.language_selection.rect.y - 25
             )
-
-        # ==================================================
-        # SOURCE VOICE
-        # ==================================================
-
-        self._draw_caption(
-            screen,
-            caption_font,
-            "Source voice",
-            self.source_voice_selection.rect
         )
 
-        # ==================================================
-        # TARGET VOICE
-        # ==================================================
+        # --------------------------------------------------
+        # SOURCE Locale
+        # --------------------------------------------------
 
-        if self._is_shadowing():
+        caption = caption_font.render(
+            "Locale",
+            True,
+            Theme.DIALOG_TEXT_COLOR
+        )
 
-            self._draw_caption(
-                screen,
-                caption_font,
-                "Target voice",
-                self.target_voice_selection.rect
+        screen.blit(
+            caption,
+            (
+                self.source_locale_selection.rect.x,
+                self.source_locale_selection.rect.y - 25
             )
+        )
 
-        # ==================================================
-        # REPEAT
-        # ==================================================
+        # --------------------------------------------------
+        # SOURCE Voice
+        # --------------------------------------------------
 
-        self._draw_caption(
-            screen,
-            caption_font,
+        caption = caption_font.render(
+            "Voice",
+            True,
+            Theme.DIALOG_TEXT_COLOR
+        )
+
+        screen.blit(
+            caption,
+            (
+                self.voice_selection.rect.x,
+                self.voice_selection.rect.y - 25
+            )
+        )
+
+        # --------------------------------------------------
+        # Repeat count
+        # --------------------------------------------------
+
+        caption = caption_font.render(
             "Repeat count",
-            self.repeat_edit.rect
+            True,
+            Theme.DIALOG_TEXT_COLOR
+        )
+
+        screen.blit(
+            caption,
+            (
+                self.repeat_edit.rect.x,
+                self.repeat_edit.rect.y - 25
+            )
         )
 
         self.repeat_edit.draw(
             screen
         )
 
-        # ==================================================
-        # PAUSE
-        # ==================================================
+        # --------------------------------------------------
+        # Pause factor
+        # --------------------------------------------------
 
-        self._draw_caption(
-            screen,
-            caption_font,
+        caption = caption_font.render(
             "Pause factor",
-            self.pause_factor_edit.rect
+            True,
+            Theme.DIALOG_TEXT_COLOR
+        )
+
+        screen.blit(
+            caption,
+            (
+                self.pause_factor_edit.rect.x,
+                self.pause_factor_edit.rect.y - 25
+            )
         )
 
         self.pause_factor_edit.draw(
             screen
         )
 
-        # ==================================================
-        # GENERATE
-        # ==================================================
+        # --------------------------------------------------
+        # Generate
+        # --------------------------------------------------
 
         pygame.draw.rect(
             screen,
@@ -2197,73 +2046,101 @@ class SettingsWindow:
             )
         )
 
-        # ==================================================
-        # DROPDOWNS
-        # ==================================================
+        # --------------------------------------------------
+        # TARGET captions
+        # --------------------------------------------------
 
-        # Рисуем dropdown последними.
-        # Это важно, чтобы они были поверх остальных
-        # элементов интерфейса.
+        if self.scenario_provider.get_current() == "shadowing":
 
-        self.source_language_selection.draw(
-            screen,
-            list_font
-        )
-
-        if self._is_shadowing():
-
-            self.target_language_selection.draw(
-                screen,
-                list_font
+            caption = caption_font.render(
+                "Target language",
+                True,
+                Theme.DIALOG_TEXT_COLOR
             )
 
-        self.source_voice_selection.draw(
-            screen,
-            list_font
-        )
-
-        if self._is_shadowing():
-
-            self.target_voice_selection.draw(
-                screen,
-                list_font
+            screen.blit(
+                caption,
+                (
+                    self.target_language_selection.rect.x,
+                    self.target_language_selection.rect.y - 25
+                )
             )
+
+            caption = caption_font.render(
+                "Target locale",
+                True,
+                Theme.DIALOG_TEXT_COLOR
+            )
+
+            screen.blit(
+                caption,
+                (
+                    self.target_locale_selection.rect.x,
+                    self.target_locale_selection.rect.y - 25
+                )
+            )
+
+            caption = caption_font.render(
+                "Target voice",
+                True,
+                Theme.DIALOG_TEXT_COLOR
+            )
+
+            screen.blit(
+                caption,
+                (
+                    self.target_voice_selection.rect.x,
+                    self.target_voice_selection.rect.y - 25
+                )
+            )
+
+        # --------------------------------------------------
+        # Dropdowns
+        #
+        # Рисуем последними.
+        # --------------------------------------------------
 
         self.scenario_selection.draw(
             screen,
             list_font
         )
 
-        # ==================================================
-        # BUSY
-        # ==================================================
+        if self.scenario_provider.get_current() == "shadowing":
+
+            self.target_language_selection.draw(
+                screen,
+                list_font
+            )
+
+            self.target_locale_selection.draw(
+                screen,
+                list_font
+            )
+
+            self.target_voice_selection.draw(
+                screen,
+                list_font
+            )
+
+        self.voice_selection.draw(
+            screen,
+            list_font
+        )
+
+        self.language_selection.draw(
+            screen,
+            list_font
+        )
+
+        self.source_locale_selection.draw(
+            screen,
+            list_font
+        )
+
+        # --------------------------------------------------
+        # Busy indicator
+        # --------------------------------------------------
 
         self.busy_indicator.draw(
             screen
-        )
-
-    # ==================================================
-    # DRAW CAPTION
-    # ==================================================
-
-    def _draw_caption(
-        self,
-        screen,
-        font,
-        text,
-        rect,
-    ):
-
-        caption = font.render(
-            text,
-            True,
-            Theme.DIALOG_TEXT_COLOR
-        )
-
-        screen.blit(
-            caption,
-            (
-                rect.x,
-                rect.y - 25
-            )
         )
