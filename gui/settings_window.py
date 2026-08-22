@@ -56,6 +56,7 @@ class SettingsWindow:
 
         self.source_file = ""
         self.source_text = ""
+        self.source_language = ""
 
         # --------------------------------------------------
         # TTS
@@ -125,20 +126,7 @@ class SettingsWindow:
         # --------------------------------------------------
         # Language / Locale
         # --------------------------------------------------
-        # --------------------------------------------------
-        # SOURCE LANGUAGE
-        # --------------------------------------------------
 
-        self.language_selection = ListSelection(
-            pygame.Rect(
-                self.rect.x + 30,
-                self.rect.y + 405,
-                170,
-                30
-            ),
-            [("", "Loading...")],
-            0
-        )
 
         # --------------------------------------------------
         # SOURCE LOCALE
@@ -146,9 +134,9 @@ class SettingsWindow:
 
         self.source_locale_selection = ListSelection(
             pygame.Rect(
-                self.rect.x + 215,
+                self.rect.x + 30,
                 self.rect.y + 405,
-                self.rect.width - 245,
+                self.rect.width - 60,
                 30
             ),
             [("", "Loading...")],
@@ -317,7 +305,7 @@ class SettingsWindow:
         if not self._language_task.done():
             return
 
-        task = self._language_task
+        task = self._language_task 
         self._language_task = None
 
         try:
@@ -348,7 +336,7 @@ class SettingsWindow:
         # --------------------------------------------------
         # Загружаем locale для языка
         # --------------------------------------------------
-
+        self.source_language = language
         self._load_locales(language)
 
     # ==================================================
@@ -374,11 +362,11 @@ class SettingsWindow:
         if locale:
 
             # Показываем текущий locale.
-            self.language_selection.options = [
+            self.source_locale_selection.options = [
                 (locale, locale)
             ]
 
-            self.language_selection.selected = 0
+            self.source_locale_selection.selected = 0
 
             # Загружаем голоса именно этого locale.
             self._load_voices(locale)
@@ -441,11 +429,11 @@ class SettingsWindow:
         # Показываем Loading...
         # --------------------------------------------------
 
-        self.language_selection.options = [
+        self.source_locale_selection.options = [
             ("", "Loading...")
         ]
 
-        self.language_selection.selected = 0
+        self.source_locale_selection.selected = 0
 
         # --------------------------------------------------
         # Загружаем locale
@@ -841,12 +829,11 @@ class SettingsWindow:
                 "TTS locale error:",
                 e
             )
-
-            self.language_selection.options = [
+            self.source_locale_selection.options = [
                 ("", "Error")
             ]
 
-            self.language_selection.selected = 0
+            self.source_locale_selection.selected = 0
 
             return
 
@@ -856,11 +843,11 @@ class SettingsWindow:
 
         if not locales:
 
-            self.language_selection.options = [
+            self.source_locale_selection.options = [
                 ("", "No locales")
             ]
 
-            self.language_selection.selected = 0
+            self.source_locale_selection.selected = 0
 
             return
 
@@ -1070,6 +1057,9 @@ class SettingsWindow:
             self._voice_task,
             self._language_task,
             self._generate_task,
+            self._target_language_task,
+            self._target_locale_task,
+            self._target_voice_task,
         )
 
         for task in tasks:
@@ -1083,6 +1073,10 @@ class SettingsWindow:
         self._voice_task = None
         self._language_task = None
         self._generate_task = None
+
+        self._target_language_task = None
+        self._target_locale_task = None
+        self._target_voice_task = None
 
         self.busy_indicator.hide()
 
@@ -1324,25 +1318,6 @@ class SettingsWindow:
         # Поэтому после выбора загружаем VOICES.
         # --------------------------------------------------
 
-        result = self.language_selection.handle_event(
-            event
-        )
-
-        if result is not None:
-
-            locale = result[1]
-
-            print(
-                "Locale:",
-                locale
-            )
-
-            # ВАЖНО:
-            # locale -> voices
-            self._load_voices(
-                locale
-            )
-
         # --------------------------------------------------
         # Voice
         # --------------------------------------------------
@@ -1368,11 +1343,11 @@ class SettingsWindow:
 
         if result is not None:
 
-            print(
-                "Locale:",
-                result[1]
-            )
+            locale = result[1]
 
+            print("Locale:", locale )
+
+            self._load_voices( locale )
 
         # --------------------------------------------------
         # Target language
@@ -1612,7 +1587,7 @@ class SettingsWindow:
         # --------------------------------------------------
 
         phrase_locale = (
-            self.language_selection.value
+            self.source_locale_selection.value
         )
 
         phrase_voice = (
@@ -2008,24 +1983,6 @@ class SettingsWindow:
         )
 
         # --------------------------------------------------
-        # Language / Locale
-        # --------------------------------------------------
-
-        caption = caption_font.render(
-            "Language",
-            True,
-            Theme.DIALOG_TEXT_COLOR
-        )
-
-        screen.blit(
-            caption,
-            (
-                self.language_selection.rect.x,
-                self.language_selection.rect.y - 25
-            )
-        )
-
-        # --------------------------------------------------
         # Source / Locale
         # --------------------------------------------------
 
@@ -2206,10 +2163,6 @@ class SettingsWindow:
             list_font
         )
 
-        self.language_selection.draw(
-            screen,
-            list_font
-        )
 
         self.source_locale_selection.draw(
             screen,
