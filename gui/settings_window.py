@@ -1551,7 +1551,6 @@ class SettingsWindow:
             )
 
             if repeat_count < 1:
-
                 raise ValueError
 
         except ValueError:
@@ -1559,7 +1558,6 @@ class SettingsWindow:
             print(
                 "Invalid repeat count"
             )
-
             return
 
         # --------------------------------------------------
@@ -1573,7 +1571,6 @@ class SettingsWindow:
             )
 
             if pause_factor <= 0:
-
                 raise ValueError
 
         except ValueError:
@@ -1581,44 +1578,6 @@ class SettingsWindow:
             print(
                 "Invalid pause factor"
             )
-
-            return
-
-        # --------------------------------------------------
-        # Selected locale / voice
-        # --------------------------------------------------
-
-        phrase_locale = (
-            self.source_locale_selection.value
-        )
-
-        phrase_voice = (
-            self.voice_selection.value
-        )
-
-        phrase_code = (
-            phrase_locale.split("-")[0].lower()
-            if phrase_locale
-            else ""
-        )
-
-        phrase_voice_gender = (
-            item.get(
-                "phrase_voice_gender",
-                ""
-            )
-        )
-
-        if (
-            not phrase_code
-            or not phrase_locale
-            or not phrase_voice
-        ):
-
-            print(
-                "Incomplete voice parameters"
-            )
-
             return
 
         # --------------------------------------------------
@@ -1642,8 +1601,45 @@ class SettingsWindow:
             return
 
         # --------------------------------------------------
-        # Generate
+        # Source parameters
         # --------------------------------------------------
+
+        phrase_locale = (
+            self.source_locale_selection.value
+        )
+
+        phrase_voice = (
+            self.voice_selection.value
+        )
+
+        phrase_code = (
+            self.source_language
+            if self.source_language
+            else (
+                phrase_locale.split("-")[0].lower()
+                if phrase_locale
+                else ""
+            )
+        )
+
+        phrase_voice_gender = (
+            item.get(
+                "phrase_voice_gender",
+                ""
+            )
+        )
+
+        if (
+            not phrase_code
+            or not phrase_locale
+            or not phrase_voice
+        ):
+
+            print(
+                "Incomplete source voice parameters"
+            )
+
+            return
 
         # --------------------------------------------------
         # Generator Router
@@ -1665,29 +1661,116 @@ class SettingsWindow:
             type(generator).__name__
         )
 
+        # ==================================================
+        # DICTATION
+        # ==================================================
 
-        self.busy_indicator.show(
-            "Generating dictation..."
-        )
+        if scenario == "dictation":
 
-        self._generate_task = (
-            self._async_runner.submit(
-                self._generate_plan(
-                    text=text,
-                    scenario=scenario,
-                    phrase_code=phrase_code,
-                    phrase_locale=phrase_locale,
-                    phrase_voice=phrase_voice,
-                    phrase_voice_gender=phrase_voice_gender,
-                    repeat_count=repeat_count,
-                    pause_factor=pause_factor,
+            self.busy_indicator.show(
+                "Generating dictation..."
+            )
+
+            self._generate_task = (
+                self._async_runner.submit(
+                    generator.generate(
+                        text=text,
+                        scenario=scenario,
+
+                        phrase_code=phrase_code,
+                        phrase_locale=phrase_locale,
+                        phrase_voice=phrase_voice,
+                        phrase_voice_gender=phrase_voice_gender,
+
+                        repeat_count=repeat_count,
+                        pause_factor=pause_factor,
+                    )
                 )
             )
-        )
+
+        # ==================================================
+        # SHADOWING
+        # ==================================================
+
+        elif scenario == "shadowing":
+
+            target_language = (
+                self.target_language_selection.value
+            )
+
+            target_locale = (
+                self.target_locale_selection.value
+            )
+
+            target_voice = (
+                self.target_voice_selection.value
+            )
+
+            if (
+                not target_language
+                or not target_locale
+                or not target_voice
+            ):
+
+                print(
+                    "Incomplete target voice parameters"
+                )
+
+                return
+
+            # --------------------------------------------------
+            # Target parameters
+            # --------------------------------------------------
+
+            translate_code = target_language
+            translate_locale = target_locale
+            translate_voice = target_voice
+
+            translate_voice_gender = ""
+
+            # --------------------------------------------------
+            # Generate
+            # --------------------------------------------------
+
+            self.busy_indicator.show(
+                "Generating shadowing..."
+            )
+
+            self._generate_task = (
+                self._async_runner.submit(
+                    generator.generate(
+                        text=text,
+
+                        source_language=self.source_language,
+                        target_language=target_language,
+
+                        phrase_code=phrase_code,
+                        phrase_locale=phrase_locale,
+                        phrase_voice=phrase_voice,
+                        phrase_voice_gender=phrase_voice_gender,
+
+                        translate_code=translate_code,
+                        translate_locale=translate_locale,
+                        translate_voice=translate_voice,
+                        translate_voice_gender=translate_voice_gender,
+
+                        repeat_count=repeat_count,
+                        pause_factor=pause_factor,
+                    )
+                )
+            )
+
+        else:
+
+            print(
+                f"Unsupported generation scenario: {scenario}"
+            )
+
+            return
 
         print(
-            "Generating dictation plan..."
-        )
+            "Generating plan..."
+        )    
 
     # ==================================================
     # GENERATE PLAN
