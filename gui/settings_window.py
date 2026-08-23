@@ -55,7 +55,12 @@ class SettingsWindow:
         # --------------------------------------------------
 
         self.source_file = ""
-        self.source_text = ""
+
+        self.source_text = "You can type text in it windows or load text from file. For it press button ""Choose file"". " \
+        "After load ""Locale"" and ""Voice"" will be recognized and set automatically." \
+        " For some selectetd scenarios exist  the posible of generation plan of training ssesion from a text." \
+        " Press button ""generate"" for it function."
+
         self.source_language = ""
 
         # --------------------------------------------------
@@ -91,7 +96,7 @@ class SettingsWindow:
             pygame.Rect(
                 self.rect.x + 30,
                 self.rect.y + 80,
-                400,
+                300,
                 30
             ),
             self.scenario_provider.get_scenario_list(),
@@ -103,7 +108,7 @@ class SettingsWindow:
         # --------------------------------------------------
 
         self.file_button_rect = pygame.Rect(
-            self.rect.x + 450,
+            self.rect.x + self.rect.width-150,
             self.rect.y + 80,
             120,
             32
@@ -118,11 +123,11 @@ class SettingsWindow:
                 self.rect.x + 30,
                 self.rect.y + 150,
                 self.rect.width - 60,
-                200
+                self.rect.height -500
             ),
             pygame.font.Font(None, 24)
         )
-
+        self.text_edit.set_text(self.source_text) # Inserting help as first one text
         # --------------------------------------------------
         # Language / Locale
         # --------------------------------------------------
@@ -135,8 +140,8 @@ class SettingsWindow:
         self.source_locale_selection = ListSelection(
             pygame.Rect(
                 self.rect.x + 30,
-                self.rect.y + 405,
-                self.rect.width - 60,
+                self.rect.y + self.rect.height - 300,
+                100,
                 30
             ),
             [("", "Loading...")],
@@ -149,9 +154,9 @@ class SettingsWindow:
 
         self.voice_selection = ListSelection(
             pygame.Rect(
-                self.rect.x + 30,
-                self.rect.y + 470,
-                self.rect.width - 60,
+                self.rect.x + 150,
+                self.rect.y + self.rect.height - 300,
+                self.rect.width - 180,
                 30
             ),
             [("", "Loading...")],
@@ -165,8 +170,8 @@ class SettingsWindow:
         self.target_language_selection = ListSelection(
             pygame.Rect(
                 self.rect.x + 30,
-                self.rect.y + 565,
-                170,
+                self.rect.y + self.rect.height - 220,
+                100,
                 30
             ),
             [("", "Loading...")],
@@ -179,9 +184,9 @@ class SettingsWindow:
 
         self.target_locale_selection = ListSelection(
             pygame.Rect(
-                self.rect.x + 215,
-                self.rect.y + 565,
-                self.rect.width - 245,
+                self.rect.x + 150,
+                self.rect.y + self.rect.height - 220,
+                100 ,
                 30
             ),
             [("", "Loading...")],
@@ -195,7 +200,7 @@ class SettingsWindow:
         self.target_voice_selection = ListSelection(
             pygame.Rect(
                 self.rect.x + 30,
-                self.rect.y + 630,
+                self.rect.y + self.rect.height - 140,
                 self.rect.width - 60,
                 30
             ),
@@ -210,7 +215,7 @@ class SettingsWindow:
         self.repeat_edit = TextEdit(
             pygame.Rect(
                 self.rect.x + 30,
-                self.rect.y + 700,
+                self.rect.y + self.rect.height - 60,
                 100,
                 30
             ),
@@ -224,7 +229,7 @@ class SettingsWindow:
         self.pause_factor_edit = TextEdit(
             pygame.Rect(
                 self.rect.x + 240,
-                self.rect.y + 700,
+                self.rect.y + self.rect.height - 60,
                 100,
                 30
             ),
@@ -236,8 +241,8 @@ class SettingsWindow:
         # --------------------------------------------------
 
         self.generate_button_rect = pygame.Rect(
-            self.rect.x + 440,
-            self.rect.y + 700,
+            self.rect.x + 410,
+            self.rect.y + self.rect.height - 60,
             100,
             30
         )
@@ -803,7 +808,6 @@ class SettingsWindow:
         )
 
     # --------------------------------------------------
-
     def _process_locale_task(self):
 
         if self._locale_task is None:
@@ -829,6 +833,7 @@ class SettingsWindow:
                 "TTS locale error:",
                 e
             )
+
             self.source_locale_selection.options = [
                 ("", "Error")
             ]
@@ -852,7 +857,7 @@ class SettingsWindow:
             return
 
         # --------------------------------------------------
-        # Создаём список locale
+        # Создаём список SOURCE LOCALE
         # --------------------------------------------------
 
         options = [
@@ -860,7 +865,7 @@ class SettingsWindow:
             for locale in locales
         ]
 
-        self.language_selection.options = options
+        self.source_locale_selection.options = options
 
         # --------------------------------------------------
         # По умолчанию выбираем первый locale
@@ -891,27 +896,24 @@ class SettingsWindow:
                 selected_index = index
                 break
 
-        self.language_selection.selected = selected_index
+        self.source_locale_selection.selected = selected_index
 
         # --------------------------------------------------
-        # ВАЖНО:
-        # сразу загружаем голоса выбранного locale
+        # Сразу загружаем голоса выбранного SOURCE LOCALE
         # --------------------------------------------------
 
         selected_locale = (
-            self.language_selection.value
+            self.source_locale_selection.value
         )
 
         print(
-            "Locale:",
+            "Source locale:",
             selected_locale
         )
 
         self._load_voices(
             selected_locale
         )
-
-    # --------------------------------------------------
 
     def _process_voice_task(self):
 
@@ -1896,10 +1898,9 @@ class SettingsWindow:
         screen.blit(
             caption,
             (
-                #self.rect.x + 30,
-                #self.rect.y + 145
-                self.scenario_selection.rect.x + 425,
-                self.scenario_selection.rect.y -25
+                self.file_button_rect.x ,
+                self.file_button_rect.y - 25
+
             )
         )
 
@@ -1941,13 +1942,11 @@ class SettingsWindow:
             filename = self._fit_text(
                 filename,
                 caption_font,
-                self.rect.right
-                - self.file_button_rect.right
-                - 30
+                300
             )
 
             file_text = caption_font.render(
-                filename,
+                "of file:  "+filename,
                 True,
                 Theme.DIALOG_TEXT_COLOR
             )
@@ -1955,8 +1954,10 @@ class SettingsWindow:
             screen.blit(
                 file_text,
                 (
-                    self.file_button_rect.right + 15,
-                    self.file_button_rect.y + 7
+                    self.text_edit.rect.x + 35,
+                    self.text_edit.rect.y - 25
+                    #self.file_button_rect.right - 400,
+                    #self.file_button_rect.y + 45
                 )
             )
 
@@ -2090,7 +2091,7 @@ class SettingsWindow:
         if self.scenario_provider.get_current() == "shadowing":
 
             caption = caption_font.render(
-                "Target language",
+                "Target lang.",
                 True,
                 Theme.DIALOG_TEXT_COLOR
             )
