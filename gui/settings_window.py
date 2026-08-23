@@ -14,8 +14,6 @@ from gui.widgets.busy_indicator import BusyIndicator
 from audio.tts import TTS
 from audio.async_runner import AsyncRunner
 
-from ai.dictation_segmenter import DictationSegmenter
-from ai.dictation_plan import DictationPlanBuilder
 from ai.language_detector import LanguageDetector
 from ai.generators.generator_router import GeneratorRouter
 
@@ -56,10 +54,13 @@ class SettingsWindow:
 
         self.source_file = ""
 
-        self.source_text = "You can type text in it windows or load text from file. For it press button ""Choose file"". " \
-        "After load ""Locale"" and ""Voice"" will be recognized and set automatically." \
-        " For some selectetd scenarios exist  the posible of generation plan of training ssesion from a text." \
-        " Press button ""generate"" for it function."
+        self.source_text = ( #Initial help in the text window
+            'You can type text here or load text from a file. '
+            'To do this, press the "Choose file..." button. '
+            'After loading, the source locale and voice will be detected automatically. '
+            'For some scenarios, you can generate a training session from the text. '
+            'Press "Generate" to create the plan.'
+        )
 
         self.source_language = ""
 
@@ -128,10 +129,10 @@ class SettingsWindow:
             pygame.font.Font(None, 24)
         )
         self.text_edit.set_text(self.source_text) # Inserting help as first one text
-        # --------------------------------------------------
-        # Language / Locale
-        # --------------------------------------------------
 
+        # --------------------------------------------------
+        # Source locale / voice
+        # --------------------------------------------------
 
         # --------------------------------------------------
         # SOURCE LOCALE
@@ -951,11 +952,6 @@ class SettingsWindow:
 
             return
 
-        # print(
-        #     "VOICE TASK RESULT:",
-        #     voices
-        # )
-
         # --------------------------------------------------
         # Нет голосов
         # --------------------------------------------------
@@ -1157,7 +1153,7 @@ class SettingsWindow:
         except Exception as e:
 
             print(
-                "Dictation generation error:",
+                "Generation error:",
                 e
             )
             self.busy_indicator.hide()
@@ -1176,14 +1172,14 @@ class SettingsWindow:
         )
 
         print()
-        print("==============================")
-        print("DICTATION PLAN GENERATED")
-        print("==============================")
+        print("==============")
+        print("PLAN GENERATED")
+        print("==============")
         print(
             "Items:",
             len(plan["items"])
         )
-        print("------------------------------")
+        print("--------------")
 
         for item in plan["items"]:
 
@@ -1311,14 +1307,6 @@ class SettingsWindow:
                 result[1]
             )
 
-        # --------------------------------------------------
-        # Language / Locale
-        #
-        # Здесь language_selection уже содержит locale:
-        # en-AU, en-CA, en-GB...
-        #
-        # Поэтому после выбора загружаем VOICES.
-        # --------------------------------------------------
 
         # --------------------------------------------------
         # Voice
@@ -1668,7 +1656,7 @@ class SettingsWindow:
         if scenario == "dictation":
 
             self.busy_indicator.show(
-                "Generating dictation..."
+                "Generating plan..."
             )
 
             self._generate_task = (
@@ -1733,7 +1721,7 @@ class SettingsWindow:
             # --------------------------------------------------
 
             self.busy_indicator.show(
-                "Generating shadowing..."
+                "Generating plan..."
             )
 
             self._generate_task = (
@@ -1771,86 +1759,6 @@ class SettingsWindow:
         print(
             "Generating plan..."
         )    
-
-    # ==================================================
-    # GENERATE PLAN
-    # ==================================================
-
-    async def _generate_plan(
-        self,
-        *,
-        text,
-        scenario,
-        phrase_code,
-        phrase_locale,
-        phrase_voice,
-        phrase_voice_gender,
-        repeat_count,
-        pause_factor,
-    ):
-
-        # --------------------------------------------------
-        # AI segmentation
-        # --------------------------------------------------
-
-        segmenter = DictationSegmenter()
-
-        result = segmenter.segment(
-            text
-        )
-
-        # --------------------------------------------------
-        # Convert Pydantic model
-        # --------------------------------------------------
-
-        validated_data = {
-            "original_text": result.original_text,
-
-            "chunks": [
-                {
-                    "text": chunk.text,
-                    "ends_sentence": chunk.ends_sentence,
-                }
-
-                for chunk in result.chunks
-            ],
-
-            "total_chunks": result.total_chunks,
-        }
-
-        # --------------------------------------------------
-        # Build plan
-        # --------------------------------------------------
-
-        builder = DictationPlanBuilder(
-
-            phrase_code=phrase_code,
-            phrase_locale=phrase_locale,
-            phrase_voice=phrase_voice,
-            phrase_voice_gender=phrase_voice_gender,
-
-            speed=1.0,
-            repeat_count=repeat_count,
-
-            pause_factor=pause_factor,
-
-            set_name="Dictation",
-            set_description="Generated dictation session",
-        )
-
-        plan = builder.build(
-            validated_data
-        )
-
-        # --------------------------------------------------
-        # Store scenario information
-        # --------------------------------------------------
-
-        plan["set"]["set_name"] = (
-            f"Dictation - {scenario}"
-        )
-
-        return plan
 
     # ==================================================
     # DRAW
@@ -2066,9 +1974,9 @@ class SettingsWindow:
             screen
         )
 
-        # --------------------------------------------------
-        # Source / Locale
-        # --------------------------------------------------
+        # -----------------
+        # Source Locale
+        # -----------------
 
         caption = caption_font.render(
             "Locale",
