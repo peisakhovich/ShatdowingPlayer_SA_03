@@ -15,12 +15,14 @@ from session.providers.guest_provider import GuestProvider
 from session.session import Session
 from audio.player import Player
 from audio.scenario_provider import ScenarioProvider
+from core.logger import logger
 
 
 class Application:
 
     def __init__(self):
 
+        logger.info("Start Application")
         pygame.init()
 
         if not Config.PLAN_SESSION_FILE.exists():
@@ -91,4 +93,5 @@ class Application:
 
             pygame.display.flip()
 
+        logger.info("Finsh Application")
         pygame.quit()

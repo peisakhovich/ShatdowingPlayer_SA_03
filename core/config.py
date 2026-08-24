@@ -25,4 +25,8 @@ class Config:
 
     #AUDIO_CACHE_PATH = "SA_O3/data/audio_cache"
     AUDIO_CACHE_PATH = f"C:\\Users\\liudm\\SadowingApp\\tmp\\audio_cache"
+
+    # Logging
+    LOG_MODE = "logging"      # "print" | "logging" | "stop"
+    LOG_FILE = Path("logs/sa_03.log")
     

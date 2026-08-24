@@ -19,6 +19,7 @@ from ai.generators.generator_router import GeneratorRouter
 
 from core.config import Config
 from gui.dialogs.dialog import Dialog
+from core.logger import logger
 
 
 class SettingsWindow:
@@ -296,11 +297,11 @@ class SettingsWindow:
             title="Language mismatch",
 
             message=(
-                f"Text language: {detected_language}, "
-                f"current language: {self.source_language}.\n\n"
-                "Set current language to the text language?"
+                f"The current text language is: {detected_language}, "
+                f"but the current language is: {self.source_language}.\n\n"
+                "Do you want to change the current language to the text language?"
             ),
-            
+
             buttons=[
                 "Yes",
                 "No",
@@ -376,7 +377,7 @@ class SettingsWindow:
 
         except Exception as e:
 
-            print(
+            logger.error(
                 "AI language detection error:",
                 e
             )
@@ -390,7 +391,7 @@ class SettingsWindow:
             self.busy_indicator.hide()
             return
 
-        print(
+        logger.info(
             "Detected language:",
             language
         )
@@ -401,7 +402,7 @@ class SettingsWindow:
 
         if self._language_check_for_generate:
 
-            print(
+            logger.debug(
                 "Generate language check:",
                 "source =", self.source_language,
                 "detected =", language
@@ -427,7 +428,7 @@ class SettingsWindow:
             # Язык совпадает
             # --------------------------------------------------
 
-            print(
+            logger.debug(
                 "Source language matches."
             )
 
@@ -460,7 +461,7 @@ class SettingsWindow:
         if not item:
             return
 
-        print(
+        logger.debug(
             "INITIAL ITEM:",
             "phrase_code =", item.get("phrase_code", ""),
             "phrase_locale =", item.get("phrase_locale", ""),
@@ -496,7 +497,7 @@ class SettingsWindow:
             # Загружаем голоса именно этого locale.
             self._load_voices(locale)
 
-        print(
+        logger.debug(
             "INITIAL SOURCE:",
             "language =", self.source_language,
             "locale =", self.source_locale_selection.value,
@@ -623,7 +624,7 @@ class SettingsWindow:
 
         except Exception as e:
 
-            print(
+            logger.error(
                 "TTS target language error:",
                 e
             )
@@ -676,7 +677,7 @@ class SettingsWindow:
             self.target_language_selection.value
         )
 
-        print(
+        logger.debug(
             "Target language:",
             selected_language
         )
@@ -741,7 +742,7 @@ class SettingsWindow:
 
         except Exception as e:
 
-            print(
+            logger.error(
                 "TTS target locale error:",
                 e
             )
@@ -790,7 +791,7 @@ class SettingsWindow:
             self.target_locale_selection.value
         )
 
-        print(
+        logger.debug(
             "Target locale:",
             selected_locale
         )
@@ -844,7 +845,7 @@ class SettingsWindow:
 
         except Exception as e:
 
-            print(
+            logger.error(
                 "TTS target voice error:",
                 e
             )
@@ -957,7 +958,7 @@ class SettingsWindow:
 
         except Exception as e:
 
-            print(
+            logger.error(
                 "TTS locale error:",
                 e
             )
@@ -1034,7 +1035,7 @@ class SettingsWindow:
             self.source_locale_selection.value
         )
 
-        print(
+        logger.debug(
             "Source locale:",
             selected_locale
         )
@@ -1064,7 +1065,7 @@ class SettingsWindow:
 
         except Exception as e:
 
-            print(
+            logger.error(
                 "TTS voice error:",
                 e
             )
@@ -1284,7 +1285,7 @@ class SettingsWindow:
 
         except Exception as e:
 
-            print(
+            logger.error(
                 "Generation error:",
                 e
             )
@@ -1303,19 +1304,19 @@ class SettingsWindow:
             Config.PLAN_SESSION_FILE
         )
 
-        print()
-        print("==============")
-        print("PLAN GENERATED")
-        print("==============")
-        print(
+        logger.info()
+        logger.info("==============")
+        logger.info("PLAN GENERATED")
+        logger.info("==============")
+        logger.info(
             "Items:",
             len(plan["items"])
         )
-        print("--------------")
+        logger.info("--------------")
 
         for item in plan["items"]:
 
-            print(
+            logger.info(
                 item["item_order"],
                 item["phrase_text"],
                 "| pause:",
@@ -1324,8 +1325,8 @@ class SettingsWindow:
                 item["repeat_count"]
             )
 
-        print("==============================")
-        print()
+        logger.info("==============================")
+        logger.info()
 
     # ==================================================
     # EVENTS
@@ -1460,7 +1461,7 @@ class SettingsWindow:
                 result[1]
             )
 
-            print(
+            logger.debug(
                 "Scenario:",
                 result[1]
             )
@@ -1476,7 +1477,7 @@ class SettingsWindow:
 
         if result is not None:
 
-            print(
+            logger.debug(
                 "Voice:",
                 result[1]
             )
@@ -1497,7 +1498,7 @@ class SettingsWindow:
                 locale.split("-")[0].lower()
             )
 
-            print(
+            logger.debug(
                 "Locale:",
                 locale,
                 "Language:",
@@ -1520,7 +1521,7 @@ class SettingsWindow:
 
                 language = result[1]
 
-                print(
+                logger.debug(
                     "Target language:",
                     language
                 )
@@ -1551,7 +1552,7 @@ class SettingsWindow:
 
                 locale = result[1]
 
-                print(
+                logger.debug(
                     "Target locale:",
                     locale
                 )
@@ -1577,7 +1578,7 @@ class SettingsWindow:
 
             if result is not None:
 
-                print(
+                logger.debug(
                     "Target voice:",
                     result[1]
                 )
@@ -1678,7 +1679,7 @@ class SettingsWindow:
         text = self.text_edit.get_text().strip()
 
         if not text:
-            print(
+            logger.debug(
                 "Source text is empty"
             )
             return
@@ -1689,7 +1690,7 @@ class SettingsWindow:
 
         if not self._language_check_for_generate:
 
-            print(
+            logger.error(
                 "Checking source language before generation..."
             )
 
@@ -1711,7 +1712,7 @@ class SettingsWindow:
         item = self.session.current_item
 
         if not item:
-            print(
+            logger.error(
                 "Current session item is missing"
             )
             return
@@ -1731,7 +1732,7 @@ class SettingsWindow:
 
         except ValueError:
 
-            print(
+            logger.error(
                 "Invalid repeat count"
             )
             return
@@ -1751,7 +1752,7 @@ class SettingsWindow:
 
         except ValueError:
 
-            print(
+            logger.error(
                 "Invalid pause factor"
             )
             return
@@ -1770,7 +1771,7 @@ class SettingsWindow:
 
         if self._generate_task is not None:
 
-            print(
+            logger.debug(
                 "Generation already in progress"
             )
 
@@ -1811,7 +1812,7 @@ class SettingsWindow:
             or not phrase_voice
         ):
 
-            print(
+            logger.error(
                 "Incomplete source voice parameters"
             )
 
@@ -1830,10 +1831,10 @@ class SettingsWindow:
 
         except ValueError as e:
 
-            print(e)
+            logger.error(e)
             return
 
-        print(
+        logger.info(
             "Generator:",
             type(generator).__name__
         )
@@ -1891,7 +1892,7 @@ class SettingsWindow:
                 or not target_voice
             ):
 
-                print(
+                logger.error(
                     "Incomplete target voice parameters"
                 )
 
@@ -1941,13 +1942,13 @@ class SettingsWindow:
 
         else:
 
-            print(
+            logger.info(
                 f"Unsupported generation scenario: {scenario}"
             )
 
             return
 
-        print(
+        logger.info(
             "Generating plan..."
         )    
 

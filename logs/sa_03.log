@@ -1,0 +1,143 @@
+2026-08-24 13:14:45 DEBUG    [SA_03] TEST DEBUG
+2026-08-24 13:14:45 INFO     [SA_03] TEST INFO
+2026-08-24 13:14:45 WARNING  [SA_03] TEST WARNING
+2026-08-24 13:14:45 ERROR    [SA_03] TEST ERROR
+2026-08-24 13:17:52 DEBUG    [SA_03] Slider: factor_pause_before_translation = 2.18
+2026-08-24 13:17:53 DEBUG    [SA_03] Slider: factor_pause_before_translation = 1.4866666666666668
+2026-08-24 13:17:55 DEBUG    [SA_03] Slider: voice_speed = 0.8638888888888887
+2026-08-24 13:17:56 DEBUG    [SA_03] Slider: pause_between_sentences = 4711.111111111111
+2026-08-24 13:21:31 DEBUG    [SA_03] Slider: factor_pause_before_translation = 1.9200000000000002
+2026-08-24 13:21:33 DEBUG    [SA_03] Slider: pause_between_sentences = 2133.3333333333335
+2026-08-24 13:21:34 DEBUG    [SA_03] Slider: voice_speed = 0.47277777777777774
+2026-08-24 13:21:35 DEBUG    [SA_03] Slider: factor_pause_before_translation = 2.4616666666666664
+2026-08-24 13:21:36 DEBUG    [SA_03] Slider: voice_speed = 0.9066666666666665
+2026-08-24 13:24:10 INFO     [SA_03] Start Application
+2026-08-24 13:25:25 INFO     [SA_03] Start Application
+2026-08-24 13:25:28 INFO     [SA_03] Finsh Application
+2026-08-24 13:25:51 INFO     [SA_03] Start Application
+2026-08-24 13:25:54 DEBUG    [SA_03] Slider: voice_speed = 0.656111111111111
+2026-08-24 13:25:56 DEBUG    [SA_03] Slider: factor_pause_before_translation = 1.985
+2026-08-24 13:26:00 DEBUG    [SA_03] Slider: pause_between_sentences = 7155.555555555556
+2026-08-24 13:26:00 DEBUG    [SA_03] Slider: pause_between_sentences = 3555.555555555555
+2026-08-24 13:26:03 DEBUG    [SA_03] Slider: pause_between_sentences = 5777.777777777777
+2026-08-24 13:26:05 INFO     [SA_03] Finsh Application
+2026-08-24 13:42:27 INFO     [SA_03] Start Application
+2026-08-24 13:46:44 INFO     [SA_03] Start Application
+2026-08-24 13:48:37 INFO     [SA_03] Start Application
+2026-08-24 13:48:37 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-GB phrase_voice = en-GB-RyanNeural
+2026-08-24 13:48:37 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-GB voice = 
+2026-08-24 13:48:40 DEBUG    [SA_03] Button: settings
+2026-08-24 13:48:40 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-GB phrase_voice = en-GB-RyanNeural
+2026-08-24 13:48:40 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-GB voice = 
+2026-08-24 13:48:40 DEBUG    [SA_03] Target language: en
+2026-08-24 13:48:41 DEBUG    [SA_03] Target locale: en-US
+2026-08-24 13:48:55 INFO     [SA_03] Detected language: en
+2026-08-24 13:48:55 DEBUG    [SA_03] Source locale: en-GB
+2026-08-24 13:49:06 INFO     [SA_03] Detected language: en
+2026-08-24 13:49:06 DEBUG    [SA_03] Generate language check: source = en detected = en
+2026-08-24 13:49:06 DEBUG    [SA_03] Source language matches.
+2026-08-24 13:49:11 INFO     [SA_03] 
+2026-08-24 13:49:11 INFO     [SA_03] ==============
+2026-08-24 13:49:11 INFO     [SA_03] PLAN GENERATED
+2026-08-24 13:49:11 INFO     [SA_03] ==============
+2026-08-24 13:49:11 INFO     [SA_03] Items: 7
+2026-08-24 13:49:11 INFO     [SA_03] --------------
+2026-08-24 13:49:11 INFO     [SA_03] 1 PowerShell Commands | pause: 500 | repeat: 1
+2026-08-24 13:49:11 INFO     [SA_03] 2 PowerShell is a robust command-line tool, scripting language, and automation platform. | pause: 1962 | repeat: 1
+2026-08-24 13:49:11 INFO     [SA_03] 3 It helps sysadmins automate recurring tasks so they can spend more time where it matters. | pause: 1978 | repeat: 1
+2026-08-24 13:49:11 INFO     [SA_03] 4 Here at PDQ, we love PowerShell. | pause: 1224 | repeat: 1
+2026-08-24 13:49:11 INFO     [SA_03] 5 (We even host a podcast). | pause: 1050 | repeat: 1
+2026-08-24 13:49:11 INFO     [SA_03] 6 To help our users save time and their own sanity, we've compiled a gallery of PowerShell commands. | pause: 2236 | repeat: 1
+2026-08-24 13:49:11 INFO     [SA_03] 7 Aren't we sweet? | pause: 872 | repeat: 1
+2026-08-24 13:49:11 INFO     [SA_03] ==============================
+2026-08-24 13:49:11 INFO     [SA_03] 
+2026-08-24 13:49:17 INFO     [SA_03] Finsh Application
+2026-08-24 13:56:35 INFO     [SA_03] Start Application
+2026-08-24 13:56:35 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-GB phrase_voice = en-GB-LibbyNeural
+2026-08-24 13:56:35 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-GB voice = 
+2026-08-24 13:56:39 DEBUG    [SA_03] Button: settings
+2026-08-24 13:56:39 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-GB phrase_voice = en-GB-LibbyNeural
+2026-08-24 13:56:39 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-GB voice = 
+2026-08-24 13:56:40 DEBUG    [SA_03] Target language: en
+2026-08-24 13:56:40 DEBUG    [SA_03] Target locale: en-US
+2026-08-24 13:56:49 INFO     [SA_03] Detected language: ru
+2026-08-24 13:56:49 DEBUG    [SA_03] Source locale: ru-RU
+2026-08-24 13:56:52 DEBUG    [SA_03] Locale: ru-RU Language: ru
+2026-08-24 13:56:54 DEBUG    [SA_03] Voice: ru-RU-SvetlanaNeural
+2026-08-24 13:57:06 DEBUG    [SA_03] Target language: lt
+2026-08-24 13:57:06 DEBUG    [SA_03] Target locale: lt-LT
+2026-08-24 13:57:10 DEBUG    [SA_03] Target voice: lt-LT-OnaNeural
+2026-08-24 13:57:25 ERROR    [SA_03] Checking source language before generation...
+2026-08-24 13:57:27 INFO     [SA_03] Detected language: ru
+2026-08-24 13:57:27 DEBUG    [SA_03] Generate language check: source = ru detected = ru
+2026-08-24 13:57:27 DEBUG    [SA_03] Source language matches.
+2026-08-24 13:57:27 INFO     [SA_03] Generator: ShadowingGenerator
+2026-08-24 13:57:27 INFO     [SA_03] Generating plan...
+2026-08-24 13:57:32 INFO     [SA_03] 
+2026-08-24 13:57:32 INFO     [SA_03] ==============
+2026-08-24 13:57:32 INFO     [SA_03] PLAN GENERATED
+2026-08-24 13:57:32 INFO     [SA_03] ==============
+2026-08-24 13:57:32 INFO     [SA_03] Items: 4
+2026-08-24 13:57:32 INFO     [SA_03] --------------
+2026-08-24 13:57:32 INFO     [SA_03] 1 Сегодня хорошая погода. | pause: 2658 | repeat: 1
+2026-08-24 13:57:32 INFO     [SA_03] 2 Я решил пойти прогуляться. | pause: 2916 | repeat: 1
+2026-08-24 13:57:32 INFO     [SA_03] 3 По дороге я встретил старого друга. | pause: 3450 | repeat: 1
+2026-08-24 13:57:32 INFO     [SA_03] 4 Мы немного поговорили и пошли дальше. | pause: 3462 | repeat: 1
+2026-08-24 13:57:32 INFO     [SA_03] ==============================
+2026-08-24 13:57:32 INFO     [SA_03] 
+2026-08-24 13:57:38 DEBUG    [SA_03] Button: play
+2026-08-24 13:58:21 DEBUG    [SA_03] Button: settings
+2026-08-24 13:58:21 DEBUG    [SA_03] INITIAL ITEM: phrase_code = ru phrase_locale = ru-RU phrase_voice = ru-RU-SvetlanaNeural
+2026-08-24 13:58:21 DEBUG    [SA_03] INITIAL SOURCE: language = ru locale = ru-RU voice = 
+2026-08-24 13:58:21 DEBUG    [SA_03] Target language: en
+2026-08-24 13:58:21 DEBUG    [SA_03] Target locale: en-US
+2026-08-24 13:58:32 DEBUG    [SA_03] Target language: it
+2026-08-24 13:58:33 DEBUG    [SA_03] Target locale: it-IT
+2026-08-24 13:58:41 ERROR    [SA_03] Checking source language before generation...
+2026-08-24 13:58:43 INFO     [SA_03] Detected language: ru
+2026-08-24 13:58:43 DEBUG    [SA_03] Generate language check: source = ru detected = ru
+2026-08-24 13:58:43 DEBUG    [SA_03] Source language matches.
+2026-08-24 13:58:43 INFO     [SA_03] Generator: ShadowingGenerator
+2026-08-24 13:58:43 INFO     [SA_03] Generating plan...
+2026-08-24 13:58:46 INFO     [SA_03] 
+2026-08-24 13:58:46 INFO     [SA_03] ==============
+2026-08-24 13:58:46 INFO     [SA_03] PLAN GENERATED
+2026-08-24 13:58:46 INFO     [SA_03] ==============
+2026-08-24 13:58:46 INFO     [SA_03] Items: 4
+2026-08-24 13:58:46 INFO     [SA_03] --------------
+2026-08-24 13:58:46 INFO     [SA_03] 1 Сегодня хорошая погода. | pause: 886 | repeat: 1
+2026-08-24 13:58:46 INFO     [SA_03] 2 Я решил пойти прогуляться. | pause: 972 | repeat: 1
+2026-08-24 13:58:46 INFO     [SA_03] 3 По дороге я встретил старого друга. | pause: 1150 | repeat: 1
+2026-08-24 13:58:46 INFO     [SA_03] 4 Мы немного поговорили и пошли дальше. | pause: 1154 | repeat: 1
+2026-08-24 13:58:46 INFO     [SA_03] ==============================
+2026-08-24 13:58:46 INFO     [SA_03] 
+2026-08-24 13:58:51 DEBUG    [SA_03] Button: play
+2026-08-24 13:59:40 DEBUG    [SA_03] Button: settings
+2026-08-24 13:59:40 DEBUG    [SA_03] INITIAL ITEM: phrase_code = ru phrase_locale = ru-RU phrase_voice = ru-RU-SvetlanaNeural
+2026-08-24 13:59:40 DEBUG    [SA_03] INITIAL SOURCE: language = ru locale = ru-RU voice = 
+2026-08-24 13:59:40 DEBUG    [SA_03] Target language: en
+2026-08-24 13:59:40 DEBUG    [SA_03] Target locale: en-US
+2026-08-24 14:00:00 DEBUG    [SA_03] Target language: fr
+2026-08-24 14:00:00 DEBUG    [SA_03] Target locale: fr-BE
+2026-08-24 14:00:04 DEBUG    [SA_03] Target locale: fr-FR
+2026-08-24 14:00:09 DEBUG    [SA_03] Target voice: fr-FR-DeniseNeural
+2026-08-24 14:00:10 ERROR    [SA_03] Checking source language before generation...
+2026-08-24 14:00:12 INFO     [SA_03] Detected language: ru
+2026-08-24 14:00:12 DEBUG    [SA_03] Generate language check: source = ru detected = ru
+2026-08-24 14:00:12 DEBUG    [SA_03] Source language matches.
+2026-08-24 14:00:12 INFO     [SA_03] Generator: ShadowingGenerator
+2026-08-24 14:00:12 INFO     [SA_03] Generating plan...
+2026-08-24 14:00:16 INFO     [SA_03] 
+2026-08-24 14:00:16 INFO     [SA_03] ==============
+2026-08-24 14:00:16 INFO     [SA_03] PLAN GENERATED
+2026-08-24 14:00:16 INFO     [SA_03] ==============
+2026-08-24 14:00:16 INFO     [SA_03] Items: 4
+2026-08-24 14:00:16 INFO     [SA_03] --------------
+2026-08-24 14:00:16 INFO     [SA_03] 1 Сегодня хорошая погода. | pause: 886 | repeat: 1
+2026-08-24 14:00:16 INFO     [SA_03] 2 Я решил пойти прогуляться. | pause: 972 | repeat: 1
+2026-08-24 14:00:16 INFO     [SA_03] 3 По дороге я встретил старого друга. | pause: 1150 | repeat: 1
+2026-08-24 14:00:16 INFO     [SA_03] 4 Мы немного поговорили и пошли дальше. | pause: 1154 | repeat: 1
+2026-08-24 14:00:16 INFO     [SA_03] ==============================
+2026-08-24 14:00:16 INFO     [SA_03] 
+2026-08-24 14:00:21 DEBUG    [SA_03] Button: play
+2026-08-24 14:01:21 INFO     [SA_03] Finsh Application

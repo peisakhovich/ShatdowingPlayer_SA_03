@@ -9,6 +9,7 @@ from gui.theme import Theme
 from core.config import Config 
 from gui.layout import Layout
 from gui.settings_window import SettingsWindow
+from core.logger import logger
 
 
 class MainWindow:
@@ -24,6 +25,12 @@ class MainWindow:
         scenario
 
     ):
+
+        # logger.debug("TEST DEBUG")
+        # logger.info("TEST INFO")
+        # logger.warning("TEST WARNING")
+        # logger.error("TEST ERROR")
+
         self.session = session
         self.player = player
 
@@ -104,7 +111,7 @@ class MainWindow:
 
             title="Exit",
 
-            message="Хотите завершить приложение \n Или еще немного поработаете ",
+            message="Do you want to exit the application \n or work a little longer?  ",
 
             buttons=[
                 "Yes",
@@ -169,7 +176,7 @@ class MainWindow:
 
                 case ("button", name):
 
-                    print(f"Button: {name}")
+                    logger.debug(f"Button: {name}")
 
                     if name == "play":
                         self.player.play()
@@ -200,7 +207,7 @@ class MainWindow:
 
                 case ("slider", name, value):
 
-                    print(f"Slider: {name} = {value}")
+                    logger.debug(f"Slider: {name} = {value}")
 
                     if name == "voice_speed":
                         self.player.set_speed(value)
@@ -213,7 +220,7 @@ class MainWindow:
 
                 case ("checkbox", name, checked):
 
-                    print(f"Checkbox: {name} = {checked}")
+                    logger.debug(f"Checkbox: {name} = {checked}")
                     self.player.set_option(name, checked)
 
      
