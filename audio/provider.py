@@ -4,6 +4,7 @@ import tempfile
 
 from audio.cache import AudioCache
 from audio.tts import TTS
+from core.logger import logger
 
 
 class AudioProvider:
@@ -40,7 +41,7 @@ class AudioProvider:
             voice=voice,
             speed=speed,
         ):
-            print("AudioProvider: CACHE HIT")
+            logger.debug("AudioProvider: CACHE HIT")
             return path
 
         # -----------------------------------------------------
@@ -54,9 +55,8 @@ class AudioProvider:
         if not text or not voice:
             return None
 
-        print("AudioProvider: CACHE MISS")
-        #print("AudioProvider: generating TTS...")
-
+        logger.debug("AudioProvider: CACHE MISS")
+   
         # TTS пишет во временный файл.
         # Финальный файл кэша до успешного завершения
         # генерации не существует.

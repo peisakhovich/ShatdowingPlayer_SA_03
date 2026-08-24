@@ -1945,7 +1945,7 @@ class SettingsWindow:
             logger.info(
                 f"Unsupported generation scenario: {scenario}"
             )
-
+            self.busy_indicator.hide()
             return
 
         logger.info(

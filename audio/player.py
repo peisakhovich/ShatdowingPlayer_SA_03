@@ -20,7 +20,7 @@ from audio.provider import AudioProvider
 from audio.mixer import AudioMixer
 from audio.tts import TTS
 from audio.async_runner import AsyncRunner
-#from audio.scenario_provider import ScenarioProvider
+from core.logger import logger
 
 
 class PlayerState:
@@ -365,7 +365,7 @@ class Player:
                           
             self._action_index = 0
 
-            print(
+            logger.debug(
                 "PREPARE_ITEM #"
                 + str(self.session.current_index)
             )
@@ -378,7 +378,7 @@ class Player:
         elif self._phase == PlaybackPhase.EXECUTE_ACTION:
 
             if self._action_index >= len(self._scenario["actions"]):
-                    print("SCENARIO FINISHED")
+                    logger.info("SCENARIO FINISHED")
                     self._phase = PlaybackPhase.FINISH_ITEM
                     return
 
@@ -386,7 +386,7 @@ class Player:
 
             action = self._scenario["actions"][self._action_index]
 
-            print("ACTION:", action)
+            logger.debug("ACTION:", action)
 
             self._action_index += 1
 
@@ -460,7 +460,7 @@ class Player:
 
                 self._audio_mixer.play()
 
-                print("TEXT PLAY")
+                logger.debug("TEXT PLAY")
 
                 self._phase = PlaybackPhase.WAIT_TEXT_END
 
@@ -472,7 +472,7 @@ class Player:
 
             if not self._audio_mixer.is_playing():
 
-                print("TEXT_END")
+                logger.debug("TEXT_END")
 
                 #self._timer_ms = self.pause_before_translation
                 self._phase = PlaybackPhase.EXECUTE_ACTION
@@ -487,7 +487,7 @@ class Player:
 
             if self._timer_ms <= 0:
 
-                print("PAUSE_END")
+                logger.debug("PAUSE_END")
 
                 self._phase = PlaybackPhase.EXECUTE_ACTION
 
@@ -516,7 +516,7 @@ class Player:
 
                 self._audio_mixer.play()
 
-                print("TRANSLATION PLAY")
+                logger.debug("TRANSLATION PLAY")
 
                 self._phase = PlaybackPhase.WAIT_TRANSLATION_END
 
@@ -528,7 +528,7 @@ class Player:
 
             if not self._audio_mixer.is_playing():
 
-                print("TRANSLATION_END")
+                logger.debug("TRANSLATION_END")
 
                 #self._timer_ms = self.pause_between_sentences
                 self._phase = PlaybackPhase.EXECUTE_ACTION
@@ -540,7 +540,7 @@ class Player:
         elif self._phase == PlaybackPhase.FINISH_ITEM:
 
             if self._loop:
-                print("LOOP: repeat current item")
+                logger.debug("LOOP: repeat current item")
                 self._action_index = 0
                 self._phase = PlaybackPhase.EXECUTE_ACTION
                 return
@@ -549,7 +549,7 @@ class Player:
 
             self._repeat_index += 1
             
-            print(
+            logger.debug(
                 f"FINISH_ITEM: "
                 f"repeat {self._repeat_index}/{repeat_count}"
             )
@@ -561,14 +561,14 @@ class Player:
 
             elif self.randomize:
 
-                print("RANDOMIZE: next random item")
+                logger.debug("RANDOMIZE: next random item")
 
                 self.session.next()
                 self._phase = PlaybackPhase.PREPARE_ITEM
 
             elif self.session.is_last():
 
-                print("PLAYBACK_FINISHED")
+                logger.debug("PLAYBACK_FINISHED")
                 self.set_msg_top("END OF TRAINING")
                 self._state = PlayerState.IDLE
 

@@ -1,5 +1,5 @@
 import json
-
+from core.logger import logger
 
 class ScenarioProvider:
 
@@ -49,5 +49,5 @@ class ScenarioProvider:
                 if scenario_id == self.get_current()
             )
         except:
-            print("wrong in scenarios.json current_scenario="+self.get_current())    
+            logger.error("wrong in scenarios.json current_scenario="+self.get_current())    
             return 0
