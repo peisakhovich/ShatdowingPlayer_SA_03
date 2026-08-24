@@ -18,12 +18,13 @@ from ai.language_detector import LanguageDetector
 from ai.generators.generator_router import GeneratorRouter
 
 from core.config import Config
+from gui.dialogs.dialog import Dialog
 
 
 class SettingsWindow:
     """Модальное окно настроек."""
 
-    def __init__(self, rect, scenario, session):
+    def __init__(self, rect, scenario_provider, session, font_manager):
 
         # --------------------------------------------------
         # Основные данные
@@ -32,8 +33,12 @@ class SettingsWindow:
         self.rect = pygame.Rect(rect)
         self.visible = False
 
-        self.scenario_provider = scenario
+        self.active_dialog = None
+
+
+        self.scenario_provider = scenario_provider
         self.session = session
+        self.font_manager = font_manager
 
         # --------------------------------------------------
         # Async tasks
@@ -47,6 +52,10 @@ class SettingsWindow:
         self._target_language_task = None
         self._target_locale_task = None
         self._target_voice_task = None
+
+        self._language_check_for_generate = False
+        self._detected_generate_language = ""
+
 
         # --------------------------------------------------
         # Source text
@@ -62,7 +71,10 @@ class SettingsWindow:
             'Press "Generate" to create the plan.'
         )
 
-        self.source_language = ""
+        self.source_language = "en"
+        self.phrase_locale = "en-US"
+        
+
 
         # --------------------------------------------------
         # TTS
@@ -263,6 +275,44 @@ class SettingsWindow:
         self._load_current_item_parameters()
 
     # ==================================================
+    # LANGUAGE mismatch dialog
+    # ==================================================
+
+    def _show_language_mismatch_dialog(
+        self,
+        detected_language,
+    ):
+
+        self._detected_generate_language = (
+            detected_language
+        )
+
+        self.active_dialog = Dialog(
+
+            parent_rect=self.rect,
+
+            font_manager=self.font_manager,
+
+            title="Language mismatch",
+
+            message=(
+                f"Text language: {detected_language}, "
+                f"current language: {self.source_language}.\n\n"
+                "Set current language to the text language?"
+            ),
+            
+            buttons=[
+                "Yes",
+                "No",
+            ],
+
+            default_button=1,
+        )
+
+        self.active_dialog.show()
+
+
+    # ==================================================
     # LANGUAGE DETECTION
     # ==================================================
 
@@ -311,7 +361,7 @@ class SettingsWindow:
         if not self._language_task.done():
             return
 
-        task = self._language_task 
+        task = self._language_task
         self._language_task = None
 
         try:
@@ -320,6 +370,8 @@ class SettingsWindow:
 
         except asyncio.CancelledError:
 
+            self._language_check_for_generate = False
+            self.busy_indicator.hide()
             return
 
         except Exception as e:
@@ -329,9 +381,13 @@ class SettingsWindow:
                 e
             )
 
+            self._language_check_for_generate = False
+            self.busy_indicator.hide()
             return
 
         if not language:
+            self._language_check_for_generate = False
+            self.busy_indicator.hide()
             return
 
         print(
@@ -339,12 +395,60 @@ class SettingsWindow:
             language
         )
 
-        # --------------------------------------------------
-        # Загружаем locale для языка
-        # --------------------------------------------------
-        self.source_language = language
-        self._load_locales(language)
+        # ==================================================
+        # Generate language check
+        # ==================================================
 
+        if self._language_check_for_generate:
+
+            print(
+                "Generate language check:",
+                "source =", self.source_language,
+                "detected =", language
+            )
+
+            # --------------------------------------------------
+            # Язык не совпадает
+            # --------------------------------------------------
+
+            if language != self.source_language:
+
+                self._language_check_for_generate = False
+
+                self.busy_indicator.hide()
+
+                self._show_language_mismatch_dialog(
+                    language
+                )
+
+                return
+
+            # --------------------------------------------------
+            # Язык совпадает
+            # --------------------------------------------------
+
+            print(
+                "Source language matches."
+            )
+
+            # _generate() при повторном входе
+            # сбросит этот флаг и продолжит генерацию.
+
+            self._generate()
+
+            return
+
+        # ==================================================
+        # Обычное определение языка
+        # ==================================================
+
+        self.source_language = language
+
+        self._load_locales(
+            language
+        )
+
+    
     # ==================================================
     # INITIAL PARAMETERS
     # ==================================================
@@ -356,6 +460,16 @@ class SettingsWindow:
         if not item:
             return
 
+        print(
+            "INITIAL ITEM:",
+            "phrase_code =", item.get("phrase_code", ""),
+            "phrase_locale =", item.get("phrase_locale", ""),
+            "phrase_voice =", item.get("phrase_voice", "")
+        )
+
+
+
+
         # --------------------------------------------------
         # Language / Locale
         # --------------------------------------------------
@@ -365,7 +479,12 @@ class SettingsWindow:
             ""
         )
 
+
         if locale:
+
+            self.source_language = (
+                locale.split("-")[0].lower()
+            )
 
             # Показываем текущий locale.
             self.source_locale_selection.options = [
@@ -376,6 +495,14 @@ class SettingsWindow:
 
             # Загружаем голоса именно этого locale.
             self._load_voices(locale)
+
+        print(
+            "INITIAL SOURCE:",
+            "language =", self.source_language,
+            "locale =", self.source_locale_selection.value,
+            "voice =", self.voice_selection.value
+        )
+
 
         # --------------------------------------------------
         # Repeat count
@@ -1058,6 +1185,7 @@ class SettingsWindow:
             self._target_language_task,
             self._target_locale_task,
             self._target_voice_task,
+            
         )
 
         for task in tasks:
@@ -1111,6 +1239,10 @@ class SettingsWindow:
 
         if not self.visible:
             return
+
+        if self.active_dialog:
+            self.active_dialog.update()
+
 
         self.text_edit.update()
         self.repeat_edit.update()
@@ -1203,6 +1335,32 @@ class SettingsWindow:
 
         if not self.visible:
             return
+
+        if self.active_dialog:
+
+            result = self.active_dialog.handle_event(event)
+
+            if result == 0:
+                # Yes
+                self.active_dialog = None
+
+                self.source_language = (
+                    self._detected_generate_language
+                )
+
+                self._detected_generate_language = ""
+
+                self._load_locales(
+                    self.source_language
+                )
+
+            elif result == 1:
+                # No
+                self.active_dialog = None
+                self._detected_generate_language = ""
+
+            return
+        
 
         # --------------------------------------------------
         # Close button must remain available while busy
@@ -1335,7 +1493,16 @@ class SettingsWindow:
 
             locale = result[1]
 
-            print("Locale:", locale )
+            self.source_language = (
+                locale.split("-")[0].lower()
+            )
+
+            print(
+                "Locale:",
+                locale,
+                "Language:",
+                self.source_language
+            )
 
             self._load_voices( locale )
 
@@ -1517,6 +1684,27 @@ class SettingsWindow:
             return
 
         # --------------------------------------------------
+        # Check source language before generation
+        # --------------------------------------------------
+
+        if not self._language_check_for_generate:
+
+            print(
+                "Checking source language before generation..."
+            )
+
+            self._language_check_for_generate = True
+
+            self._detect_language(
+                text
+            )
+
+            return
+
+        # Проверка уже выполнена успешно.
+        self._language_check_for_generate = False
+
+        # --------------------------------------------------
         # Current item
         # --------------------------------------------------
 
@@ -1639,6 +1827,7 @@ class SettingsWindow:
                 scenario
             )
 
+
         except ValueError as e:
 
             print(e)
@@ -1648,6 +1837,8 @@ class SettingsWindow:
             "Generator:",
             type(generator).__name__
         )
+
+
 
         # ==================================================
         # DICTATION
@@ -2168,3 +2359,6 @@ class SettingsWindow:
         self.busy_indicator.draw(
             screen
         )
+
+        if self.active_dialog:
+            self.active_dialog.draw(screen)

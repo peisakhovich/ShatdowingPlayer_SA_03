@@ -88,7 +88,7 @@ class MainWindow:
             )    
 
     
-        self.settings_window = SettingsWindow(Layout.SETTINGS_RECT,scenario,session)
+        self.settings_window = SettingsWindow(Layout.SETTINGS_RECT,scenario,session, self.font_manager)
 
     # --------------------------------------------------
     # Показать диалог выхода
