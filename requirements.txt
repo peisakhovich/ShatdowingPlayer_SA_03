@@ -4,3 +4,4 @@ edge-tts
 pyodbc
 python-dotenv
 openai
+httpx==0.28.1
