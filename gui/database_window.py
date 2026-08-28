@@ -11,12 +11,13 @@ from gui.theme import Theme
 from gui.widgets.busy_indicator import BusyIndicator
 from gui.widgets.list_selection import ListSelection
 from audio.async_runner import AsyncRunner
+from gui.panels.control_panel_db import ControlPanel
 
 
 class DatabaseWindow:
     """Окно работы с базой данных."""
 
-    def __init__(self, rect, font_manager):
+    def __init__(self, rect, font_manager,image_loader):
 
         # --------------------------------------------------
         # Основные данные
@@ -26,6 +27,12 @@ class DatabaseWindow:
         self.font_manager = font_manager
 
         self.visible = False
+
+
+        self.control_panel = ControlPanel(
+            font_manager,
+            image_loader
+        )
 
         # --------------------------------------------------
         # Async
@@ -313,6 +320,8 @@ class DatabaseWindow:
 
         self._process_sets_task()
 
+        self.control_panel.update()
+
         self.busy_indicator.update()
 
     # ==================================================
@@ -323,6 +332,28 @@ class DatabaseWindow:
 
         if not self.visible:
             return
+
+
+        # Передаем событие панели управления
+        #
+
+        command = self.control_panel.handle_event(event)
+
+        if command is not None:
+
+            match command:
+
+                case ("button", name):
+
+                    logger.debug(f"Button: {name}")
+
+                    # if name == "settodb":
+                        # "settodb","dbtoset","settoexcel","exceltoset","dropset","login"
+
+                    # elif name == "pause":
+                        
+
+
 
         # --------------------------------------------------
         # Close while busy
@@ -594,6 +625,11 @@ class DatabaseWindow:
                     info_y + 110
                 )
             )
+
+
+        self.control_panel.draw(
+            screen
+        )
 
         # --------------------------------------------------
         # ListSelection

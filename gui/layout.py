@@ -101,27 +101,27 @@ class Layout:
     # DB_CONTROL PANEL
     # -------------------------
 
-    DB_WIDTH = 800
-    DB_HEIGHT = 600
+    DB_BTN_INTERVAL = 20 # Interval between buttons
+    DB_WIDTH = WIDTH-DB_BTN_INTERVAL*2
+    DB_HEIGHT = HEIGHT-DB_BTN_INTERVAL*2
 
     DB_RECT = pygame.Rect(
-        (WIDTH - DB_WIDTH) // 2,
-        (HEIGHT - DB_HEIGHT) // 2,
+        DB_BTN_INTERVAL,
+        DB_BTN_INTERVAL,
         DB_WIDTH,
         DB_HEIGHT
     )
 
     DB_BTN_DEFS = [ "settodb","dbtoset","settoexcel","exceltoset","dropset","login" ]
 
-    DB_CP_HEIGHT=130
-    DB_CP_RECT=pygame.Rect( 0, HEIGHT-DB_CP_HEIGHT , WIDTH, DB_CP_HEIGHT  )
+    DB_CP_HEIGHT=100
+    DB_CP_RECT=pygame.Rect(   DB_RECT.left, DB_RECT.bottom - DB_CP_HEIGHT , DB_WIDTH, DB_CP_HEIGHT  )
 
     DB_BTN_WIDTH = 64
     DB_BTN_HEIGHT = 32
 
     DB_BTN_SIZE = (DB_BTN_WIDTH, DB_BTN_HEIGHT)
-    DB_BTN_INTERVAL = 10 # Interval between buttons
-
+    
     DB_LEN_BUTTONS = (
             len(DB_BTN_DEFS) * DB_BTN_WIDTH +
             (len(DB_BTN_DEFS) - 1) * DB_BTN_INTERVAL

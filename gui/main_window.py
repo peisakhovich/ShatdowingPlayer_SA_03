@@ -47,6 +47,7 @@ class MainWindow:
         )
 
         self.font_manager = font_manager
+        self.image_loader = image_loader
 
         # Активный модальный диалог
         self.active_dialog = None
@@ -97,7 +98,7 @@ class MainWindow:
 
     
         self.settings_window = SettingsWindow(Layout.SETTINGS_RECT,scenario,session, self.font_manager)
-        self.database_window = DatabaseWindow(Layout.DB_RECT, self.font_manager)
+        self.database_window = DatabaseWindow(Layout.DB_RECT, self.font_manager,self.image_loader)
 
 
     # --------------------------------------------------

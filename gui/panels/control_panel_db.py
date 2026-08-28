@@ -12,7 +12,7 @@ from gui.widgets.image_button import ImageButton
 
 class ControlPanel:
 
-    def __init__(self, image_loader,font_manager):
+    def __init__(self,font_manager, image_loader):
 
         self.image_loader = image_loader
         self.font_manager = font_manager
