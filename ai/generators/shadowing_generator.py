@@ -61,6 +61,7 @@ class ShadowingGenerator:
                 {
                     "text": chunk.text,
                     "translation": chunk.translation,
+                    "language_level": chunk.language_level,
                     "ends_sentence": chunk.ends_sentence,
                 }
 

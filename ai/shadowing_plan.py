@@ -98,6 +98,7 @@ class ShadowingPlanBuilder:
                 ),
 
                 "translate_code": self.translate_code,
+                "language_level": chunk["language_level"],
                 "translate_locale": self.translate_locale,
                 "translate_voice": self.translate_voice,
                 "translate_voice_gender": (

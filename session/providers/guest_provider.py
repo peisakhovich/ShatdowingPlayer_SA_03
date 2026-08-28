@@ -61,6 +61,7 @@ class GuestProvider:
                     "translate_text": "Доброе утро.",
 
                     "phrase_code": "en",
+                    "language_level": "A1",
                     "phrase_locale": "en-US",
                     "phrase_voice": "en-US-JennyNeural",
                     "phrase_voice_gender": "Female",
@@ -85,6 +86,7 @@ class GuestProvider:
                     "translate_text": "Как дела?",
 
                     "phrase_code": "en",
+                    "language_level": "A1",
                     "phrase_locale": "en-US",
                     "phrase_voice": "en-US-JennyNeural",
                     "phrase_voice_gender": "Female",
@@ -109,6 +111,7 @@ class GuestProvider:
                     "translate_text": "Меня зовут Джон.",
 
                     "phrase_code": "en",
+                    "language_level": "A1",
                     "phrase_locale": "en-US",
                     "phrase_voice": "en-US-JennyNeural",
                     "phrase_voice_gender": "Female",
@@ -133,6 +136,7 @@ class GuestProvider:
                     "translate_text": "До встречи завтра.",
 
                     "phrase_code": "en",
+                    "language_level": "A1",
                     "phrase_locale": "en-US",
                     "phrase_voice": "en-US-JennyNeural",
                     "phrase_voice_gender": "Female",
@@ -157,6 +161,7 @@ class GuestProvider:
                     "translate_text": "Большое спасибо.",
 
                     "phrase_code": "en",
+                    "language_level": "A1",
                     "phrase_locale": "en-US",
                     "phrase_voice": "en-US-JennyNeural",
                     "phrase_voice_gender": "Female",

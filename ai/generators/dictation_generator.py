@@ -18,6 +18,7 @@ class DictationGenerator:
         phrase_voice_gender,
         repeat_count,
         pause_factor,
+        user_language_level: str | None = None,
     ):
         # --------------------------------------------------
         # AI segmentation
@@ -39,6 +40,7 @@ class DictationGenerator:
             "chunks": [
                 {
                     "text": chunk.text,
+                    "language_level": chunk.language_level,
                     "ends_sentence": chunk.ends_sentence,
                 }
 

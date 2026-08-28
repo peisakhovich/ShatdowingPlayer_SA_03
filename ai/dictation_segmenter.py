@@ -3,6 +3,7 @@ from ai.openai_client import OpenAIClient
 from ai.dictation_validator import DictationValidator
 
 
+
 DICTATION_PROMPT = """
 You are a language teacher preparing a text for a dictation exercise
 in the language of the provided text.
@@ -32,18 +33,31 @@ Segmentation rules:
 - A long sentence may be divided into several meaningful chunks.
 - Keep the original order of the text.
 
+Language level rules:
+- Determine the CEFR language level of each chunk independently.
+- Evaluate the level of the ORIGINAL SOURCE LANGUAGE text.
+- The level describes the language proficiency required to understand
+  the vocabulary, grammar and meaning of the phrase.
+- Use only one of these CEFR levels:
+  A1, A2, B1, B2, C1, C2.
+- Do not use any other level or description.
+- Do not determine one level for the entire text.
+- Each chunk must have its own language level.
+
 For each chunk, provide:
-- the exact text;
-- whether the chunk ends a sentence.
+- text: the exact text of the original chunk;
+- language_level: the CEFR level of the original chunk;
+- ends_sentence: whether the chunk ends a sentence.
 
 Also provide:
-- the original text;
-- the total number of chunks.
+- original_text: the original text exactly as provided;
+- total_chunks: the total number of chunks.
 
 TEXT:
 
 {text}
 """
+
 
 
 class DictationSegmenter:

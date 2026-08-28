@@ -5,6 +5,8 @@ class DictationChunk(BaseModel):
 
     text: str
 
+    language_level: str
+    
     ends_sentence: bool
 
 
@@ -22,6 +24,8 @@ class ShadowingChunk(BaseModel):
     text: str
 
     translation: str
+
+    language_level: str
 
     ends_sentence: bool
 

@@ -65,6 +65,7 @@ class DictationPlanBuilder:
                 "translate_text": "",
 
                 "phrase_code": self.phrase_code,
+                "language_level": chunk["language_level"],
                 "phrase_locale": self.phrase_locale,
                 "phrase_voice": self.phrase_voice,
                 "phrase_voice_gender": self.phrase_voice_gender,
