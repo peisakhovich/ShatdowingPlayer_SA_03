@@ -29,4 +29,5 @@ class Config:
     # Logging
     LOG_MODE = "print"      # "print" | "logging" | "stop"
     LOG_FILE = Path("logs/sa_03.log")
-    
+
+    API_BASE_URL = "https://sa03-api-gxd7gve7a9gafnaz.polandcentral-01.azurewebsites.net/api"

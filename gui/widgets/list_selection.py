@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 import pygame
-
 
 class ListSelection:
 
@@ -75,7 +73,6 @@ class ListSelection:
         )
 
     # --------------------------------------------------
-
     def _dropdown_height(self):
 
         return (
@@ -84,7 +81,6 @@ class ListSelection:
         )
 
     # --------------------------------------------------
-
     def _get_dropdown_rect(self):
 
         return pygame.Rect(
@@ -95,7 +91,6 @@ class ListSelection:
         )
 
     # --------------------------------------------------
-
     def _ensure_selected_visible(self):
 
         visible_count = self._visible_count()
@@ -138,13 +133,11 @@ class ListSelection:
     # ==================================================
     # EVENT
     # ==================================================
-
     def handle_event(self, event):
 
         # --------------------------------------------------
         # Mouse wheel
         # --------------------------------------------------
-
         if (
             event.type == pygame.MOUSEWHEEL
             and self.opened
@@ -194,7 +187,6 @@ class ListSelection:
         # ==================================================
         # LIST CLOSED
         # ==================================================
-
         if not self.opened:
 
             if self.rect.collidepoint(event.pos):
@@ -210,13 +202,11 @@ class ListSelection:
         # ==================================================
         # LIST OPENED
         # ==================================================
-
         dropdown_rect = self._get_dropdown_rect()
 
         # --------------------------------------------------
         # Выбор элемента
         # --------------------------------------------------
-
         if dropdown_rect.collidepoint(event.pos):
 
             relative_y = (
@@ -255,7 +245,6 @@ class ListSelection:
         # При открытом списке клик по верхнему
         # control закрывает список.
         # --------------------------------------------------
-
         if self.rect.collidepoint(event.pos):
 
             self.opened = False
@@ -273,13 +262,11 @@ class ListSelection:
     # ==================================================
     # DRAW
     # ==================================================
-
     def draw(self, screen, font):
 
         # ==================================================
         # SELECTED ITEM
         # ==================================================
-
         pygame.draw.rect(
             screen,
             pygame.Color("#364049"),
@@ -313,7 +300,6 @@ class ListSelection:
         # ==================================================
         # ARROW
         # ==================================================
-
         center_x = self.rect.right - 15
         center_y = self.rect.centery
 
@@ -360,7 +346,6 @@ class ListSelection:
         # ==================================================
         # DROPDOWN
         # ==================================================
-
         if not self.opened:
             return
 
@@ -384,7 +369,6 @@ class ListSelection:
         # --------------------------------------------------
         # Items
         # --------------------------------------------------
-
         for visible_index in range(
             visible_count
         ):
@@ -442,7 +426,6 @@ class ListSelection:
         # ==================================================
         # BORDER
         # ==================================================
-
         pygame.draw.rect(
             screen,
             pygame.Color("#1085A8"),
@@ -453,7 +436,6 @@ class ListSelection:
         # ==================================================
         # SCROLL INDICATORS
         # ==================================================
-
         max_scroll = max(
             0,
             len(self.options)
@@ -466,7 +448,6 @@ class ListSelection:
         # --------------------------------------------------
         # Up indicator
         # --------------------------------------------------
-
         if self.scroll_index > 0:
 
             center_x = (
@@ -501,7 +482,6 @@ class ListSelection:
         # --------------------------------------------------
         # Down indicator
         # --------------------------------------------------
-
         if self.scroll_index < max_scroll:
 
             center_x = (

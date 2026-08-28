@@ -87,6 +87,8 @@ class ShadowingSegmenter:
             ShadowingSegmentation
         )
 
+        result.total_chunks = len(result.chunks)
+
         ShadowingValidator.validate(
             text,
             result

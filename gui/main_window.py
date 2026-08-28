@@ -9,6 +9,7 @@ from gui.theme import Theme
 from core.config import Config 
 from gui.layout import Layout
 from gui.settings_window import SettingsWindow
+from gui.database_window import DatabaseWindow
 from core.logger import logger
 
 
@@ -96,6 +97,8 @@ class MainWindow:
 
     
         self.settings_window = SettingsWindow(Layout.SETTINGS_RECT,scenario,session, self.font_manager)
+        self.database_window = DatabaseWindow(Layout.DB_RECT, self.font_manager)
+
 
     # --------------------------------------------------
     # Показать диалог выхода
@@ -154,6 +157,10 @@ class MainWindow:
             self.settings_window.handle_event(event)
             return None
 
+        if self.database_window.visible:
+            self.database_window.handle_event(event)
+            return None
+
         #
         # Если диалогов нет
         #
@@ -201,9 +208,13 @@ class MainWindow:
 
                     elif name == "quit":
                         self.show_exit_dialog()
-                        return None        
+                        return None
+                            
                     elif name == "settings":
                         self.settings_window.show()
+
+                    elif name == "db":
+                        self.database_window.show()    
 
                 case ("slider", name, value):
 
@@ -247,6 +258,8 @@ class MainWindow:
 
             self.settings_window.update()
 
+            self.database_window.update()
+
     # --------------------------------------------------
     # Отрисовка
     # --------------------------------------------------
@@ -281,3 +294,5 @@ class MainWindow:
             )
 
         self.settings_window.draw(self.screen)
+
+        self.database_window.draw(self.screen)

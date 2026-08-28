@@ -1,0 +1,23 @@
+{
+  "set": {
+    "set_name": "Azure API Minimal Test",
+    "set_description": "Minimal POST test",
+    "set_active": true
+  },
+  "items": [
+    {
+      "item_order": 1,
+      "phrase_id": 1,
+      "difficulty": 1,
+      "phrase_text": "Good morning.",
+      "translate_text": "Доброе утро.",
+      "phrase_locale": "en-US",
+      "phrase_voice": "en-US-JennyNeural",
+      "translate_locale": "ru-RU",
+      "translate_voice": "ru-RU-SvetlanaNeural",
+      "pause_ms": 2000,
+      "speed": 1.0,
+      "repeat_count": 1
+    }
+  ]
+}

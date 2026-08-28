@@ -1,0 +1,44 @@
+{
+  "user_id": 2,
+  "set_name": "Azure API POST Test",
+  "set_description": "Test set created through Azure Function API",
+  "set_active": true,
+  "items": [
+    {
+      "item_order": 1,
+      "phrase_id": 1,
+      "difficulty": 1,
+      "phrase_text": "Hello, this is an Azure API test.",
+      "translate_text": "Привет, это тест Azure API.",
+      "phrase_code": "en",
+      "phrase_locale": "en-US",
+      "phrase_voice": "en-US-JennyNeural",
+      "phrase_voice_gender": "Female",
+      "translate_code": "ru",
+      "translate_locale": "ru-RU",
+      "translate_voice": "ru-RU-SvetlanaNeural",
+      "translate_voice_gender": "Female",
+      "pause_ms": 2000,
+      "speed": 1.0,
+      "repeat_count": 1
+    },
+    {
+      "item_order": 2,
+      "phrase_id": 2,
+      "difficulty": 1,
+      "phrase_text": "The API is working correctly.",
+      "translate_text": "API работает правильно.",
+      "phrase_code": "en",
+      "phrase_locale": "en-US",
+      "phrase_voice": "en-US-JennyNeural",
+      "phrase_voice_gender": "Female",
+      "translate_code": "ru",
+      "translate_locale": "ru-RU",
+      "translate_voice": "ru-RU-SvetlanaNeural",
+      "translate_voice_gender": "Female",
+      "pause_ms": 2000,
+      "speed": 1.0,
+      "repeat_count": 1
+    }
+  ]
+}
