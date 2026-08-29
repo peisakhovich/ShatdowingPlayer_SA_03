@@ -5,7 +5,7 @@ class Layout:
     # UI LAYER: WINDOWS Размеры окна
     # --------------------------------------------------
     WIDTH = 900
-    HEIGHT = 800
+    HEIGHT = 700
 
     WINDOW_SIZE = (WIDTH, HEIGHT)
 

@@ -17,7 +17,7 @@ from gui.panels.control_panel_db import ControlPanel
 class DatabaseWindow:
     """Окно работы с базой данных."""
 
-    def __init__(self, rect, font_manager,image_loader):
+    def __init__(self, rect, font_manager, image_loader, session):
 
         # --------------------------------------------------
         # Основные данные
@@ -25,9 +25,8 @@ class DatabaseWindow:
 
         self.rect = pygame.Rect(rect)
         self.font_manager = font_manager
-
+        self.session = session
         self.visible = False
-
 
         self.control_panel = ControlPanel(
             font_manager,
@@ -39,7 +38,10 @@ class DatabaseWindow:
         # --------------------------------------------------
 
         self._async_runner = AsyncRunner()
-        self._sets_task = None
+
+        self._get_sets_task = None
+        self._get_set_task = None
+        self._save_set_task = None
 
         # --------------------------------------------------
         # Data
@@ -115,9 +117,9 @@ class DatabaseWindow:
 
     def _load_sets(self):
 
-        if self._sets_task is not None:
+        if self._get_sets_task is not None:
 
-            if not self._sets_task.done():
+            if not self._get_sets_task.done():
                 return
 
         self.busy_indicator.show(
@@ -132,7 +134,7 @@ class DatabaseWindow:
 
         self.selected_set = None
 
-        self._sets_task = self._async_runner.submit(
+        self._get_sets_task = self._async_runner.submit(
             self._get_sets_async()
         )
 
@@ -144,20 +146,39 @@ class DatabaseWindow:
             self.api_client.get_sets
         )
 
+    # --------------------------------------------------
+
+    async def _get_set_async(self, set_id):
+
+        return await asyncio.to_thread(
+            self.api_client.get_set,
+            set_id
+        )
+
+    # --------------------------------------------------
+
+    async def _save_set_async(self, user_id, data):
+
+        return await asyncio.to_thread(
+            self.api_client.save_set,
+            user_id,
+            data
+        )
+
     # ==================================================
-    # PROCESS API RESULT
+    # PROCESS GET SETS RESULT
     # ==================================================
 
-    def _process_sets_task(self):
+    def _process_get_sets_task(self):
 
-        if self._sets_task is None:
+        if self._get_sets_task is None:
             return
 
-        if not self._sets_task.done():
+        if not self._get_sets_task.done():
             return
 
-        task = self._sets_task
-        self._sets_task = None
+        task = self._get_sets_task
+        self._get_sets_task = None
 
         try:
 
@@ -186,7 +207,6 @@ class DatabaseWindow:
             ]
 
             self.set_selection.selected = 0
-
             self.selected_set = None
 
             return
@@ -206,7 +226,6 @@ class DatabaseWindow:
             ]
 
             self.set_selection.selected = 0
-
             self.selected_set = None
 
             return
@@ -270,6 +289,87 @@ class DatabaseWindow:
         )
 
     # ==================================================
+    # PROCESS GET SET RESULT
+    # ==================================================
+
+    def _process_get_set_task(self):
+
+        if self._get_set_task is None:
+            return
+
+        if not self._get_set_task.done():
+            return
+
+        task = self._get_set_task
+        self._get_set_task = None
+
+        try:
+
+            data = task.result()
+
+            self.session.load_data(data)
+            self.session.save(Config.PLAN_SESSION_FILE)
+
+            logger.info(
+                "Set loaded into session:",
+                self.session.id
+            )
+
+        except asyncio.CancelledError:
+
+            return
+
+        except Exception as e:
+
+            logger.error(
+                "GET set API error:",
+                e
+            )
+
+        finally:
+
+            self.busy_indicator.hide()
+
+    # ==================================================
+    # PROCESS SAVE SET RESULT
+    # ==================================================
+
+    def _process_save_set_task(self):
+
+        if self._save_set_task is None:
+            return
+
+        if not self._save_set_task.done():
+            return
+
+        task = self._save_set_task
+        self._save_set_task = None
+
+        try:
+
+            result = task.result()
+
+            logger.info(
+                "Session saved to database:",
+                result
+            )
+
+        except asyncio.CancelledError:
+
+            return
+
+        except Exception as e:
+
+            logger.error(
+                "SAVE set API error:",
+                e
+            )
+
+        finally:
+
+            self.busy_indicator.hide()
+
+    # ==================================================
     # SELECTED SET
     # ==================================================
 
@@ -300,12 +400,26 @@ class DatabaseWindow:
 
     def _cancel_tasks(self):
 
-        if self._sets_task is not None:
+        if self._get_sets_task is not None:
 
-            if not self._sets_task.done():
-                self._sets_task.cancel()
+            if not self._get_sets_task.done():
+                self._get_sets_task.cancel()
 
-        self._sets_task = None
+        self._get_sets_task = None
+
+        if self._get_set_task is not None:
+
+            if not self._get_set_task.done():
+                self._get_set_task.cancel()
+
+        self._get_set_task = None
+
+        if self._save_set_task is not None:
+
+            if not self._save_set_task.done():
+                self._save_set_task.cancel()
+
+        self._save_set_task = None
 
         self.busy_indicator.hide()
 
@@ -318,7 +432,9 @@ class DatabaseWindow:
         if not self.visible:
             return
 
-        self._process_sets_task()
+        self._process_get_sets_task()
+        self._process_get_set_task()
+        self._process_save_set_task()
 
         self.control_panel.update()
 
@@ -333,9 +449,9 @@ class DatabaseWindow:
         if not self.visible:
             return
 
-
+        # --------------------------------------------------
         # Передаем событие панели управления
-        #
+        # --------------------------------------------------
 
         command = self.control_panel.handle_event(event)
 
@@ -345,15 +461,103 @@ class DatabaseWindow:
 
                 case ("button", name):
 
-                    logger.debug(f"Button: {name}")
+                    logger.debug(
+                        f"Button: {name}"
+                    )
 
-                    # if name == "settodb":
-                        # "settodb","dbtoset","settoexcel","exceltoset","dropset","login"
+                    # --------------------------------------------------
+                    # DB -> SESSION
+                    # --------------------------------------------------
 
-                    # elif name == "pause":
-                        
+                    if name == "dbtoset":
 
+                        if self.selected_set is None:
 
+                            logger.warning(
+                                "No set selected"
+                            )
+
+                            return
+
+                        set_id = self.selected_set.get(
+                            "set_id"
+                        )
+
+                        if not set_id:
+
+                            logger.warning(
+                                "Selected set has no set_id"
+                            )
+
+                            return
+
+                        if self._get_set_task is not None:
+
+                            if not self._get_set_task.done():
+                                return
+
+                        self.busy_indicator.show(
+                            "Loading set..."
+                        )
+
+                        self._get_set_task = (
+                            self._async_runner.submit(
+                                self._get_set_async(set_id)
+                            )
+                        )
+
+                        return
+
+                    # --------------------------------------------------
+                    # SESSION -> DB
+                    # --------------------------------------------------
+
+                    if name == "settodb":
+
+                        if self.session.is_empty():
+
+                            logger.warning(
+                                "Session is empty"
+                            )
+
+                            return
+
+                        user_id = self.session.get_data().get(
+                            "set",
+                            {}
+                        ).get(
+                            "user_id"
+                        )
+
+                        if not user_id:
+
+                            logger.warning(
+                                "Session has no user_id"
+                            )
+
+                            return
+
+                        if self._save_set_task is not None:
+
+                            if not self._save_set_task.done():
+                                return
+
+                        data = self.session.get_data()
+
+                        self.busy_indicator.show(
+                            "Saving set..."
+                        )
+
+                        self._save_set_task = (
+                            self._async_runner.submit(
+                                self._save_set_async(
+                                    user_id,
+                                    data
+                                )
+                            )
+                        )
+
+                        return
 
         # --------------------------------------------------
         # Close while busy
@@ -625,7 +829,6 @@ class DatabaseWindow:
                     info_y + 110
                 )
             )
-
 
         self.control_panel.draw(
             screen

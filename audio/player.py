@@ -180,7 +180,9 @@ class Player:
         session = self.session
 
         set_data = session._set
+
         item = session._items[current_item_index]
+        self._current_item = item
 
         date_value = set_data["set_create_date"]
 
@@ -196,6 +198,7 @@ class Player:
             f'{set_data["set_description"]}\n'
             f'Created: {created}\n'
             f'----------------------------\n'
+            f'Language Level Phrase {self._current_item.get("language_level")}\n'
             f'Scenario: {self._scenario["caption"]}\n'
             f'Phrase {current_item_index + 1} / {len(session._items)}\n'
             f"repeat {self._repeat_index+1}/{self._current_item.get("repeat_count", 1)}\n"
@@ -232,16 +235,40 @@ class Player:
 
     async def _prepare_translation_audio(self):
 
-        path = await self._audio_provider.get_audio(
+        text = self._current_item.get(
+            "translate_text",
+            ""
+        )
 
-            text=self._current_item["translate_text"],
-            voice=self._current_item["translate_voice"],
+        if not text:
+            logger.debug(
+                "Translation audio skipped: empty translate_text"
+            )
+            return False
+
+        voice = self._current_item.get(
+            "translate_voice",
+            ""
+        )
+
+        if not voice:
+            logger.debug(
+                "Translation audio skipped: empty translate_voice"
+            )
+            return False
+
+        path = await self._audio_provider.get_audio(
+            text=text,
+            voice=voice,
             speed=self.voice_speed,
         )
+
         if path is None:
-            return
+            return False
 
         self._audio_mixer.load(path)
+
+        return True
 
     # ---------------------------------------------------------
     # options takes value from  Mainwindow's checkbox 
@@ -494,9 +521,8 @@ class Player:
         # -----------------------------------------------------
         # Подготовка аудио перевода
         # -----------------------------------------------------
-
         elif self._phase == PlaybackPhase.PREPARE_TRANSLATION_AUDIO:
-            
+
             if self._audio_task is None:
 
                 self._audio_task = self._async_runner.submit(
@@ -509,16 +535,27 @@ class Player:
                 self._audio_task = None
 
                 try:
-                    task.result()
+
+                    audio_ready = task.result()
 
                 except asyncio.CancelledError:
                     return
 
-                self._audio_mixer.play()
+                if audio_ready:
 
-                logger.debug("TRANSLATION PLAY")
+                    self._audio_mixer.play()
 
-                self._phase = PlaybackPhase.WAIT_TRANSLATION_END
+                    logger.debug("TRANSLATION PLAY")
+
+                    self._phase = PlaybackPhase.WAIT_TRANSLATION_END
+
+                else:
+
+                    logger.debug(
+                        "TRANSLATION SKIPPED"
+                    )
+
+                    self._phase = PlaybackPhase.EXECUTE_ACTION
 
         # -----------------------------------------------------
         # Ожидание окончания перевода

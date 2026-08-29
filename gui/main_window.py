@@ -98,7 +98,7 @@ class MainWindow:
 
     
         self.settings_window = SettingsWindow(Layout.SETTINGS_RECT,scenario,session, self.font_manager)
-        self.database_window = DatabaseWindow(Layout.DB_RECT, self.font_manager,self.image_loader)
+        self.database_window = DatabaseWindow(Layout.DB_RECT, self.font_manager,self.image_loader,self.session)
 
 
     # --------------------------------------------------
