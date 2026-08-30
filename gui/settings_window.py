@@ -1293,12 +1293,30 @@ class SettingsWindow:
             return
 
         # --------------------------------------------------
+        # Привязываем новый plan к текущему пользователю
+        # --------------------------------------------------
+
+        current_set = self.session.get_data().get(
+            "set",
+            {}
+        )
+
+        plan["set"]["user_id"] = current_set.get(
+            "user_id",
+            0
+        )
+
+        plan["set"]["user_nickname"] = current_set.get(
+            "user_nickname",
+            "guest"
+        )
+
+        # --------------------------------------------------
         # Обновляем текущую Session
         # --------------------------------------------------
 
         self.session.load_data(plan)
         self.busy_indicator.hide()
-
 
         self.session.save(
             Config.PLAN_SESSION_FILE

@@ -85,7 +85,7 @@ class DatabaseWindow:
         self.set_selection = ListSelection(
             pygame.Rect(
                 self.rect.x + 30,
-                self.rect.y + 70,
+                self.rect.y + 95,
                 self.rect.width - 60,
                 30
             ),
@@ -122,6 +122,28 @@ class DatabaseWindow:
             if not self._get_sets_task.done():
                 return
 
+        user_id = self.session.get_data().get(
+            "set",
+            {}
+        ).get(
+            "user_id"
+        )
+
+        if not user_id:
+
+            logger.warning(
+                "Session has no user_id"
+            )
+
+            self.set_selection.options = [
+                ("", "No user")
+            ]
+
+            self.set_selection.selected = 0
+            self.selected_set = None
+
+            return
+
         self.busy_indicator.show(
             "Loading sets..."
         )
@@ -135,15 +157,16 @@ class DatabaseWindow:
         self.selected_set = None
 
         self._get_sets_task = self._async_runner.submit(
-            self._get_sets_async()
+            self._get_sets_async(user_id)
         )
 
     # --------------------------------------------------
 
-    async def _get_sets_async(self):
+    async def _get_sets_async(self,user_id):
 
         return await asyncio.to_thread(
-            self.api_client.get_sets
+            self.api_client.get_sets,
+            user_id
         )
 
     # --------------------------------------------------
@@ -353,6 +376,10 @@ class DatabaseWindow:
                 "Session saved to database:",
                 result
             )
+            # --------------------------------------------------
+            # Refresh sets list after successful save
+            # --------------------------------------------------
+            self._load_sets()
 
         except asyncio.CancelledError:
 
@@ -683,6 +710,44 @@ class DatabaseWindow:
                 self.rect.y + 12
             )
         )
+        
+        # --------------------------------------------------
+        # Current user
+        # --------------------------------------------------
+
+        current_set = self.session.get_data().get(
+            "set",
+            {}
+        )
+
+        user_id = current_set.get(
+            "user_id"
+        )
+
+        user_nickname = current_set.get(
+            "user_nickname",
+            ""
+        )
+
+        if user_id:
+            user_text = f"User: {user_nickname}  (ID: {user_id})"
+        else:
+            user_text = "User: guest"
+
+        user = caption_font.render(
+            user_text,
+            True,
+            Theme.DIALOG_TEXT_COLOR
+        )
+
+        screen.blit(
+            user,
+            (
+                self.rect.x + 30,
+                self.rect.y + 48
+            )
+        )
+
 
         # --------------------------------------------------
         # Close

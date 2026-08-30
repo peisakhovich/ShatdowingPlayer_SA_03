@@ -16,7 +16,7 @@ class ApiClient:
                 "API_KEY is not configured."
             )
 
-    def get_sets(self):
+    def get_sets(self, user_id: int):
 
         url = f"{self.base_url}/sets"
 
@@ -26,6 +26,7 @@ class ApiClient:
 
         response = httpx.get(
             url,
+            params={ "user_id": user_id },
             headers=headers,
             timeout=10.0
         )
