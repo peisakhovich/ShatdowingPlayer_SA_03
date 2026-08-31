@@ -4,6 +4,7 @@ session.py
 Рабочая сессия приложения SA_03.
 
 Хранит:
+    - текущего пользователя (user_id, user_nickname)
     - данные набора (set)
     - элементы набора (items)
     - кэшируемое состояние (state)
@@ -34,11 +35,16 @@ class Session:
 
         self._filename: Path | None = None
 
+        # ---------- Current user ----------
+        self._user_id = None
+        self._user_nickname = ""
+
         # ---------- JSON sections ----------
         self._set: dict = {}
         self._items: list = []
         self._state: dict = {}
-        
+
+        self._is_randomize = False
 
     # ==========================================================
     # Factory
@@ -63,7 +69,7 @@ class Session:
             data = json.load(f)
 
         session.load_data(data)
-        
+
         return session
 
     # ==========================================================
@@ -73,7 +79,13 @@ class Session:
     def load_data(self, data: dict):
         """
         Загрузить данные сессии из словаря.
+
+        Поддерживает:
+            - новый формат: user_id/user_nickname на верхнем уровне;
+            - старый формат: user_id/user_nickname внутри set.
         """
+
+        # ---------- Session data ----------
 
         self._set = data.get(
             "set",
@@ -90,8 +102,37 @@ class Session:
             {}
         )
 
-        self._is_randomize = False
+        # ---------- Current user ----------
 
+        # Новый формат
+        self._user_id = data.get(
+            "user_id"
+        )
+
+        self._user_nickname = data.get(
+            "user_nickname",
+            ""
+        )
+
+        # ----------------------------------------------------------
+        # Совместимость со старым форматом
+        # ----------------------------------------------------------
+
+        if self._user_id is None:
+
+            self._user_id = self._set.get(
+                "user_id"
+            )
+
+        if not self._user_nickname:
+
+            self._user_nickname = self._set.get(
+                "user_nickname",
+                ""
+            )
+
+        self._is_randomize = False
+        
     # ==========================================================
     # Get data
     # ==========================================================
@@ -102,6 +143,8 @@ class Session:
         """
 
         return {
+            "user_id": self._user_id,
+            "user_nickname": self._user_nickname,
             "set": self._set,
             "items": self._items,
             "state": self._state,
@@ -119,19 +162,44 @@ class Session:
         if filename is None:
             filename = self._filename
 
-        data = {
-            "set": self._set,
-            "items": self._items,
-            "state": self._state,
-        }
+        data = self.get_data()
 
-        with open(filename, "w", encoding="utf-8") as f:
+        with open(
+            filename,
+            "w",
+            encoding="utf-8"
+        ) as f:
+
             json.dump(
                 data,
                 f,
                 ensure_ascii=False,
                 indent=4
             )
+
+    # ==========================================================
+    # User
+    # ==========================================================
+
+    def set_user(
+        self,
+        user_id: int,
+        user_nickname: str
+    ):
+        """
+        Установить текущего пользователя.
+        """
+
+        self._user_id = user_id
+        self._user_nickname = user_nickname
+
+    @property
+    def user_id(self):
+        return self._user_id
+
+    @property
+    def user_nickname(self):
+        return self._user_nickname
 
     # ==========================================================
     # Properties
@@ -160,17 +228,13 @@ class Session:
     @current_index.setter
     def current_index(self, value):
         self._state["current_index"] = value
-        
 
     @property
     def current_item(self):
-        return self._items[self.current_index]    
+        return self._items[self.current_index]
 
-
-    def set_randomize(self,value: bool):
+    def set_randomize(self, value: bool):
         self._is_randomize = value
-  
-        
 
     # ==========================================================
     # Navigation
@@ -180,7 +244,7 @@ class Session:
 
         if self.is_empty():
             return None
-        
+
         return self._items[self.current_index]
 
     def first(self):
@@ -251,6 +315,8 @@ class Session:
 
         return (
             f"Session("
+            f"user_id={self.user_id}, "
+            f"user_nickname='{self.user_nickname}', "
             f"id={self.id}, "
             f"name='{self.name}', "
             f"items={len(self)}, "

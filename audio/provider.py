@@ -87,6 +87,14 @@ class AudioProvider:
 
             return path
 
+        except Exception as e:
+
+            logger.warning(
+                f"AudioProvider: TTS failed: {e}"
+            )
+
+            return None
+
         finally:
 
             # Временный файл удаляется как после успешной,

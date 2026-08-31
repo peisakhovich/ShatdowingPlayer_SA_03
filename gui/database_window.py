@@ -122,12 +122,7 @@ class DatabaseWindow:
             if not self._get_sets_task.done():
                 return
 
-        user_id = self.session.get_data().get(
-            "set",
-            {}
-        ).get(
-            "user_id"
-        )
+        user_id = self.session.user_id
 
         if not user_id:
 
@@ -549,12 +544,7 @@ class DatabaseWindow:
 
                             return
 
-                        user_id = self.session.get_data().get(
-                            "set",
-                            {}
-                        ).get(
-                            "user_id"
-                        )
+                        user_id = self.session.user_id
 
                         if not user_id:
 
@@ -720,14 +710,8 @@ class DatabaseWindow:
             {}
         )
 
-        user_id = current_set.get(
-            "user_id"
-        )
-
-        user_nickname = current_set.get(
-            "user_nickname",
-            ""
-        )
+        user_id = self.session.user_id
+        user_nickname = self.session.user_nickname
 
         if user_id:
             user_text = f"User: {user_nickname}  (ID: {user_id})"
