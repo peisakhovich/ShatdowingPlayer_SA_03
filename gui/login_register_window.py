@@ -364,61 +364,105 @@ class LoginRegisterWindow:
         if not self.visible:
             return
 
-        # ==================================================
-        # Window close
-        # ==================================================
+        # --------------------------------------------------
+        # Mouse button
+        # --------------------------------------------------
 
         if event.type == pygame.MOUSEBUTTONDOWN:
 
-            if event.button == 1:
+            if event.button != 1:
+                return
 
-                # --------------------------------------------------
-                # Close
-                # --------------------------------------------------
+            # --------------------------------------------------
+            # Close
+            # --------------------------------------------------
 
-                if self.close_rect.collidepoint(
-                    event.pos
-                ):
-                    self.hide()
-                    return
+            if self.close_rect.collidepoint(event.pos):
 
-                # --------------------------------------------------
-                # Action button
-                # --------------------------------------------------
+                self.hide()
+                return
 
-                if self.action_rect.collidepoint(
-                    event.pos
-                ):
+            # --------------------------------------------------
+            # Action button
+            # --------------------------------------------------
 
-                    self._clear_focus()
+            if self.action_rect.collidepoint(event.pos):
 
-                    if self.mode == "login":
-                        self._login()
-                    else:
-                        self._register()
+                if self.mode == "login":
+                    self._login()
+                else:
+                    self._register()
 
-                    return
+                return
 
-                # --------------------------------------------------
-                # Switch mode
-                # --------------------------------------------------
+            # --------------------------------------------------
+            # Switch Login / Register
+            # --------------------------------------------------
 
-                if self.switch_rect.collidepoint(
-                    event.pos
-                ):
+            if self.switch_rect.collidepoint(event.pos):
 
-                    if self.mode == "login":
-                        self.set_mode("register")
-                    else:
-                        self.set_mode("login")
+                if self.mode == "login":
+                    self.set_mode("register")
+                else:
+                    self.set_mode("login")
 
-                    return
+                return
 
-        # ==================================================
-        # Pass event to TextEdit
-        # ==================================================
+            # --------------------------------------------------
+            # TextEdit
+            #
+            # Передаём клик только тому полю,
+            # в которое действительно попала мышь.
+            # --------------------------------------------------
 
-        for edit in self._get_edits():
+            edits = [
+                self.nickname_edit,
+                self.password_edit,
+                self.repeat_password_edit,
+                self.first_name_edit,
+                self.last_name_edit
+            ]
+
+            for edit in edits:
+
+                if edit is not None:
+
+                    if edit.rect.collidepoint(event.pos):
+
+                        # Сначала снимаем фокус со всех полей
+                        self._clear_focus()
+
+                        # Затем передаем клик выбранному полю
+                        edit.handle_event(event)
+
+                        return
+
+            # --------------------------------------------------
+            # Клик вне полей
+            #
+            # Снимаем фокус со всех TextEdit.
+            # --------------------------------------------------
+
+            self._clear_focus()
+            return
+
+        # --------------------------------------------------
+        # Keyboard / text input / mouse wheel
+        #
+        # Передаём всем TextEdit.
+        # Только сфокусированный TextEdit
+        # реально обработает клавиатуру.
+        # --------------------------------------------------
+
+        edits = [
+            self.nickname_edit,
+            self.password_edit,
+            self.repeat_password_edit,
+            self.first_name_edit,
+            self.last_name_edit
+        ]
+
+        for edit in edits:
 
             if edit is not None:
                 edit.handle_event(event)
