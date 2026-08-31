@@ -50,24 +50,19 @@ class LoginRegisterWindow:
         # ==================================================
         # Fonts
         # ==================================================
-
-        self.title_font = pygame.font.Font(
-            None,
+        self.title_font = self.font_manager.load(
             28
         )
 
-        self.caption_font = pygame.font.Font(
-            None,
+        self.caption_font = self.font_manager.load(
             20
         )
 
-        self.message_font = pygame.font.Font(
-            None,
+        self.message_font = self.font_manager.load(
             18
         )
 
-        self.edit_font = pygame.font.Font(
-            None,
+        self.edit_font = self.font_manager.load(
             20
         )
 
@@ -517,6 +512,12 @@ class LoginRegisterWindow:
         # --------------------------------------------------
         # Success
         # --------------------------------------------------
+        
+        self.session.set_user(
+            user["user_id"],
+            user["nickname"]
+        )
+
 
         self.result = {
             "action": "login",
@@ -601,6 +602,11 @@ class LoginRegisterWindow:
         # --------------------------------------------------
         # Success
         # --------------------------------------------------
+
+        self.session.set_user(
+            user["user_id"],
+            user["nickname"]
+        )
 
         self.result = {
             "action": "register",

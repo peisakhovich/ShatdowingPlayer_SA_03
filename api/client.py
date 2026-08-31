@@ -241,16 +241,68 @@ class ApiClient:
             "Content-Type": "application/json"
         }
 
-        response = httpx.post(
-            url,
-            params={
-                "user_id": user_id
-            },
-            headers=headers,
-            json=data,
-            timeout=10.0
-        )
+        try:
 
-        response.raise_for_status()
+            response = httpx.post(
+                url,
+                params={
+                    "user_id": user_id
+                },
+                headers=headers,
+                json=data,
+                timeout=10.0
+            )
 
-        return response.json()
+        except httpx.RequestError as e:
+
+            raise ApiError(
+                f"API connection error: {e}"
+            ) from e
+
+        # --------------------------------------------------
+        # HTTP error
+        # --------------------------------------------------
+
+        if response.status_code >= 400:
+
+            try:
+                error_data = response.json()
+
+                message = error_data.get(
+                    "error",
+                    "API error"
+                )
+
+                # Если API дополнительно передал message,
+                # добавляем его для диагностики.
+                detail = error_data.get("message")
+
+                if detail:
+                    message = f"{message}: {detail}"
+
+            except (ValueError, AttributeError):
+
+                message = (
+                    f"HTTP {response.status_code}: "
+                    f"{response.text}"
+                )
+
+            raise ApiError(
+                message,
+                response.status_code
+            )
+
+        # --------------------------------------------------
+        # Success
+        # --------------------------------------------------
+
+        try:
+
+            return response.json()
+
+        except ValueError as e:
+
+            raise ApiError(
+                "Invalid JSON response from API",
+                response.status_code
+            ) from e

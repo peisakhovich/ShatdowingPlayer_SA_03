@@ -69,7 +69,7 @@ class DatabaseWindow:
 
         self.busy_indicator = BusyIndicator(
             self.rect,
-            pygame.font.Font(None, 22)
+            self.font_manager.load(22)
         )
 
         # --------------------------------------------------
@@ -489,6 +489,9 @@ class DatabaseWindow:
 
         if not self.visible:
             return
+
+
+
         
         # --------------------------------------------------
         # Login / Register window
@@ -500,9 +503,32 @@ class DatabaseWindow:
                 event
             )
 
+            result = self.login_register_window.result
+
+            if result is not None:
+
+                action = result.get("action")
+
+                if action in ("login", "register"):
+
+                    user_id = self.session.user_id
+
+                    if user_id:
+
+                        self.busy_indicator.show(
+                            "Loading sets..."
+                        )
+
+                        self._get_sets_task = (
+                            self._async_runner.submit(
+                                self._get_sets_async(user_id)
+                            )
+                        )
+
+                        # Обработали результат.
+                        self.login_register_window.result = None
+
             return
-
-
 
         # --------------------------------------------------
         # Передаем событие панели управления
@@ -551,6 +577,8 @@ class DatabaseWindow:
 
                     if name == "dbtoset":
 
+                        logger.debug("SETTO​DB BUTTON PRESSED")
+                        
                         if self.selected_set is None:
 
                             logger.warning(
@@ -604,6 +632,12 @@ class DatabaseWindow:
 
                         user_id = self.session.user_id
 
+                        user_id = self.session.user_id
+
+                        logger.debug(
+                            f"SETTO​DB user_id={user_id}"
+                        )
+
                         if not user_id:
 
                             logger.warning(
@@ -618,6 +652,10 @@ class DatabaseWindow:
                                 return
 
                         data = self.session.get_data()
+
+                        logger.debug(
+                            f"SETTO​DB data items={len(data.get('items', []))}"
+                        )
 
                         self.busy_indicator.show(
                             "Saving set..."
@@ -707,20 +745,11 @@ class DatabaseWindow:
         # Fonts
         # --------------------------------------------------
 
-        title_font = pygame.font.Font(
-            None,
-            28
-        )
+        title_font = self.font_manager.load(24)
 
-        caption_font = pygame.font.Font(
-            None,
-            22
-        )
+        caption_font = self.font_manager.load(20)
 
-        list_font = pygame.font.Font(
-            None,
-            20
-        )
+        list_font = self.font_manager.load(18)
 
         # --------------------------------------------------
         # Background
