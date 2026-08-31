@@ -12,6 +12,7 @@ from gui.widgets.busy_indicator import BusyIndicator
 from gui.widgets.list_selection import ListSelection
 from audio.async_runner import AsyncRunner
 from gui.panels.control_panel_db import ControlPanel
+from gui.login_register_window import LoginRegisterWindow
 
 
 class DatabaseWindow:
@@ -32,6 +33,7 @@ class DatabaseWindow:
             font_manager,
             image_loader
         )
+
 
         # --------------------------------------------------
         # Async
@@ -76,6 +78,22 @@ class DatabaseWindow:
 
         self.api_client = ApiClient(
             Config.API_BASE_URL
+        )
+
+        # --------------------------------------------------
+        # Login / Register window
+        # --------------------------------------------------
+
+        self.login_register_window = LoginRegisterWindow(
+            pygame.Rect(
+                self.rect.centerx - 250,
+                self.rect.centery - 320,
+                500,
+                500
+            ),
+            font_manager,
+            session,
+            self.api_client
         )
 
         # --------------------------------------------------
@@ -459,6 +477,7 @@ class DatabaseWindow:
         self._process_save_set_task()
 
         self.control_panel.update()
+        self.login_register_window.update()
 
         self.busy_indicator.update()
 
@@ -470,6 +489,20 @@ class DatabaseWindow:
 
         if not self.visible:
             return
+        
+        # --------------------------------------------------
+        # Login / Register window
+        # --------------------------------------------------
+
+        if self.login_register_window.visible:
+
+            self.login_register_window.handle_event(
+                event
+            )
+
+            return
+
+
 
         # --------------------------------------------------
         # Передаем событие панели управления
@@ -488,8 +521,33 @@ class DatabaseWindow:
                     )
 
                     # --------------------------------------------------
+                    # LOGIN
+                    # --------------------------------------------------
+
+                    if name == "login":
+
+                        self.login_register_window.show(
+                            "login"
+                        )
+
+                        return
+
+                    # --------------------------------------------------
+                    # REGISTER
+                    # --------------------------------------------------
+
+                    if name == "register":
+
+                        self.login_register_window.show(
+                            "register"
+                        )
+
+                        return
+
+                    # --------------------------------------------------
                     # DB -> SESSION
                     # --------------------------------------------------
+
 
                     if name == "dbtoset":
 
@@ -899,5 +957,9 @@ class DatabaseWindow:
         # --------------------------------------------------
 
         self.busy_indicator.draw(
+            screen
+        )
+
+        self.login_register_window.draw(
             screen
         )

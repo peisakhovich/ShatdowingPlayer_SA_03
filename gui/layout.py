@@ -112,7 +112,7 @@ class Layout:
         DB_HEIGHT
     )
 
-    DB_BTN_DEFS = [ "settodb","dbtoset","settoexcel","exceltoset","dropset","login" ]
+    DB_BTN_DEFS = [ "settodb","dbtoset","settoexcel","exceltoset","dropset","login","register" ]
 
     DB_CP_HEIGHT=100
     DB_CP_RECT=pygame.Rect(   DB_RECT.left, DB_RECT.bottom - DB_CP_HEIGHT , DB_WIDTH, DB_CP_HEIGHT  )
