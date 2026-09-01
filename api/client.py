@@ -306,3 +306,85 @@ class ApiClient:
                 "Invalid JSON response from API",
                 response.status_code
             ) from e
+
+    # ==================================================
+    # UPDATE SET
+    # ==================================================
+
+    def update_set(
+        self,
+        set_id: int,
+        set_name: str,
+        set_description: str
+    ):
+
+        url = f"{self.base_url}/sets/{set_id}"
+
+        headers = {
+            "X-API-Key": self.api_key,
+            "Content-Type": "application/json"
+        }
+
+        try:
+
+            response = httpx.put(
+                url,
+                headers=headers,
+                json={
+                    "set_name": set_name,
+                    "set_description": set_description
+                },
+                timeout=10.0
+            )
+
+        except httpx.RequestError as e:
+
+            raise ApiError(
+                f"API connection error: {e}"
+            ) from e
+
+        # --------------------------------------------------
+        # HTTP error
+        # --------------------------------------------------
+
+        if response.status_code >= 400:
+
+            try:
+                error_data = response.json()
+
+                message = error_data.get(
+                    "error",
+                    "API error"
+                )
+
+                detail = error_data.get("message")
+
+                if detail:
+                    message = f"{message}: {detail}"
+
+            except (ValueError, AttributeError):
+
+                message = (
+                    f"HTTP {response.status_code}: "
+                    f"{response.text}"
+                )
+
+            raise ApiError(
+                message,
+                response.status_code
+            )
+
+        # --------------------------------------------------
+        # Success
+        # --------------------------------------------------
+
+        try:
+
+            return response.json()
+
+        except ValueError as e:
+
+            raise ApiError(
+                "Invalid JSON response from API",
+                response.status_code
+            ) from e        

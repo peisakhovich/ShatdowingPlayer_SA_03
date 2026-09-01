@@ -4,21 +4,23 @@ from api.client import ApiClient
 from core.config import Config
 import os
 
+
 load_dotenv()
 
 
-def test_get_sets():
+def test_update_set():
 
     print("API_KEY loaded:", bool(os.getenv("API_KEY")))
+
     client = ApiClient(Config.API_BASE_URL)
 
-    sets = client.get_sets()
+    result = client.update_set(
+        set_id=36,
+        set_name="Client Test",
+        set_description="Updated from ApiClient"
+    )
 
-    assert isinstance(sets, list)
-    assert len(sets) > 0
+    print(result)
 
-    print()
-    print(f"Received {len(sets)} sets")
-
-    for item in sets[:5]:
-        print(item)
+if __name__ == "__main__":
+    test_update_set()
