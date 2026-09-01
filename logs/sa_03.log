@@ -1744,3 +1744,88 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
 2026-08-31 17:14:49 INFO     [SA_03] Database sets loaded: 17
 2026-08-31 17:14:49 DEBUG    [SA_03] Selected set: English B2 001
 2026-09-01 11:42:37 INFO     [SA_03] Finsh Application
+2026-09-01 15:00:00 INFO     [SA_03] Start Application
+2026-09-01 15:00:00 DEBUG    [SA_03] INITIAL ITEM: phrase_code = fr phrase_locale = fr-FR phrase_voice = fr-FR-RemyMultilingualNeural
+2026-09-01 15:00:00 DEBUG    [SA_03] INITIAL SOURCE: language = fr locale = fr-FR voice = 
+2026-09-01 15:00:01 DEBUG    [SA_03] Button: db
+2026-09-01 15:00:03 INFO     [SA_03] Database sets loaded: 17
+2026-09-01 15:00:03 DEBUG    [SA_03] Selected set: English B2 001
+2026-09-01 15:04:05 INFO     [SA_03] Finsh Application
+2026-09-01 15:04:09 INFO     [SA_03] Start Application
+2026-09-01 15:04:09 DEBUG    [SA_03] INITIAL ITEM: phrase_code = fr phrase_locale = fr-FR phrase_voice = fr-FR-RemyMultilingualNeural
+2026-09-01 15:04:09 DEBUG    [SA_03] INITIAL SOURCE: language = fr locale = fr-FR voice = 
+2026-09-01 15:04:10 DEBUG    [SA_03] Button: db
+2026-09-01 15:04:11 INFO     [SA_03] Database sets loaded: 17
+2026-09-01 15:04:11 DEBUG    [SA_03] Selected set: English B2 001
+2026-09-01 15:06:48 INFO     [SA_03] Start Application
+2026-09-01 15:06:48 DEBUG    [SA_03] INITIAL ITEM: phrase_code = fr phrase_locale = fr-FR phrase_voice = fr-FR-RemyMultilingualNeural
+2026-09-01 15:06:48 DEBUG    [SA_03] INITIAL SOURCE: language = fr locale = fr-FR voice = 
+2026-09-01 15:06:49 DEBUG    [SA_03] Button: db
+2026-09-01 15:06:50 INFO     [SA_03] Database sets loaded: 17
+2026-09-01 15:06:50 DEBUG    [SA_03] Selected set: English B2 001
+2026-09-01 15:10:08 INFO     [SA_03] Start Application
+2026-09-01 15:10:08 DEBUG    [SA_03] INITIAL ITEM: phrase_code = fr phrase_locale = fr-FR phrase_voice = fr-FR-RemyMultilingualNeural
+2026-09-01 15:10:08 DEBUG    [SA_03] INITIAL SOURCE: language = fr locale = fr-FR voice = 
+2026-09-01 15:10:09 DEBUG    [SA_03] Button: db
+2026-09-01 15:10:11 INFO     [SA_03] Database sets loaded: 17
+2026-09-01 15:10:11 DEBUG    [SA_03] Selected set: English B2 001
+2026-09-01 15:10:21 DEBUG    [SA_03] Selected set: Polisн  B2 001
+2026-09-01 15:10:25 DEBUG    [SA_03] Selected set: English B2 001
+2026-09-01 15:10:30 DEBUG    [SA_03] Selected set: Guest Session
+2026-09-01 15:11:57 INFO     [SA_03] Finsh Application
+2026-09-01 15:12:02 INFO     [SA_03] Start Application
+2026-09-01 15:12:02 DEBUG    [SA_03] INITIAL ITEM: phrase_code = fr phrase_locale = fr-FR phrase_voice = fr-FR-RemyMultilingualNeural
+2026-09-01 15:12:02 DEBUG    [SA_03] INITIAL SOURCE: language = fr locale = fr-FR voice = 
+2026-09-01 15:12:04 DEBUG    [SA_03] Button: db
+2026-09-01 15:12:04 INFO     [SA_03] Database sets loaded: 17
+2026-09-01 15:12:04 DEBUG    [SA_03] Selected set: English B2 001
+2026-09-01 15:15:47 INFO     [SA_03] Finsh Application
+2026-09-01 15:15:50 INFO     [SA_03] Start Application
+2026-09-01 15:15:50 DEBUG    [SA_03] INITIAL ITEM: phrase_code = fr phrase_locale = fr-FR phrase_voice = fr-FR-RemyMultilingualNeural
+2026-09-01 15:15:50 DEBUG    [SA_03] INITIAL SOURCE: language = fr locale = fr-FR voice = 
+2026-09-01 15:15:52 DEBUG    [SA_03] Button: db
+2026-09-01 15:15:53 INFO     [SA_03] Database sets loaded: 17
+2026-09-01 15:15:53 DEBUG    [SA_03] Selected set: English B2 001
+2026-09-01 15:16:32 INFO     [SA_03] Finsh Application
+2026-09-01 15:16:35 INFO     [SA_03] Start Application
+2026-09-01 15:16:35 DEBUG    [SA_03] INITIAL ITEM: phrase_code = fr phrase_locale = fr-FR phrase_voice = fr-FR-RemyMultilingualNeural
+2026-09-01 15:16:35 DEBUG    [SA_03] INITIAL SOURCE: language = fr locale = fr-FR voice = 
+2026-09-01 15:16:37 DEBUG    [SA_03] Button: db
+2026-09-01 15:16:38 INFO     [SA_03] Database sets loaded: 17
+2026-09-01 15:16:38 DEBUG    [SA_03] Selected set: English B2 001
+2026-09-01 15:18:55 INFO     [SA_03] Finsh Application
+2026-09-01 15:18:59 INFO     [SA_03] Start Application
+2026-09-01 15:18:59 DEBUG    [SA_03] INITIAL ITEM: phrase_code = fr phrase_locale = fr-FR phrase_voice = fr-FR-RemyMultilingualNeural
+2026-09-01 15:18:59 DEBUG    [SA_03] INITIAL SOURCE: language = fr locale = fr-FR voice = 
+2026-09-01 15:19:00 DEBUG    [SA_03] Button: db
+2026-09-01 15:19:35 INFO     [SA_03] Start Application
+2026-09-01 15:19:35 DEBUG    [SA_03] INITIAL ITEM: phrase_code = fr phrase_locale = fr-FR phrase_voice = fr-FR-RemyMultilingualNeural
+2026-09-01 15:19:35 DEBUG    [SA_03] INITIAL SOURCE: language = fr locale = fr-FR voice = 
+2026-09-01 15:19:37 DEBUG    [SA_03] Button: db
+2026-09-01 15:19:37 INFO     [SA_03] Database sets loaded: 17
+2026-09-01 15:19:37 DEBUG    [SA_03] Selected set: English B2 001
+2026-09-01 15:19:43 INFO     [SA_03] Finsh Application
+2026-09-01 15:24:37 INFO     [SA_03] Start Application
+2026-09-01 15:24:37 DEBUG    [SA_03] INITIAL ITEM: phrase_code = fr phrase_locale = fr-FR phrase_voice = fr-FR-RemyMultilingualNeural
+2026-09-01 15:24:37 DEBUG    [SA_03] INITIAL SOURCE: language = fr locale = fr-FR voice = 
+2026-09-01 15:24:38 DEBUG    [SA_03] Button: db
+2026-09-01 15:24:40 INFO     [SA_03] Database sets loaded: 17
+2026-09-01 15:24:40 DEBUG    [SA_03] Selected set: English B2 001
+2026-09-01 15:25:09 INFO     [SA_03] Finsh Application
+2026-09-01 15:26:39 INFO     [SA_03] Start Application
+2026-09-01 15:26:39 DEBUG    [SA_03] INITIAL ITEM: phrase_code = fr phrase_locale = fr-FR phrase_voice = fr-FR-RemyMultilingualNeural
+2026-09-01 15:26:39 DEBUG    [SA_03] INITIAL SOURCE: language = fr locale = fr-FR voice = 
+2026-09-01 15:26:40 DEBUG    [SA_03] Button: db
+2026-09-01 15:26:41 INFO     [SA_03] Database sets loaded: 17
+2026-09-01 15:26:41 DEBUG    [SA_03] Selected set: English B2 001
+2026-09-01 15:27:01 INFO     [SA_03] Finsh Application
+2026-09-01 15:27:06 INFO     [SA_03] Start Application
+2026-09-01 15:27:06 DEBUG    [SA_03] INITIAL ITEM: phrase_code = fr phrase_locale = fr-FR phrase_voice = fr-FR-RemyMultilingualNeural
+2026-09-01 15:27:06 DEBUG    [SA_03] INITIAL SOURCE: language = fr locale = fr-FR voice = 
+2026-09-01 15:27:07 DEBUG    [SA_03] Button: db
+2026-09-01 15:27:09 INFO     [SA_03] Database sets loaded: 17
+2026-09-01 15:27:09 DEBUG    [SA_03] Selected set: English B2 001
+2026-09-01 15:27:13 DEBUG    [SA_03] Selected set: TEST API SAVE
+2026-09-01 15:27:16 DEBUG    [SA_03] Selected set: English B2 001
+2026-09-01 15:27:23 DEBUG    [SA_03] Selected set: Guest Session
+2026-09-01 15:28:04 INFO     [SA_03] Finsh Application

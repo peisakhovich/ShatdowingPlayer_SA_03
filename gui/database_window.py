@@ -13,6 +13,7 @@ from gui.widgets.list_selection import ListSelection
 from audio.async_runner import AsyncRunner
 from gui.panels.control_panel_db import ControlPanel
 from gui.login_register_window import LoginRegisterWindow
+from gui.widgets.text_edit import TextEdit
 
 
 class DatabaseWindow:
@@ -110,6 +111,36 @@ class DatabaseWindow:
             [("", "Loading...")],
             0
         )
+
+        # --------------------------------------------------
+        # Set name editor
+        # --------------------------------------------------
+
+        self.set_name_edit = TextEdit(
+            pygame.Rect(
+                self.rect.x + 30,
+                self.rect.y + 270,
+                self.rect.width - 60,
+                40
+            ),
+            self.font_manager.load(20)
+        )
+
+        # --------------------------------------------------
+        # Set description editor
+        # --------------------------------------------------
+
+        self.description_edit = TextEdit(
+            pygame.Rect(
+                self.rect.x + 30,
+                self.rect.y + 345,
+                self.rect.width - 60,
+                80
+            ),
+            self.font_manager.load(20)
+        )
+
+
 
     # ==================================================
     # VISIBILITY
@@ -475,6 +506,10 @@ class DatabaseWindow:
         self._process_get_sets_task()
         self._process_get_set_task()
         self._process_save_set_task()
+
+        
+        self.set_name_edit.update()
+        self.description_edit.update()
 
         self.control_panel.update()
         self.login_register_window.update()
@@ -861,10 +896,31 @@ class DatabaseWindow:
         screen.blit(
             caption,
             (
-                self.set_selection.rect.x,
-                self.set_selection.rect.y - 25
+                self.set_name_edit.rect.x,                
+                self.set_name_edit.rect.y - 25
             )
         )
+
+        # --------------------------------------------------
+        # Description
+        # --------------------------------------------------
+
+        text = caption_font.render(
+            "Description:",
+            True,
+            Theme.DIALOG_TEXT_COLOR
+        )
+
+        screen.blit(
+            text,
+            (
+                self.description_edit.rect.x ,
+                self.description_edit.rect.y - 25
+            )
+        )
+
+ 
+
 
         # --------------------------------------------------
         # Set information
@@ -876,13 +932,16 @@ class DatabaseWindow:
                 "set_index",
                 ""
             )
+    
+            set_name=""
 
-            set_name = self.selected_set.get(
+            
+            self.set_name_edit.text = self.selected_set.get(
                 "set_name",
                 ""
             )
 
-            set_description = self.selected_set.get(
+            self.description_edit.text = self.selected_set.get(
                 "set_description",
                 ""
             )
@@ -894,23 +953,7 @@ class DatabaseWindow:
 
             info_y = self.set_selection.rect.bottom + 35
 
-            # --------------------------------------------------
-            # Selected set
-            # --------------------------------------------------
 
-            text = caption_font.render(
-                f"Set: {set_index}  |  {set_name}",
-                True,
-                Theme.DIALOG_TEXT_COLOR
-            )
-
-            screen.blit(
-                text,
-                (
-                    self.rect.x + 30,
-                    info_y
-                )
-            )
 
             # --------------------------------------------------
             # Items count
@@ -930,45 +973,19 @@ class DatabaseWindow:
                 )
             )
 
-            # --------------------------------------------------
-            # Description
-            # --------------------------------------------------
 
-            text = caption_font.render(
-                "Description:",
-                True,
-                Theme.DIALOG_TEXT_COLOR
-            )
-
-            screen.blit(
-                text,
-                (
-                    self.rect.x + 30,
-                    info_y + 75
-                )
-            )
-
-            # --------------------------------------------------
-            # Description text
-            # --------------------------------------------------
-
-            text = caption_font.render(
-                set_description,
-                True,
-                Theme.DIALOG_TEXT_COLOR
-            )
-
-            screen.blit(
-                text,
-                (
-                    self.rect.x + 30,
-                    info_y + 110
-                )
-            )
 
         self.control_panel.draw(
             screen
         )
+
+        self.set_name_edit.draw(
+            screen
+        )
+        self.description_edit.draw(
+            screen
+        )
+
 
         # --------------------------------------------------
         # ListSelection
