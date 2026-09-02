@@ -823,14 +823,6 @@ class DatabaseWindow:
             )
         )
         
-        # --------------------------------------------------
-        # Current user
-        # --------------------------------------------------
-
-        current_set = self.session.get_data().get(
-            "set",
-            {}
-        )
 
         user_id = self.session.user_id
         user_nickname = self.session.user_nickname
@@ -884,7 +876,7 @@ class DatabaseWindow:
         )
 
         # --------------------------------------------------
-        # Caption
+        # Training sets
         # --------------------------------------------------
 
         caption = caption_font.render(
@@ -933,7 +925,7 @@ class DatabaseWindow:
                 ""
             )
     
-            set_name=""
+            #set_name=""
 
             
             self.set_name_edit.text = self.selected_set.get(
