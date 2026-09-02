@@ -45,6 +45,7 @@ class DatabaseWindow:
         self._get_sets_task = None
         self._get_set_task = None
         self._save_set_task = None
+        self._update_set_data_task = None
 
         # --------------------------------------------------
         # Data
@@ -232,6 +233,18 @@ class DatabaseWindow:
             data
         )
 
+    # --------------------------------------------------  
+
+    async def _update_set_data_async(self, set_id, set_name, set_description):
+
+        return await asyncio.to_thread(
+            self.api_client.update_set,
+            set_id,
+            set_name,
+            set_description
+        )
+
+
     # ==================================================
     # PROCESS GET SETS RESULT
     # ==================================================
@@ -355,6 +368,52 @@ class DatabaseWindow:
             options[0][0]
         )
 
+
+    # ==================================================
+    # PROCESS UPDATE SET RESULT
+    # ==================================================
+
+    def _process_update_set_data_task(self):
+
+        if self._update_set_data_task is None:
+            return
+
+        if not self._update_set_data_task.done():
+            return
+
+        task = self._update_set_data_task
+        self._update_set_data_task = None
+
+        try:
+
+            result = task.result()
+
+            logger.info(
+                "Data saved to database:",
+                result
+            )
+            # --------------------------------------------------
+            # Refresh sets list after successful save
+            # --------------------------------------------------
+            self._load_sets()
+
+        except asyncio.CancelledError:
+
+            return
+
+        except Exception as e:
+
+            logger.error(
+                "UPDATE  set API error:",
+                e
+            )
+
+        finally:
+
+            self.busy_indicator.hide()
+
+
+
     # ==================================================
     # PROCESS GET SET RESULT
     # ==================================================
@@ -432,7 +491,7 @@ class DatabaseWindow:
         except Exception as e:
 
             logger.error(
-                "SAVE set API error:",
+                "UPDATE  set API error:",
                 e
             )
 
@@ -465,6 +524,29 @@ class DatabaseWindow:
                 )
             )
 
+            # --------------------------------------------------
+            # Заполняем редакторы данными выбранного набора
+            # --------------------------------------------------
+
+            self.set_name_edit.set_text(
+                self.selected_set.get(
+                    "set_name",
+                    ""
+                )
+            )
+
+            self.description_edit.set_text(
+                self.selected_set.get(
+                    "set_description",
+                    ""
+                )
+            )
+
+        else:
+
+            self.set_name_edit.clear()
+            self.description_edit.clear()
+
     # ==================================================
     # TASKS
     # ==================================================
@@ -492,6 +574,13 @@ class DatabaseWindow:
 
         self._save_set_task = None
 
+        if self._update_set_data_task is not None:
+
+            if not self._update_set_data_task.done():
+                self._update_set_data_task.cancel()
+
+        self._update_set_data_task = None
+
         self.busy_indicator.hide()
 
     # ==================================================
@@ -506,6 +595,7 @@ class DatabaseWindow:
         self._process_get_sets_task()
         self._process_get_set_task()
         self._process_save_set_task()
+        self._process_update_set_data_task()
 
         
         self.set_name_edit.update()
@@ -524,8 +614,6 @@ class DatabaseWindow:
 
         if not self.visible:
             return
-
-
 
         
         # --------------------------------------------------
@@ -667,8 +755,6 @@ class DatabaseWindow:
 
                         user_id = self.session.user_id
 
-                        user_id = self.session.user_id
-
                         logger.debug(
                             f"SETTO​DB user_id={user_id}"
                         )
@@ -706,6 +792,65 @@ class DatabaseWindow:
                         )
 
                         return
+                    # --------------------------------------------------
+                    # DATA -> DB (name,description)
+                    # --------------------------------------------------
+
+                    if name == "datatodb":
+
+                        if self.session.is_empty():
+
+                            logger.warning(
+                                "Session is empty"
+                            )
+
+                            return
+
+                        if self.selected_set is None:
+
+                            logger.warning(
+                                "No set selected"
+                            )
+
+                            return
+
+                        set_id = self.selected_set.get(
+                            "set_id"
+                        )
+
+                        if not set_id:
+
+                            logger.warning(
+                                "Selected set has no set_id"
+                            )
+
+                            return
+
+                        if self._update_set_data_task is not None:
+
+                            if not self._update_set_data_task.done():
+                                return
+
+                        logger.debug(
+                            f"DATATODB set_id={set_id}"
+                        )
+
+                        self.busy_indicator.show(
+                            "Saving data of set..."
+                        )
+
+                        self._update_set_data_task = (
+                            self._async_runner.submit(
+                                self._update_set_data_async(
+                                    set_id,
+                                    self.set_name_edit.get_text(),
+                                    self.description_edit.get_text()
+                                        )
+                            )
+                        )
+
+                        return
+                    
 
         # --------------------------------------------------
         # Close while busy
@@ -745,6 +890,22 @@ class DatabaseWindow:
             )
 
             return
+
+        # --------------------------------------------------
+        # Set name editor
+        # --------------------------------------------------
+
+        self.set_name_edit.handle_event(
+            event
+        )
+
+        # --------------------------------------------------
+        # Set description editor
+        # --------------------------------------------------
+
+        self.description_edit.handle_event(
+            event
+        )
 
         # --------------------------------------------------
         # Mouse
@@ -922,19 +1083,6 @@ class DatabaseWindow:
 
             set_index = self.selected_set.get(
                 "set_index",
-                ""
-            )
-    
-            #set_name=""
-
-            
-            self.set_name_edit.text = self.selected_set.get(
-                "set_name",
-                ""
-            )
-
-            self.description_edit.text = self.selected_set.get(
-                "set_description",
                 ""
             )
 

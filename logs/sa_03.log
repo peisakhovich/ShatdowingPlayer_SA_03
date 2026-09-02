@@ -1880,3 +1880,56 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
 2026-09-02 08:45:13 INFO     [SA_03] Database sets loaded: 17
 2026-09-02 08:45:13 DEBUG    [SA_03] Selected set: English B2 001
 2026-09-02 08:46:08 INFO     [SA_03] Finsh Application
+2026-09-02 12:10:17 INFO     [SA_03] Start Application
+2026-09-02 12:10:17 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-02 12:10:17 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-02 12:10:19 DEBUG    [SA_03] Button: db
+2026-09-02 12:10:20 INFO     [SA_03] Database sets loaded: 17
+2026-09-02 12:10:20 DEBUG    [SA_03] Selected set: English B2 001
+2026-09-02 15:12:35 DEBUG    [SA_03] Selected set: Polisн  B2 001
+2026-09-02 15:13:21 INFO     [SA_03] Finsh Application
+2026-09-02 15:24:25 INFO     [SA_03] Start Application
+2026-09-02 15:24:25 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-02 15:24:25 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-02 15:24:27 DEBUG    [SA_03] Button: db
+2026-09-02 15:24:28 INFO     [SA_03] Database sets loaded: 17
+2026-09-02 15:24:28 DEBUG    [SA_03] Selected set: English B2 001
+2026-09-02 15:24:45 DEBUG    [SA_03] Button: register
+2026-09-02 15:25:59 INFO     [SA_03] Finsh Application
+2026-09-02 15:30:05 INFO     [SA_03] Start Application
+2026-09-02 15:30:05 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-02 15:30:05 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-02 15:30:07 DEBUG    [SA_03] Button: db
+2026-09-02 15:30:08 INFO     [SA_03] Database sets loaded: 17
+2026-09-02 15:30:08 DEBUG    [SA_03] Selected set: English B2 001
+2026-09-02 15:30:54 DEBUG    [SA_03] Button: datatodb
+2026-09-02 15:30:55 DEBUG    [SA_03] Button: datatodb
+2026-09-02 15:31:09 DEBUG    [SA_03] Button: datatodb
+2026-09-02 15:31:10 DEBUG    [SA_03] Button: datatodb
+2026-09-02 15:31:26 DEBUG    [SA_03] Button: register
+2026-09-02 15:32:28 INFO     [SA_03] Finsh Application
+2026-09-02 16:42:04 INFO     [SA_03] Start Application
+2026-09-02 16:42:04 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-02 16:42:04 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-02 16:42:07 DEBUG    [SA_03] Button: db
+2026-09-02 16:42:08 INFO     [SA_03] Database sets loaded: 17
+2026-09-02 16:42:08 DEBUG    [SA_03] Selected set: English B2 001
+2026-09-02 16:42:28 DEBUG    [SA_03] Button: datatodb
+2026-09-02 16:42:28 DEBUG    [SA_03] DATATODB set_id=1
+2026-09-02 16:43:21 INFO     [SA_03] Start Application
+2026-09-02 16:43:21 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-02 16:43:21 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-02 16:43:23 DEBUG    [SA_03] Button: db
+2026-09-02 16:43:23 INFO     [SA_03] Database sets loaded: 17
+2026-09-02 16:43:23 DEBUG    [SA_03] Selected set: English B2 001
+2026-09-02 16:43:34 DEBUG    [SA_03] Button: datatodb
+2026-09-02 16:43:34 DEBUG    [SA_03] DATATODB set_id=1
+2026-09-02 16:43:35 INFO     [SA_03] Data saved to database: {'set_id': 1, 'set_name': 'English B2 ', 'set_description': 'Dialogue for several different themes-!!!', 'set_update_date': '2026-09-02T14:43:34'}
+2026-09-02 16:43:36 INFO     [SA_03] Database sets loaded: 17
+2026-09-02 16:43:36 DEBUG    [SA_03] Selected set: English B2 
+2026-09-02 16:44:54 DEBUG    [SA_03] Button: datatodb
+2026-09-02 16:44:54 DEBUG    [SA_03] DATATODB set_id=1
+2026-09-02 16:44:55 INFO     [SA_03] Data saved to database: {'set_id': 1, 'set_name': 'English B2 ', 'set_description': 'Dialogue for my -!!!', 'set_update_date': '2026-09-02T14:44:55'}
+2026-09-02 16:44:56 INFO     [SA_03] Database sets loaded: 17
+2026-09-02 16:44:56 DEBUG    [SA_03] Selected set: English B2 
+2026-09-02 16:45:08 INFO     [SA_03] Finsh Application
