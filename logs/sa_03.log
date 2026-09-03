@@ -1933,3 +1933,145 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
 2026-09-02 16:44:56 INFO     [SA_03] Database sets loaded: 17
 2026-09-02 16:44:56 DEBUG    [SA_03] Selected set: English B2 
 2026-09-02 16:45:08 INFO     [SA_03] Finsh Application
+2026-09-02 16:46:08 INFO     [SA_03] Start Application
+2026-09-02 16:46:08 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-02 16:46:08 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-02 16:46:10 DEBUG    [SA_03] Button: db
+2026-09-02 16:46:10 INFO     [SA_03] Database sets loaded: 17
+2026-09-02 16:46:10 DEBUG    [SA_03] Selected set: English B2 
+2026-09-02 16:47:01 DEBUG    [SA_03] Selected set: Guest Session
+2026-09-02 16:47:10 DEBUG    [SA_03] Selected set: Shadowing
+2026-09-02 16:48:55 DEBUG    [SA_03] Button: datatodb
+2026-09-02 16:48:55 DEBUG    [SA_03] DATATODB set_id=34
+2026-09-02 16:48:56 INFO     [SA_03] Data saved to database: {'set_id': 34, 'set_name': 'Shg', 'set_description': 'Generated #############', 'set_update_date': '2026-09-02T14:48:56'}
+2026-09-02 16:48:57 INFO     [SA_03] Database sets loaded: 17
+2026-09-02 16:48:57 DEBUG    [SA_03] Selected set: English B2 
+2026-09-02 16:49:14 DEBUG    [SA_03] Selected set: Shg
+2026-09-02 16:50:09 DEBUG    [SA_03] Selected set: English B2 
+2026-09-02 16:50:12 DEBUG    [SA_03] Selected set: Polisн  B2 001
+2026-09-02 16:50:39 INFO     [SA_03] Finsh Application
+2026-09-02 19:05:09 INFO     [SA_03] Start Application
+2026-09-02 19:05:09 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-02 19:05:09 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-02 19:05:11 DEBUG    [SA_03] Button: db
+2026-09-02 19:05:12 INFO     [SA_03] Database sets loaded: 17
+2026-09-02 19:05:12 DEBUG    [SA_03] Selected set: English B2 
+2026-09-02 19:06:35 DEBUG    [SA_03] Button: datatodb
+2026-09-02 19:06:35 DEBUG    [SA_03] DATATODB set_id=1
+2026-09-02 19:06:36 INFO     [SA_03] Data saved to database: {'set_id': 1, 'set_name': 'English A2', 'set_description': 'Dlogue simple alot', 'set_update_date': '2026-09-02T17:06:36'}
+2026-09-02 19:06:37 INFO     [SA_03] Database sets loaded: 17
+2026-09-02 19:06:37 DEBUG    [SA_03] Selected set: English A2
+2026-09-02 19:08:49 DEBUG    [SA_03] Button: login
+2026-09-02 19:20:22 INFO     [SA_03] Start Application
+2026-09-02 19:20:22 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-02 19:20:22 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-02 19:20:24 DEBUG    [SA_03] Button: db
+2026-09-02 19:20:25 INFO     [SA_03] Database sets loaded: 17
+2026-09-02 19:20:25 DEBUG    [SA_03] Selected set: English A2
+2026-09-02 19:20:37 DEBUG    [SA_03] Button: datatodb
+2026-09-02 19:20:37 DEBUG    [SA_03] DATATODB set_id=1
+2026-09-02 19:20:38 INFO     [SA_03] Data saved to database: {'set_id': 1, 'set_name': 'English A2-2', 'set_description': 'Dlogue simple alot', 'set_update_date': '2026-09-02T17:20:38'}
+2026-09-02 19:20:39 INFO     [SA_03] Database sets loaded: 17
+2026-09-02 19:20:39 DEBUG    [SA_03] Selected set: English A2-2
+2026-09-02 19:20:47 INFO     [SA_03] Finsh Application
+2026-09-02 19:28:23 INFO     [SA_03] Start Application
+2026-09-02 19:28:23 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-02 19:28:23 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-02 19:28:25 DEBUG    [SA_03] Button: db
+2026-09-02 19:28:26 INFO     [SA_03] Database sets loaded: 17
+2026-09-02 19:28:26 DEBUG    [SA_03] Selected set: English A2-2
+2026-09-02 19:28:33 DEBUG    [SA_03] Button: datatodb
+2026-09-02 19:28:33 DEBUG    [SA_03] DATATODB set_id=1
+2026-09-02 19:32:24 INFO     [SA_03] Start Application
+2026-09-02 19:32:24 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-02 19:32:24 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-02 19:32:26 DEBUG    [SA_03] Button: db
+2026-09-02 19:32:27 INFO     [SA_03] Database sets loaded: 17
+2026-09-02 19:32:27 DEBUG    [SA_03] Selected set: English A2-2
+2026-09-02 19:32:32 DEBUG    [SA_03] Button: datatodb
+2026-09-02 19:32:32 DEBUG    [SA_03] DATATODB set_id=1
+2026-09-02 19:32:33 INFO     [SA_03] Data saved to database: {'set_id': 1, 'set_name': 'English A2-23', 'set_description': 'Dlogue simple', 'set_update_date': '2026-09-02T17:32:33'}
+2026-09-02 19:32:34 INFO     [SA_03] Database sets loaded: 17
+2026-09-02 19:32:34 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-02 19:33:39 INFO     [SA_03] Finsh Application
+2026-09-02 20:03:49 INFO     [SA_03] Start Application
+2026-09-02 20:03:50 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-02 20:03:50 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-02 20:03:51 DEBUG    [SA_03] Button: db
+2026-09-02 20:03:52 INFO     [SA_03] Database sets loaded: 17
+2026-09-02 20:03:52 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-02 20:04:04 DEBUG    [SA_03] Button: db
+2026-09-02 20:04:05 INFO     [SA_03] Database sets loaded: 17
+2026-09-02 20:04:05 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-02 20:04:23 DEBUG    [SA_03] Button: settings
+2026-09-02 20:04:23 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-02 20:04:23 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-02 20:04:23 DEBUG    [SA_03] Target language: en
+2026-09-02 20:04:23 DEBUG    [SA_03] Target locale: en-US
+2026-09-02 20:04:26 DEBUG    [SA_03] Button: db
+2026-09-02 20:04:27 INFO     [SA_03] Database sets loaded: 17
+2026-09-02 20:04:27 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-02 20:04:48 INFO     [SA_03] Finsh Application
+2026-09-02 20:05:58 INFO     [SA_03] Start Application
+2026-09-02 20:05:58 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-02 20:05:58 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-02 20:05:59 DEBUG    [SA_03] Button: db
+2026-09-02 20:06:00 INFO     [SA_03] Database sets loaded: 17
+2026-09-02 20:06:00 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-02 20:06:19 INFO     [SA_03] Finsh Application
+2026-09-02 20:06:52 INFO     [SA_03] Start Application
+2026-09-02 20:06:52 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-02 20:06:52 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-02 20:06:54 DEBUG    [SA_03] Button: db
+2026-09-02 20:06:54 INFO     [SA_03] Database sets loaded: 17
+2026-09-02 20:06:54 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-02 20:07:02 INFO     [SA_03] Finsh Application
+2026-09-02 20:07:34 INFO     [SA_03] Start Application
+2026-09-02 20:07:34 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-02 20:07:34 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-02 20:07:36 DEBUG    [SA_03] Button: db
+2026-09-02 20:07:36 INFO     [SA_03] Database sets loaded: 17
+2026-09-02 20:07:36 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-02 20:07:42 INFO     [SA_03] Finsh Application
+2026-09-02 20:08:36 INFO     [SA_03] Start Application
+2026-09-02 20:08:36 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-02 20:08:36 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-02 20:08:38 DEBUG    [SA_03] Button: db
+2026-09-02 20:08:39 INFO     [SA_03] Database sets loaded: 17
+2026-09-02 20:08:39 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-02 20:09:01 INFO     [SA_03] Finsh Application
+2026-09-03 07:50:11 INFO     [SA_03] Start Application
+2026-09-03 07:50:11 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-03 07:50:11 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-03 07:50:13 DEBUG    [SA_03] Button: db
+2026-09-03 07:50:14 INFO     [SA_03] Database sets loaded: 17
+2026-09-03 07:50:14 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-03 07:50:16 DEBUG    [SA_03] Selected set: Dictation - dictation
+2026-09-03 07:50:18 DEBUG    [SA_03] Selected set: Guest Session
+2026-09-03 07:50:22 DEBUG    [SA_03] Selected set: TEST API SAVE
+2026-09-03 07:50:27 DEBUG    [SA_03] Selected set: Azure API Minimal Test
+2026-09-03 07:50:31 DEBUG    [SA_03] Selected set: Dictation - dictation
+2026-09-03 07:50:43 DEBUG    [SA_03] Button: settings
+2026-09-03 07:50:43 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-03 07:50:43 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-03 07:50:43 DEBUG    [SA_03] Target language: en
+2026-09-03 07:50:44 DEBUG    [SA_03] Target locale: en-US
+2026-09-03 07:50:46 DEBUG    [SA_03] Scenario: translation_first
+2026-09-03 07:50:51 DEBUG    [SA_03] Button: db
+2026-09-03 07:50:53 INFO     [SA_03] Database sets loaded: 17
+2026-09-03 07:50:53 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-03 07:50:57 DEBUG    [SA_03] Selected set: Guest Session
+2026-09-03 07:51:01 DEBUG    [SA_03] Selected set: Polisн  B2 001
+2026-09-03 07:51:04 DEBUG    [SA_03] Selected set: Azure API Minimal Test
+2026-09-03 07:51:07 DEBUG    [SA_03] Selected set: Polisн  B2 001
+2026-09-03 07:51:09 DEBUG    [SA_03] Selected set: Dictation - dictation
+2026-09-03 07:51:13 DEBUG    [SA_03] Selected set: Guest Session
+2026-09-03 07:51:26 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-03 07:51:49 DEBUG    [SA_03] Selected set: Dictation - dictation
+2026-09-03 07:52:13 DEBUG    [SA_03] Button: datatodb
+2026-09-03 07:52:13 DEBUG    [SA_03] DATATODB set_id=8
+2026-09-03 07:52:14 INFO     [SA_03] Data saved to database: {'set_id': 8, 'set_name': 'Dictation - dictation', 'set_description': 'Generated dictation-----+++', 'set_update_date': '2026-09-03T05:52:13'}
+2026-09-03 07:52:14 INFO     [SA_03] Database sets loaded: 17
+2026-09-03 07:52:14 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-03 07:52:23 DEBUG    [SA_03] Selected set: Dictation - dictation
+2026-09-03 07:52:31 INFO     [SA_03] Finsh Application

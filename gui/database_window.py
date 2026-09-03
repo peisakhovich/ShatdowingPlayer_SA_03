@@ -53,6 +53,9 @@ class DatabaseWindow:
 
         self.sets = []
         self.selected_set = None
+        
+
+
 
         # --------------------------------------------------
         # Close button
@@ -207,7 +210,7 @@ class DatabaseWindow:
 
     # --------------------------------------------------
 
-    async def _get_sets_async(self,user_id):
+    async def _get_sets_async(self, user_id):
 
         return await asyncio.to_thread(
             self.api_client.get_sets,
@@ -437,8 +440,7 @@ class DatabaseWindow:
             self.session.save(Config.PLAN_SESSION_FILE)
 
             logger.info(
-                "Set loaded into session:",
-                self.session.id
+                f"Set loaded into session: {self.session.id}"
             )
 
         except asyncio.CancelledError:
@@ -491,7 +493,7 @@ class DatabaseWindow:
         except Exception as e:
 
             logger.error(
-                "UPDATE  set API error:",
+                "SAVE  set API error:",
                 e
             )
 
@@ -697,10 +699,7 @@ class DatabaseWindow:
                     # DB -> SESSION
                     # --------------------------------------------------
 
-
                     if name == "dbtoset":
-
-                        logger.debug("SETTO​DB BUTTON PRESSED")
                         
                         if self.selected_set is None:
 
@@ -795,16 +794,7 @@ class DatabaseWindow:
                     # --------------------------------------------------
                     # DATA -> DB (name,description)
                     # --------------------------------------------------
-
                     if name == "datatodb":
-
-                        if self.session.is_empty():
-
-                            logger.warning(
-                                "Session is empty"
-                            )
-
-                            return
 
                         if self.selected_set is None:
 
@@ -831,9 +821,32 @@ class DatabaseWindow:
                             if not self._update_set_data_task.done():
                                 return
 
+                        # --------------------------------------------------
+                        # Получаем данные из редакторов
+                        # --------------------------------------------------
+
+                        set_name = self.set_name_edit.get_text().strip()
+                        set_description = self.description_edit.get_text().strip()
+
+                        # --------------------------------------------------
+                        # Проверка имени
+                        # --------------------------------------------------
+
+                        if not set_name:
+
+                            logger.warning(
+                                "Set name is empty"
+                            )
+
+                            return
+
                         logger.debug(
                             f"DATATODB set_id={set_id}"
                         )
+
+                        # --------------------------------------------------
+                        # UPDATE
+                        # --------------------------------------------------
 
                         self.busy_indicator.show(
                             "Saving data of set..."
@@ -843,14 +856,14 @@ class DatabaseWindow:
                             self._async_runner.submit(
                                 self._update_set_data_async(
                                     set_id,
-                                    self.set_name_edit.get_text(),
-                                    self.description_edit.get_text()
-                                        )
+                                    set_name,
+                                    set_description
+                                )
                             )
                         )
 
                         return
-                    
+
 
         # --------------------------------------------------
         # Close while busy
@@ -874,59 +887,107 @@ class DatabaseWindow:
             return
 
         # --------------------------------------------------
-        # Set selection
-        # --------------------------------------------------
-
-        result = self.set_selection.handle_event(
-            event
-        )
-
-        if result is not None:
-
-            set_id = result[1]
-
-            self._update_selected_set(
-                set_id
-            )
-
-            return
-
-        # --------------------------------------------------
-        # Set name editor
-        # --------------------------------------------------
-
-        self.set_name_edit.handle_event(
-            event
-        )
-
-        # --------------------------------------------------
-        # Set description editor
-        # --------------------------------------------------
-
-        self.description_edit.handle_event(
-            event
-        )
-
-        # --------------------------------------------------
-        # Mouse
-        # --------------------------------------------------
-
-        if event.type != pygame.MOUSEBUTTONDOWN:
-            return
-
-        if event.button != 1:
-            return
-
-        # --------------------------------------------------
         # Close
         # --------------------------------------------------
 
-        if self.close_rect.collidepoint(
-            event.pos
+        if (
+            event.type == pygame.MOUSEBUTTONDOWN
+            and event.button == 1
+            and self.close_rect.collidepoint(event.pos)
         ):
-
             self.hide()
             return
+
+        # --------------------------------------------------
+        # Mouse button
+        # --------------------------------------------------
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.button != 1:
+                return
+
+            # Если список уже открыт,
+            # передаём ему любой левый клик.
+            # ListSelection сам определит:
+            # - выбор элемента;
+            # - клик по control;
+            # - клик вне списка.
+            if self.set_selection.opened:
+
+                result = self.set_selection.handle_event(event)
+
+                if result is not None:
+                    set_id = result[1]
+                    self._update_selected_set(set_id)
+
+                return
+
+            # Список закрыт — передаём событие
+            # только если клик по самому control.
+            if self.set_selection.rect.collidepoint(event.pos):
+
+                result = self.set_selection.handle_event(event)
+
+                if result is not None:
+                    set_id = result[1]
+                    self._update_selected_set(set_id)
+
+                return
+
+
+            # --------------------------------------------------
+            # Set name editor
+            # --------------------------------------------------
+
+            if self.set_name_edit.rect.collidepoint(event.pos):
+
+                # Снимаем фокус с обоих полей
+                self.set_name_edit.focused = False
+                self.description_edit.focused = False
+
+                # Передаём клик только выбранному полю
+                self.set_name_edit.handle_event(
+                    event
+                )
+
+                return
+
+            # --------------------------------------------------
+            # Description editor
+            # --------------------------------------------------
+
+            if self.description_edit.rect.collidepoint(event.pos):
+
+                # Снимаем фокус с обоих полей
+                self.set_name_edit.focused = False
+                self.description_edit.focused = False
+
+                # Передаём клик только выбранному полю
+                self.description_edit.handle_event(
+                    event
+                )
+
+                return
+
+            # --------------------------------------------------
+            # Клик вне полей
+            # --------------------------------------------------
+
+            self.set_name_edit.focused = False
+            self.description_edit.focused = False
+
+            pygame.key.stop_text_input()
+
+            return
+
+
+        # --------------------------------------------------
+        # Keyboard / text input / mouse wheel
+        # --------------------------------------------------
+
+        self.set_name_edit.handle_event(event)
+        self.description_edit.handle_event(event)
+
+
 
     # ==================================================
     # DRAW
