@@ -117,6 +117,7 @@ class DatabaseWindow:
             0
         )
 
+ 
         # --------------------------------------------------
         # Set name editor
         # --------------------------------------------------
@@ -362,6 +363,12 @@ class DatabaseWindow:
             )
 
         self.set_selection.options = options
+
+        print(
+            "SETS LOADED:",
+            len(self.set_selection.options),
+            self.set_selection.max_visible_items
+        )       
 
         # --------------------------------------------------
         # Восстанавливаем ранее выбранный set
@@ -1001,6 +1008,15 @@ class DatabaseWindow:
 
             return
 
+        # --------------------------------------------------
+        # Mouse wheel
+        # --------------------------------------------------
+
+        if event.type == pygame.MOUSEWHEEL:
+
+            self.set_selection.handle_event(event)
+
+            return
 
         # --------------------------------------------------
         # Keyboard / text input / mouse wheel

@@ -2172,3 +2172,571 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
 2026-09-03 08:09:54 INFO     [SA_03] Database sets loaded: 17
 2026-09-03 08:09:54 DEBUG    [SA_03] Selected set: English A2-23
 2026-09-03 08:10:03 INFO     [SA_03] Finsh Application
+2026-09-03 08:17:39 INFO     [SA_03] Start Application
+2026-09-03 08:17:39 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-03 08:17:39 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-03 08:17:42 DEBUG    [SA_03] Button: settings
+2026-09-03 08:17:42 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-03 08:17:42 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-03 08:17:42 DEBUG    [SA_03] Target language: en
+2026-09-03 08:17:42 DEBUG    [SA_03] Target locale: en-US
+2026-09-03 08:18:14 INFO     [SA_03] Finsh Application
+2026-09-03 08:18:56 INFO     [SA_03] Start Application
+2026-09-03 08:18:56 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-03 08:18:56 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-03 08:19:08 DEBUG    [SA_03] Button: db
+2026-09-03 08:19:09 INFO     [SA_03] Database sets loaded: 17
+2026-09-03 08:19:09 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-03 08:20:17 DEBUG    [SA_03] Button: settings
+2026-09-03 08:20:17 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-03 08:20:17 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-03 08:20:17 DEBUG    [SA_03] Target language: en
+2026-09-03 08:20:18 DEBUG    [SA_03] Target locale: en-US
+2026-09-03 08:21:16 INFO     [SA_03] Finsh Application
+2026-09-03 09:52:49 INFO     [SA_03] Start Application
+2026-09-03 09:52:50 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-03 09:52:50 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-03 09:52:51 DEBUG    [SA_03] Button: db
+2026-09-03 09:52:52 INFO     [SA_03] Database sets loaded: 17
+2026-09-03 09:52:52 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-03 09:53:06 DEBUG    [SA_03] Selected set: Polisн  B2 001
+2026-09-03 09:53:31 DEBUG    [SA_03] Button: settings
+2026-09-03 09:53:31 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-03 09:53:31 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-03 09:53:31 DEBUG    [SA_03] Target language: en
+2026-09-03 09:53:31 DEBUG    [SA_03] Target locale: en-US
+2026-09-03 09:53:54 INFO     [SA_03] Finsh Application
+2026-09-03 09:54:01 INFO     [SA_03] Start Application
+2026-09-03 09:54:01 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-03 09:54:01 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-03 09:54:02 DEBUG    [SA_03] Button: settings
+2026-09-03 09:54:02 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-03 09:54:02 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-03 09:54:02 DEBUG    [SA_03] Target language: en
+2026-09-03 09:54:03 DEBUG    [SA_03] Target locale: en-US
+2026-09-03 09:54:14 DEBUG    [SA_03] Button: db
+2026-09-03 09:54:14 INFO     [SA_03] Database sets loaded: 17
+2026-09-03 09:54:14 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-03 09:54:28 DEBUG    [SA_03] Button: settings
+2026-09-03 09:54:28 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-03 09:54:28 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-03 09:54:29 DEBUG    [SA_03] Target language: en
+2026-09-03 09:54:29 DEBUG    [SA_03] Target locale: en-US
+2026-09-03 09:54:52 INFO     [SA_03] Finsh Application
+2026-09-03 09:54:56 INFO     [SA_03] Start Application
+2026-09-03 09:54:56 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-03 09:54:56 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-03 09:55:03 DEBUG    [SA_03] Button: db
+2026-09-03 09:55:04 INFO     [SA_03] Database sets loaded: 17
+2026-09-03 09:55:04 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-03 09:57:14 INFO     [SA_03] Finsh Application
+2026-09-03 09:57:18 INFO     [SA_03] Start Application
+2026-09-03 09:57:18 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-03 09:57:18 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-03 09:57:20 DEBUG    [SA_03] Button: db
+2026-09-03 09:57:21 INFO     [SA_03] Database sets loaded: 17
+2026-09-03 09:57:21 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-03 09:57:35 DEBUG    [SA_03] Selected set: Guest Session
+2026-09-03 09:57:40 INFO     [SA_03] Finsh Application
+2026-09-03 09:59:35 INFO     [SA_03] Start Application
+2026-09-03 09:59:35 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-03 09:59:35 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-03 09:59:37 DEBUG    [SA_03] Button: settings
+2026-09-03 09:59:37 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-03 09:59:37 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-03 09:59:37 DEBUG    [SA_03] Target language: en
+2026-09-03 09:59:37 DEBUG    [SA_03] Target locale: en-US
+2026-09-03 10:00:00 INFO     [SA_03] Finsh Application
+2026-09-03 10:02:33 INFO     [SA_03] Start Application
+2026-09-03 10:02:33 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-03 10:02:33 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-03 10:02:35 DEBUG    [SA_03] Button: settings
+2026-09-03 10:02:35 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-03 10:02:35 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-03 10:02:35 DEBUG    [SA_03] Target language: en
+2026-09-03 10:02:36 DEBUG    [SA_03] Target locale: en-US
+2026-09-03 10:02:43 DEBUG    [SA_03] Button: db
+2026-09-03 10:02:44 INFO     [SA_03] Database sets loaded: 17
+2026-09-03 10:02:44 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-03 10:03:18 INFO     [SA_03] Finsh Application
+2026-09-03 10:03:27 INFO     [SA_03] Start Application
+2026-09-03 10:03:27 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-03 10:03:27 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-03 10:03:30 DEBUG    [SA_03] Button: settings
+2026-09-03 10:03:30 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-03 10:03:30 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-03 10:03:30 DEBUG    [SA_03] Target language: en
+2026-09-03 10:03:31 DEBUG    [SA_03] Target locale: en-US
+2026-09-03 10:03:40 DEBUG    [SA_03] Button: db
+2026-09-03 10:03:41 INFO     [SA_03] Database sets loaded: 17
+2026-09-03 10:03:41 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-03 10:05:14 INFO     [SA_03] Finsh Application
+2026-09-03 10:11:04 INFO     [SA_03] Start Application
+2026-09-03 10:11:04 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-03 10:11:04 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-03 10:11:06 DEBUG    [SA_03] Button: db
+2026-09-03 10:11:07 INFO     [SA_03] Database sets loaded: 17
+2026-09-03 10:11:07 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-03 10:12:39 DEBUG    [SA_03] Selected set: Dictation - dictation
+2026-09-03 10:12:44 DEBUG    [SA_03] Button: dbtoset
+2026-09-03 10:12:45 INFO     [SA_03] Set loaded into session: 23
+2026-09-03 10:12:50 DEBUG    [SA_03] Button: play
+2026-09-03 10:12:50 DEBUG    [SA_03] PREPARE_ITEM #0
+2026-09-03 10:12:50 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:12:50 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:12:50 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-03 10:12:54 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:12:56 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:12:56 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:13:03 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:13:03 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-03 10:13:03 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-03 10:13:03 DEBUG    [SA_03] Translation audio skipped: empty translate_text
+2026-09-03 10:13:03 DEBUG    [SA_03] TRANSLATION SKIPPED
+2026-09-03 10:13:03 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-03 10:13:05 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:13:05 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-03 10:13:05 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:13:05 INFO     [SA_03] SCENARIO FINISHED
+2026-09-03 10:13:05 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-03 10:13:05 DEBUG    [SA_03] PREPARE_ITEM #1
+2026-09-03 10:13:05 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:13:05 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:13:05 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-03 10:13:08 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:13:11 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:13:11 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:13:18 DEBUG    [SA_03] Button: settings
+2026-09-03 10:13:18 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-ZofiaNeural
+2026-09-03 10:13:18 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-03 10:13:18 DEBUG    [SA_03] Target language: en
+2026-09-03 10:13:18 DEBUG    [SA_03] Target locale: en-US
+2026-09-03 10:13:19 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:13:19 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-03 10:13:20 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-03 10:13:20 DEBUG    [SA_03] Translation audio skipped: empty translate_text
+2026-09-03 10:13:20 DEBUG    [SA_03] TRANSLATION SKIPPED
+2026-09-03 10:13:20 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-03 10:13:20 DEBUG    [SA_03] Scenario: dictation
+2026-09-03 10:13:22 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:13:22 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-03 10:13:22 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:13:22 INFO     [SA_03] SCENARIO FINISHED
+2026-09-03 10:13:22 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-03 10:13:22 DEBUG    [SA_03] PREPARE_ITEM #2
+2026-09-03 10:13:22 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:13:22 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:13:22 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-03 10:13:24 DEBUG    [SA_03] Button: play
+2026-09-03 10:13:24 DEBUG    [SA_03] PREPARE_ITEM #2
+2026-09-03 10:13:24 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:13:24 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:13:24 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:13:24 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:13:29 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:13:29 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:13:39 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:13:39 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-03 10:13:39 INFO     [SA_03] SCENARIO FINISHED
+2026-09-03 10:13:39 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-03 10:13:39 DEBUG    [SA_03] PREPARE_ITEM #3
+2026-09-03 10:13:39 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:13:39 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:13:39 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:13:39 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-03 10:13:42 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:13:45 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:13:45 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:13:52 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:13:52 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-03 10:13:52 INFO     [SA_03] SCENARIO FINISHED
+2026-09-03 10:13:52 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-03 10:13:52 DEBUG    [SA_03] PREPARE_ITEM #4
+2026-09-03 10:13:52 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:13:52 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:13:52 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:13:52 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-03 10:13:55 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:13:58 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:13:58 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:14:06 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:14:06 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-03 10:14:06 INFO     [SA_03] SCENARIO FINISHED
+2026-09-03 10:14:06 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-03 10:14:06 DEBUG    [SA_03] PREPARE_ITEM #5
+2026-09-03 10:14:06 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:14:06 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:14:06 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:14:06 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-03 10:14:08 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:14:10 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:14:10 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:14:19 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:14:19 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-03 10:14:19 INFO     [SA_03] SCENARIO FINISHED
+2026-09-03 10:14:19 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-03 10:14:19 DEBUG    [SA_03] PREPARE_ITEM #6
+2026-09-03 10:14:19 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:14:19 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:14:19 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:14:19 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-03 10:14:22 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:14:25 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:14:25 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:14:30 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:14:30 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-03 10:14:30 INFO     [SA_03] SCENARIO FINISHED
+2026-09-03 10:14:30 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-03 10:14:31 DEBUG    [SA_03] PREPARE_ITEM #7
+2026-09-03 10:14:31 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:14:31 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:14:31 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:14:31 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-03 10:14:33 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:14:37 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:14:37 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:14:47 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:14:47 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-03 10:14:47 INFO     [SA_03] SCENARIO FINISHED
+2026-09-03 10:14:47 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-03 10:14:47 DEBUG    [SA_03] PREPARE_ITEM #8
+2026-09-03 10:14:47 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:14:47 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:14:47 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:14:47 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-03 10:14:50 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:14:53 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:14:53 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:15:00 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:15:00 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-03 10:15:00 INFO     [SA_03] SCENARIO FINISHED
+2026-09-03 10:15:00 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-03 10:15:00 DEBUG    [SA_03] PREPARE_ITEM #9
+2026-09-03 10:15:00 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:15:00 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:15:00 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:15:00 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-03 10:15:02 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:15:05 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:15:05 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:15:13 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:15:13 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-03 10:15:13 INFO     [SA_03] SCENARIO FINISHED
+2026-09-03 10:15:14 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-03 10:15:14 DEBUG    [SA_03] PREPARE_ITEM #10
+2026-09-03 10:15:14 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:15:14 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:15:14 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:15:14 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-03 10:15:15 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:15:19 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:15:19 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:15:29 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:15:29 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-03 10:15:29 INFO     [SA_03] SCENARIO FINISHED
+2026-09-03 10:15:29 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-03 10:15:29 DEBUG    [SA_03] PREPARE_ITEM #11
+2026-09-03 10:15:29 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:15:29 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:15:29 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:15:29 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-03 10:15:30 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:15:34 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:15:34 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:15:44 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:15:44 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-03 10:15:44 INFO     [SA_03] SCENARIO FINISHED
+2026-09-03 10:15:44 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-03 10:15:44 DEBUG    [SA_03] PREPARE_ITEM #12
+2026-09-03 10:15:44 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:15:44 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:15:44 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:15:44 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-03 10:15:47 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:15:50 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:15:50 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:15:59 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:15:59 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-03 10:15:59 INFO     [SA_03] SCENARIO FINISHED
+2026-09-03 10:15:59 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-03 10:15:59 DEBUG    [SA_03] PLAYBACK_FINISHED
+2026-09-03 10:16:03 DEBUG    [SA_03] Button: prev
+2026-09-03 10:16:05 DEBUG    [SA_03] Button: play
+2026-09-03 10:16:05 DEBUG    [SA_03] PREPARE_ITEM #11
+2026-09-03 10:16:05 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:16:05 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:16:05 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:16:05 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-03 10:16:05 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:16:09 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:16:09 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:16:10 DEBUG    [SA_03] Button: next
+2026-09-03 10:16:10 DEBUG    [SA_03] PREPARE_ITEM #12
+2026-09-03 10:16:10 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:16:10 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:16:10 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:16:10 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-03 10:16:10 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:16:13 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:16:13 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:16:14 DEBUG    [SA_03] Button: pause
+2026-09-03 10:17:19 DEBUG    [SA_03] Button: db
+2026-09-03 10:17:20 INFO     [SA_03] Database sets loaded: 17
+2026-09-03 10:17:20 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-03 10:18:15 DEBUG    [SA_03] Button: dbtoset
+2026-09-03 10:18:16 INFO     [SA_03] Set loaded into session: 1
+2026-09-03 10:18:21 DEBUG    [SA_03] Button: play
+2026-09-03 10:18:21 DEBUG    [SA_03] PREPARE_ITEM #0
+2026-09-03 10:18:22 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:18:22 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:18:22 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:18:22 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-03 10:18:22 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:18:26 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:18:26 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:18:29 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:18:29 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-03 10:18:29 INFO     [SA_03] SCENARIO FINISHED
+2026-09-03 10:18:29 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-03 10:18:29 DEBUG    [SA_03] PREPARE_ITEM #1
+2026-09-03 10:18:29 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:18:29 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:18:29 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:18:29 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-03 10:18:29 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:18:33 DEBUG    [SA_03] Button: pause
+2026-09-03 10:18:38 DEBUG    [SA_03] Button: db
+2026-09-03 10:18:39 INFO     [SA_03] Database sets loaded: 17
+2026-09-03 10:18:39 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-03 10:18:42 DEBUG    [SA_03] Button: login
+2026-09-03 10:19:45 INFO     [SA_03] Database sets loaded: 1
+2026-09-03 10:19:45 DEBUG    [SA_03] Selected set: Client Test
+2026-09-03 10:19:49 DEBUG    [SA_03] Selected set: Client Test
+2026-09-03 10:19:52 DEBUG    [SA_03] Button: dbtoset
+2026-09-03 10:19:53 INFO     [SA_03] Set loaded into session: 36
+2026-09-03 10:19:58 DEBUG    [SA_03] Button: play
+2026-09-03 10:19:58 DEBUG    [SA_03] PREPARE_ITEM #0
+2026-09-03 10:19:58 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:19:58 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:19:58 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:19:58 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-03 10:19:58 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:19:59 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:19:59 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:20:02 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:20:02 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-03 10:20:02 INFO     [SA_03] SCENARIO FINISHED
+2026-09-03 10:20:02 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-03 10:20:02 DEBUG    [SA_03] PREPARE_ITEM #1
+2026-09-03 10:20:02 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:20:02 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:20:02 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:20:03 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-03 10:20:03 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:20:04 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:20:04 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:20:06 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:20:06 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-03 10:20:06 INFO     [SA_03] SCENARIO FINISHED
+2026-09-03 10:20:06 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-03 10:20:06 DEBUG    [SA_03] PREPARE_ITEM #2
+2026-09-03 10:20:06 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:20:06 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:20:06 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:20:06 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-03 10:20:06 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:20:08 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:20:08 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:20:12 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:20:12 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-03 10:20:12 INFO     [SA_03] SCENARIO FINISHED
+2026-09-03 10:20:12 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-03 10:20:12 DEBUG    [SA_03] PREPARE_ITEM #3
+2026-09-03 10:20:12 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:20:12 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:20:12 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:20:12 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-03 10:20:12 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:20:14 DEBUG    [SA_03] Button: settings
+2026-09-03 10:20:14 DEBUG    [SA_03] INITIAL ITEM: phrase_code = fr phrase_locale = fr-FR phrase_voice = fr-FR-RemyMultilingualNeural
+2026-09-03 10:20:14 DEBUG    [SA_03] INITIAL SOURCE: language = fr locale = fr-FR voice = 
+2026-09-03 10:20:14 DEBUG    [SA_03] Target language: en
+2026-09-03 10:20:14 DEBUG    [SA_03] Target locale: en-US
+2026-09-03 10:20:15 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:20:15 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:20:16 DEBUG    [SA_03] Scenario: shadowing
+2026-09-03 10:20:19 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:20:19 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-03 10:20:19 INFO     [SA_03] SCENARIO FINISHED
+2026-09-03 10:20:19 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-03 10:20:19 DEBUG    [SA_03] PREPARE_ITEM #4
+2026-09-03 10:20:19 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:20:19 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:20:19 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:20:19 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-03 10:20:19 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:20:22 DEBUG    [SA_03] Button: prev
+2026-09-03 10:20:22 DEBUG    [SA_03] PREPARE_ITEM #3
+2026-09-03 10:20:22 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:20:22 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:20:22 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:20:22 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-03 10:20:22 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:20:22 DEBUG    [SA_03] Button: prev
+2026-09-03 10:20:22 DEBUG    [SA_03] PREPARE_ITEM #2
+2026-09-03 10:20:22 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:20:22 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:20:22 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:20:22 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-03 10:20:22 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:20:24 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:20:24 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:20:28 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:20:28 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-03 10:20:28 INFO     [SA_03] SCENARIO FINISHED
+2026-09-03 10:20:28 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-03 10:20:28 DEBUG    [SA_03] PREPARE_ITEM #3
+2026-09-03 10:20:28 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:20:28 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:20:28 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:20:28 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-03 10:20:28 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:20:31 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:20:31 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:20:36 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:20:36 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-03 10:20:36 INFO     [SA_03] SCENARIO FINISHED
+2026-09-03 10:20:36 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-03 10:20:36 DEBUG    [SA_03] PREPARE_ITEM #4
+2026-09-03 10:20:36 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:20:36 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:20:36 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:20:36 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-03 10:20:36 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:20:39 DEBUG    [SA_03] Button: settings
+2026-09-03 10:20:39 DEBUG    [SA_03] INITIAL ITEM: phrase_code = fr phrase_locale = fr-FR phrase_voice = fr-FR-RemyMultilingualNeural
+2026-09-03 10:20:39 DEBUG    [SA_03] INITIAL SOURCE: language = fr locale = fr-FR voice = 
+2026-09-03 10:20:40 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:20:40 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:20:40 DEBUG    [SA_03] Target language: en
+2026-09-03 10:20:40 DEBUG    [SA_03] Target locale: en-US
+2026-09-03 10:20:45 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:20:45 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-03 10:20:45 INFO     [SA_03] SCENARIO FINISHED
+2026-09-03 10:20:45 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-03 10:20:45 DEBUG    [SA_03] PREPARE_ITEM #5
+2026-09-03 10:20:45 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:20:45 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:20:45 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:20:45 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-03 10:20:45 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:20:47 DEBUG    [SA_03] Button: pause
+2026-09-03 10:20:48 DEBUG    [SA_03] Button: first
+2026-09-03 10:20:49 DEBUG    [SA_03] Button: play
+2026-09-03 10:20:49 DEBUG    [SA_03] PREPARE_ITEM #0
+2026-09-03 10:20:49 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:20:49 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:20:49 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-03 10:20:49 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:20:51 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:20:51 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:20:54 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:20:54 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-03 10:20:54 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-03 10:20:54 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-03 10:20:54 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-03 10:20:56 DEBUG    [SA_03] TRANSLATION_END
+2026-09-03 10:20:56 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-03 10:20:58 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:20:58 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-03 10:20:58 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:20:58 INFO     [SA_03] SCENARIO FINISHED
+2026-09-03 10:20:58 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-03 10:20:58 DEBUG    [SA_03] PREPARE_ITEM #1
+2026-09-03 10:20:58 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:20:58 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:20:58 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-03 10:20:58 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:21:00 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:21:00 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:21:02 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:21:02 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-03 10:21:02 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-03 10:21:02 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-03 10:21:02 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-03 10:21:04 DEBUG    [SA_03] TRANSLATION_END
+2026-09-03 10:21:04 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-03 10:21:06 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:21:06 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-03 10:21:06 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:21:06 INFO     [SA_03] SCENARIO FINISHED
+2026-09-03 10:21:06 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-03 10:21:06 DEBUG    [SA_03] PREPARE_ITEM #2
+2026-09-03 10:21:06 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:21:06 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:21:06 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-03 10:21:06 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:21:08 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:21:08 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:21:12 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:21:12 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-03 10:21:12 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-03 10:21:12 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-03 10:21:12 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-03 10:21:15 DEBUG    [SA_03] TRANSLATION_END
+2026-09-03 10:21:15 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-03 10:21:17 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:21:17 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-03 10:21:17 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:21:17 INFO     [SA_03] SCENARIO FINISHED
+2026-09-03 10:21:17 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-03 10:21:17 DEBUG    [SA_03] PREPARE_ITEM #3
+2026-09-03 10:21:17 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:21:17 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:21:17 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-03 10:21:17 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:21:20 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:21:20 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:21:24 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:21:24 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-03 10:21:24 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-03 10:21:24 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-03 10:21:24 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-03 10:21:27 DEBUG    [SA_03] Button: pause
+2026-09-03 10:22:56 DEBUG    [SA_03] Button: db
+2026-09-03 10:22:57 INFO     [SA_03] Database sets loaded: 1
+2026-09-03 10:22:57 DEBUG    [SA_03] Selected set: Client Test
+2026-09-03 10:22:58 DEBUG    [SA_03] Button: login
+2026-09-03 10:23:25 INFO     [SA_03] Database sets loaded: 1
+2026-09-03 10:23:25 DEBUG    [SA_03] Selected set: Shadowing
+2026-09-03 10:23:31 DEBUG    [SA_03] Button: dbtoset
+2026-09-03 10:23:32 INFO     [SA_03] Set loaded into session: 24
+2026-09-03 10:23:38 DEBUG    [SA_03] Button: play
+2026-09-03 10:23:38 DEBUG    [SA_03] PREPARE_ITEM #0
+2026-09-03 10:23:38 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:23:38 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:23:38 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-03 10:23:38 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:23:41 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:23:41 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:23:46 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:23:46 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-03 10:23:46 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-03 10:23:46 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-03 10:23:46 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-03 10:23:50 DEBUG    [SA_03] TRANSLATION_END
+2026-09-03 10:23:50 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-03 10:23:52 DEBUG    [SA_03] PAUSE_END
+2026-09-03 10:23:52 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-03 10:23:52 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-03 10:23:52 INFO     [SA_03] SCENARIO FINISHED
+2026-09-03 10:23:52 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-03 10:23:52 DEBUG    [SA_03] PREPARE_ITEM #1
+2026-09-03 10:23:52 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-03 10:23:52 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-03 10:23:52 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-03 10:23:53 DEBUG    [SA_03] TEXT PLAY
+2026-09-03 10:23:55 DEBUG    [SA_03] TEXT_END
+2026-09-03 10:23:55 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-03 10:23:57 DEBUG    [SA_03] Button: pause
+2026-09-03 10:24:08 INFO     [SA_03] Finsh Application

@@ -117,6 +117,7 @@ class SettingsWindow:
             self.scenario_provider.get_current_scenario_index()
         )
 
+
         # --------------------------------------------------
         # Source file
         # --------------------------------------------------
