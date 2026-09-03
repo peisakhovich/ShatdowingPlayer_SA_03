@@ -53,6 +53,7 @@ class DatabaseWindow:
 
         self.sets = []
         self.selected_set = None
+        self._pending_selected_set_id = None
         
 
 
@@ -361,15 +362,30 @@ class DatabaseWindow:
             )
 
         self.set_selection.options = options
-        self.set_selection.selected = 0
 
         # --------------------------------------------------
-        # Выбираем первый set
+        # Восстанавливаем ранее выбранный set
         # --------------------------------------------------
+
+        selected_index = 0
+
+        if self._pending_selected_set_id is not None:
+
+            for index, option in enumerate(options):
+
+                if option[0] == self._pending_selected_set_id:
+
+                    selected_index = index
+                    break
+
+        self.set_selection.selected = selected_index
 
         self._update_selected_set(
-            options[0][0]
+            options[selected_index][0]
         )
+
+        # Запоминаемый set больше не нужен
+        self._pending_selected_set_id = None
 
 
     # ==================================================
@@ -395,6 +411,12 @@ class DatabaseWindow:
                 "Data saved to database:",
                 result
             )
+            # Сохраняем set_id, чтобы после обновления
+            # списка вернуть выбор на этот же набор.
+            self._pending_selected_set_id = result.get(
+                "set_id"
+            )
+
             # --------------------------------------------------
             # Refresh sets list after successful save
             # --------------------------------------------------
