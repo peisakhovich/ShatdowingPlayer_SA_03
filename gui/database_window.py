@@ -46,6 +46,7 @@ class DatabaseWindow:
         self._get_set_task = None
         self._save_set_task = None
         self._update_set_data_task = None
+        self._delete_set_task = None
 
         # --------------------------------------------------
         # Data
@@ -249,6 +250,15 @@ class DatabaseWindow:
             set_description
         )
 
+    # --------------------------------------------------  
+
+    async def _delete_set_async(self, set_id):
+
+        return await asyncio.to_thread(
+            self.api_client.delete_set,
+            set_id
+        )
+
 
     # ==================================================
     # PROCESS GET SETS RESULT
@@ -364,11 +374,6 @@ class DatabaseWindow:
 
         self.set_selection.options = options
 
-        print(
-            "SETS LOADED:",
-            len(self.set_selection.options),
-            self.set_selection.max_visible_items
-        )       
 
         # --------------------------------------------------
         # Восстанавливаем ранее выбранный set
@@ -444,7 +449,60 @@ class DatabaseWindow:
 
             self.busy_indicator.hide()
 
+    # ==================================================
+    # PROCESS DELETE SET RESULT
+    # ==================================================
 
+    def _process_delete_set_task(self):
+
+        if self._delete_set_task is None:
+            return
+
+        if not self._delete_set_task.done():
+            return
+
+        task = self._delete_set_task
+        self._delete_set_task = None
+
+        try:
+
+            result = task.result()
+
+            logger.info(
+                "Data deleted from database:",
+                result
+            )
+
+            # --------------------------------------------------
+            # После удаления выбранного набора
+            # --------------------------------------------------
+
+            self.selected_set = None
+            self._pending_selected_set_id = None
+
+            self.set_name_edit.clear()
+            self.description_edit.clear()
+
+            # --------------------------------------------------
+            # Refresh sets list
+            # --------------------------------------------------
+
+            self._load_sets()
+
+        except asyncio.CancelledError:
+
+            return
+
+        except Exception as e:
+
+            logger.error(
+                "DELETE set API error:",
+                e
+            )
+
+        finally:
+
+            self.busy_indicator.hide()
 
     # ==================================================
     # PROCESS GET SET RESULT
@@ -614,6 +672,14 @@ class DatabaseWindow:
 
         self.busy_indicator.hide()
 
+        if self._delete_set_task is not None:
+
+            if not self._delete_set_task.done():
+                self._delete_set_task.cancel()
+
+        self._delete_set_task = None
+
+
     # ==================================================
     # UPDATE
     # ==================================================
@@ -627,6 +693,7 @@ class DatabaseWindow:
         self._process_get_set_task()
         self._process_save_set_task()
         self._process_update_set_data_task()
+        self._process_delete_set_task()
 
         
         self.set_name_edit.update()
@@ -892,6 +959,60 @@ class DatabaseWindow:
                         )
 
                         return
+                    
+                    # --------------------------------------------------
+                    # DROP SET
+                    # --------------------------------------------------
+                    if name == "dropset":
+
+                        if self.selected_set is None:
+
+                            logger.warning(
+                                "No set selected"
+                            )
+
+                            return
+
+                        set_id = self.selected_set.get(
+                            "set_id"
+                        )
+
+                        if not set_id:
+
+                            logger.warning(
+                                "Selected set has no set_id"
+                            )
+
+                            return
+
+                        if self._delete_set_task is not None:
+
+                            if not self._delete_set_task.done():
+                                return
+
+                        logger.debug(
+                            f"DROPSET set_id={set_id}"
+                        )
+
+                        # --------------------------------------------------
+                        # DELETE
+                        # --------------------------------------------------
+
+                        self.busy_indicator.show(
+                            "Deleting set..."
+                        )
+
+                        self._delete_set_task = (
+                            self._async_runner.submit(
+                                self._delete_set_async(
+                                    set_id
+                                )
+                            )
+                        )
+
+                        return
+
+
 
 
         # --------------------------------------------------

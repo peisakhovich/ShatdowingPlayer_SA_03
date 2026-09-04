@@ -388,3 +388,78 @@ class ApiClient:
                 "Invalid JSON response from API",
                 response.status_code
             ) from e        
+
+    # ==================================================
+    # DELETE SET
+    # ==================================================
+
+    def delete_set(
+        self,
+        set_id: int
+    ):
+
+        url = f"{self.base_url}/sets/{set_id}"
+
+        headers = {
+            "X-API-Key": self.api_key
+        }
+
+        try:
+
+            response = httpx.delete(
+                url,
+                headers=headers,
+                timeout=10.0
+            )
+
+        except httpx.RequestError as e:
+
+            raise ApiError(
+                f"API connection error: {e}"
+            ) from e
+
+        # --------------------------------------------------
+        # HTTP error
+        # --------------------------------------------------
+
+        if response.status_code >= 400:
+
+            try:
+                error_data = response.json()
+
+                message = error_data.get(
+                    "error",
+                    "API error"
+                )
+
+                detail = error_data.get("message")
+
+                if detail:
+                    message = f"{message}: {detail}"
+
+            except (ValueError, AttributeError):
+
+                message = (
+                    f"HTTP {response.status_code}: "
+                    f"{response.text}"
+                )
+
+            raise ApiError(
+                message,
+                response.status_code
+            )
+
+        # --------------------------------------------------
+        # Success
+        # --------------------------------------------------
+
+        try:
+
+            return response.json()
+
+        except ValueError as e:
+
+            raise ApiError(
+                "Invalid JSON response from API",
+                response.status_code
+            ) from e
