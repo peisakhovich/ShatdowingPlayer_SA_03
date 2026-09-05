@@ -2942,3 +2942,147 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
 2026-09-04 19:14:33 INFO     [SA_03] Database sets loaded: 12
 2026-09-04 19:14:33 DEBUG    [SA_03] Selected set: English A2-23
 2026-09-04 19:14:39 INFO     [SA_03] Finsh Application
+2026-09-05 18:10:51 INFO     [SA_03] Start Application
+2026-09-05 18:10:51 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-05 18:10:51 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-05 18:11:26 DEBUG    [SA_03] Button: db
+2026-09-05 18:11:27 INFO     [SA_03] Database sets loaded: 12
+2026-09-05 18:11:27 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-05 18:11:32 DEBUG    [SA_03] Button: settoexcel
+2026-09-05 18:11:43 INFO     [SA_03] Session exported to Excel: C:/Users/liudm/SadowingApp/SA_03/tmp/session_export.xlsx
+2026-09-05 18:12:28 DEBUG    [SA_03] Button: settoexcel
+2026-09-05 18:13:01 DEBUG    [SA_03] Excel export cancelled
+2026-09-05 18:34:02 INFO     [SA_03] Finsh Application
+2026-09-05 18:34:15 INFO     [SA_03] Start Application
+2026-09-05 18:34:15 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-05 18:34:15 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-05 18:34:17 DEBUG    [SA_03] Button: db
+2026-09-05 18:34:18 INFO     [SA_03] Database sets loaded: 12
+2026-09-05 18:34:18 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-05 18:34:21 DEBUG    [SA_03] Button: settoexcel
+2026-09-05 18:34:26 INFO     [SA_03] Session exported to Excel: C:/Users/liudm/SadowingApp/SA_03/tmp/session_export.xlsx
+2026-09-05 18:37:21 DEBUG    [SA_03] Button: exceltoset
+2026-09-05 18:37:23 INFO     [SA_03] Session imported from Excel: C:/Users/liudm/SadowingApp/SA_03/tmp/session_export.xlsx
+2026-09-05 18:42:56 DEBUG    [SA_03] Button: exceltoset
+2026-09-05 18:43:00 INFO     [SA_03] Session imported from Excel: C:/Users/liudm/SadowingApp/SA_03/tmp/session_export.xlsx
+2026-09-05 18:43:31 DEBUG    [SA_03] Button: play
+2026-09-05 18:43:31 DEBUG    [SA_03] PREPARE_ITEM #0
+2026-09-05 19:09:07 INFO     [SA_03] Start Application
+2026-09-05 19:09:08 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-05 19:09:08 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-05 19:09:13 INFO     [SA_03] Finsh Application
+2026-09-05 19:19:19 INFO     [SA_03] Start Application
+2026-09-05 19:19:19 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-US phrase_voice = en-US-JennyNeural
+2026-09-05 19:19:19 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-US voice = 
+2026-09-05 19:19:21 DEBUG    [SA_03] Button: db
+2026-09-05 19:19:21 WARNING  [SA_03] Session has no user_id
+2026-09-05 19:19:26 DEBUG    [SA_03] Button: login
+2026-09-05 19:19:40 INFO     [SA_03] Database sets loaded: 12
+2026-09-05 19:19:40 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-05 19:19:46 DEBUG    [SA_03] Selected set: TEST API SAVE
+2026-09-05 19:19:52 DEBUG    [SA_03] Button: dbtoset
+2026-09-05 19:19:53 INFO     [SA_03] Set loaded into session: 6
+2026-09-05 19:22:17 INFO     [SA_03] Finsh Application
+2026-09-05 19:35:56 INFO     [SA_03] Start Application
+2026-09-05 19:35:56 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-05 19:35:56 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-05 19:35:57 DEBUG    [SA_03] Button: db
+2026-09-05 19:35:59 INFO     [SA_03] Database sets loaded: 12
+2026-09-05 19:35:59 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-05 19:36:02 DEBUG    [SA_03] Button: exceltoset
+2026-09-05 19:36:08 INFO     [SA_03] Session imported from Excel: C:/Users/liudm/SadowingApp/SA_03/tmp/session_export.xlsx
+2026-09-05 19:36:40 DEBUG    [SA_03] Button: play
+2026-09-05 19:36:40 DEBUG    [SA_03] PREPARE_ITEM #0
+2026-09-05 19:36:40 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-05 19:36:40 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-05 19:36:40 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-05 19:36:40 DEBUG    [SA_03] TEXT PLAY
+2026-09-05 19:36:43 DEBUG    [SA_03] TEXT_END
+2026-09-05 19:36:43 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-05 19:36:45 DEBUG    [SA_03] PAUSE_END
+2026-09-05 19:36:45 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-05 19:36:45 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-05 19:36:45 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-05 19:36:45 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-05 19:36:48 DEBUG    [SA_03] TRANSLATION_END
+2026-09-05 19:36:48 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-05 19:36:50 DEBUG    [SA_03] PAUSE_END
+2026-09-05 19:36:50 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-05 19:36:50 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-05 19:36:50 INFO     [SA_03] SCENARIO FINISHED
+2026-09-05 19:36:50 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-05 19:36:50 DEBUG    [SA_03] PREPARE_ITEM #1
+2026-09-05 19:36:50 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-05 19:36:50 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-05 19:36:50 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-05 19:36:51 DEBUG    [SA_03] TEXT PLAY
+2026-09-05 19:36:53 DEBUG    [SA_03] TEXT_END
+2026-09-05 19:36:53 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-05 19:36:55 DEBUG    [SA_03] PAUSE_END
+2026-09-05 19:36:55 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-05 19:36:55 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-05 19:36:55 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-05 19:36:56 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-05 19:36:58 DEBUG    [SA_03] TRANSLATION_END
+2026-09-05 19:36:58 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-05 19:37:00 DEBUG    [SA_03] PAUSE_END
+2026-09-05 19:37:00 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-05 19:37:00 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-05 19:37:00 INFO     [SA_03] SCENARIO FINISHED
+2026-09-05 19:37:00 DEBUG    [SA_03] FINISH_ITEM: repeat 1/2
+2026-09-05 19:37:00 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-05 19:37:00 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-05 19:37:00 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-05 19:37:00 DEBUG    [SA_03] TEXT PLAY
+2026-09-05 19:37:02 DEBUG    [SA_03] TEXT_END
+2026-09-05 19:37:02 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-05 19:37:03 DEBUG    [SA_03] PAUSE_END
+2026-09-05 19:37:03 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-05 19:37:03 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-05 19:37:03 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-05 19:37:03 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-05 19:37:05 DEBUG    [SA_03] TRANSLATION_END
+2026-09-05 19:37:05 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-05 19:37:07 DEBUG    [SA_03] PAUSE_END
+2026-09-05 19:37:07 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-05 19:37:07 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-05 19:37:07 INFO     [SA_03] SCENARIO FINISHED
+2026-09-05 19:37:07 DEBUG    [SA_03] FINISH_ITEM: repeat 2/2
+2026-09-05 19:37:07 DEBUG    [SA_03] PREPARE_ITEM #2
+2026-09-05 19:37:07 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-05 19:37:07 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-05 19:37:08 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-05 19:37:08 DEBUG    [SA_03] TEXT PLAY
+2026-09-05 19:37:12 DEBUG    [SA_03] TEXT_END
+2026-09-05 19:37:12 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-05 19:37:14 INFO     [SA_03] Finsh Application
+2026-09-05 19:37:18 INFO     [SA_03] Start Application
+2026-09-05 19:37:18 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-05 19:37:18 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-05 19:37:22 DEBUG    [SA_03] Button: db
+2026-09-05 19:37:23 INFO     [SA_03] Database sets loaded: 12
+2026-09-05 19:37:23 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-05 19:37:29 DEBUG    [SA_03] Button: settodb
+2026-09-05 19:37:29 DEBUG    [SA_03] SETTO​DB user_id=2
+2026-09-05 19:37:29 DEBUG    [SA_03] SETTO​DB data items=11
+2026-09-05 19:37:30 INFO     [SA_03] Session saved to database: {'set_id': 39}
+2026-09-05 19:37:31 INFO     [SA_03] Database sets loaded: 13
+2026-09-05 19:37:31 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-05 19:37:42 DEBUG    [SA_03] Selected set: Polisн  B2
+2026-09-05 19:37:46 DEBUG    [SA_03] Button: dbtoset
+2026-09-05 19:37:46 INFO     [SA_03] Set loaded into session: 39
+2026-09-05 19:38:22 DEBUG    [SA_03] Button: settoexcel
+2026-09-05 19:38:33 INFO     [SA_03] Session exported to Excel: C:/Users/liudm/SadowingApp/SA_03/tmp/session_export.xlsx
+2026-09-05 20:02:09 DEBUG    [SA_03] Button: settodb
+2026-09-05 20:02:09 DEBUG    [SA_03] SETTO​DB user_id=2
+2026-09-05 20:02:09 DEBUG    [SA_03] SETTO​DB data items=11
+2026-09-05 20:02:10 INFO     [SA_03] Session saved to database: {'set_id': 40}
+2026-09-05 20:02:11 INFO     [SA_03] Database sets loaded: 14
+2026-09-05 20:02:11 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-05 20:16:51 DEBUG    [SA_03] Button: settodb
+2026-09-05 20:16:51 DEBUG    [SA_03] SETTO​DB user_id=2
+2026-09-05 20:16:51 DEBUG    [SA_03] SETTO​DB data items=11
+2026-09-05 20:16:52 INFO     [SA_03] Session saved to database: {'set_id': 41}
+2026-09-05 20:16:53 INFO     [SA_03] Database sets loaded: 15
+2026-09-05 20:16:53 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-05 20:21:41 INFO     [SA_03] Finsh Application

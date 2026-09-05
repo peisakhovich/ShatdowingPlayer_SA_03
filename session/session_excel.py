@@ -296,17 +296,151 @@ class SessionExcel:
         filename: str | Path,
     ):
         set_data = cls.import_set(filename)
-        items = cls.import_items(filename)
+        items_data = cls.import_items(filename)
+
+        # ---------------------------------------------------------
+        # Формируем полный блок "set"
+        # по канонической структуре Session JSON.
+        # ---------------------------------------------------------
+
+        set_data = {
+            "set_id": 0,
+            "user_id": session.user_id,
+            "user_nickname": session.user_nickname,
+
+            "set_index": set_data.get("set_index", 0),
+            "set_name": set_data.get("set_name", ""),
+            "set_description": set_data.get(
+                "set_description",
+                ""
+            ),
+
+            "set_active": True,
+            "set_create_date": "",
+            "items_count": len(items_data),
+        }
+
+        # ---------------------------------------------------------
+        # Формируем полный список "items".
+        #
+        # item_id и phrase_id при импорте из Excel
+        # устанавливаются в 0.
+        #
+        # Все остальные поля берутся непосредственно
+        # из Excel.
+        # ---------------------------------------------------------
+
+        items = []
+
+        for item_data in items_data:
+
+            item = {
+                "item_id": 0,
+                "item_order": item_data.get(
+                    "item_order",
+                    0
+                ),
+                "phrase_id": 0,
+
+                "difficulty": item_data.get(
+                    "difficulty",
+                    ""
+                ),
+
+                "phrase_text": item_data.get(
+                    "phrase_text",
+                    ""
+                ),
+
+                "phrase_code": item_data.get(
+                    "phrase_code",
+                    ""
+                ),
+
+                "language_level": item_data.get(
+                    "language_level",
+                    ""
+                ),
+
+                "phrase_locale": item_data.get(
+                    "phrase_locale",
+                    ""
+                ),
+
+                "phrase_voice": item_data.get(
+                    "phrase_voice",
+                    ""
+                ),
+
+                "phrase_voice_gender": item_data.get(
+                    "phrase_voice_gender",
+                    ""
+                ),
+
+                "pause_ms": item_data.get(
+                    "pause_ms",
+                    ""
+                ),
+
+                "speed": item_data.get(
+                    "speed",
+                    ""
+                ),
+
+                "repeat_count": item_data.get(
+                    "repeat_count",
+                    ""
+                ),
+            }
+
+            # -----------------------------------------------------
+            # Поля перевода.
+            #
+            # Они присутствуют в Excel для Shadowing.
+            # Для Dictation могут быть пустыми.
+            # -----------------------------------------------------
+
+            item["translate_text"] = item_data.get(
+                "translate_text",
+                ""
+            )
+
+            item["translate_code"] = item_data.get(
+                "translate_code",
+                ""
+            )
+
+            item["translate_locale"] = item_data.get(
+                "translate_locale",
+                ""
+            )
+
+            item["translate_voice"] = item_data.get(
+                "translate_voice",
+                ""
+            )
+
+            item["translate_voice_gender"] = item_data.get(
+                "translate_voice_gender",
+                ""
+            )
+
+            items.append(item)
+
+        # ---------------------------------------------------------
+        # Полностью заменяем рабочие данные Session.
+        # ---------------------------------------------------------
 
         session._set = set_data
         session._items = items
 
+        # ---------------------------------------------------------
+        # После импорта начинаем с первого item.
+        # ---------------------------------------------------------
+
         session.current_index = 0
 
         return session
-
-
-
     # ------------------------------------------------------------------
     # Set
     # ------------------------------------------------------------------

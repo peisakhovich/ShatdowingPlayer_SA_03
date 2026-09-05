@@ -14,6 +14,9 @@ from audio.async_runner import AsyncRunner
 from gui.panels.control_panel_db import ControlPanel
 from gui.login_register_window import LoginRegisterWindow
 from gui.widgets.text_edit import TextEdit
+from gui.file_dialog import FileDialog
+from session.session_excel import SessionExcel
+from audio.tts import TTS
 
 
 class DatabaseWindow:
@@ -47,6 +50,8 @@ class DatabaseWindow:
         self._save_set_task = None
         self._update_set_data_task = None
         self._delete_set_task = None
+        self._export_excel_task = None
+        self._export_excel_filename = None
 
         # --------------------------------------------------
         # Data
@@ -228,6 +233,11 @@ class DatabaseWindow:
             self.api_client.get_set,
             set_id
         )
+
+    # --------------------------------------------------
+    async def _get_tts_voices_async(self):
+
+        return await TTS().get_voices()
 
     # --------------------------------------------------
 
@@ -505,6 +515,64 @@ class DatabaseWindow:
             self.busy_indicator.hide()
 
     # ==================================================
+    # PROCESS EXPORT EXCEL TASK
+    # ==================================================
+    def _process_export_excel_task(self):
+
+        if self._export_excel_task is None:
+            return
+
+        if not self._export_excel_task.done():
+            return
+
+        task = self._export_excel_task
+        self._export_excel_task = None
+
+        try:
+
+            voices_raw = task.result()
+
+            voices = [
+                {
+                    "short_name": voice.get("ShortName", ""),
+                    "locale": voice.get("Locale", ""),
+                    "locale_name": voice.get("LocaleName", ""),
+                    "gender": voice.get("Gender", ""),
+                    "friendly_name": voice.get("FriendlyName", ""),
+                }
+                for voice in voices_raw
+            ]
+
+            SessionExcel.export(
+                self.session,
+                self._export_excel_filename,
+                voices=voices
+            )
+
+            logger.info(
+                f"Session exported to Excel: "
+                f"{self._export_excel_filename}"
+            )
+
+        except asyncio.CancelledError:
+
+            logger.debug(
+                "Excel export task cancelled"
+            )
+
+        except Exception as e:
+
+            logger.error(
+                f"Excel export error: {e}"
+            )
+
+        finally:
+
+            self._export_excel_filename = None
+
+
+
+    # ==================================================
     # PROCESS GET SET RESULT
     # ==================================================
 
@@ -678,6 +746,96 @@ class DatabaseWindow:
                 self._delete_set_task.cancel()
 
         self._delete_set_task = None
+        
+        if self._export_excel_task is not None:
+
+            if not self._export_excel_task.done():
+                self._export_excel_task.cancel()
+
+        self._export_excel_task = None
+        self._export_excel_filename = None
+
+
+    # ==================================================
+    # EXCEL
+    # ==================================================
+
+    def _export_session_to_excel(self):
+
+        if self.session.is_empty():
+
+            logger.warning(
+                "Session is empty"
+            )
+
+            return
+
+        filename = FileDialog.save_file(
+            title="Export session to Excel",
+            filetypes=[
+                ("Excel files", "*.xlsx"),
+                ("All files", "*.*"),
+            ],
+            initial_file="session_export.xlsx",
+        )
+
+        if not filename:
+
+            logger.debug(
+                "Excel export cancelled"
+            )
+
+            return
+        
+        self._export_excel_filename = filename
+
+        self._export_excel_task = (
+            self._async_runner.submit(
+                self._get_tts_voices_async()
+            )
+        )
+ 
+
+    # --------------------------------------------------
+
+    def _import_session_from_excel(self):
+
+        filename = FileDialog.open_file(
+            title="Import session from Excel",
+            filetypes=[
+                ("Excel files", "*.xlsx"),
+                ("All files", "*.*"),
+            ],
+        )
+
+        if not filename:
+
+            logger.debug(
+                "Excel import cancelled"
+            )
+
+            return
+
+        try:
+
+            SessionExcel.import_(
+                self.session,
+                filename
+            )
+
+            self.session.save(
+                Config.PLAN_SESSION_FILE
+            )
+
+            logger.info(
+                f"Session imported from Excel: {filename}"
+            )
+
+        except Exception as e:
+
+            logger.error(
+                f"Excel import error: {e}"
+            )
 
 
     # ==================================================
@@ -694,6 +852,7 @@ class DatabaseWindow:
         self._process_save_set_task()
         self._process_update_set_data_task()
         self._process_delete_set_task()
+        self._process_export_excel_task()
 
         
         self.set_name_edit.update()
@@ -887,6 +1046,29 @@ class DatabaseWindow:
                         )
 
                         return
+
+                    # --------------------------------------------------
+                    # SESSION -> EXCEL
+                    # --------------------------------------------------
+
+                    if name == "settoexcel":
+
+                        self._export_session_to_excel()
+
+                        return
+
+                    # --------------------------------------------------
+                    # EXCEL -> SESSION
+                    # --------------------------------------------------
+
+                    if name == "exceltoset":
+
+                        self._import_session_from_excel()
+
+                        return
+
+
+                    
                     # --------------------------------------------------
                     # DATA -> DB (name,description)
                     # --------------------------------------------------
