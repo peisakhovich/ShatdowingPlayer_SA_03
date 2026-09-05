@@ -2863,3 +2863,82 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
 2026-09-04 11:12:12 INFO     [SA_03] Database sets loaded: 1
 2026-09-04 11:12:12 DEBUG    [SA_03] Selected set: Shadowing
 2026-09-04 11:13:58 INFO     [SA_03] Finsh Application
+2026-09-04 12:16:00 INFO     [SA_03] Start Application
+2026-09-04 12:16:00 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-04 12:16:00 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-04 12:16:23 DEBUG    [SA_03] Button: play
+2026-09-04 12:16:23 DEBUG    [SA_03] PREPARE_ITEM #0
+2026-09-04 12:16:23 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-04 12:16:23 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-04 12:16:23 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-04 12:16:23 DEBUG    [SA_03] TEXT PLAY
+2026-09-04 12:16:27 DEBUG    [SA_03] TEXT_END
+2026-09-04 12:16:27 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-04 12:16:32 DEBUG    [SA_03] PAUSE_END
+2026-09-04 12:16:32 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-04 12:16:32 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-04 12:16:32 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-04 12:16:32 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-04 12:16:35 DEBUG    [SA_03] Button: pause
+2026-09-04 12:16:47 DEBUG    [SA_03] Button: db
+2026-09-04 12:16:49 INFO     [SA_03] Database sets loaded: 1
+2026-09-04 12:16:49 DEBUG    [SA_03] Selected set: Shadowing
+2026-09-04 12:16:50 DEBUG    [SA_03] Button: login
+2026-09-04 12:17:09 INFO     [SA_03] Database sets loaded: 13
+2026-09-04 12:17:09 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-04 12:17:15 DEBUG    [SA_03] Selected set: TEST API SAVE
+2026-09-04 12:17:18 DEBUG    [SA_03] Button: dbtoset
+2026-09-04 12:17:20 INFO     [SA_03] Set loaded into session: 6
+2026-09-04 12:18:46 DEBUG    [SA_03] Button: play
+2026-09-04 12:18:46 DEBUG    [SA_03] PREPARE_ITEM #0
+2026-09-04 12:18:46 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-04 12:18:46 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-04 12:18:46 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-04 12:18:46 DEBUG    [SA_03] TEXT PLAY
+2026-09-04 12:18:48 DEBUG    [SA_03] TEXT_END
+2026-09-04 12:18:48 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-04 12:18:50 DEBUG    [SA_03] Button: pause
+2026-09-04 12:19:01 INFO     [SA_03] Finsh Application
+2026-09-04 12:19:15 INFO     [SA_03] Start Application
+2026-09-04 12:19:15 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-04 12:19:15 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-04 12:19:17 DEBUG    [SA_03] Button: db
+2026-09-04 12:19:18 INFO     [SA_03] Database sets loaded: 13
+2026-09-04 12:19:18 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-04 14:11:22 DEBUG    [SA_03] Button: db
+2026-09-04 14:11:23 INFO     [SA_03] Database sets loaded: 13
+2026-09-04 14:11:23 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-04 14:11:25 DEBUG    [SA_03] Button: login
+2026-09-04 14:11:43 INFO     [SA_03] Database sets loaded: 1
+2026-09-04 14:11:43 DEBUG    [SA_03] Selected set: Shadowing
+2026-09-04 14:11:47 DEBUG    [SA_03] Selected set: Shadowing
+2026-09-04 14:11:48 DEBUG    [SA_03] Button: dbtoset
+2026-09-04 14:11:49 INFO     [SA_03] Set loaded into session: 24
+2026-09-04 14:11:53 DEBUG    [SA_03] Button: login
+2026-09-04 14:12:05 INFO     [SA_03] Database sets loaded: 13
+2026-09-04 14:12:05 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-04 14:12:09 DEBUG    [SA_03] Selected set: Polisн  B2 001
+2026-09-04 14:12:10 DEBUG    [SA_03] Button: dbtoset
+2026-09-04 14:12:11 INFO     [SA_03] Set loaded into session: 2
+2026-09-04 14:12:25 DEBUG    [SA_03] Selected set: Shadowing
+2026-09-04 14:12:28 DEBUG    [SA_03] Button: dropset
+2026-09-04 14:12:28 DEBUG    [SA_03] DROPSET set_id=38
+2026-09-04 14:12:29 INFO     [SA_03] Data deleted from database: {'set_id': 38, 'deleted': True}
+2026-09-04 14:12:29 INFO     [SA_03] Database sets loaded: 12
+2026-09-04 14:12:29 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-04 14:12:49 DEBUG    [SA_03] Selected set: Polisн  B2 001
+2026-09-04 14:13:16 DEBUG    [SA_03] Button: datatodb
+2026-09-04 14:13:16 DEBUG    [SA_03] DATATODB set_id=2
+2026-09-04 14:13:17 INFO     [SA_03] Data saved to database: {'set_id': 2, 'set_name': 'Polisн  B2', 'set_description': 'Różne rozmowy na tematy biznesowe', 'set_update_date': '2026-09-04T12:13:14'}
+2026-09-04 14:13:17 INFO     [SA_03] Database sets loaded: 12
+2026-09-04 14:13:17 DEBUG    [SA_03] Selected set: Polisн  B2
+2026-09-04 14:13:22 DEBUG    [SA_03] Button: dbtoset
+2026-09-04 14:13:23 INFO     [SA_03] Set loaded into session: 2
+2026-09-04 14:13:45 INFO     [SA_03] Finsh Application
+2026-09-04 19:14:30 INFO     [SA_03] Start Application
+2026-09-04 19:14:31 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-04 19:14:31 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-04 19:14:32 DEBUG    [SA_03] Button: db
+2026-09-04 19:14:33 INFO     [SA_03] Database sets loaded: 12
+2026-09-04 19:14:33 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-04 19:14:39 INFO     [SA_03] Finsh Application

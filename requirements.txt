@@ -5,3 +5,4 @@ pyodbc
 python-dotenv
 openai
 httpx==0.28.1
+openpyxl==3.1.5
