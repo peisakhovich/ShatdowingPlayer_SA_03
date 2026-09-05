@@ -3,6 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from openpyxl import Workbook
+from openpyxl import load_workbook
 from openpyxl.workbook.defined_name import DefinedName
 from openpyxl.worksheet.datavalidation import DataValidation
 
@@ -166,6 +167,145 @@ class SessionExcel:
         workbook.save(filename)
 
         return filename
+
+
+    @classmethod
+    def import_set(
+        cls,
+        filename: str | Path,
+    ) -> dict:
+        """
+        Читает лист Set из Excel.
+
+        Возвращает:
+            {
+                "set_index": ...,
+                "set_name": ...,
+                "set_description": ...
+            }
+
+        Session пока не изменяется.
+        """
+
+        filename = Path(filename)
+
+        workbook = load_workbook(
+            filename,
+            data_only=True,
+        )
+
+        if cls.SET_SHEET not in workbook.sheetnames:
+            raise ValueError(
+                f"В Excel отсутствует лист '{cls.SET_SHEET}'."
+            )
+
+        worksheet = workbook[cls.SET_SHEET]
+
+        result = {}
+
+        for row in worksheet.iter_rows(
+            min_row=2,
+            values_only=True,
+        ):
+            if not row:
+                continue
+
+            field = row[0]
+            value = row[1] if len(row) > 1 else None
+
+            if field in cls.SET_FIELDS:
+                result[field] = value
+
+        workbook.close()
+
+        return result          
+
+
+    @classmethod
+    def import_items(
+        cls,
+        filename: str | Path,
+    ) -> list[dict]:
+        """
+        Читает лист Items из Excel.
+
+        Возвращает список элементов:
+            [
+                {
+                    "item_order": ...,
+                    "phrase_code": ...,
+                    ...
+                },
+                ...
+            ]
+
+        Session пока не изменяется.
+        """
+       
+        filename = Path(filename)
+
+        workbook = load_workbook(
+            filename,
+            data_only=True,
+        )
+
+        if cls.ITEMS_SHEET not in workbook.sheetnames:
+            workbook.close()
+            raise ValueError(
+                f"В Excel отсутствует лист '{cls.ITEMS_SHEET}'."
+            )
+
+        worksheet = workbook[cls.ITEMS_SHEET]
+
+        rows = worksheet.iter_rows(
+            min_row=2,
+            values_only=True,
+        )
+
+        items = []
+
+        for row in rows:
+            if not row:
+                continue
+
+            # Полностью пустую строку пропускаем.
+            if all(value is None for value in row):
+                continue
+
+            item = {}
+
+            for index, column in enumerate(cls.ITEM_COLUMNS):
+                value = row[index] if index < len(row) else None
+
+                # Пустые Excel-ячейки представляем как ""
+                if value is None:
+                    value = ""
+
+                item[column] = value
+
+            items.append(item)
+
+        workbook.close()
+
+        return items
+
+    @classmethod
+    def import_(
+        cls,
+        session,
+        filename: str | Path,
+    ):
+        set_data = cls.import_set(filename)
+        items = cls.import_items(filename)
+
+        session._set = set_data
+        session._items = items
+
+        session.current_index = 0
+
+        return session
+
+
 
     # ------------------------------------------------------------------
     # Set
@@ -870,3 +1010,4 @@ class SessionExcel:
                 max(max_length + 2, 12),
                 50,
             )
+
