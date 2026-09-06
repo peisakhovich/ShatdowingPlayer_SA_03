@@ -8,6 +8,7 @@ from gui.widgets.image_button import ImageButton
 from gui.widgets.horizontal_slider import HorizontalSlider
 from gui.widgets.text_button import TextButton
 from gui.widgets.check_box import CheckBox
+from gui.widgets.hint import Hint
 
 
 class ControlPanel:
@@ -30,6 +31,8 @@ class ControlPanel:
         
         self.buttons = {}
         self._create_buttons()
+
+        self.hint = Hint(self.font_manager)
 
         self.checkboxes = {}
         self._create_checkboxes()
@@ -98,8 +101,11 @@ class ControlPanel:
     def _create_buttons(self):
 
 
-        for index, name in enumerate(Layout.BTN_DEFS):
-  
+        for index, button_def in enumerate(Layout.BTN_DEFS):
+
+            name = button_def["name"]
+            hint = button_def["hint"]
+
             x = Layout.BTN_START_X + index * (
                 Layout.BTN_WIDTH +
                 Layout.BTN_INTERVAL
@@ -107,13 +113,14 @@ class ControlPanel:
 
             self.buttons[name] = self._create_button(
                 name,
+                hint,
                 x,
                 Layout.BTN_START_Y
             )
 
     # --------------------------------------------------
 
-    def _create_button(self, name, x, y):
+    def _create_button(self, name, hint, x, y):
 
         return ImageButton(
 
@@ -123,7 +130,6 @@ class ControlPanel:
                 Layout.BTN_WIDTH,
                 Layout.BTN_HEIGHT
             ),
-
 
             image_normal=self.image_loader.load(
                 f"{Config.ICON_PATH}/{name}.png",
@@ -138,7 +144,9 @@ class ControlPanel:
             image_pressed=self.image_loader.load(
                 f"{Config.ICON_PATH}/{name}_pressed.png",
                 default=Config.APP_ICON
-            )
+            ),
+
+            hint=hint
         )
 
     # --------------------------------------------------
@@ -172,11 +180,25 @@ class ControlPanel:
         mouse_pos = pygame.mouse.get_pos()
         mouse_pressed = pygame.mouse.get_pressed()
 
+        hovered_button = None
+
         for button in self.buttons.values():
+
             button.update(
                 mouse_pos,
                 mouse_pressed
             )
+
+            if button.is_hovered:
+                hovered_button = button
+
+        if hovered_button:
+            self.hint.update(
+                hovered_button.hint,
+                hovered_button.rect
+            )
+        else:
+            self.hint.hide()
 
         for slider in self.sliders.values():
             slider.update()
@@ -219,8 +241,8 @@ class ControlPanel:
         for button in self.buttons.values():
             button.draw(screen)
 
-        # test button
-        #self.test_button.draw(screen)    
+        # Hint
+        self.hint.draw(screen)
 
         # Чек боксы прорисовка
         for checkbox in self.checkboxes.values():

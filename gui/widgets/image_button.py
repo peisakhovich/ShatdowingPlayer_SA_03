@@ -2,7 +2,7 @@ import pygame
 
 
 class ImageButton:
-    def __init__(self, rect, image_normal, image_hover=None, image_pressed=None):
+    def __init__(self, rect, image_normal, image_hover=None, image_pressed=None, hint=None):
         self.rect = pygame.Rect(rect)
 
         self.image_normal = image_normal
@@ -11,6 +11,7 @@ class ImageButton:
 
         self.image = self.image_normal
 
+        self.hint = hint
         self.is_hovered = False
         self.is_pressed = False
         self._clicked = False

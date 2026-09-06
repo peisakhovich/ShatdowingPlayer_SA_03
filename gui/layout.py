@@ -34,8 +34,20 @@ class Layout:
     # -------------------------
     # UI LAYER: BUTTON BAR in ControlPanel
     # -------------------------
-    BTN_DEFS = [ "first","prev","play","pause","next","last","stop","quit","settings","db" ]
-    
+
+    BTN_DEFS = [
+        {"name": "first",    "hint": "First item"},
+        {"name": "prev",     "hint": "Previous item"},
+        {"name": "play",     "hint": "Play"},
+        {"name": "pause",    "hint": "Pause"},
+        {"name": "next",     "hint": "Next item"},
+        {"name": "last",     "hint": "Last item"},
+        {"name": "stop",     "hint": "Stop"},
+        {"name": "quit",     "hint": "Exit application"},
+        {"name": "settings", "hint": "Settings"},
+        {"name": "db",       "hint": "Database"},
+]
+
 
     BTN_WIDTH = 32
     BTN_HEIGHT = 32
@@ -112,7 +124,17 @@ class Layout:
         DB_HEIGHT
     )
 
-    DB_BTN_DEFS = [ "settodb","dbtoset","settoexcel","exceltoset","dropset","datatodb","login","register" ]
+
+    DB_BTN_DEFS = [
+    {"name": "settodb",    "hint": "Save session to database"},
+    {"name": "dbtoset",    "hint": "Load set from database"},
+    {"name": "settoexcel", "hint": "Export session to Excel"},
+    {"name": "exceltoset", "hint": "Import session from Excel"},
+    {"name": "dropset",    "hint": "Delete selected set"},
+    {"name": "datatodb",   "hint": "Save session data to database"},
+    {"name": "login",      "hint": "Login"},
+    {"name": "register",   "hint": "Register new user"},
+]
 
     DB_CP_HEIGHT=100
     DB_CP_RECT=pygame.Rect(   DB_RECT.left, DB_RECT.bottom - DB_CP_HEIGHT , DB_WIDTH, DB_CP_HEIGHT  )

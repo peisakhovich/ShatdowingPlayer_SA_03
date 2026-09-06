@@ -3634,3 +3634,57 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
 2026-09-06 17:05:07 DEBUG    [SA_03] Target language: en
 2026-09-06 17:05:07 DEBUG    [SA_03] Target locale: en-US
 2026-09-06 17:05:37 INFO     [SA_03] Finsh Application
+2026-09-06 17:09:41 INFO     [SA_03] Start Application
+2026-09-06 17:09:41 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-06 17:09:41 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-06 17:09:49 DEBUG    [SA_03] Button: db
+2026-09-06 17:09:51 INFO     [SA_03] Database sets loaded: 17
+2026-09-06 17:09:51 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-06 17:12:04 INFO     [SA_03] Finsh Application
+2026-09-06 17:23:22 INFO     [SA_03] Start Application
+2026-09-06 17:23:23 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-06 17:23:23 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-06 17:23:24 DEBUG    [SA_03] Button: db
+2026-09-06 17:23:26 INFO     [SA_03] Database sets loaded: 17
+2026-09-06 17:23:26 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-06 17:23:29 DEBUG    [SA_03] Button: login
+2026-09-06 17:23:39 INFO     [SA_03] Finsh Application
+2026-09-06 17:28:25 INFO     [SA_03] Start Application
+2026-09-06 17:28:26 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-06 17:28:26 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-06 17:28:34 DEBUG    [SA_03] Button: db
+2026-09-06 17:28:35 INFO     [SA_03] Database sets loaded: 17
+2026-09-06 17:28:35 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-06 17:28:37 DEBUG    [SA_03] Button: login
+2026-09-06 17:28:51 INFO     [SA_03] Finsh Application
+2026-09-06 17:28:55 INFO     [SA_03] Start Application
+2026-09-06 17:28:55 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-06 17:28:55 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-06 17:28:59 DEBUG    [SA_03] Button: settings
+2026-09-06 17:28:59 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-06 17:28:59 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-06 17:28:59 DEBUG    [SA_03] Target language: en
+2026-09-06 17:29:00 DEBUG    [SA_03] Target locale: en-US
+2026-09-06 17:29:02 DEBUG    [SA_03] Button: db
+2026-09-06 17:29:03 INFO     [SA_03] Database sets loaded: 17
+2026-09-06 17:29:03 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-06 17:29:17 INFO     [SA_03] Finsh Application
+2026-09-06 17:35:00 INFO     [SA_03] Start Application
+2026-09-06 17:35:00 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-06 17:35:00 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-06 17:35:02 DEBUG    [SA_03] Button: db
+2026-09-06 17:35:03 INFO     [SA_03] Database sets loaded: 17
+2026-09-06 17:35:03 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-06 17:37:17 DEBUG    [SA_03] Button: play
+2026-09-06 17:37:17 DEBUG    [SA_03] PREPARE_ITEM #0
+2026-09-06 17:37:17 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-06 17:37:17 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-06 17:37:17 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-06 17:37:17 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-06 17:37:17 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-06 17:37:20 DEBUG    [SA_03] Button: pause
+2026-09-06 17:37:24 INFO     [SA_03] Finsh Application
+2026-09-06 17:47:53 INFO     [SA_03] Start Application
+2026-09-06 17:47:54 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-06 17:47:54 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-06 17:48:57 INFO     [SA_03] Finsh Application

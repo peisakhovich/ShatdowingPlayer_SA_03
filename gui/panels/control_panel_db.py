@@ -5,9 +5,8 @@ from core.config import Config
 from gui.layout import Layout
 from gui.theme import Theme
 from gui.widgets.image_button import ImageButton
-# from gui.widgets.horizontal_slider import HorizontalSlider
-# from gui.widgets.text_button import TextButton
-# from gui.widgets.check_box import CheckBox
+from gui.widgets.hint import Hint
+
 
 
 class ControlPanel:
@@ -16,6 +15,8 @@ class ControlPanel:
 
         self.image_loader = image_loader
         self.font_manager = font_manager
+
+        self.hint = Hint(self.font_manager)
 
         self.font = self.font_manager.load(10,   Config.FONT_BOLD)
 
@@ -36,9 +37,11 @@ class ControlPanel:
 
     def _create_buttons(self):
 
+        for index, button_def in enumerate(Layout.DB_BTN_DEFS):
 
-        for index, name in enumerate(Layout.DB_BTN_DEFS):
-  
+            name = button_def["name"]
+            hint = button_def["hint"]
+
             x = Layout.DB_BTN_START_X + index * (
                 Layout.DB_BTN_WIDTH +
                 Layout.DB_BTN_INTERVAL
@@ -46,13 +49,14 @@ class ControlPanel:
 
             self.buttons[name] = self._create_button(
                 name,
+                hint,
                 x,
                 Layout.DB_BTN_START_Y
             )
 
     # --------------------------------------------------
 
-    def _create_button(self, name, x, y):
+    def _create_button(self, name, hint, x, y):
 
         return ImageButton(
 
@@ -62,7 +66,6 @@ class ControlPanel:
                 Layout.DB_BTN_WIDTH,
                 Layout.DB_BTN_HEIGHT
             ),
-
 
             image_normal=self.image_loader.load(
                 f"{Config.ICON_PATH}/{name}.png",
@@ -77,9 +80,10 @@ class ControlPanel:
             image_pressed=self.image_loader.load(
                 f"{Config.ICON_PATH}/{name}_pressed.png",
                 default=Config.APP_ICON
-            )
+            ),
+            hint=hint
         )
-
+    
     # --------------------------------------------------
     # Обработка событий
     # --------------------------------------------------
@@ -102,12 +106,25 @@ class ControlPanel:
         mouse_pos = pygame.mouse.get_pos()
         mouse_pressed = pygame.mouse.get_pressed()
 
+        hovered_button = None
+
         for button in self.buttons.values():
+
             button.update(
                 mouse_pos,
                 mouse_pressed
             )
 
+            if button.is_hovered:
+                hovered_button = button
+
+        if hovered_button:
+            self.hint.update(
+                hovered_button.hint,
+                hovered_button.rect
+            )
+        else:
+            self.hint.hide()
 
 
     # --------------------------------------------------
@@ -138,3 +155,5 @@ class ControlPanel:
         for button in self.buttons.values():
             button.draw(screen)
 
+        # Hint
+        self.hint.draw(screen)
