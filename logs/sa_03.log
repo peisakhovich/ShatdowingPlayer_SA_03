@@ -3086,3 +3086,551 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
 2026-09-05 20:16:53 INFO     [SA_03] Database sets loaded: 15
 2026-09-05 20:16:53 DEBUG    [SA_03] Selected set: English A2-23
 2026-09-05 20:21:41 INFO     [SA_03] Finsh Application
+2026-09-05 20:23:21 INFO     [SA_03] Start Application
+2026-09-05 20:23:21 DEBUG    [SA_03] INITIAL ITEM: phrase_code = en phrase_locale = en-GB phrase_voice = en-GB-SoniaNeural
+2026-09-05 20:23:21 DEBUG    [SA_03] INITIAL SOURCE: language = en locale = en-GB voice = 
+2026-09-05 20:23:23 DEBUG    [SA_03] Button: db
+2026-09-05 20:23:24 INFO     [SA_03] Database sets loaded: 15
+2026-09-05 20:23:24 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-05 20:23:30 DEBUG    [SA_03] Selected set: Polisн  B2
+2026-09-05 20:23:32 DEBUG    [SA_03] Button: dropset
+2026-09-05 20:23:32 DEBUG    [SA_03] DROPSET set_id=41
+2026-09-05 20:23:33 INFO     [SA_03] Data deleted from database: {'set_id': 41, 'deleted': True}
+2026-09-05 20:23:35 INFO     [SA_03] Database sets loaded: 14
+2026-09-05 20:23:35 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-05 20:23:39 DEBUG    [SA_03] Selected set: Polisн  B2
+2026-09-05 20:23:41 DEBUG    [SA_03] Button: dropset
+2026-09-05 20:23:41 DEBUG    [SA_03] DROPSET set_id=40
+2026-09-05 20:23:42 INFO     [SA_03] Data deleted from database: {'set_id': 40, 'deleted': True}
+2026-09-05 20:23:44 INFO     [SA_03] Database sets loaded: 13
+2026-09-05 20:23:44 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-05 20:24:01 DEBUG    [SA_03] Selected set: Dictation - dictation
+2026-09-05 20:24:04 DEBUG    [SA_03] Button: settoexcel
+2026-09-05 20:24:10 ERROR    [SA_03] Excel export error: [Errno 13] Permission denied: 'C:\\Users\\liudm\\SadowingApp\\SA_03\\tmp\\session_export.xlsx'
+2026-09-05 20:24:58 DEBUG    [SA_03] Button: dbtoset
+2026-09-05 20:24:59 INFO     [SA_03] Set loaded into session: 8
+2026-09-05 20:25:20 DEBUG    [SA_03] Button: settoexcel
+2026-09-05 20:25:24 INFO     [SA_03] Session exported to Excel: C:/Users/liudm/SadowingApp/SA_03/tmp/session_export.xlsx
+2026-09-05 20:27:04 DEBUG    [SA_03] Button: exceltoset
+2026-09-05 20:27:06 INFO     [SA_03] Session imported from Excel: C:/Users/liudm/SadowingApp/SA_03/tmp/session_export.xlsx
+2026-09-05 20:27:11 DEBUG    [SA_03] Button: settodb
+2026-09-05 20:27:11 DEBUG    [SA_03] SETTO​DB user_id=2
+2026-09-05 20:27:11 DEBUG    [SA_03] SETTO​DB data items=82
+2026-09-05 20:27:13 INFO     [SA_03] Session saved to database: {'set_id': 42}
+2026-09-05 20:27:14 INFO     [SA_03] Database sets loaded: 14
+2026-09-05 20:27:14 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-05 20:28:26 DEBUG    [SA_03] Selected set: Dictation Измененный
+2026-09-05 20:28:31 DEBUG    [SA_03] Button: dbtoset
+2026-09-05 20:28:31 INFO     [SA_03] Set loaded into session: 42
+2026-09-05 20:30:59 DEBUG    [SA_03] Button: dropset
+2026-09-05 20:30:59 DEBUG    [SA_03] DROPSET set_id=42
+2026-09-05 20:31:01 INFO     [SA_03] Data deleted from database: {'set_id': 42, 'deleted': True}
+2026-09-05 20:31:02 INFO     [SA_03] Database sets loaded: 13
+2026-09-05 20:31:02 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-05 20:31:21 DEBUG    [SA_03] Button: login
+2026-09-05 20:34:51 DEBUG    [SA_03] Button: exceltoset
+2026-09-05 20:34:53 INFO     [SA_03] Session imported from Excel: C:/Users/liudm/SadowingApp/SA_03/tmp/session_export.xlsx
+2026-09-05 20:35:17 DEBUG    [SA_03] Button: settodb
+2026-09-05 20:35:17 DEBUG    [SA_03] SETTO​DB user_id=2
+2026-09-05 20:35:17 DEBUG    [SA_03] SETTO​DB data items=82
+2026-09-05 20:35:18 INFO     [SA_03] Session saved to database: {'set_id': 43}
+2026-09-05 20:35:19 INFO     [SA_03] Database sets loaded: 14
+2026-09-05 20:35:19 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-05 20:35:23 DEBUG    [SA_03] Selected set: Dictation Измененный
+2026-09-05 20:35:27 DEBUG    [SA_03] Button: dbtoset
+2026-09-05 20:35:29 INFO     [SA_03] Set loaded into session: 43
+2026-09-05 20:36:38 DEBUG    [SA_03] Button: settoexcel
+2026-09-05 20:36:42 INFO     [SA_03] Session exported to Excel: C:/Users/liudm/SadowingApp/SA_03/tmp/session_export.xlsx
+2026-09-05 20:38:10 DEBUG    [SA_03] Button: exceltoset
+2026-09-05 20:38:13 INFO     [SA_03] Session imported from Excel: C:/Users/liudm/SadowingApp/SA_03/tmp/session_export.xlsx
+2026-09-05 20:39:13 DEBUG    [SA_03] Button: settings
+2026-09-05 20:39:13 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-05 20:39:13 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-05 20:39:13 DEBUG    [SA_03] Target language: en
+2026-09-05 20:39:14 DEBUG    [SA_03] Target locale: en-US
+2026-09-05 20:39:24 DEBUG    [SA_03] Button: db
+2026-09-05 20:39:26 INFO     [SA_03] Database sets loaded: 14
+2026-09-05 20:39:26 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-05 20:40:47 DEBUG    [SA_03] Button: exceltoset
+2026-09-05 20:40:49 INFO     [SA_03] Session imported from Excel: C:/Users/liudm/SadowingApp/SA_03/tmp/session_export.xlsx
+2026-09-05 20:41:07 DEBUG    [SA_03] Button: settodb
+2026-09-05 20:41:07 DEBUG    [SA_03] SETTO​DB user_id=2
+2026-09-05 20:41:07 DEBUG    [SA_03] SETTO​DB data items=82
+2026-09-05 20:41:07 INFO     [SA_03] Session saved to database: {'set_id': 44}
+2026-09-05 20:41:08 INFO     [SA_03] Database sets loaded: 15
+2026-09-05 20:41:08 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-05 20:41:14 DEBUG    [SA_03] Selected set: Dictation Измененный
+2026-09-05 20:41:16 DEBUG    [SA_03] Button: dbtoset
+2026-09-05 20:41:17 INFO     [SA_03] Set loaded into session: 44
+2026-09-05 20:41:57 DEBUG    [SA_03] Selected set: Dictation Измененный
+2026-09-05 20:42:07 DEBUG    [SA_03] Selected set: Polisн  B2
+2026-09-05 20:42:12 DEBUG    [SA_03] Button: dbtoset
+2026-09-05 20:42:12 INFO     [SA_03] Set loaded into session: 2
+2026-09-05 20:43:10 INFO     [SA_03] Finsh Application
+2026-09-05 20:43:21 INFO     [SA_03] Start Application
+2026-09-05 20:43:21 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-05 20:43:21 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-05 20:43:30 DEBUG    [SA_03] Button: db
+2026-09-05 20:43:30 INFO     [SA_03] Database sets loaded: 15
+2026-09-05 20:43:30 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-05 20:43:43 DEBUG    [SA_03] Button: exceltoset
+2026-09-05 20:43:47 DEBUG    [SA_03] Excel import cancelled
+2026-09-05 20:44:01 DEBUG    [SA_03] Button: play
+2026-09-05 20:44:01 DEBUG    [SA_03] PREPARE_ITEM #0
+2026-09-05 20:44:01 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-05 20:44:01 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-05 20:44:01 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-05 20:44:01 DEBUG    [SA_03] TEXT PLAY
+2026-09-05 20:44:04 DEBUG    [SA_03] TEXT_END
+2026-09-05 20:44:04 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-05 20:44:06 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:44:06 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-05 20:44:06 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-05 20:44:06 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-05 20:44:06 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-05 20:44:10 DEBUG    [SA_03] TRANSLATION_END
+2026-09-05 20:44:10 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-05 20:44:12 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:44:12 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-05 20:44:12 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-05 20:44:12 INFO     [SA_03] SCENARIO FINISHED
+2026-09-05 20:44:12 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-05 20:44:12 DEBUG    [SA_03] PREPARE_ITEM #1
+2026-09-05 20:44:12 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-05 20:44:12 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-05 20:44:12 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-05 20:44:12 DEBUG    [SA_03] TEXT PLAY
+2026-09-05 20:44:17 DEBUG    [SA_03] TEXT_END
+2026-09-05 20:44:17 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-05 20:44:20 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:44:20 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-05 20:44:20 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-05 20:44:20 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-05 20:44:20 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-05 20:44:26 DEBUG    [SA_03] TRANSLATION_END
+2026-09-05 20:44:26 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-05 20:44:28 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:44:28 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-05 20:44:28 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-05 20:44:28 INFO     [SA_03] SCENARIO FINISHED
+2026-09-05 20:44:28 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-05 20:44:28 DEBUG    [SA_03] PREPARE_ITEM #2
+2026-09-05 20:44:28 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-05 20:44:28 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-05 20:44:28 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-05 20:44:28 DEBUG    [SA_03] TEXT PLAY
+2026-09-05 20:44:31 DEBUG    [SA_03] TEXT_END
+2026-09-05 20:44:31 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-05 20:44:34 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:44:34 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-05 20:44:34 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-05 20:44:34 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-05 20:44:34 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-05 20:44:34 DEBUG    [SA_03] Button: pause
+2026-09-05 20:44:39 DEBUG    [SA_03] Button: play
+2026-09-05 20:44:39 DEBUG    [SA_03] PREPARE_ITEM #2
+2026-09-05 20:44:39 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-05 20:44:39 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-05 20:44:39 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-05 20:44:39 DEBUG    [SA_03] TEXT PLAY
+2026-09-05 20:44:41 DEBUG    [SA_03] Button: next
+2026-09-05 20:44:41 DEBUG    [SA_03] PREPARE_ITEM #3
+2026-09-05 20:44:41 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-05 20:44:41 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-05 20:44:41 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-05 20:44:41 DEBUG    [SA_03] TEXT PLAY
+2026-09-05 20:44:47 DEBUG    [SA_03] TEXT_END
+2026-09-05 20:44:47 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-05 20:44:50 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:44:50 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-05 20:44:50 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-05 20:44:50 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-05 20:44:51 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-05 20:44:56 DEBUG    [SA_03] TRANSLATION_END
+2026-09-05 20:44:56 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-05 20:44:58 DEBUG    [SA_03] Slider: factor_pause_before_translation = 3.415
+2026-09-05 20:44:58 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:44:58 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-05 20:44:58 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-05 20:44:58 INFO     [SA_03] SCENARIO FINISHED
+2026-09-05 20:44:58 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-05 20:44:58 DEBUG    [SA_03] PREPARE_ITEM #4
+2026-09-05 20:44:58 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-05 20:44:59 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-05 20:44:59 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-05 20:44:59 DEBUG    [SA_03] TEXT PLAY
+2026-09-05 20:45:01 DEBUG    [SA_03] TEXT_END
+2026-09-05 20:45:01 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-05 20:45:08 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:45:08 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-05 20:45:08 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-05 20:45:08 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-05 20:45:08 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-05 20:45:11 DEBUG    [SA_03] TRANSLATION_END
+2026-09-05 20:45:11 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-05 20:45:13 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:45:13 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-05 20:45:13 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-05 20:45:13 INFO     [SA_03] SCENARIO FINISHED
+2026-09-05 20:45:13 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-05 20:45:13 DEBUG    [SA_03] PREPARE_ITEM #5
+2026-09-05 20:45:13 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-05 20:45:13 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-05 20:45:13 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-05 20:45:13 DEBUG    [SA_03] TEXT PLAY
+2026-09-05 20:45:17 DEBUG    [SA_03] TEXT_END
+2026-09-05 20:45:17 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-05 20:45:26 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:45:26 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-05 20:45:26 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-05 20:45:26 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-05 20:45:26 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-05 20:45:31 DEBUG    [SA_03] TRANSLATION_END
+2026-09-05 20:45:31 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-05 20:45:33 DEBUG    [SA_03] Button: pause
+2026-09-05 20:51:05 DEBUG    [SA_03] Button: settings
+2026-09-05 20:51:05 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-05 20:51:05 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-05 20:51:05 DEBUG    [SA_03] Target language: en
+2026-09-05 20:51:09 DEBUG    [SA_03] Target locale: en-US
+2026-09-05 20:51:25 DEBUG    [SA_03] Target language: ru
+2026-09-05 20:51:25 DEBUG    [SA_03] Target locale: ru-RU
+2026-09-05 20:51:34 ERROR    [SA_03] Checking source language before generation...
+2026-09-05 20:51:39 INFO     [SA_03] Detected language: pl
+2026-09-05 20:51:39 DEBUG    [SA_03] Generate language check: source = pl detected = pl
+2026-09-05 20:51:39 DEBUG    [SA_03] Source language matches.
+2026-09-05 20:51:39 INFO     [SA_03] Generator: ShadowingGenerator
+2026-09-05 20:51:39 INFO     [SA_03] Generating plan...
+2026-09-05 20:52:16 INFO     [SA_03] 
+2026-09-05 20:52:16 INFO     [SA_03] ==============
+2026-09-05 20:52:16 INFO     [SA_03] PLAN GENERATED
+2026-09-05 20:52:16 INFO     [SA_03] ==============
+2026-09-05 20:52:16 INFO     [SA_03] Items: 64
+2026-09-05 20:52:16 INFO     [SA_03] --------------
+2026-09-05 20:52:16 INFO     [SA_03] 1 Dzień dobry, proszę usiąść. | pause: 1054 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 2 Czy może Pan krótko opowiedzieć o sobie? | pause: 1240 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 3 Dzień dobry. | pause: 784 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 4 Mam doświadczenie w programowaniu i interesuję się nowymi technologiami. | pause: 1464 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 5 Dlaczego chce Pan pracować właśnie w naszej firmie? | pause: 1342 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 6 Państwa firma ma ciekawe projekty i daje możliwość rozwoju zawodowego. | pause: 1540 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 7 Jakie technologie zna Pan najlepiej? | pause: 1072 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 8 Najlepiej znam Pythona, ale mam również doświadczenie z SQL i pracą z API. | pause: 1868 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 9 Od jak dawna zajmuje się Pan programowaniem? | pause: 1248 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 10 Programowaniem zajmuję się od kilku lat, a wcześniej pracowałem również przy projektach technicznych. | pause: 1922 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 11 Czy pracował Pan wcześniej w zespole? | pause: 1154 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 12 Tak, pracowałem w zespole i wiem, jak ważna jest dobra komunikacja między pracownikami. | pause: 1974 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 13 Czy woli Pan pracować samodzielnie czy w zespole? | pause: 1338 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 14 Potrafię pracować samodzielnie, ale dobrze czuję się również w zespole. | pause: 1622 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 15 Jak wygląda Pana typowy dzień pracy programisty? | pause: 1256 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 16 Najpierw sprawdzam zadania, potem planuję pracę i zaczynam realizować najważniejsze zadania. | pause: 1744 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 17 Co robi Pan, kiedy ma Pan problem z kodem? | pause: 1484 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 18 Najpierw próbuję sam znaleźć błąd, a jeśli problem jest trudny, korzystam z dokumentacji lub pytam kolegę. | pause: 2252 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 19 Czy często korzysta Pan z dokumentacji technicznej? | pause: 1262 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 20 Tak, dokumentacja jest dla mnie bardzo ważnym źródłem informacji. | pause: 1530 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 21 Czy zna Pan system kontroli wersji Git? | pause: 1238 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 22 Tak, używam Gita do zapisywania zmian i pracy z repozytorium. | pause: 1602 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 23 Czy może Pan wyjaśnić, czym jest commit? | pause: 1320 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 24 Commit to zapis zmian w projekcie, który pozwala później sprawdzić historię pracy. | pause: 1804 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 25 Czy pracował Pan z bazami danych? | pause: 1146 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 26 Tak, pracowałem z bazami danych i potrafię pisać zapytania SQL. | pause: 1606 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 27 Jakie operacje SQL zna Pan najlepiej? | pause: 1154 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 28 Znam między innymi SELECT, INSERT, UPDATE i DELETE. | pause: 1502 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 29 Czy miał Pan kiedyś problem z bazą danych? | pause: 1324 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 30 Tak, kilka razy miałem problemy z zapytaniami lub połączeniem z bazą. | pause: 1698 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 31 Jak rozwiązał Pan taki problem? | pause: 1062 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 32 Sprawdziłem komunikat błędu, przeanalizowałem kod i krok po kroku znalazłem przyczynę. | pause: 1732 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 33 Czy zna Pan pojęcie API? | pause: 1048 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 34 Tak. | pause: 688 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 35 API pozwala różnym programom komunikować się ze sobą i wymieniać dane. | pause: 1620 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 36 Czy pracował Pan z REST API? | pause: 1136 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 37 Tak, korzystałem z REST API i pracowałem między innymi z metodami GET, POST, PUT i DELETE. | pause: 2300 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 38 Czy zna Pan format JSON? | pause: 1048 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 39 Tak, JSON jest często używany do przesyłania danych między aplikacjami. | pause: 1622 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 40 Co robi Pan, kiedy program nie działa poprawnie? | pause: 1416 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 41 Najpierw sprawdzam logi i komunikaty błędów, a następnie próbuję znaleźć miejsce, w którym pojawia się problem. | pause: 2262 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 42 Czy potrafi Pan testować swój kod? | pause: 1148 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 43 Tak, staram się testować najważniejsze części programu i sprawdzać różne przypadki. | pause: 1726 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 44 Czy zna Pan testy jednostkowe? | pause: 1060 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 45 Tak, testy jednostkowe pozwalają sprawdzić, czy konkretna część programu działa prawidłowo. | pause: 1822 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 46 Jak reaguje Pan na krytykę swojej pracy? | pause: 1240 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 47 Staram się traktować krytykę jako możliwość poprawy swoich umiejętności. | pause: 1464 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 48 Co jest dla Pana najważniejsze w pracy? | pause: 1238 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 49 Ważne są dla mnie dobra atmosfera, ciekawe zadania i możliwość rozwoju. | pause: 1702 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 50 Czy potrafi Pan pracować pod presją czasu? | pause: 1244 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 51 Tak, ale staram się dobrze planować pracę, żeby unikać niepotrzebnego stresu. | pause: 1794 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 52 Co zrobi Pan, jeśli nie zdąży wykonać zadania na czas? | pause: 1588 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 53 Poinformuję o tym wcześniej osobę odpowiedzialną za projekt i wyjaśnię przyczynę opóźnienia. | pause: 1744 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 54 Czy potrafi Pan szybko nauczyć się nowej technologii? | pause: 1346 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 55 Tak, jeśli technologia jest potrzebna w projekcie, uczę się jej przez dokumentację, przykłady i praktykę. | pause: 2250 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 56 Jakie są Pana mocne strony? | pause: 1054 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 57 Jestem dokładny, cierpliwy i lubię analizować problemy. | pause: 1350 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 58 A jakie są Pana słabe strony? | pause: 1138 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 59 Czasami poświęcam zbyt dużo czasu na szczegóły, dlatego uczę się lepiej planować czas. | pause: 1892 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 60 Jakie ma Pan oczekiwania finansowe? | pause: 1070 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 61 Jestem otwarty na rozmowę i chciałbym poznać Państwa propozycję oraz zakres obowiązków. | pause: 1734 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 62 Czy ma Pan jakieś pytania dotyczące stanowiska? | pause: 1254 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 63 Tak. | pause: 688 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] 64 Chciałbym wiedzieć, nad jakimi projektami będę pracować i jak wygląda typowy dzień pracy na tym stanowisku. | pause: 2174 | repeat: 1
+2026-09-05 20:52:16 INFO     [SA_03] ==============================
+2026-09-05 20:52:16 INFO     [SA_03] 
+2026-09-05 20:52:38 DEBUG    [SA_03] Button: play
+2026-09-05 20:52:38 DEBUG    [SA_03] PREPARE_ITEM #0
+2026-09-05 20:52:38 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-05 20:52:38 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-05 20:52:38 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-05 20:52:39 DEBUG    [SA_03] TEXT PLAY
+2026-09-05 20:52:42 DEBUG    [SA_03] TEXT_END
+2026-09-05 20:52:42 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-05 20:52:45 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:52:45 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-05 20:52:45 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-05 20:52:45 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-05 20:52:48 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-05 20:52:52 DEBUG    [SA_03] TRANSLATION_END
+2026-09-05 20:52:52 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-05 20:52:54 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:52:54 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-05 20:52:54 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-05 20:52:54 INFO     [SA_03] SCENARIO FINISHED
+2026-09-05 20:52:54 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-05 20:52:54 DEBUG    [SA_03] PREPARE_ITEM #1
+2026-09-05 20:52:54 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-05 20:52:54 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-05 20:52:54 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-05 20:52:55 DEBUG    [SA_03] TEXT PLAY
+2026-09-05 20:52:58 DEBUG    [SA_03] TEXT_END
+2026-09-05 20:52:58 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-05 20:53:03 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:53:03 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-05 20:53:03 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-05 20:53:03 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-05 20:53:06 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-05 20:53:09 DEBUG    [SA_03] TRANSLATION_END
+2026-09-05 20:53:09 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-05 20:53:11 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:53:11 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-05 20:53:11 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-05 20:53:11 INFO     [SA_03] SCENARIO FINISHED
+2026-09-05 20:53:11 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-05 20:53:11 DEBUG    [SA_03] PREPARE_ITEM #2
+2026-09-05 20:53:11 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-05 20:53:11 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-05 20:53:11 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-05 20:53:12 DEBUG    [SA_03] TEXT PLAY
+2026-09-05 20:53:14 DEBUG    [SA_03] TEXT_END
+2026-09-05 20:53:14 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-05 20:53:16 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:53:16 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-05 20:53:16 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-05 20:53:16 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-05 20:53:17 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-05 20:53:19 DEBUG    [SA_03] TRANSLATION_END
+2026-09-05 20:53:19 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-05 20:53:21 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:53:21 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-05 20:53:21 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-05 20:53:21 INFO     [SA_03] SCENARIO FINISHED
+2026-09-05 20:53:21 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-05 20:53:21 DEBUG    [SA_03] PREPARE_ITEM #3
+2026-09-05 20:53:21 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-05 20:53:21 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-05 20:53:21 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-05 20:53:23 DEBUG    [SA_03] TEXT PLAY
+2026-09-05 20:53:28 DEBUG    [SA_03] TEXT_END
+2026-09-05 20:53:28 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-05 20:53:33 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:53:33 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-05 20:53:33 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-05 20:53:33 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-05 20:53:35 WARNING  [SA_03] AudioProvider: TTS failed: No audio was received. Please verify that your parameters are correct.
+2026-09-05 20:53:35 DEBUG    [SA_03] TRANSLATION SKIPPED
+2026-09-05 20:53:35 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-05 20:53:37 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:53:37 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-05 20:53:37 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-05 20:53:37 INFO     [SA_03] SCENARIO FINISHED
+2026-09-05 20:53:37 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-05 20:53:37 DEBUG    [SA_03] PREPARE_ITEM #4
+2026-09-05 20:53:37 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-05 20:53:37 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-05 20:53:37 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-05 20:53:40 DEBUG    [SA_03] TEXT PLAY
+2026-09-05 20:53:43 DEBUG    [SA_03] TEXT_END
+2026-09-05 20:53:43 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-05 20:53:48 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:53:48 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-05 20:53:48 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-05 20:53:48 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-05 20:53:52 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-05 20:53:56 DEBUG    [SA_03] TRANSLATION_END
+2026-09-05 20:53:56 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-05 20:53:58 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:53:58 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-05 20:53:58 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-05 20:53:58 INFO     [SA_03] SCENARIO FINISHED
+2026-09-05 20:53:58 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-05 20:53:58 DEBUG    [SA_03] PREPARE_ITEM #5
+2026-09-05 20:53:58 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-05 20:53:58 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-05 20:53:58 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-05 20:53:59 DEBUG    [SA_03] TEXT PLAY
+2026-09-05 20:54:04 DEBUG    [SA_03] TEXT_END
+2026-09-05 20:54:04 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-05 20:54:09 DEBUG    [SA_03] Button: pause
+2026-09-05 20:54:40 DEBUG    [SA_03] Button: settings
+2026-09-05 20:54:40 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-05 20:54:40 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-05 20:54:40 DEBUG    [SA_03] Target language: en
+2026-09-05 20:54:41 DEBUG    [SA_03] Target locale: en-US
+2026-09-05 20:54:46 DEBUG    [SA_03] Button: settings
+2026-09-05 20:54:46 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-05 20:54:46 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-05 20:54:46 DEBUG    [SA_03] Target language: en
+2026-09-05 20:54:47 DEBUG    [SA_03] Target locale: en-US
+2026-09-05 20:55:13 DEBUG    [SA_03] Button: settings
+2026-09-05 20:55:13 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-05 20:55:13 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-05 20:55:13 DEBUG    [SA_03] Target language: en
+2026-09-05 20:55:13 DEBUG    [SA_03] Target locale: en-US
+2026-09-05 20:55:21 DEBUG    [SA_03] Scenario: translation_first
+2026-09-05 20:55:24 DEBUG    [SA_03] Button: play
+2026-09-05 20:55:24 DEBUG    [SA_03] PREPARE_ITEM #5
+2026-09-05 20:55:24 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-05 20:55:24 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-05 20:55:24 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-05 20:55:24 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-05 20:55:31 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-05 20:55:37 DEBUG    [SA_03] TRANSLATION_END
+2026-09-05 20:55:37 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-05 20:55:43 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:55:43 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-05 20:55:43 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-05 20:55:43 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-05 20:55:43 DEBUG    [SA_03] TEXT PLAY
+2026-09-05 20:55:47 DEBUG    [SA_03] TEXT_END
+2026-09-05 20:55:47 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-05 20:55:49 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:55:49 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-05 20:55:49 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-05 20:55:49 INFO     [SA_03] SCENARIO FINISHED
+2026-09-05 20:55:50 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-05 20:55:50 DEBUG    [SA_03] PREPARE_ITEM #6
+2026-09-05 20:55:50 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-05 20:55:50 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-05 20:55:50 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-05 20:55:50 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-05 20:55:56 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-05 20:56:00 DEBUG    [SA_03] TRANSLATION_END
+2026-09-05 20:56:00 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-05 20:56:03 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:56:03 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-05 20:56:03 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-05 20:56:03 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-05 20:56:05 DEBUG    [SA_03] TEXT PLAY
+2026-09-05 20:56:08 DEBUG    [SA_03] TEXT_END
+2026-09-05 20:56:08 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-05 20:56:10 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:56:10 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-05 20:56:10 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-05 20:56:10 INFO     [SA_03] SCENARIO FINISHED
+2026-09-05 20:56:10 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-05 20:56:10 DEBUG    [SA_03] PREPARE_ITEM #7
+2026-09-05 20:56:10 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-05 20:56:10 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-05 20:56:10 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-05 20:56:10 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-05 20:56:14 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-05 20:56:20 DEBUG    [SA_03] TRANSLATION_END
+2026-09-05 20:56:20 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-05 20:56:26 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:56:26 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-05 20:56:26 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-05 20:56:26 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-05 20:56:28 DEBUG    [SA_03] TEXT PLAY
+2026-09-05 20:56:33 DEBUG    [SA_03] TEXT_END
+2026-09-05 20:56:33 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-05 20:56:35 DEBUG    [SA_03] PAUSE_END
+2026-09-05 20:56:35 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-05 20:56:35 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-05 20:56:35 INFO     [SA_03] SCENARIO FINISHED
+2026-09-05 20:56:35 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-05 20:56:35 DEBUG    [SA_03] PREPARE_ITEM #8
+2026-09-05 20:56:35 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-05 20:56:35 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-05 20:56:35 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-05 20:56:35 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-05 20:56:38 DEBUG    [SA_03] Button: pause
+2026-09-05 20:56:42 DEBUG    [SA_03] Button: db
+2026-09-05 20:56:43 INFO     [SA_03] Database sets loaded: 15
+2026-09-05 20:56:43 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-05 20:57:00 DEBUG    [SA_03] Button: db
+2026-09-05 20:57:02 INFO     [SA_03] Database sets loaded: 15
+2026-09-05 20:57:02 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-05 20:57:04 DEBUG    [SA_03] Button: settodb
+2026-09-05 20:57:04 DEBUG    [SA_03] SETTO​DB user_id=2
+2026-09-05 20:57:04 DEBUG    [SA_03] SETTO​DB data items=64
+2026-09-05 20:57:06 INFO     [SA_03] Session saved to database: {'set_id': 45}
+2026-09-05 20:57:07 INFO     [SA_03] Database sets loaded: 16
+2026-09-05 20:57:07 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-05 20:57:15 DEBUG    [SA_03] Selected set: Shadowing
+2026-09-05 21:02:15 DEBUG    [SA_03] Button: datatodb
+2026-09-05 21:02:15 DEBUG    [SA_03] DATATODB set_id=45
+2026-09-05 21:02:17 INFO     [SA_03] Data saved to database: {'set_id': 45, 'set_name': 'dialogi  kwalifikacyjny', 'set_description': 'Są to dialogi  kwalifikacyjnych przy przyjęncu do pracy', 'set_update_date': '2026-09-05T19:02:17'}
+2026-09-05 21:02:18 INFO     [SA_03] Database sets loaded: 16
+2026-09-05 21:02:18 DEBUG    [SA_03] Selected set: dialogi  kwalifikacyjny
+2026-09-05 21:02:25 DEBUG    [SA_03] Button: settodb
+2026-09-05 21:02:25 DEBUG    [SA_03] SETTO​DB user_id=2
+2026-09-05 21:02:25 DEBUG    [SA_03] SETTO​DB data items=64
+2026-09-05 21:02:27 INFO     [SA_03] Session saved to database: {'set_id': 46}
+2026-09-05 21:02:28 INFO     [SA_03] Database sets loaded: 17
+2026-09-05 21:02:28 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-05 21:02:32 DEBUG    [SA_03] Selected set: Dictation Измененный
+2026-09-05 21:02:39 DEBUG    [SA_03] Selected set: dialogi  kwalifikacyjny
+2026-09-05 21:02:42 DEBUG    [SA_03] Button: dbtoset
+2026-09-05 21:02:44 INFO     [SA_03] Set loaded into session: 45
+2026-09-05 21:08:25 INFO     [SA_03] Finsh Application
+2026-09-06 16:44:51 INFO     [SA_03] Start Application
+2026-09-06 16:44:51 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-06 16:44:51 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-06 16:44:55 DEBUG    [SA_03] Button: db
+2026-09-06 16:44:57 INFO     [SA_03] Database sets loaded: 17
+2026-09-06 16:44:57 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-06 16:47:28 DEBUG    [SA_03] Button: db
+2026-09-06 16:47:29 INFO     [SA_03] Database sets loaded: 17
+2026-09-06 16:47:29 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-06 16:47:33 DEBUG    [SA_03] Button: register
+2026-09-06 16:47:50 INFO     [SA_03] Finsh Application
+2026-09-06 16:53:55 INFO     [SA_03] Start Application
+2026-09-06 16:53:56 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-06 16:53:56 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-06 16:53:57 DEBUG    [SA_03] Button: db
+2026-09-06 16:53:58 INFO     [SA_03] Database sets loaded: 17
+2026-09-06 16:53:58 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-06 16:53:59 DEBUG    [SA_03] Button: register
+2026-09-06 16:54:18 DEBUG    [SA_03] Button: login
+2026-09-06 16:54:47 DEBUG    [SA_03] Button: db
+2026-09-06 16:54:48 INFO     [SA_03] Database sets loaded: 17
+2026-09-06 16:54:48 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-06 17:03:55 INFO     [SA_03] Finsh Application
+2026-09-06 17:03:58 INFO     [SA_03] Start Application
+2026-09-06 17:03:58 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-06 17:03:58 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-06 17:04:00 DEBUG    [SA_03] Button: db
+2026-09-06 17:04:01 INFO     [SA_03] Database sets loaded: 17
+2026-09-06 17:04:01 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-06 17:04:08 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-06 17:04:15 DEBUG    [SA_03] Button: login
+2026-09-06 17:04:22 DEBUG    [SA_03] Button: settings
+2026-09-06 17:04:22 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-06 17:04:22 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-06 17:04:22 DEBUG    [SA_03] Target language: en
+2026-09-06 17:04:22 DEBUG    [SA_03] Target locale: en-US
+2026-09-06 17:04:46 DEBUG    [SA_03] Button: db
+2026-09-06 17:04:47 INFO     [SA_03] Database sets loaded: 17
+2026-09-06 17:04:47 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-06 17:05:07 DEBUG    [SA_03] Button: settings
+2026-09-06 17:05:07 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-06 17:05:07 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-06 17:05:07 DEBUG    [SA_03] Target language: en
+2026-09-06 17:05:07 DEBUG    [SA_03] Target locale: en-US
+2026-09-06 17:05:37 INFO     [SA_03] Finsh Application

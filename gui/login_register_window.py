@@ -440,6 +440,22 @@ class LoginRegisterWindow:
 
             self._clear_focus()
             return
+        
+        # --------------------------------------------------
+        # Tab — переход между полями
+        # --------------------------------------------------
+
+        if event.type == pygame.KEYDOWN:
+
+            if event.key == pygame.K_TAB:
+
+                self._focus_next_edit(
+                    backward=bool(
+                        event.mod & pygame.KMOD_SHIFT
+                    )
+                )
+
+                return
 
         # --------------------------------------------------
         # Keyboard / text input / mouse wheel
@@ -848,3 +864,51 @@ class LoginRegisterWindow:
                 rect.y - 24
             )
         )
+
+    def _focus_next_edit(self, backward=False):
+
+        edits = [
+            edit
+            for edit in self._get_edits()
+            if edit is not None
+        ]
+
+        if not edits:
+            return
+
+        current_index = -1
+
+        for index, edit in enumerate(edits):
+
+            if edit.focused:
+                current_index = index
+                break
+
+        # Если сейчас ни одно поле не имеет фокуса
+        if current_index == -1:
+
+            next_index = (
+                len(edits) - 1
+                if backward
+                else 0
+            )
+
+        else:
+
+            if backward:
+                next_index = (
+                    current_index - 1
+                ) % len(edits)
+
+            else:
+                next_index = (
+                    current_index + 1
+                ) % len(edits)
+
+        # Снимаем фокус со всех полей
+        self._clear_focus()
+
+        # Устанавливаем новый фокус
+        edits[next_index].focused = True
+
+        pygame.key.start_text_input()

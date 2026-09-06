@@ -173,6 +173,61 @@ class DatabaseWindow:
         self.visible = False
 
     # ==================================================
+    # FOCUS
+    # ==================================================
+
+    def _clear_edit_focus(self):
+
+        self.set_name_edit.focused = False
+        self.description_edit.focused = False
+
+        pygame.key.stop_text_input()
+
+    # --------------------------------------------------
+
+    def _focus_next_edit(self, backward=False):
+
+        edits = [
+            self.set_name_edit,
+            self.description_edit,
+        ]
+
+        current_index = -1
+
+        for index, edit in enumerate(edits):
+
+            if edit.focused:
+                current_index = index
+                break
+
+        # Если ни одно поле не имеет фокуса
+        if current_index == -1:
+
+            next_index = (
+                len(edits) - 1
+                if backward
+                else 0
+            )
+
+        else:
+
+            if backward:
+                next_index = (
+                    current_index - 1
+                ) % len(edits)
+
+            else:
+                next_index = (
+                    current_index + 1
+                ) % len(edits)
+
+        self._clear_edit_focus()
+
+        edits[next_index].focused = True
+
+        pygame.key.start_text_input()
+
+    # ==================================================
     # API
     # ==================================================
 
@@ -746,7 +801,7 @@ class DatabaseWindow:
                 self._delete_set_task.cancel()
 
         self._delete_set_task = None
-        
+
         if self._export_excel_task is not None:
 
             if not self._export_excel_task.done():
@@ -1273,8 +1328,7 @@ class DatabaseWindow:
             if self.set_name_edit.rect.collidepoint(event.pos):
 
                 # Снимаем фокус с обоих полей
-                self.set_name_edit.focused = False
-                self.description_edit.focused = False
+                self._clear_edit_focus()
 
                 # Передаём клик только выбранному полю
                 self.set_name_edit.handle_event(
@@ -1290,8 +1344,7 @@ class DatabaseWindow:
             if self.description_edit.rect.collidepoint(event.pos):
 
                 # Снимаем фокус с обоих полей
-                self.set_name_edit.focused = False
-                self.description_edit.focused = False
+                self._clear_edit_focus()
 
                 # Передаём клик только выбранному полю
                 self.description_edit.handle_event(
@@ -1303,12 +1356,7 @@ class DatabaseWindow:
             # --------------------------------------------------
             # Клик вне полей
             # --------------------------------------------------
-
-            self.set_name_edit.focused = False
-            self.description_edit.focused = False
-
-            pygame.key.stop_text_input()
-
+            self._clear_edit_focus()
             return
 
         # --------------------------------------------------
@@ -1320,6 +1368,22 @@ class DatabaseWindow:
             self.set_selection.handle_event(event)
 
             return
+
+        # --------------------------------------------------
+        # Tab — переход между полями
+        # --------------------------------------------------
+
+        if event.type == pygame.KEYDOWN:
+
+            if event.key == pygame.K_TAB:
+
+                self._focus_next_edit(
+                    backward=bool(
+                        event.mod & pygame.KMOD_SHIFT
+                    )
+                )
+
+                return
 
         # --------------------------------------------------
         # Keyboard / text input / mouse wheel
