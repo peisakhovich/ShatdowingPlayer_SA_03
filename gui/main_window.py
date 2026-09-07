@@ -3,9 +3,7 @@ import pygame
 
 from gui.panels.control_panel import ControlPanel
 from gui.dialogs.dialog import Dialog
-from gui.widgets.check_box import CheckBox
 from gui.widgets.text_window import TextWindow
-from gui.theme import Theme
 from core.config import Config 
 from gui.layout import Layout
 from gui.settings_window import SettingsWindow

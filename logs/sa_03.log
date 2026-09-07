@@ -3721,3 +3721,180 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
 2026-09-07 09:18:56 INFO     [SA_03] Database sets loaded: 17
 2026-09-07 09:18:56 DEBUG    [SA_03] Selected set: English A2-23
 2026-09-07 09:19:00 INFO     [SA_03] Finsh Application
+2026-09-07 09:32:28 INFO     [SA_03] Start Application
+2026-09-07 09:32:28 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-07 09:32:28 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-07 09:32:33 DEBUG    [SA_03] Button: quit
+2026-09-07 09:32:48 INFO     [SA_03] Finsh Application
+2026-09-07 09:48:35 INFO     [SA_03] Start Application
+2026-09-07 09:48:36 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-07 09:48:36 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-07 09:48:37 DEBUG    [SA_03] Button: db
+2026-09-07 09:48:39 INFO     [SA_03] Database sets loaded: 17
+2026-09-07 09:48:39 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-07 09:48:42 DEBUG    [SA_03] Button: login
+2026-09-07 09:48:46 DEBUG    [SA_03] Button: register
+2026-09-07 09:48:56 DEBUG    [SA_03] Button: login
+2026-09-07 09:49:01 INFO     [SA_03] Finsh Application
+2026-09-07 09:52:14 INFO     [SA_03] Start Application
+2026-09-07 09:52:14 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-07 09:52:14 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-07 09:52:15 DEBUG    [SA_03] Button: db
+2026-09-07 09:52:17 INFO     [SA_03] Database sets loaded: 17
+2026-09-07 09:52:17 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-07 09:52:18 DEBUG    [SA_03] Button: login
+2026-09-07 09:52:24 INFO     [SA_03] Finsh Application
+2026-09-07 09:54:53 INFO     [SA_03] Start Application
+2026-09-07 09:54:54 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-07 09:54:54 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-07 09:54:56 DEBUG    [SA_03] Button: db
+2026-09-07 09:54:57 INFO     [SA_03] Database sets loaded: 17
+2026-09-07 09:54:57 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-07 09:54:58 DEBUG    [SA_03] Button: login
+2026-09-07 09:57:04 INFO     [SA_03] Start Application
+2026-09-07 09:57:04 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-07 09:57:04 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-07 09:57:06 DEBUG    [SA_03] Button: db
+2026-09-07 09:57:06 INFO     [SA_03] Database sets loaded: 17
+2026-09-07 09:57:06 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-07 09:57:08 DEBUG    [SA_03] Button: login
+2026-09-07 09:59:04 INFO     [SA_03] Start Application
+2026-09-07 09:59:04 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-07 09:59:04 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-07 09:59:06 DEBUG    [SA_03] Button: db
+2026-09-07 09:59:07 INFO     [SA_03] Database sets loaded: 17
+2026-09-07 09:59:07 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-07 09:59:08 DEBUG    [SA_03] Button: login
+2026-09-07 09:59:17 DEBUG    [SA_03] Button: login
+2026-09-07 09:59:22 DEBUG    [SA_03] Button: login
+2026-09-07 09:59:31 DEBUG    [SA_03] Button: register
+2026-09-07 09:59:34 DEBUG    [SA_03] Button: login
+2026-09-07 09:59:52 INFO     [SA_03] Finsh Application
+2026-09-07 10:02:49 INFO     [SA_03] Start Application
+2026-09-07 10:02:49 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-07 10:02:49 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-07 10:02:50 DEBUG    [SA_03] Button: db
+2026-09-07 10:02:52 INFO     [SA_03] Database sets loaded: 17
+2026-09-07 10:02:52 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-07 10:02:52 DEBUG    [SA_03] Button: login
+2026-09-07 10:03:49 DEBUG    [SA_03] Button: login
+2026-09-07 10:03:56 DEBUG    [SA_03] Button: login
+2026-09-07 10:04:17 INFO     [SA_03] Finsh Application
+2026-09-07 10:04:21 INFO     [SA_03] Start Application
+2026-09-07 10:04:21 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-07 10:04:21 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-07 10:04:23 DEBUG    [SA_03] Button: db
+2026-09-07 10:04:23 INFO     [SA_03] Database sets loaded: 17
+2026-09-07 10:04:23 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-07 10:04:24 DEBUG    [SA_03] Button: login
+2026-09-07 10:04:51 DEBUG    [SA_03] Button: login
+2026-09-07 10:05:10 DEBUG    [SA_03] Button: login
+2026-09-07 10:05:44 DEBUG    [SA_03] Button: login
+2026-09-07 10:12:23 INFO     [SA_03] Finsh Application
+2026-09-07 10:12:26 INFO     [SA_03] Start Application
+2026-09-07 10:12:26 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-07 10:12:26 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-07 10:12:28 DEBUG    [SA_03] Button: db
+2026-09-07 10:12:29 INFO     [SA_03] Database sets loaded: 17
+2026-09-07 10:12:29 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-07 10:12:30 DEBUG    [SA_03] Button: login
+2026-09-07 10:12:51 DEBUG    [SA_03] Button: login
+2026-09-07 10:14:08 INFO     [SA_03] Finsh Application
+2026-09-07 10:14:12 INFO     [SA_03] Start Application
+2026-09-07 10:14:12 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-07 10:14:12 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-07 10:14:14 DEBUG    [SA_03] Button: db
+2026-09-07 10:14:14 INFO     [SA_03] Database sets loaded: 17
+2026-09-07 10:14:14 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-07 10:14:15 DEBUG    [SA_03] Button: login
+2026-09-07 10:14:20 DEBUG    [SA_03] Button: login
+2026-09-07 10:26:10 INFO     [SA_03] Finsh Application
+2026-09-07 10:26:16 INFO     [SA_03] Start Application
+2026-09-07 10:26:16 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-07 10:26:16 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-07 10:26:18 DEBUG    [SA_03] Button: db
+2026-09-07 10:26:19 INFO     [SA_03] Database sets loaded: 17
+2026-09-07 10:26:19 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-07 10:26:20 DEBUG    [SA_03] Button: login
+2026-09-07 10:26:22 DEBUG    [SA_03] Button: login
+2026-09-07 10:26:23 DEBUG    [SA_03] Button: login
+2026-09-07 10:26:29 DEBUG    [SA_03] Button: login
+2026-09-07 10:26:33 DEBUG    [SA_03] Button: login
+2026-09-07 10:26:34 DEBUG    [SA_03] Button: login
+2026-09-07 10:26:40 INFO     [SA_03] Finsh Application
+2026-09-07 10:28:40 INFO     [SA_03] Start Application
+2026-09-07 10:28:41 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-07 10:28:41 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-07 10:28:43 DEBUG    [SA_03] Button: db
+2026-09-07 10:28:43 INFO     [SA_03] Database sets loaded: 17
+2026-09-07 10:28:43 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-07 10:28:44 DEBUG    [SA_03] Button: login
+2026-09-07 10:28:49 DEBUG    [SA_03] Button: login
+2026-09-07 10:29:02 INFO     [SA_03] Finsh Application
+2026-09-07 10:30:24 INFO     [SA_03] Start Application
+2026-09-07 10:30:24 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-07 10:30:24 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-07 10:30:26 DEBUG    [SA_03] Button: db
+2026-09-07 10:30:26 INFO     [SA_03] Database sets loaded: 17
+2026-09-07 10:30:26 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-07 10:30:27 DEBUG    [SA_03] Button: login
+2026-09-07 10:30:30 DEBUG    [SA_03] Button: login
+2026-09-07 10:30:35 DEBUG    [SA_03] Button: login
+2026-09-07 10:30:41 DEBUG    [SA_03] Button: login
+2026-09-07 10:31:23 DEBUG    [SA_03] Button: db
+2026-09-07 10:31:24 INFO     [SA_03] Database sets loaded: 17
+2026-09-07 10:31:24 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-07 10:31:25 DEBUG    [SA_03] Button: login
+2026-09-07 10:31:29 DEBUG    [SA_03] Button: login
+2026-09-07 10:31:32 DEBUG    [SA_03] Button: login
+2026-09-07 10:31:36 DEBUG    [SA_03] Button: login
+2026-09-07 10:31:40 DEBUG    [SA_03] Button: login
+2026-09-07 10:31:44 DEBUG    [SA_03] Button: login
+2026-09-07 10:31:49 DEBUG    [SA_03] Button: login
+2026-09-07 10:31:52 DEBUG    [SA_03] Button: login
+2026-09-07 10:32:04 DEBUG    [SA_03] Button: register
+2026-09-07 10:32:06 DEBUG    [SA_03] Button: login
+2026-09-07 10:32:21 DEBUG    [SA_03] Button: login
+2026-09-07 10:32:24 DEBUG    [SA_03] Button: login
+2026-09-07 10:34:14 DEBUG    [SA_03] Button: login
+2026-09-07 10:34:21 DEBUG    [SA_03] Button: login
+2026-09-07 10:34:23 DEBUG    [SA_03] Button: login
+2026-09-07 10:34:26 DEBUG    [SA_03] Button: login
+2026-09-07 10:34:28 DEBUG    [SA_03] Button: login
+2026-09-07 10:34:30 DEBUG    [SA_03] Button: login
+2026-09-07 10:34:32 DEBUG    [SA_03] Button: login
+2026-09-07 10:34:37 DEBUG    [SA_03] Button: login
+2026-09-07 10:34:40 DEBUG    [SA_03] Button: login
+2026-09-07 10:34:44 DEBUG    [SA_03] Button: login
+2026-09-07 10:34:47 DEBUG    [SA_03] Button: login
+2026-09-07 10:34:52 DEBUG    [SA_03] Button: login
+2026-09-07 10:34:55 DEBUG    [SA_03] Button: login
+2026-09-07 10:36:53 INFO     [SA_03] Finsh Application
+2026-09-07 11:13:12 INFO     [SA_03] Start Application
+2026-09-07 11:13:12 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-07 11:13:12 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-07 11:13:13 DEBUG    [SA_03] Button: db
+2026-09-07 11:13:14 INFO     [SA_03] Database sets loaded: 17
+2026-09-07 11:13:14 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-07 11:13:16 DEBUG    [SA_03] Button: login
+2026-09-07 11:13:19 DEBUG    [SA_03] Button: login
+2026-09-07 11:13:22 DEBUG    [SA_03] Button: login
+2026-09-07 11:13:26 DEBUG    [SA_03] Button: register
+2026-09-07 11:13:30 DEBUG    [SA_03] Button: register
+2026-09-07 11:13:38 DEBUG    [SA_03] Button: login
+2026-09-07 11:13:42 DEBUG    [SA_03] Button: login
+2026-09-07 11:14:31 DEBUG    [SA_03] Button: login
+2026-09-07 11:14:36 DEBUG    [SA_03] Button: register
+2026-09-07 11:15:05 DEBUG    [SA_03] Button: login
+2026-09-07 11:15:21 DEBUG    [SA_03] Button: login
+2026-09-07 11:16:33 INFO     [SA_03] Finsh Application
+2026-09-07 11:20:04 INFO     [SA_03] Start Application
+2026-09-07 11:20:04 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-07 11:20:04 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-07 11:20:06 DEBUG    [SA_03] Button: db
+2026-09-07 11:20:07 INFO     [SA_03] Database sets loaded: 17
+2026-09-07 11:20:07 DEBUG    [SA_03] Selected set: English A2-23
+2026-09-07 11:20:09 DEBUG    [SA_03] Button: login
+2026-09-07 11:20:14 DEBUG    [SA_03] Button: register
+2026-09-07 11:20:21 DEBUG    [SA_03] Button: login
+2026-09-07 11:20:33 INFO     [SA_03] Finsh Application

@@ -17,6 +17,7 @@ from gui.widgets.text_edit import TextEdit
 from gui.file_dialog import FileDialog
 from session.session_excel import SessionExcel
 from audio.tts import TTS
+from gui.dialogs.dialog import Dialog
 
 
 class DatabaseWindow:
@@ -52,6 +53,8 @@ class DatabaseWindow:
         self._delete_set_task = None
         self._export_excel_task = None
         self._export_excel_filename = None
+        self.active_dialog = None
+        self._pending_action = None
 
         # --------------------------------------------------
         # Data
@@ -152,7 +155,43 @@ class DatabaseWindow:
             self.font_manager.load(20)
         )
 
+    # --------------------------------------------------
+    # Показать диалог на действия по кнопкам 
+    # --------------------------------------------------
 
+    def show_buttons_dialog(self,action):
+
+        self._pending_action = action
+
+        if action == "login":
+            message = "Do you want to login?"
+
+        elif action == "register":
+            message = "Do you want to register?"
+
+        else:
+            message = "Do you want to do it?"
+            
+
+        self.active_dialog = Dialog(
+
+            parent_rect=self.rect,
+
+            font_manager=self.font_manager,
+
+            title="Action",
+
+            message=message,
+
+            buttons=[
+                "Yes",
+                "No",
+
+                ],
+            default_button=1     
+        )
+
+        self.active_dialog.show()
 
     # ==================================================
     # VISIBILITY
@@ -902,21 +941,27 @@ class DatabaseWindow:
         if not self.visible:
             return
 
-        self._process_get_sets_task()
-        self._process_get_set_task()
-        self._process_save_set_task()
-        self._process_update_set_data_task()
-        self._process_delete_set_task()
-        self._process_export_excel_task()
+        if self.active_dialog:
 
-        
-        self.set_name_edit.update()
-        self.description_edit.update()
+            self.active_dialog.update()     
 
-        self.control_panel.update()
-        self.login_register_window.update()
+        else:
+                
+            self._process_get_sets_task()
+            self._process_get_set_task()
+            self._process_save_set_task()
+            self._process_update_set_data_task()
+            self._process_delete_set_task()
+            self._process_export_excel_task()
 
-        self.busy_indicator.update()
+            
+            self.set_name_edit.update()
+            self.description_edit.update()
+
+            self.control_panel.update()
+            self.login_register_window.update()
+
+            self.busy_indicator.update()
 
     # ==================================================
     # EVENTS
@@ -926,6 +971,35 @@ class DatabaseWindow:
 
         if not self.visible:
             return
+
+        # Если открыт модальный диалог,
+        # он получает события первым.
+        #
+
+        if self.active_dialog:
+
+            result = self.active_dialog.handle_event(event)
+
+            if result == 0:
+
+                action = self._pending_action
+
+                self.active_dialog = None
+                self._pending_action = None
+
+                if action == "login":
+                    self.login_register_window.show("login")
+
+                elif action == "register":
+                    self.login_register_window.show("register")
+
+                # сюда потом добавим остальные действия
+            elif result == 1:
+
+                self.active_dialog = None
+                self._pending_action = None
+
+            return None
 
         
         # --------------------------------------------------
@@ -987,9 +1061,7 @@ class DatabaseWindow:
 
                     if name == "login":
 
-                        self.login_register_window.show(
-                            "login"
-                        )
+                        self.show_buttons_dialog("login")
 
                         return
 
@@ -999,9 +1071,7 @@ class DatabaseWindow:
 
                     if name == "register":
 
-                        self.login_register_window.show(
-                            "register"
-                        )
+                        self.show_buttons_dialog("register")
 
                         return
 
@@ -1213,6 +1283,7 @@ class DatabaseWindow:
                         set_id = self.selected_set.get(
                             "set_id"
                         )
+                        
 
                         if not set_id:
 
@@ -1612,6 +1683,21 @@ class DatabaseWindow:
             screen
         )
 
+        # --------------------------------------------------
+        # Login / Register window
+        # --------------------------------------------------
+        
         self.login_register_window.draw(
             screen
         )
+
+        # --------------------------------------------------
+        # Active dialog
+        # --------------------------------------------------    
+
+        if self.active_dialog:
+
+            self.active_dialog.draw(
+                screen
+            )
+        
