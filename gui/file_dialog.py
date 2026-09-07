@@ -31,7 +31,9 @@ class FileDialog:
         title="Сохранить файл",
         filetypes=None,
         initial_dir=None,
-        initial_file=None
+        initial_file=None,
+        defaultextension=None,
+
     ):
         root = tk.Tk()
         root.withdraw()
@@ -43,6 +45,7 @@ class FileDialog:
                 title=title,
                 initialdir=initial_dir,
                 initialfile=initial_file,
+                defaultextension=defaultextension,
                 filetypes=filetypes or [
                     ("Все файлы", "*.*")
                 ]

@@ -169,6 +169,21 @@ class DatabaseWindow:
         elif action == "register":
             message = "Do you want to register?"
 
+        elif action == "dropset":
+            message = "Do you want to delete this set?"
+
+        elif action == "datatodb":
+            message = "Do you want to save changes name & description to this set in the database?"  
+
+        elif action == "dbtoset":
+            message = "Do you want to load this set from the database into the session?" 
+
+        elif action == "settodb":
+            message = "Do you want to save the session to the database?"
+
+        elif action == "exceltoset":
+            message = "Do you want to load data from Excel into the session?"                
+
         else:
             message = "Do you want to do it?"
             
@@ -799,6 +814,224 @@ class DatabaseWindow:
             self.description_edit.clear()
 
     # ==================================================
+    # DELETE SELECTED SET
+    # ==================================================
+
+    def _delete_selected_set(self):
+
+        if self.selected_set is None:
+
+            logger.warning(
+                "No set selected"
+            )
+
+            return
+
+        set_id = self.selected_set.get(
+            "set_id"
+        )
+
+        if not set_id:
+
+            logger.warning(
+                "Selected set has no set_id"
+            )
+
+            return
+
+        if self._delete_set_task is not None:
+
+            if not self._delete_set_task.done():
+                return
+
+        logger.debug(
+            f"DROPSET set_id={set_id}"
+        )
+
+        self.busy_indicator.show(
+            "Deleting set..."
+        )
+
+        self._delete_set_task = (
+            self._async_runner.submit(
+                self._delete_set_async(
+                    set_id
+                )
+            )
+        )
+
+    # ==================================================
+    # UPDATE SELECTED SET DATA
+    # ==================================================
+
+    def _update_selected_set_data(self):
+
+        if self.selected_set is None:
+
+            logger.warning(
+                "No set selected"
+            )
+
+            return
+
+        set_id = self.selected_set.get(
+            "set_id"
+        )
+
+        if not set_id:
+
+            logger.warning(
+                "Selected set has no set_id"
+            )
+
+            return
+
+        if self._update_set_data_task is not None:
+
+            if not self._update_set_data_task.done():
+                return
+
+        # --------------------------------------------------
+        # Получаем данные из редакторов
+        # --------------------------------------------------
+
+        set_name = self.set_name_edit.get_text().strip()
+        set_description = self.description_edit.get_text().strip()
+
+        # --------------------------------------------------
+        # Проверка имени
+        # --------------------------------------------------
+
+        if not set_name:
+
+            logger.warning(
+                "Set name is empty"
+            )
+
+            return
+
+        logger.debug(
+            f"DATATODB set_id={set_id}"
+        )
+
+        # --------------------------------------------------
+        # UPDATE
+        # --------------------------------------------------
+
+        self.busy_indicator.show(
+            "Saving data of set..."
+        )
+
+        self._update_set_data_task = (
+            self._async_runner.submit(
+                self._update_set_data_async(
+                    set_id,
+                    set_name,
+                    set_description
+                )
+            )
+        )
+
+    # ==================================================
+    # LOAD SELECTED SET FROM DATABASE INTO SESSION
+    # ==================================================
+
+    def _load_selected_set_to_session(self):
+
+        if self.selected_set is None:
+
+            logger.warning(
+                "No set selected"
+            )
+
+            return
+
+        set_id = self.selected_set.get(
+            "set_id"
+        )
+
+        if not set_id:
+
+            logger.warning(
+                "Selected set has no set_id"
+            )
+
+            return
+
+        if self._get_set_task is not None:
+
+            if not self._get_set_task.done():
+                return
+
+        logger.debug(
+            f"DBTOSET set_id={set_id}"
+        )
+
+        self.busy_indicator.show(
+            "Loading set..."
+        )
+
+        self._get_set_task = (
+            self._async_runner.submit(
+                self._get_set_async(
+                    set_id
+                )
+            )
+        )
+
+    # ==================================================
+    # SAVE SESSION TO DATABASE
+    # ==================================================
+
+    def _save_session_to_database(self):
+
+        if self.session.is_empty():
+
+            logger.warning(
+                "Session is empty"
+            )
+
+            return
+
+        user_id = self.session.user_id
+
+        if not user_id:
+
+            logger.warning(
+                "Session has no user_id"
+            )
+
+            return
+
+        if self._save_set_task is not None:
+
+            if not self._save_set_task.done():
+                return
+
+        data = self.session.get_data()
+
+        logger.debug(
+            f"SETTO​DB user_id={user_id}"
+        )
+
+        logger.debug(
+            f"SETTO​DB data items={len(data.get('items', []))}"
+        )
+
+        self.busy_indicator.show(
+            "Saving set..."
+        )
+
+        self._save_set_task = (
+            self._async_runner.submit(
+                self._save_set_async(
+                    user_id,
+                    data
+                )
+            )
+        )
+
+    # ==================================================
     # TASKS
     # ==================================================
 
@@ -871,6 +1104,7 @@ class DatabaseWindow:
                 ("All files", "*.*"),
             ],
             initial_file="session_export.xlsx",
+            defaultextension=".xlsx",
         )
 
         if not filename:
@@ -880,6 +1114,9 @@ class DatabaseWindow:
             )
 
             return
+
+        if not filename.lower().endswith(".xlsx"):
+            filename += ".xlsx"
         
         self._export_excel_filename = filename
 
@@ -993,7 +1230,21 @@ class DatabaseWindow:
                 elif action == "register":
                     self.login_register_window.show("register")
 
-                # сюда потом добавим остальные действия
+                elif action == "dropset":
+                    self._delete_selected_set()
+
+                elif action == "datatodb":
+                    self._update_selected_set_data()    
+
+                elif action == "dbtoset":
+                    self._load_selected_set_to_session() 
+
+                elif action == "settodb":
+                    self._save_session_to_database()
+
+                elif action == "exceltoset":
+                    self._import_session_from_excel()           
+
             elif result == 1:
 
                 self.active_dialog = None
@@ -1080,7 +1331,7 @@ class DatabaseWindow:
                     # --------------------------------------------------
 
                     if name == "dbtoset":
-                        
+
                         if self.selected_set is None:
 
                             logger.warning(
@@ -1089,32 +1340,7 @@ class DatabaseWindow:
 
                             return
 
-                        set_id = self.selected_set.get(
-                            "set_id"
-                        )
-
-                        if not set_id:
-
-                            logger.warning(
-                                "Selected set has no set_id"
-                            )
-
-                            return
-
-                        if self._get_set_task is not None:
-
-                            if not self._get_set_task.done():
-                                return
-
-                        self.busy_indicator.show(
-                            "Loading set..."
-                        )
-
-                        self._get_set_task = (
-                            self._async_runner.submit(
-                                self._get_set_async(set_id)
-                            )
-                        )
+                        self.show_buttons_dialog("dbtoset")
 
                         return
 
@@ -1132,13 +1358,7 @@ class DatabaseWindow:
 
                             return
 
-                        user_id = self.session.user_id
-
-                        logger.debug(
-                            f"SETTO​DB user_id={user_id}"
-                        )
-
-                        if not user_id:
+                        if not self.session.user_id:
 
                             logger.warning(
                                 "Session has no user_id"
@@ -1146,29 +1366,7 @@ class DatabaseWindow:
 
                             return
 
-                        if self._save_set_task is not None:
-
-                            if not self._save_set_task.done():
-                                return
-
-                        data = self.session.get_data()
-
-                        logger.debug(
-                            f"SETTO​DB data items={len(data.get('items', []))}"
-                        )
-
-                        self.busy_indicator.show(
-                            "Saving set..."
-                        )
-
-                        self._save_set_task = (
-                            self._async_runner.submit(
-                                self._save_set_async(
-                                    user_id,
-                                    data
-                                )
-                            )
-                        )
+                        self.show_buttons_dialog("settodb")
 
                         return
 
@@ -1188,10 +1386,9 @@ class DatabaseWindow:
 
                     if name == "exceltoset":
 
-                        self._import_session_from_excel()
+                        self.show_buttons_dialog("exceltoset")
 
                         return
-
 
                     
                     # --------------------------------------------------
@@ -1207,33 +1404,7 @@ class DatabaseWindow:
 
                             return
 
-                        set_id = self.selected_set.get(
-                            "set_id"
-                        )
-
-                        if not set_id:
-
-                            logger.warning(
-                                "Selected set has no set_id"
-                            )
-
-                            return
-
-                        if self._update_set_data_task is not None:
-
-                            if not self._update_set_data_task.done():
-                                return
-
-                        # --------------------------------------------------
-                        # Получаем данные из редакторов
-                        # --------------------------------------------------
-
                         set_name = self.set_name_edit.get_text().strip()
-                        set_description = self.description_edit.get_text().strip()
-
-                        # --------------------------------------------------
-                        # Проверка имени
-                        # --------------------------------------------------
 
                         if not set_name:
 
@@ -1243,27 +1414,7 @@ class DatabaseWindow:
 
                             return
 
-                        logger.debug(
-                            f"DATATODB set_id={set_id}"
-                        )
-
-                        # --------------------------------------------------
-                        # UPDATE
-                        # --------------------------------------------------
-
-                        self.busy_indicator.show(
-                            "Saving data of set..."
-                        )
-
-                        self._update_set_data_task = (
-                            self._async_runner.submit(
-                                self._update_set_data_async(
-                                    set_id,
-                                    set_name,
-                                    set_description
-                                )
-                            )
-                        )
+                        self.show_buttons_dialog("datatodb")
 
                         return
                     
@@ -1280,48 +1431,10 @@ class DatabaseWindow:
 
                             return
 
-                        set_id = self.selected_set.get(
-                            "set_id"
-                        )
-                        
-
-                        if not set_id:
-
-                            logger.warning(
-                                "Selected set has no set_id"
-                            )
-
-                            return
-
-                        if self._delete_set_task is not None:
-
-                            if not self._delete_set_task.done():
-                                return
-
-                        logger.debug(
-                            f"DROPSET set_id={set_id}"
-                        )
-
-                        # --------------------------------------------------
-                        # DELETE
-                        # --------------------------------------------------
-
-                        self.busy_indicator.show(
-                            "Deleting set..."
-                        )
-
-                        self._delete_set_task = (
-                            self._async_runner.submit(
-                                self._delete_set_async(
-                                    set_id
-                                )
-                            )
-                        )
+                        self.show_buttons_dialog("dropset")
 
                         return
-
-
-
+                        
 
         # --------------------------------------------------
         # Close while busy
