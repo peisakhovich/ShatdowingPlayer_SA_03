@@ -4410,3 +4410,373 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
 2026-09-07 14:29:54 DEBUG    [SA_03] Button: settoexcel
 2026-09-07 14:29:57 DEBUG    [SA_03] Excel export cancelled
 2026-09-07 14:30:23 INFO     [SA_03] Finsh Application
+2026-09-07 14:42:35 INFO     [SA_03] Start Application
+2026-09-07 14:42:36 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-07 14:42:36 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-07 14:42:43 DEBUG    [SA_03] Button: db
+2026-09-07 14:42:44 INFO     [SA_03] Database sets loaded: 19
+2026-09-07 14:42:44 DEBUG    [SA_03] Selected set: English A1
+2026-09-07 14:42:49 DEBUG    [SA_03] Button: settings
+2026-09-07 14:42:49 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-07 14:42:49 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-07 14:42:49 DEBUG    [SA_03] Target language: en
+2026-09-07 14:42:49 DEBUG    [SA_03] Target locale: en-US
+2026-09-07 14:43:37 DEBUG    [SA_03] Button: settings
+2026-09-07 14:43:37 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-07 14:43:37 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-07 14:43:37 DEBUG    [SA_03] Target language: en
+2026-09-07 14:43:37 DEBUG    [SA_03] Target locale: en-US
+2026-09-07 14:44:14 INFO     [SA_03] Detected language: pl
+2026-09-07 14:44:14 DEBUG    [SA_03] Source locale: pl-PL
+2026-09-07 14:44:37 INFO     [SA_03] Detected language: ru
+2026-09-07 14:44:38 DEBUG    [SA_03] Source locale: ru-RU
+2026-09-07 14:45:12 DEBUG    [SA_03] Target voice: en-US-EmmaNeural
+2026-09-07 14:45:14 ERROR    [SA_03] Checking source language before generation...
+2026-09-07 14:45:18 INFO     [SA_03] Detected language: ru
+2026-09-07 14:45:18 DEBUG    [SA_03] Generate language check: source = ru detected = ru
+2026-09-07 14:45:18 DEBUG    [SA_03] Source language matches.
+2026-09-07 14:45:18 INFO     [SA_03] Generator: ShadowingGenerator
+2026-09-07 14:45:18 INFO     [SA_03] Generating plan...
+2026-09-07 14:45:33 INFO     [SA_03] 
+2026-09-07 14:45:33 INFO     [SA_03] ==============
+2026-09-07 14:45:33 INFO     [SA_03] PLAN GENERATED
+2026-09-07 14:45:33 INFO     [SA_03] ==============
+2026-09-07 14:45:33 INFO     [SA_03] Items: 11
+2026-09-07 14:45:33 INFO     [SA_03] --------------
+2026-09-07 14:45:33 INFO     [SA_03] 1 Жили-были старик со старухой. | pause: 1128 | repeat: 1
+2026-09-07 14:45:33 INFO     [SA_03] 2 Жили ладно, дружно. | pause: 958 | repeat: 1
+2026-09-07 14:45:33 INFO     [SA_03] 3 Все бы хорошо, да одно горе — детей у них не было. | pause: 1890 | repeat: 1
+2026-09-07 14:45:33 INFO     [SA_03] 4 Вот пришла зима снежная, намело сугробов до пояса, высыпали ребятишки на улицу поиграть, а старик со старухой на них из окна глядят да про свое горе думают. | pause: 3312 | repeat: 1
+2026-09-07 14:45:33 INFO     [SA_03] 5 — Знаешь, старуха, — говорит старик, — а давай-ка мы себе из снега дочку сделаем. | pause: 2802 | repeat: 1
+2026-09-07 14:45:33 INFO     [SA_03] 6 — Давай, — говорит старуха. | pause: 1434 | repeat: 1
+2026-09-07 14:45:33 INFO     [SA_03] 7 Надел старик шапку, вышли они на огород и принялись дочку из снега лепить. | pause: 1868 | repeat: 1
+2026-09-07 14:45:33 INFO     [SA_03] 8 Скатали снежный ком, ручки, ножки приладили, сверху снежную голову приставили. | pause: 1796 | repeat: 1
+2026-09-07 14:45:33 INFO     [SA_03] 9 Вылепил старик носик, рот, подбородок. | pause: 1236 | repeat: 1
+2026-09-07 14:45:33 INFO     [SA_03] 10 Глядь — а у Снегурочки губы порозовели, глазки открылись; смотрит она на стариков и улыбается. | pause: 2298 | repeat: 1
+2026-09-07 14:45:33 INFO     [SA_03] 11 Потом закивала головой, зашевелила ручками, ножками, стряхнула с себя снег — и вышла из сугроба живая девочка. | pause: 2570 | repeat: 1
+2026-09-07 14:45:33 INFO     [SA_03] ==============================
+2026-09-07 14:45:33 INFO     [SA_03] 
+2026-09-07 14:45:46 DEBUG    [SA_03] Button: play
+2026-09-07 14:45:46 DEBUG    [SA_03] PREPARE_ITEM #0
+2026-09-07 14:45:46 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-07 14:45:46 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-07 14:45:46 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-07 14:45:46 DEBUG    [SA_03] TEXT PLAY
+2026-09-07 14:45:49 DEBUG    [SA_03] TEXT_END
+2026-09-07 14:45:49 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-07 14:45:50 DEBUG    [SA_03] PAUSE_END
+2026-09-07 14:45:50 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-07 14:45:50 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-07 14:45:50 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-07 14:45:51 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-07 14:45:55 DEBUG    [SA_03] TRANSLATION_END
+2026-09-07 14:45:55 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-07 14:45:57 DEBUG    [SA_03] PAUSE_END
+2026-09-07 14:45:57 DEBUG    [SA_03] Button: pause
+2026-09-07 14:46:24 DEBUG    [SA_03] Button: play
+2026-09-07 14:46:24 DEBUG    [SA_03] PREPARE_ITEM #0
+2026-09-07 14:46:24 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-07 14:46:24 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-07 14:46:24 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-07 14:46:25 DEBUG    [SA_03] TEXT PLAY
+2026-09-07 14:46:27 DEBUG    [SA_03] TEXT_END
+2026-09-07 14:46:27 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-07 14:46:29 DEBUG    [SA_03] PAUSE_END
+2026-09-07 14:46:29 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-07 14:46:29 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-07 14:46:29 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-07 14:46:29 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-07 14:46:32 DEBUG    [SA_03] TRANSLATION_END
+2026-09-07 14:46:32 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-07 14:46:34 DEBUG    [SA_03] PAUSE_END
+2026-09-07 14:46:34 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-07 14:46:34 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-07 14:46:34 INFO     [SA_03] SCENARIO FINISHED
+2026-09-07 14:46:34 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-07 14:46:34 DEBUG    [SA_03] PREPARE_ITEM #1
+2026-09-07 14:46:34 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-07 14:46:34 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-07 14:46:34 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-07 14:46:34 DEBUG    [SA_03] TEXT PLAY
+2026-09-07 14:46:37 DEBUG    [SA_03] TEXT_END
+2026-09-07 14:46:37 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-07 14:46:38 DEBUG    [SA_03] PAUSE_END
+2026-09-07 14:46:38 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-07 14:46:38 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-07 14:46:38 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-07 14:46:41 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-07 14:46:44 DEBUG    [SA_03] TRANSLATION_END
+2026-09-07 14:46:44 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-07 14:46:46 DEBUG    [SA_03] PAUSE_END
+2026-09-07 14:46:46 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-07 14:46:46 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-07 14:46:46 INFO     [SA_03] SCENARIO FINISHED
+2026-09-07 14:46:46 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-07 14:46:46 DEBUG    [SA_03] PREPARE_ITEM #2
+2026-09-07 14:46:46 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-07 14:46:46 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-07 14:46:46 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-07 14:46:48 DEBUG    [SA_03] TEXT PLAY
+2026-09-07 14:46:53 DEBUG    [SA_03] TEXT_END
+2026-09-07 14:46:53 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-07 14:46:54 DEBUG    [SA_03] PAUSE_END
+2026-09-07 14:46:54 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-07 14:46:54 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-07 14:46:54 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-07 14:46:58 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-07 14:47:03 DEBUG    [SA_03] TRANSLATION_END
+2026-09-07 14:47:03 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-07 14:47:05 DEBUG    [SA_03] PAUSE_END
+2026-09-07 14:47:05 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-07 14:47:05 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-07 14:47:05 INFO     [SA_03] SCENARIO FINISHED
+2026-09-07 14:47:05 DEBUG    [SA_03] FINISH_ITEM: repeat 1/1
+2026-09-07 14:47:05 DEBUG    [SA_03] PREPARE_ITEM #3
+2026-09-07 14:47:05 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-07 14:47:05 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-07 14:47:05 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-07 14:47:09 DEBUG    [SA_03] TEXT PLAY
+2026-09-07 14:47:19 DEBUG    [SA_03] TEXT_END
+2026-09-07 14:47:19 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-07 14:47:22 DEBUG    [SA_03] PAUSE_END
+2026-09-07 14:47:22 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-07 14:47:22 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-07 14:47:23 DEBUG    [SA_03] AudioProvider: CACHE MISS
+2026-09-07 14:47:28 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-07 14:47:38 DEBUG    [SA_03] Button: pause
+2026-09-07 14:47:45 DEBUG    [SA_03] Button: db
+2026-09-07 14:47:46 INFO     [SA_03] Database sets loaded: 19
+2026-09-07 14:47:46 DEBUG    [SA_03] Selected set: English A1
+2026-09-07 14:47:53 DEBUG    [SA_03] Button: settoexcel
+2026-09-07 14:48:24 INFO     [SA_03] Session exported to Excel: C:/Users/liudm/SadowingApp/SA_03/tmp/Russian_fair.xlsx
+2026-09-07 14:50:18 DEBUG    [SA_03] Button: settodb
+2026-09-07 14:50:24 DEBUG    [SA_03] SETTO​DB user_id=2
+2026-09-07 14:50:24 DEBUG    [SA_03] SETTO​DB data items=11
+2026-09-07 14:50:25 ERROR    [SA_03] SAVE  set API error: Translation voice not found
+2026-09-07 14:50:57 DEBUG    [SA_03] Selected set: Polsky Dictation 
+2026-09-07 14:51:13 DEBUG    [SA_03] Button: play
+2026-09-07 14:51:13 DEBUG    [SA_03] PREPARE_ITEM #3
+2026-09-07 14:51:13 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-07 14:51:13 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-07 14:51:13 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-07 14:51:13 DEBUG    [SA_03] TEXT PLAY
+2026-09-07 14:51:15 DEBUG    [SA_03] Button: pause
+2026-09-07 14:51:20 DEBUG    [SA_03] Button: db
+2026-09-07 14:51:21 INFO     [SA_03] Database sets loaded: 19
+2026-09-07 14:51:21 DEBUG    [SA_03] Selected set: English A1
+2026-09-07 14:51:45 DEBUG    [SA_03] Button: play
+2026-09-07 14:51:45 DEBUG    [SA_03] PREPARE_ITEM #3
+2026-09-07 14:51:45 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-07 14:51:45 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-07 14:51:45 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-07 14:51:45 DEBUG    [SA_03] TEXT PLAY
+2026-09-07 14:51:55 DEBUG    [SA_03] TEXT_END
+2026-09-07 14:51:55 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-07 14:51:59 DEBUG    [SA_03] PAUSE_END
+2026-09-07 14:51:59 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-07 14:51:59 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-07 14:51:59 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-07 14:51:59 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-07 14:52:05 DEBUG    [SA_03] Button: pause
+2026-09-07 14:52:05 DEBUG    [SA_03] Button: db
+2026-09-07 14:52:06 INFO     [SA_03] Database sets loaded: 19
+2026-09-07 14:52:06 DEBUG    [SA_03] Selected set: English A1
+2026-09-07 14:52:09 DEBUG    [SA_03] Button: settodb
+2026-09-07 14:52:12 DEBUG    [SA_03] SETTO​DB user_id=2
+2026-09-07 14:52:12 DEBUG    [SA_03] SETTO​DB data items=11
+2026-09-07 14:52:13 ERROR    [SA_03] SAVE  set API error: Translation voice not found
+2026-09-07 14:53:56 DEBUG    [SA_03] Button: exceltoset
+2026-09-07 14:54:01 INFO     [SA_03] Session imported from Excel: C:/Users/liudm/SadowingApp/SA_03/tmp/Russian_fair.xlsx
+2026-09-07 14:54:10 DEBUG    [SA_03] Button: settodb
+2026-09-07 14:54:12 DEBUG    [SA_03] SETTO​DB user_id=2
+2026-09-07 14:54:12 DEBUG    [SA_03] SETTO​DB data items=11
+2026-09-07 14:54:12 ERROR    [SA_03] SAVE  set API error: Translation voice not found
+2026-09-07 14:54:26 DEBUG    [SA_03] Button: play
+2026-09-07 14:54:26 DEBUG    [SA_03] PREPARE_ITEM #0
+2026-09-07 14:54:26 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-07 14:54:26 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-07 14:54:26 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-07 14:54:26 DEBUG    [SA_03] TEXT PLAY
+2026-09-07 14:54:29 DEBUG    [SA_03] TEXT_END
+2026-09-07 14:54:29 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-07 14:54:30 DEBUG    [SA_03] PAUSE_END
+2026-09-07 14:54:30 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-07 14:54:30 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-07 14:54:30 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-07 14:54:30 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-07 14:54:32 DEBUG    [SA_03] Button: pause
+2026-09-07 14:54:35 DEBUG    [SA_03] Button: db
+2026-09-07 14:54:35 INFO     [SA_03] Database sets loaded: 19
+2026-09-07 14:54:35 DEBUG    [SA_03] Selected set: English A1
+2026-09-07 14:54:37 DEBUG    [SA_03] Button: settodb
+2026-09-07 14:54:39 DEBUG    [SA_03] SETTO​DB user_id=2
+2026-09-07 14:54:39 DEBUG    [SA_03] SETTO​DB data items=11
+2026-09-07 14:54:40 ERROR    [SA_03] SAVE  set API error: Translation voice not found
+2026-09-07 14:55:01 DEBUG    [SA_03] Selected set: Little Red Riding Hood. French
+2026-09-07 14:55:14 DEBUG    [SA_03] Selected set: Little Red Riding Hood. French
+2026-09-07 14:55:36 INFO     [SA_03] Finsh Application
+2026-09-07 14:55:42 INFO     [SA_03] Start Application
+2026-09-07 14:55:42 DEBUG    [SA_03] INITIAL ITEM: phrase_code = ru phrase_locale = ru-RU phrase_voice = ru-RU-DmitryNeural
+2026-09-07 14:55:42 DEBUG    [SA_03] INITIAL SOURCE: language = ru locale = ru-RU voice = 
+2026-09-07 14:55:44 DEBUG    [SA_03] Button: play
+2026-09-07 14:55:44 DEBUG    [SA_03] PREPARE_ITEM #0
+2026-09-07 14:55:44 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-07 14:55:44 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-07 14:55:44 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-07 14:55:44 DEBUG    [SA_03] TEXT PLAY
+2026-09-07 14:55:46 DEBUG    [SA_03] Button: pause
+2026-09-07 14:56:03 DEBUG    [SA_03] Button: db
+2026-09-07 14:56:03 INFO     [SA_03] Database sets loaded: 19
+2026-09-07 14:56:03 DEBUG    [SA_03] Selected set: English A1
+2026-09-07 15:00:27 INFO     [SA_03] Finsh Application
+2026-09-07 15:00:32 INFO     [SA_03] Start Application
+2026-09-07 15:00:32 DEBUG    [SA_03] INITIAL ITEM: phrase_code = ru phrase_locale = ru-RU phrase_voice = ru-RU-DmitryNeural
+2026-09-07 15:00:32 DEBUG    [SA_03] INITIAL SOURCE: language = ru locale = ru-RU voice = 
+2026-09-07 15:00:36 DEBUG    [SA_03] Button: db
+2026-09-07 15:00:38 INFO     [SA_03] Database sets loaded: 19
+2026-09-07 15:00:38 DEBUG    [SA_03] Selected set: English A1
+2026-09-07 15:00:39 DEBUG    [SA_03] Button: settodb
+2026-09-07 15:00:41 DEBUG    [SA_03] SETTO​DB user_id=2
+2026-09-07 15:00:41 DEBUG    [SA_03] SETTO​DB data items=11
+2026-09-07 15:00:42 ERROR    [SA_03] SAVE  set API error: Translation voice not found
+2026-09-07 15:00:48 INFO     [SA_03] Finsh Application
+2026-09-07 15:28:14 INFO     [SA_03] Start Application
+2026-09-07 15:28:14 DEBUG    [SA_03] INITIAL ITEM: phrase_code = ru phrase_locale = ru-RU phrase_voice = ru-RU-DmitryNeural
+2026-09-07 15:28:14 DEBUG    [SA_03] INITIAL SOURCE: language = ru locale = ru-RU voice = 
+2026-09-07 15:28:16 DEBUG    [SA_03] Button: db
+2026-09-07 15:28:17 INFO     [SA_03] Database sets loaded: 19
+2026-09-07 15:28:17 DEBUG    [SA_03] Selected set: English A1
+2026-09-07 15:28:19 DEBUG    [SA_03] Button: settodb
+2026-09-07 15:28:21 DEBUG    [SA_03] SETTO​DB user_id=2
+2026-09-07 15:28:21 DEBUG    [SA_03] SETTO​DB data items=11
+2026-09-07 15:28:22 INFO     [SA_03] Session saved to database: {'set_id': 56}
+2026-09-07 15:28:24 INFO     [SA_03] Database sets loaded: 20
+2026-09-07 15:28:24 DEBUG    [SA_03] Selected set: English A1
+2026-09-07 15:28:35 DEBUG    [SA_03] Selected set: Snow Girl
+2026-09-07 15:28:46 INFO     [SA_03] Finsh Application
+2026-09-07 15:29:45 INFO     [SA_03] Start Application
+2026-09-07 15:29:46 DEBUG    [SA_03] INITIAL ITEM: phrase_code = ru phrase_locale = ru-RU phrase_voice = ru-RU-DmitryNeural
+2026-09-07 15:29:46 DEBUG    [SA_03] INITIAL SOURCE: language = ru locale = ru-RU voice = 
+2026-09-07 15:30:03 DEBUG    [SA_03] Button: db
+2026-09-07 15:30:04 INFO     [SA_03] Database sets loaded: 20
+2026-09-07 15:30:04 DEBUG    [SA_03] Selected set: English A1
+2026-09-07 15:30:08 DEBUG    [SA_03] Selected set: Snow Girl
+2026-09-07 15:30:11 DEBUG    [SA_03] Button: dbtoset
+2026-09-07 15:30:12 DEBUG    [SA_03] DBTOSET set_id=56
+2026-09-07 15:30:13 INFO     [SA_03] Set loaded into session: 56
+2026-09-07 15:31:20 INFO     [SA_03] Finsh Application
+2026-09-07 15:31:28 INFO     [SA_03] Start Application
+2026-09-07 15:31:28 DEBUG    [SA_03] INITIAL ITEM: phrase_code = ru phrase_locale = ru-RU phrase_voice = ru-RU-DmitryNeural
+2026-09-07 15:31:28 DEBUG    [SA_03] INITIAL SOURCE: language = ru locale = ru-RU voice = 
+2026-09-07 15:31:35 DEBUG    [SA_03] Button: db
+2026-09-07 15:31:36 INFO     [SA_03] Database sets loaded: 20
+2026-09-07 15:31:36 DEBUG    [SA_03] Selected set: English A1
+2026-09-07 15:31:46 INFO     [SA_03] Finsh Application
+2026-09-07 15:35:43 INFO     [SA_03] Start Application
+2026-09-07 15:35:44 DEBUG    [SA_03] INITIAL ITEM: phrase_code = ru phrase_locale = ru-RU phrase_voice = ru-RU-DmitryNeural
+2026-09-07 15:35:44 DEBUG    [SA_03] INITIAL SOURCE: language = ru locale = ru-RU voice = 
+2026-09-07 15:35:46 DEBUG    [SA_03] Button: settings
+2026-09-07 15:35:46 DEBUG    [SA_03] INITIAL ITEM: phrase_code = ru phrase_locale = ru-RU phrase_voice = ru-RU-DmitryNeural
+2026-09-07 15:35:46 DEBUG    [SA_03] INITIAL SOURCE: language = ru locale = ru-RU voice = 
+2026-09-07 15:35:46 DEBUG    [SA_03] Target language: en
+2026-09-07 15:35:47 DEBUG    [SA_03] Target locale: en-US
+2026-09-07 15:35:52 DEBUG    [SA_03] Button: db
+2026-09-07 15:35:53 INFO     [SA_03] Database sets loaded: 20
+2026-09-07 15:35:53 DEBUG    [SA_03] Selected set: English A1
+2026-09-07 15:35:59 INFO     [SA_03] Finsh Application
+2026-09-07 16:53:55 INFO     [SA_03] Start Application
+2026-09-07 16:53:55 DEBUG    [SA_03] INITIAL ITEM: phrase_code = ru phrase_locale = ru-RU phrase_voice = ru-RU-DmitryNeural
+2026-09-07 16:53:55 DEBUG    [SA_03] INITIAL SOURCE: language = ru locale = ru-RU voice = 
+2026-09-07 16:53:57 DEBUG    [SA_03] Button: settings
+2026-09-07 16:53:57 DEBUG    [SA_03] INITIAL ITEM: phrase_code = ru phrase_locale = ru-RU phrase_voice = ru-RU-DmitryNeural
+2026-09-07 16:53:57 DEBUG    [SA_03] INITIAL SOURCE: language = ru locale = ru-RU voice = 
+2026-09-07 16:53:57 DEBUG    [SA_03] Target language: en
+2026-09-07 16:53:57 DEBUG    [SA_03] Target locale: en-US
+2026-09-07 16:54:09 DEBUG    [SA_03] Button: db
+2026-09-07 16:54:10 INFO     [SA_03] Database sets loaded: 20
+2026-09-07 16:54:10 DEBUG    [SA_03] Selected set: English A1
+2026-09-07 16:54:11 DEBUG    [SA_03] Button: datatodb
+2026-09-07 16:54:16 DEBUG    [SA_03] Button: settings
+2026-09-07 16:54:16 DEBUG    [SA_03] INITIAL ITEM: phrase_code = ru phrase_locale = ru-RU phrase_voice = ru-RU-DmitryNeural
+2026-09-07 16:54:16 DEBUG    [SA_03] INITIAL SOURCE: language = ru locale = ru-RU voice = 
+2026-09-07 16:54:16 DEBUG    [SA_03] Target language: en
+2026-09-07 16:54:17 DEBUG    [SA_03] Target locale: en-US
+2026-09-07 16:55:51 INFO     [SA_03] Finsh Application
+2026-09-07 16:55:55 INFO     [SA_03] Start Application
+2026-09-07 16:55:56 DEBUG    [SA_03] INITIAL ITEM: phrase_code = ru phrase_locale = ru-RU phrase_voice = ru-RU-DmitryNeural
+2026-09-07 16:55:56 DEBUG    [SA_03] INITIAL SOURCE: language = ru locale = ru-RU voice = 
+2026-09-07 16:55:57 DEBUG    [SA_03] Button: db
+2026-09-07 16:55:58 INFO     [SA_03] Database sets loaded: 20
+2026-09-07 16:55:58 DEBUG    [SA_03] Selected set: English A1
+2026-09-07 16:56:14 INFO     [SA_03] Finsh Application
+2026-09-07 16:56:18 INFO     [SA_03] Start Application
+2026-09-07 16:56:18 DEBUG    [SA_03] INITIAL ITEM: phrase_code = ru phrase_locale = ru-RU phrase_voice = ru-RU-DmitryNeural
+2026-09-07 16:56:18 DEBUG    [SA_03] INITIAL SOURCE: language = ru locale = ru-RU voice = 
+2026-09-07 16:56:21 DEBUG    [SA_03] Button: db
+2026-09-07 16:56:22 INFO     [SA_03] Database sets loaded: 20
+2026-09-07 16:56:22 DEBUG    [SA_03] Selected set: English A1
+2026-09-07 16:56:39 DEBUG    [SA_03] Button: datatodb
+2026-09-07 16:58:05 DEBUG    [SA_03] Selected set: Little Red Riding Hood. French
+2026-09-07 16:58:09 DEBUG    [SA_03] Selected set: Polisн  B2
+2026-09-07 16:58:24 DEBUG    [SA_03] Selected set: Shadowing
+2026-09-07 17:00:38 INFO     [SA_03] Finsh Application
+2026-09-07 17:00:41 INFO     [SA_03] Start Application
+2026-09-07 17:00:42 DEBUG    [SA_03] INITIAL ITEM: phrase_code = ru phrase_locale = ru-RU phrase_voice = ru-RU-DmitryNeural
+2026-09-07 17:00:42 DEBUG    [SA_03] INITIAL SOURCE: language = ru locale = ru-RU voice = 
+2026-09-07 17:00:43 DEBUG    [SA_03] Button: db
+2026-09-07 17:00:45 INFO     [SA_03] Database sets loaded: 20
+2026-09-07 17:00:45 DEBUG    [SA_03] Selected set: English A1
+2026-09-07 17:02:06 INFO     [SA_03] Finsh Application
+2026-09-07 17:02:09 INFO     [SA_03] Start Application
+2026-09-07 17:02:10 DEBUG    [SA_03] INITIAL ITEM: phrase_code = ru phrase_locale = ru-RU phrase_voice = ru-RU-DmitryNeural
+2026-09-07 17:02:10 DEBUG    [SA_03] INITIAL SOURCE: language = ru locale = ru-RU voice = 
+2026-09-07 17:02:11 DEBUG    [SA_03] Button: db
+2026-09-07 17:02:12 INFO     [SA_03] Database sets loaded: 20
+2026-09-07 17:02:12 DEBUG    [SA_03] Selected set: English A1
+2026-09-07 17:02:55 INFO     [SA_03] Finsh Application
+2026-09-07 17:02:58 INFO     [SA_03] Start Application
+2026-09-07 17:02:59 DEBUG    [SA_03] INITIAL ITEM: phrase_code = ru phrase_locale = ru-RU phrase_voice = ru-RU-DmitryNeural
+2026-09-07 17:02:59 DEBUG    [SA_03] INITIAL SOURCE: language = ru locale = ru-RU voice = 
+2026-09-07 17:03:00 DEBUG    [SA_03] Button: db
+2026-09-07 17:03:01 INFO     [SA_03] Database sets loaded: 20
+2026-09-07 17:03:01 DEBUG    [SA_03] Selected set: English A1
+2026-09-07 17:04:02 INFO     [SA_03] Finsh Application
+2026-09-07 17:04:06 INFO     [SA_03] Start Application
+2026-09-07 17:04:07 DEBUG    [SA_03] INITIAL ITEM: phrase_code = ru phrase_locale = ru-RU phrase_voice = ru-RU-DmitryNeural
+2026-09-07 17:04:07 DEBUG    [SA_03] INITIAL SOURCE: language = ru locale = ru-RU voice = 
+2026-09-07 17:04:10 DEBUG    [SA_03] Button: db
+2026-09-07 17:04:10 INFO     [SA_03] Database sets loaded: 20
+2026-09-07 17:04:10 DEBUG    [SA_03] Selected set: English A1
+2026-09-07 17:04:33 DEBUG    [SA_03] Selected set: Polisн  B2
+2026-09-07 17:05:44 INFO     [SA_03] Finsh Application
+2026-09-07 17:05:48 INFO     [SA_03] Start Application
+2026-09-07 17:05:48 DEBUG    [SA_03] INITIAL ITEM: phrase_code = ru phrase_locale = ru-RU phrase_voice = ru-RU-DmitryNeural
+2026-09-07 17:05:48 DEBUG    [SA_03] INITIAL SOURCE: language = ru locale = ru-RU voice = 
+2026-09-07 17:05:49 DEBUG    [SA_03] Button: db
+2026-09-07 17:05:49 INFO     [SA_03] Database sets loaded: 20
+2026-09-07 17:05:49 DEBUG    [SA_03] Selected set: English A1
+2026-09-07 17:06:25 INFO     [SA_03] Finsh Application
+2026-09-07 17:06:29 INFO     [SA_03] Start Application
+2026-09-07 17:06:30 DEBUG    [SA_03] INITIAL ITEM: phrase_code = ru phrase_locale = ru-RU phrase_voice = ru-RU-DmitryNeural
+2026-09-07 17:06:30 DEBUG    [SA_03] INITIAL SOURCE: language = ru locale = ru-RU voice = 
+2026-09-07 17:06:31 DEBUG    [SA_03] Button: db
+2026-09-07 17:06:32 INFO     [SA_03] Database sets loaded: 20
+2026-09-07 17:06:32 DEBUG    [SA_03] Selected set: English A1
+2026-09-07 17:06:43 INFO     [SA_03] Finsh Application
+2026-09-07 17:06:46 INFO     [SA_03] Start Application
+2026-09-07 17:06:46 DEBUG    [SA_03] INITIAL ITEM: phrase_code = ru phrase_locale = ru-RU phrase_voice = ru-RU-DmitryNeural
+2026-09-07 17:06:46 DEBUG    [SA_03] INITIAL SOURCE: language = ru locale = ru-RU voice = 
+2026-09-07 17:06:48 DEBUG    [SA_03] Button: db
+2026-09-07 17:06:49 INFO     [SA_03] Database sets loaded: 20
+2026-09-07 17:06:49 DEBUG    [SA_03] Selected set: English A1
+2026-09-07 17:07:13 DEBUG    [SA_03] Selected set: dialogi  kwalifikacyjny
+2026-09-07 17:08:20 DEBUG    [SA_03] Button: settoexcel
+2026-09-07 17:08:48 INFO     [SA_03] Session exported to Excel: C:/Users/liudm/SadowingApp/SA_03/tmp/DialogKwalificacijny.xlsx
+2026-09-07 17:08:53 DEBUG    [SA_03] Button: settoexcel
+2026-09-07 17:09:02 DEBUG    [SA_03] Excel export cancelled
+2026-09-07 17:09:24 DEBUG    [SA_03] Button: dbtoset
+2026-09-07 17:09:25 DEBUG    [SA_03] DBTOSET set_id=45
+2026-09-07 17:09:27 INFO     [SA_03] Set loaded into session: 45
+2026-09-07 17:09:29 DEBUG    [SA_03] Button: settoexcel
+2026-09-07 17:09:35 INFO     [SA_03] Session exported to Excel: C:/Users/liudm/SadowingApp/SA_03/tmp/DialogKwalificacijny.xlsx
+2026-09-07 17:10:15 INFO     [SA_03] Finsh Application

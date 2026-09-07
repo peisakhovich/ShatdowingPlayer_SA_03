@@ -1595,7 +1595,7 @@ class DatabaseWindow:
 
         caption_font = self.font_manager.load(20)
 
-        list_font = self.font_manager.load(18)
+        list_font = self.font_manager.load(16)
 
         # --------------------------------------------------
         # Background
@@ -1691,7 +1691,7 @@ class DatabaseWindow:
         # --------------------------------------------------
 
         caption = caption_font.render(
-            "Training sets",
+            "Name:",
             True,
             Theme.DIALOG_TEXT_COLOR
         )
@@ -1750,7 +1750,7 @@ class DatabaseWindow:
             # --------------------------------------------------
 
             text = caption_font.render(
-                f"Items: {items_count}",
+                f"Training sets - count items: {items_count}",
                 True,
                 Theme.DIALOG_TEXT_COLOR
             )
