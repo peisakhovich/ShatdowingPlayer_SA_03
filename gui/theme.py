@@ -5,6 +5,14 @@ import pygame
 class Theme:
 
     # =====================================================
+    # Hint
+    # =====================================================
+
+    HINT_BACKGROUND_COLOR = pygame.Color("#1E1A3A")
+    HINT_BORDER_COLOR = pygame.Color("#6EAEDB")
+    HINT_TEXT_COLOR = pygame.Color("#91E5FF")
+
+    # =====================================================
     # TextEdit
     # =====================================================
 

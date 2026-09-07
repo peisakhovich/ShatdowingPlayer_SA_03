@@ -1,5 +1,5 @@
 import pygame
-
+from gui.theme import Theme
 
 class Hint:
 
@@ -74,7 +74,7 @@ class Hint:
         text_surface = self.font.render(
             self.text,
             True,
-            (255, 255, 255)
+            Theme.HINT_TEXT_COLOR
         )
 
         padding_x = 8
@@ -92,14 +92,14 @@ class Hint:
 
         pygame.draw.rect(
             surface,
-            (40, 40, 40),
+            Theme.HINT_BACKGROUND_COLOR,
             rect,
             border_radius=4
         )
 
         pygame.draw.rect(
             surface,
-            (180, 180, 180),
+            Theme.HINT_BORDER_COLOR,
             rect,
             width=1,
             border_radius=4
