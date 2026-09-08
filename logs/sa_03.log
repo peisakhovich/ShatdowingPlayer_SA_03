@@ -4780,3 +4780,389 @@ For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/St
 2026-09-07 17:09:29 DEBUG    [SA_03] Button: settoexcel
 2026-09-07 17:09:35 INFO     [SA_03] Session exported to Excel: C:/Users/liudm/SadowingApp/SA_03/tmp/DialogKwalificacijny.xlsx
 2026-09-07 17:10:15 INFO     [SA_03] Finsh Application
+2026-09-08 09:18:53 INFO     [SA_03] Start Application
+2026-09-08 09:18:53 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:18:53 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:18:56 DEBUG    [SA_03] Button: db
+2026-09-08 09:18:57 INFO     [SA_03] Database sets loaded: 20
+2026-09-08 09:18:57 DEBUG    [SA_03] Selected set: English A1
+2026-09-08 09:23:13 INFO     [SA_03] Finsh Application
+2026-09-08 09:23:17 INFO     [SA_03] Start Application
+2026-09-08 09:23:17 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:23:17 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:23:18 DEBUG    [SA_03] Button: db
+2026-09-08 09:23:20 INFO     [SA_03] Database sets loaded: 20
+2026-09-08 09:23:20 DEBUG    [SA_03] Selected set: English A1
+2026-09-08 09:24:34 INFO     [SA_03] Finsh Application
+2026-09-08 09:24:38 INFO     [SA_03] Start Application
+2026-09-08 09:24:38 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:24:38 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:24:40 DEBUG    [SA_03] Button: db
+2026-09-08 09:24:40 INFO     [SA_03] Database sets loaded: 20
+2026-09-08 09:24:40 DEBUG    [SA_03] Selected set: English A1
+2026-09-08 09:26:10 INFO     [SA_03] Finsh Application
+2026-09-08 09:26:15 INFO     [SA_03] Start Application
+2026-09-08 09:26:15 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:26:15 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:26:16 DEBUG    [SA_03] Button: db
+2026-09-08 09:26:17 INFO     [SA_03] Database sets loaded: 20
+2026-09-08 09:26:17 DEBUG    [SA_03] Selected set: English A1
+2026-09-08 09:26:52 INFO     [SA_03] Finsh Application
+2026-09-08 09:26:56 INFO     [SA_03] Start Application
+2026-09-08 09:26:56 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:26:56 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:26:59 DEBUG    [SA_03] Button: db
+2026-09-08 09:26:59 INFO     [SA_03] Database sets loaded: 20
+2026-09-08 09:26:59 DEBUG    [SA_03] Selected set: English A1
+2026-09-08 09:28:01 INFO     [SA_03] Finsh Application
+2026-09-08 09:28:05 INFO     [SA_03] Start Application
+2026-09-08 09:28:05 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:28:05 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:28:07 DEBUG    [SA_03] Button: settings
+2026-09-08 09:28:07 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:28:07 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:28:07 DEBUG    [SA_03] Target language: en
+2026-09-08 09:28:10 DEBUG    [SA_03] Button: db
+2026-09-08 09:28:11 INFO     [SA_03] Database sets loaded: 20
+2026-09-08 09:28:11 DEBUG    [SA_03] Selected set: English A1
+2026-09-08 09:29:25 INFO     [SA_03] Finsh Application
+2026-09-08 09:29:29 INFO     [SA_03] Start Application
+2026-09-08 09:29:29 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:29:29 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:29:30 DEBUG    [SA_03] Button: db
+2026-09-08 09:29:31 INFO     [SA_03] Database sets loaded: 20
+2026-09-08 09:29:31 DEBUG    [SA_03] Selected set: English A1
+2026-09-08 09:29:41 DEBUG    [SA_03] Button: settings
+2026-09-08 09:29:41 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:29:41 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:29:41 DEBUG    [SA_03] Target language: en
+2026-09-08 09:29:42 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 09:30:01 DEBUG    [SA_03] Button: db
+2026-09-08 09:30:02 INFO     [SA_03] Database sets loaded: 20
+2026-09-08 09:30:02 DEBUG    [SA_03] Selected set: English A1
+2026-09-08 09:34:06 INFO     [SA_03] Finsh Application
+2026-09-08 09:34:09 INFO     [SA_03] Start Application
+2026-09-08 09:34:09 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:34:09 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:34:11 DEBUG    [SA_03] Button: settings
+2026-09-08 09:34:11 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:34:11 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:34:11 DEBUG    [SA_03] Target language: en
+2026-09-08 09:34:12 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 09:34:18 DEBUG    [SA_03] Button: db
+2026-09-08 09:34:19 INFO     [SA_03] Database sets loaded: 20
+2026-09-08 09:34:19 DEBUG    [SA_03] Selected set: English A1
+2026-09-08 09:34:36 DEBUG    [SA_03] Button: settings
+2026-09-08 09:34:36 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:34:36 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:34:36 DEBUG    [SA_03] Target language: en
+2026-09-08 09:34:36 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 09:34:41 DEBUG    [SA_03] Button: db
+2026-09-08 09:34:43 INFO     [SA_03] Database sets loaded: 20
+2026-09-08 09:34:43 DEBUG    [SA_03] Selected set: English A1
+2026-09-08 09:36:03 INFO     [SA_03] Finsh Application
+2026-09-08 09:36:06 INFO     [SA_03] Start Application
+2026-09-08 09:36:06 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:36:06 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:36:07 DEBUG    [SA_03] Button: settings
+2026-09-08 09:36:07 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:36:07 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:36:08 DEBUG    [SA_03] Target language: en
+2026-09-08 09:36:08 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 09:36:16 DEBUG    [SA_03] Button: db
+2026-09-08 09:36:17 INFO     [SA_03] Database sets loaded: 20
+2026-09-08 09:36:17 DEBUG    [SA_03] Selected set: English A1
+2026-09-08 09:36:43 DEBUG    [SA_03] Button: settings
+2026-09-08 09:36:43 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:36:43 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:36:43 DEBUG    [SA_03] Target language: en
+2026-09-08 09:36:43 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 09:36:46 DEBUG    [SA_03] Button: db
+2026-09-08 09:36:46 INFO     [SA_03] Database sets loaded: 20
+2026-09-08 09:36:46 DEBUG    [SA_03] Selected set: English A1
+2026-09-08 09:37:26 INFO     [SA_03] Finsh Application
+2026-09-08 09:37:29 INFO     [SA_03] Start Application
+2026-09-08 09:37:29 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:37:29 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:37:36 DEBUG    [SA_03] Button: db
+2026-09-08 09:37:38 INFO     [SA_03] Database sets loaded: 20
+2026-09-08 09:37:38 DEBUG    [SA_03] Selected set: English A1
+2026-09-08 09:38:18 INFO     [SA_03] Finsh Application
+2026-09-08 09:38:22 INFO     [SA_03] Start Application
+2026-09-08 09:38:22 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:38:22 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:38:29 DEBUG    [SA_03] Button: settings
+2026-09-08 09:38:29 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:38:29 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:38:30 DEBUG    [SA_03] Target language: en
+2026-09-08 09:38:30 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 09:38:32 DEBUG    [SA_03] Button: db
+2026-09-08 09:38:33 INFO     [SA_03] Database sets loaded: 20
+2026-09-08 09:38:33 DEBUG    [SA_03] Selected set: English A1
+2026-09-08 09:38:52 DEBUG    [SA_03] Button: settings
+2026-09-08 09:38:52 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:38:52 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:38:52 DEBUG    [SA_03] Target language: en
+2026-09-08 09:38:52 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 09:38:56 DEBUG    [SA_03] Button: db
+2026-09-08 09:38:57 INFO     [SA_03] Database sets loaded: 20
+2026-09-08 09:38:57 DEBUG    [SA_03] Selected set: English A1
+2026-09-08 09:40:24 INFO     [SA_03] Finsh Application
+2026-09-08 09:40:54 INFO     [SA_03] Start Application
+2026-09-08 09:40:54 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:40:54 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:40:56 DEBUG    [SA_03] Button: db
+2026-09-08 09:40:56 INFO     [SA_03] Database sets loaded: 20
+2026-09-08 09:40:56 DEBUG    [SA_03] Selected set: English A1
+2026-09-08 09:41:27 DEBUG    [SA_03] Button: settings
+2026-09-08 09:41:27 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:41:27 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:41:27 DEBUG    [SA_03] Target language: en
+2026-09-08 09:41:27 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 09:50:25 INFO     [SA_03] Finsh Application
+2026-09-08 09:50:29 INFO     [SA_03] Start Application
+2026-09-08 09:50:29 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:50:29 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:50:31 DEBUG    [SA_03] Button: settings
+2026-09-08 09:50:31 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:50:31 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:50:31 DEBUG    [SA_03] Target language: en
+2026-09-08 09:50:31 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 09:50:59 INFO     [SA_03] Finsh Application
+2026-09-08 09:55:42 INFO     [SA_03] Start Application
+2026-09-08 09:55:42 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:55:42 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:55:44 DEBUG    [SA_03] Button: settings
+2026-09-08 09:55:44 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:55:44 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:55:44 DEBUG    [SA_03] Target language: en
+2026-09-08 09:55:45 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 09:57:10 INFO     [SA_03] Finsh Application
+2026-09-08 09:57:13 INFO     [SA_03] Start Application
+2026-09-08 09:57:13 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:57:13 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:57:15 DEBUG    [SA_03] Button: settings
+2026-09-08 09:57:15 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 09:57:15 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 09:57:15 DEBUG    [SA_03] Target language: en
+2026-09-08 09:57:15 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 10:01:48 DEBUG    [SA_03] Button: settings
+2026-09-08 10:01:48 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:01:48 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:01:49 DEBUG    [SA_03] Target language: en
+2026-09-08 10:01:49 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 10:01:51 DEBUG    [SA_03] Button: quit
+2026-09-08 10:08:14 DEBUG    [SA_03] Button: settings
+2026-09-08 10:08:14 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:08:14 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:08:14 DEBUG    [SA_03] Target language: en
+2026-09-08 10:08:15 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 10:16:41 INFO     [SA_03] Finsh Application
+2026-09-08 10:16:44 INFO     [SA_03] Start Application
+2026-09-08 10:16:44 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:16:44 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:16:46 DEBUG    [SA_03] Button: settings
+2026-09-08 10:16:46 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:16:46 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:16:46 DEBUG    [SA_03] Target language: en
+2026-09-08 10:16:46 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 10:21:26 INFO     [SA_03] Finsh Application
+2026-09-08 10:22:03 INFO     [SA_03] Start Application
+2026-09-08 10:22:03 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:22:03 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:22:05 DEBUG    [SA_03] Button: settings
+2026-09-08 10:22:05 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:22:05 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:23:13 INFO     [SA_03] Start Application
+2026-09-08 10:23:13 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:23:13 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:23:14 DEBUG    [SA_03] Button: settings
+2026-09-08 10:23:14 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:23:14 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:29:39 INFO     [SA_03] Start Application
+2026-09-08 10:29:39 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:29:39 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:29:41 DEBUG    [SA_03] Button: settings
+2026-09-08 10:29:41 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:29:41 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:29:41 DEBUG    [SA_03] Target language: en
+2026-09-08 10:29:41 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 10:29:45 INFO     [SA_03] Finsh Application
+2026-09-08 10:30:57 INFO     [SA_03] Start Application
+2026-09-08 10:30:57 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:30:57 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:31:00 DEBUG    [SA_03] Button: settings
+2026-09-08 10:31:00 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:31:00 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:31:01 DEBUG    [SA_03] Target language: en
+2026-09-08 10:31:01 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 10:33:06 DEBUG    [SA_03] Button: quit
+2026-09-08 10:33:20 DEBUG    [SA_03] Button: settings
+2026-09-08 10:33:20 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:33:20 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:33:20 DEBUG    [SA_03] Target language: en
+2026-09-08 10:33:21 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 10:33:49 DEBUG    [SA_03] Button: quit
+2026-09-08 10:34:09 INFO     [SA_03] Finsh Application
+2026-09-08 10:35:51 INFO     [SA_03] Start Application
+2026-09-08 10:35:51 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:35:51 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:35:53 DEBUG    [SA_03] Button: quit
+2026-09-08 10:35:57 DEBUG    [SA_03] Button: settings
+2026-09-08 10:35:57 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:35:57 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:35:57 DEBUG    [SA_03] Target language: en
+2026-09-08 10:35:57 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 10:36:27 DEBUG    [SA_03] Button: quit
+2026-09-08 10:36:32 INFO     [SA_03] Finsh Application
+2026-09-08 10:37:13 INFO     [SA_03] Start Application
+2026-09-08 10:37:13 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:37:13 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:37:14 DEBUG    [SA_03] Button: settings
+2026-09-08 10:37:14 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:37:14 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:37:14 DEBUG    [SA_03] Target language: en
+2026-09-08 10:37:15 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 10:37:21 DEBUG    [SA_03] Button: quit
+2026-09-08 10:37:28 DEBUG    [SA_03] Button: settings
+2026-09-08 10:37:28 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:37:28 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:37:29 DEBUG    [SA_03] Target language: en
+2026-09-08 10:37:29 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 10:37:56 DEBUG    [SA_03] Button: quit
+2026-09-08 10:37:59 INFO     [SA_03] Finsh Application
+2026-09-08 10:38:28 INFO     [SA_03] Start Application
+2026-09-08 10:38:28 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:38:28 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:38:31 DEBUG    [SA_03] Button: quit
+2026-09-08 10:38:39 DEBUG    [SA_03] Button: quit
+2026-09-08 10:38:44 INFO     [SA_03] Finsh Application
+2026-09-08 10:38:56 INFO     [SA_03] Start Application
+2026-09-08 10:38:57 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:38:57 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:38:58 DEBUG    [SA_03] Button: quit
+2026-09-08 10:39:06 DEBUG    [SA_03] Button: settings
+2026-09-08 10:39:06 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:39:06 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:39:06 DEBUG    [SA_03] Target language: en
+2026-09-08 10:39:06 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 10:39:14 DEBUG    [SA_03] Button: quit
+2026-09-08 10:39:22 DEBUG    [SA_03] Button: db
+2026-09-08 10:39:23 INFO     [SA_03] Database sets loaded: 20
+2026-09-08 10:39:23 DEBUG    [SA_03] Selected set: English A1
+2026-09-08 10:39:26 DEBUG    [SA_03] Button: settings
+2026-09-08 10:39:26 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:39:26 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:39:26 DEBUG    [SA_03] Target language: en
+2026-09-08 10:39:26 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 10:39:43 INFO     [SA_03] Finsh Application
+2026-09-08 10:39:46 INFO     [SA_03] Start Application
+2026-09-08 10:39:46 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:39:46 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:39:48 DEBUG    [SA_03] Button: quit
+2026-09-08 10:39:49 INFO     [SA_03] Finsh Application
+2026-09-08 10:39:53 INFO     [SA_03] Start Application
+2026-09-08 10:39:54 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:39:54 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:39:54 DEBUG    [SA_03] Button: settings
+2026-09-08 10:39:54 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:39:54 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:39:55 DEBUG    [SA_03] Target language: en
+2026-09-08 10:39:55 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 10:40:33 DEBUG    [SA_03] Button: settings
+2026-09-08 10:40:33 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:40:33 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:40:33 DEBUG    [SA_03] Target language: en
+2026-09-08 10:40:33 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 10:41:33 DEBUG    [SA_03] Button: settings
+2026-09-08 10:41:33 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:41:33 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:41:33 DEBUG    [SA_03] Target language: en
+2026-09-08 10:41:33 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 10:41:56 DEBUG    [SA_03] Button: settings
+2026-09-08 10:41:56 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:41:56 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:41:57 DEBUG    [SA_03] Target language: en
+2026-09-08 10:41:57 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 10:42:04 DEBUG    [SA_03] Button: settings
+2026-09-08 10:42:04 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:42:04 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:42:04 DEBUG    [SA_03] Target language: en
+2026-09-08 10:42:05 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 10:44:45 INFO     [SA_03] Finsh Application
+2026-09-08 10:44:49 INFO     [SA_03] Start Application
+2026-09-08 10:44:49 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:44:49 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:44:51 DEBUG    [SA_03] Button: settings
+2026-09-08 10:44:51 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:44:51 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:44:51 DEBUG    [SA_03] Target language: en
+2026-09-08 10:44:51 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 10:45:55 INFO     [SA_03] Finsh Application
+2026-09-08 10:45:59 INFO     [SA_03] Start Application
+2026-09-08 10:46:00 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:46:00 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:46:01 DEBUG    [SA_03] Button: settings
+2026-09-08 10:46:01 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:46:01 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:46:01 DEBUG    [SA_03] Target language: en
+2026-09-08 10:46:02 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 10:53:14 INFO     [SA_03] Finsh Application
+2026-09-08 10:53:20 INFO     [SA_03] Start Application
+2026-09-08 10:53:20 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:53:20 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:53:21 DEBUG    [SA_03] Button: settings
+2026-09-08 10:53:21 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:53:21 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:53:21 DEBUG    [SA_03] Target language: en
+2026-09-08 10:53:22 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 10:54:01 INFO     [SA_03] Finsh Application
+2026-09-08 10:56:07 INFO     [SA_03] Start Application
+2026-09-08 10:56:07 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:56:07 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:56:09 DEBUG    [SA_03] Button: settings
+2026-09-08 10:56:09 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:56:09 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:56:10 DEBUG    [SA_03] Target language: en
+2026-09-08 10:56:10 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 10:57:55 INFO     [SA_03] Finsh Application
+2026-09-08 10:57:58 INFO     [SA_03] Start Application
+2026-09-08 10:57:59 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:57:59 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:58:04 DEBUG    [SA_03] Button: settings
+2026-09-08 10:58:04 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:58:04 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:58:05 DEBUG    [SA_03] Target language: en
+2026-09-08 10:58:05 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 10:58:57 INFO     [SA_03] Finsh Application
+2026-09-08 10:59:00 INFO     [SA_03] Start Application
+2026-09-08 10:59:00 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:59:00 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:59:02 DEBUG    [SA_03] Button: settings
+2026-09-08 10:59:02 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:59:02 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:59:02 DEBUG    [SA_03] Target language: en
+2026-09-08 10:59:02 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 10:59:23 INFO     [SA_03] Finsh Application
+2026-09-08 10:59:26 INFO     [SA_03] Start Application
+2026-09-08 10:59:26 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:59:26 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:59:27 DEBUG    [SA_03] Button: settings
+2026-09-08 10:59:27 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 10:59:27 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 10:59:28 DEBUG    [SA_03] Target language: en
+2026-09-08 10:59:28 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 11:00:24 INFO     [SA_03] Finsh Application
+2026-09-08 11:00:27 INFO     [SA_03] Start Application
+2026-09-08 11:00:27 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 11:00:27 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 11:00:29 DEBUG    [SA_03] Button: settings
+2026-09-08 11:00:29 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-MarekNeural
+2026-09-08 11:00:29 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-08 11:00:29 DEBUG    [SA_03] Target language: en
+2026-09-08 11:00:29 DEBUG    [SA_03] Target locale: en-US
+2026-09-08 11:01:08 DEBUG    [SA_03] Button: quit
+2026-09-08 11:01:22 DEBUG    [SA_03] Button: db
+2026-09-08 11:01:23 INFO     [SA_03] Database sets loaded: 20
+2026-09-08 11:01:23 DEBUG    [SA_03] Selected set: English A1
+2026-09-08 11:01:54 INFO     [SA_03] Finsh Application

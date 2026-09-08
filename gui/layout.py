@@ -108,6 +108,12 @@ class Layout:
         SETTINGS_HEIGHT
     )
 
+    SETTINGS_TITLE_FONT = 24
+    SETTINGS_CAPTION_FONT = 14
+    SETTINGS_LIST_FONT = 16
+    SETTINGS_TEXT_FONT = 18
+
+
     # -------------------------
     # UI LAYER: DATABASE WINDOW
     # DB_CONTROL PANEL
@@ -131,7 +137,7 @@ class Layout:
     {"name": "settoexcel", "hint": "Export session to Excel"},
     {"name": "exceltoset", "hint": "Import session from Excel"},
     {"name": "dropset",    "hint": "Delete selected set"},
-    {"name": "datatodb",   "hint": "Save session data to database"},
+    {"name": "datatodb",   "hint": "Save session name and description to database"},
     {"name": "login",      "hint": "Login"},
     {"name": "register",   "hint": "Register new user"},
 ]
@@ -151,3 +157,8 @@ class Layout:
     
     DB_BTN_START_X = DB_CP_RECT.width - DB_CP_RECT.x - DB_LEN_BUTTONS - DB_BTN_WIDTH
     DB_BTN_START_Y = DB_CP_RECT.centery - DB_BTN_HEIGHT // 2
+
+    DB_TITLE_FONT = 24
+    DB_CAPTION_FONT = 16
+    DB_LIST_FONT = 16
+    DB_TEXT_FONT = 18

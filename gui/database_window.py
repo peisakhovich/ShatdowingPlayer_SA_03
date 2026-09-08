@@ -7,17 +7,18 @@ import pygame
 from api.client import ApiClient
 from core.config import Config
 from core.logger import logger
+from audio.async_runner import AsyncRunner
+from audio.tts import TTS
 from gui.theme import Theme
 from gui.widgets.busy_indicator import BusyIndicator
 from gui.widgets.list_selection import ListSelection
-from audio.async_runner import AsyncRunner
 from gui.panels.control_panel_db import ControlPanel
 from gui.login_register_window import LoginRegisterWindow
 from gui.widgets.text_edit import TextEdit
 from gui.file_dialog import FileDialog
-from session.session_excel import SessionExcel
-from audio.tts import TTS
 from gui.dialogs.dialog import Dialog
+from gui.layout import Layout
+from session.session_excel import SessionExcel
 
 
 class DatabaseWindow:
@@ -138,7 +139,7 @@ class DatabaseWindow:
                 self.rect.width - 60,
                 40
             ),
-            self.font_manager.load(20)
+            self.font_manager.load(Layout.DB_TEXT_FONT)
         )
 
         # --------------------------------------------------
@@ -152,7 +153,7 @@ class DatabaseWindow:
                 self.rect.width - 60,
                 80
             ),
-            self.font_manager.load(20)
+            self.font_manager.load(Layout.DB_TEXT_FONT)
         )
 
     # --------------------------------------------------
@@ -1591,11 +1592,11 @@ class DatabaseWindow:
         # Fonts
         # --------------------------------------------------
 
-        title_font = self.font_manager.load(24)
+        title_font = self.font_manager.load(Layout.DB_TITLE_FONT)
 
-        caption_font = self.font_manager.load(20)
+        caption_font = self.font_manager.load(Layout.DB_CAPTION_FONT)
 
-        list_font = self.font_manager.load(16)
+        list_font = self.font_manager.load(Layout.DB_LIST_FONT)
 
         # --------------------------------------------------
         # Background

@@ -38,7 +38,7 @@ class Theme:
     # fore control_panel (prefix:TCP)
     #--------------------------------------
 
-    TCP_BACKGROUND_COLOR=pygame.Color("#1E1A3A")
+    TCP_BACKGROUND_COLOR=pygame.Color("#161133")
     TCP_BORDER_LINE_COLOR=pygame.Color("#3823f3")
     TCP_BORDER_LINE_WIDTH=2
     TCP_BORDER_LINE_RADIUS=10
@@ -90,7 +90,7 @@ class Theme:
 
     DIALOG_OVERLAY_ALPHA = 170
 
-    DIALOG_BACKGROUND_COLOR = pygame.Color("#2D343C")
+    DIALOG_BACKGROUND_COLOR = pygame.Color("#2C4564")
     DIALOG_BORDER_COLOR = pygame.Color("#1A4D5C")
     DIALOG_SEPARATOR_COLOR = pygame.Color("#4A5966")
 
@@ -113,11 +113,11 @@ class Theme:
     TB_PADDING_X = 16
     TB_PADDING_Y = 6
 
-    TB_BACKGROUND_COLOR = pygame.Color("#0E4792")
+    TB_BACKGROUND_COLOR = pygame.Color("#0E2D57")
     TB_BACKGROUND_HOVER_COLOR = pygame.Color("#811165")
     TB_BACKGROUND_PRESSED_COLOR = pygame.Color("#7EBE52")
 
-    TB_BORDER_COLOR = pygame.Color("#5947F8")
+    TB_BORDER_COLOR = pygame.Color("#796AFD")
     TB_BORDER_WIDTH = 1
     TB_FOCUS_BORDER_COLOR = pygame.Color("#7FE8FF")
     TB_FOCUS_BORDER_WIDTH = 3

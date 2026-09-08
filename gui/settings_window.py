@@ -1,25 +1,28 @@
 from __future__ import annotations
 
 import asyncio
-from pathlib import Path
-
 import pygame
 
-from gui.theme import Theme
-from gui.widgets.list_selection import ListSelection
-from gui.file_dialog import FileDialog
-from gui.widgets.text_edit import TextEdit
-from gui.widgets.busy_indicator import BusyIndicator
-
-from audio.tts import TTS
-from audio.async_runner import AsyncRunner
 
 from ai.language_detector import LanguageDetector
 from ai.generators.generator_router import GeneratorRouter
 
+from audio.tts import TTS
+from audio.async_runner import AsyncRunner
+
 from core.config import Config
-from gui.dialogs.dialog import Dialog
 from core.logger import logger
+
+from gui.theme import Theme
+from gui.layout import Layout
+from gui.widgets.list_selection import ListSelection
+from gui.file_dialog import FileDialog
+from gui.widgets.text_edit import TextEdit
+from gui.widgets.busy_indicator import BusyIndicator
+from gui.dialogs.dialog import Dialog
+
+from pathlib import Path
+
 
 
 class SettingsWindow:
@@ -140,7 +143,8 @@ class SettingsWindow:
                 self.rect.width - 60,
                 self.rect.height -500
             ),
-            pygame.font.Font(None, 24)
+            self.font_manager.load(Layout.SETTINGS_TEXT_FONT)
+            
         )
         self.text_edit.set_text(self.source_text) # Inserting help as first one text
 
@@ -231,10 +235,10 @@ class SettingsWindow:
             pygame.Rect(
                 self.rect.x + 30,
                 self.rect.y + self.rect.height - 60,
-                100,
+                80,
                 30
             ),
-            pygame.font.Font(None, 24)
+            self.font_manager.load(Layout.SETTINGS_TEXT_FONT)
         )
 
         # --------------------------------------------------
@@ -243,12 +247,12 @@ class SettingsWindow:
 
         self.pause_factor_edit = TextEdit(
             pygame.Rect(
-                self.rect.x + 240,
+                self.rect.x + 150,
                 self.rect.y + self.rect.height - 60,
-                100,
+                80,
                 30
             ),
-            pygame.font.Font(None, 24)
+            self.font_manager.load(Layout.SETTINGS_TEXT_FONT)
         )
 
         # --------------------------------------------------
@@ -256,9 +260,9 @@ class SettingsWindow:
         # --------------------------------------------------
 
         self.generate_button_rect = pygame.Rect(
-            self.rect.x + 410,
+            self.rect.x + 400,
             self.rect.y + self.rect.height - 60,
-            100,
+            120,
             30
         )
         # --------------------------------------------------
@@ -1984,25 +1988,13 @@ class SettingsWindow:
         # Fonts
         # --------------------------------------------------
 
-        title_font = pygame.font.Font(
-            None,
-            28
-        )
+        title_font = self.font_manager.load(Layout.SETTINGS_TITLE_FONT)
 
-        caption_font = pygame.font.Font(
-            None,
-            22
-        )
+        caption_font = self.font_manager.load(Layout.SETTINGS_CAPTION_FONT)
 
-        list_font = pygame.font.Font(
-            None,
-            22
-        )
+        list_font = self.font_manager.load(Layout.SETTINGS_LIST_FONT)
 
-        button_font = pygame.font.Font(
-            None,
-            22
-        )
+        button_font = self.font_manager.load(Layout.SETTINGS_LIST_FONT )
 
         # --------------------------------------------------
         # Background
@@ -2112,15 +2104,25 @@ class SettingsWindow:
 
         pygame.draw.rect(
             screen,
-            Theme.DIALOG_BORDER_COLOR,
+            Theme.TB_BACKGROUND_COLOR,
             self.file_button_rect,
             border_radius=5
+
         )
+        pygame.draw.rect(
+                    screen,
+                    Theme.TB_BORDER_COLOR,
+                    self.file_button_rect,
+                    width=Theme.TB_BORDER_WIDTH,
+                    border_radius=5
+        
+                )
+
 
         button_text = button_font.render(
             "Choose file...",
             True,
-            Theme.DIALOG_TEXT_COLOR
+            Theme.TB_TEXT_COLOR #  DIALOG_TEXT_COLOR
         )
 
         screen.blit(
@@ -2150,7 +2152,7 @@ class SettingsWindow:
             file_text = caption_font.render(
                 "of file:  "+filename,
                 True,
-                Theme.DIALOG_TEXT_COLOR
+                Theme.TB_TEXT_COLOR
             )
 
             screen.blit(
@@ -2158,8 +2160,7 @@ class SettingsWindow:
                 (
                     self.text_edit.rect.x + 35,
                     self.text_edit.rect.y - 25
-                    #self.file_button_rect.right - 400,
-                    #self.file_button_rect.y + 45
+                    
                 )
             )
 
@@ -2265,28 +2266,59 @@ class SettingsWindow:
             screen
         )
 
+
+
+
+        # --------------------------------------------------
+        # Generate button text
+        # --------------------------------------------------
+
+        caption = caption_font.render(
+            "Generate session",
+            True,
+            Theme.DIALOG_TEXT_COLOR
+        )
+
+        screen.blit(
+            caption,
+            (
+                self.generate_button_rect.x ,
+                self.generate_button_rect.y - 25
+
+            )
+        )
+
         # --------------------------------------------------
         # Generate button
         # --------------------------------------------------
 
         pygame.draw.rect(
             screen,
-            Theme.DIALOG_BORDER_COLOR,
+            Theme.TB_BACKGROUND_COLOR,
             self.generate_button_rect,
             border_radius=5
+
         )
+        pygame.draw.rect(
+                    screen,
+                    Theme.TB_BORDER_COLOR,
+                    self.generate_button_rect,
+                    width=Theme.TB_BORDER_WIDTH,
+                    border_radius=5
+        
+                )
 
         button_text = button_font.render(
             "Generate",
             True,
-            Theme.DIALOG_TEXT_COLOR
+            Theme.TB_TEXT_COLOR
         )
 
         screen.blit(
             button_text,
             (
                 self.generate_button_rect.x + 10,
-                self.generate_button_rect.y + 7
+                self.generate_button_rect.y + 5
             )
         )
 
