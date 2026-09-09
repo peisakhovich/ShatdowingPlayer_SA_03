@@ -1,0 +1,454 @@
+SOUND LANGUAGE STUDIO
+PROJECT STRUCTURE
+======================================================================
+
+SA_03
+├── ai
+│   ├── generators
+│   │   ├── dictation_generator.py              [2.3 KB]
+│   │   ├── generator_router.py                 [766 B]
+│   │   └── shadowing_generator.py              [2.9 KB]
+│   ├── __init__.py                         [0 B]
+│   ├── dictation_pause.py                  [1.0 KB]
+│   ├── dictation_plan.py                   [3.3 KB]
+│   ├── dictation_segmenter.py              [2.5 KB]
+│   ├── dictation_validator.py              [2.2 KB]
+│   ├── language_detector.py                [793 B]
+│   ├── models.py                           [606 B]
+│   ├── openai_client.py                    [534 B]
+│   ├── shadowing_pause.py                  [898 B]
+│   ├── shadowing_plan.py                   [4.1 KB]
+│   ├── shadowing_segmenter.py              [3.4 KB]
+│   └── shadowing_validator.py              [3.2 KB]
+├── api
+│   ├── __init__.py                         [0 B]
+│   └── client.py                           [11.2 KB]
+├── audio
+│   ├── __init__.py                         [0 B]
+│   ├── async_runner.py                     [912 B]
+│   ├── cache.py                            [2.1 KB]
+│   ├── mixer.py                            [1.1 KB]
+│   ├── player.py                           [19.1 KB]
+│   ├── provider.py                         [2.9 KB]
+│   ├── scenario_provider.py                [1.6 KB]
+│   ├── scenarios.json                      [4.7 KB]
+│   └── tts.py                              [3.9 KB]
+├── core
+│   ├── __init__.py                         [0 B]
+│   ├── application.py                      [2.9 KB]
+│   ├── config.py                           [1.1 KB]
+│   ├── logger.py                           [4.0 KB]
+│   └── state.py                            [200 B]
+├── data
+│   ├── audio_cache
+│   │   ├── 19ee8b061f0b2d2ed6a09450bd2e87cceb0a7754198575cbadefa0f10a64011f.mp3 [26.0 KB]
+│   │   ├── 518e46e83c26ad0cd6a9dcf3bc0d8e19fa57e4d4bf8e9e4b2bb2d349e0715013.mp3 [22.8 KB]
+│   │   ├── 65d60be08f86659422beba1d14db9c2d49ed3c85486971a3a42e293cd7a70d41.mp3 [27.6 KB]
+│   │   ├── 7dde4226ae743a94270a170a59681c7062abf6ef1cd25b11ff7f3b8faa12231c.mp3 [28.5 KB]
+│   │   ├── 85940429e5b46391e6997566333e14114cb07cc14a0a532b49555ad5746a8cb9.mp3 [22.8 KB]
+│   │   └── c270e7b6a58a4f0e58c4f708e328c28a07e9964f149ed13a66a262aec6de2e7e.mp3 [22.8 KB]
+│   ├── cache
+│   │   ├── en_pl_de_session.json               [13.0 KB]
+│   │   ├── en_session_.json                    [16.5 KB]
+│   │   ├── pl_SEP_session.json                 [20.8 KB]
+│   │   ├── plan_session.json                   [36.9 KB]
+│   │   ├── plan_session_.json                  [20.8 KB]
+│   │   ├── plan_session_8.json                 [38.8 KB]
+│   │   └── plan_session__.json                 [8.7 KB]
+│   ├── database
+│   │   ├── 008_set_items_en_b2.sql             [3.6 KB]
+│   │   └── SQLQuery4.sql                       [34 B]
+│   ├── exports
+│   └── logs
+├── database
+│   ├── migrations
+│   ├── __init__.py                         [0 B]
+│   ├── connection.py                       [0 B]
+│   ├── models.py                           [0 B]
+│   └── repository.py                       [0 B]
+├── docs
+│   ├── erd
+│   │   ├── data.zip                            [5.6 KB]
+│   │   ├── project.xml                         [75.5 KB]
+│   │   ├── SA03.ddl                            [736 B]
+│   │   ├── SA03.sql                            [7.7 KB]
+│   │   ├── SA03_ERD_view.xlsx                  [14.1 KB]
+│   │   ├── SA_03.drawio                        [12.9 KB]
+│   │   ├── SA_03.jpg                           [127.2 KB]
+│   │   ├── SA_03.vpp                           [836.0 KB]
+│   │   ├── SA_03.vpp.bak                       [692.0 KB]
+│   │   ├── SA_03.vpp.bak2                      [836.0 KB]
+│   │   ├── SA_03.vpp.bak_000f                  [692.0 KB]
+│   │   ├── SA_03.vpp.bak_001d                  [216.0 KB]
+│   │   ├── SA_03.vpp.bak_002d                  [236.0 KB]
+│   │   ├── SA_03.vpp.bak_003d                  [296.0 KB]
+│   │   ├── SA_03.vpp.bak_004d                  [224.0 KB]
+│   │   ├── SA_03.vpp.bak_005d                  [292.0 KB]
+│   │   ├── SA_03.vpp.bak_006d                  [268.0 KB]
+│   │   ├── SA_03.vpp.bak_007d                  [288.0 KB]
+│   │   ├── SA_03.vpp.bak_008d                  [236.0 KB]
+│   │   ├── SA_03.vpp.bak_009d                  [308.0 KB]
+│   │   ├── SA_03.vpp.bak_010d                  [276.0 KB]
+│   │   ├── SA_03.vpp.bak_011d                  [228.0 KB]
+│   │   ├── SA_03.vpp.bak_012d                  [228.0 KB]
+│   │   ├── SA_03.vpp.bak_013d                  [220.0 KB]
+│   │   ├── SA_03.vpp.bak_014d                  [228.0 KB]
+│   │   ├── SA_03.vpp.bak_015d                  [220.0 KB]
+│   │   ├── SA_03.vpp.bak_016d                  [188.0 KB]
+│   │   ├── shadowing - sa - dbo.png            [46.7 KB]
+│   │   └── Диаграмма без названия.drawio       [10.3 KB]
+│   ├── EnvCreate_BeforeNewApp.txt          [3.8 KB]
+│   ├── SA03_GUI_ARCHITECTURE.md            [4.6 KB]
+│   ├── SA03_GUI_WIDGETS.md                 [4.0 KB]
+│   ├── sa3_tree.txt                        [5.1 KB]
+│   └── SA_03_Architecture.md               [491 B]
+├── gui
+│   ├── assets
+│   │   ├── fonts
+│   │   │   └── inter
+│   │   │       ├── Inter_Bold.ttf                      [336.1 KB]
+│   │   │       ├── Inter_BoldItalic.ttf                [340.0 KB]
+│   │   │       ├── Inter_Italic.ttf                    [338.4 KB]
+│   │   │       └── Inter_Regular.ttf                   [334.6 KB]
+│   │   ├── images
+│   │   │   ├── backgrounds
+│   │   │   ├── icons
+│   │   │   │   ├── datatodb.png                        [763 B]
+│   │   │   │   ├── datatodb_hover.png                  [762 B]
+│   │   │   │   ├── datatodb_pressed.png                [754 B]
+│   │   │   │   ├── db.png                              [314 B]
+│   │   │   │   ├── db_hover.png                        [328 B]
+│   │   │   │   ├── db_pressed.png                      [328 B]
+│   │   │   │   ├── dbtoset.png                         [781 B]
+│   │   │   │   ├── dbtoset_hover.png                   [778 B]
+│   │   │   │   ├── dbtoset_pressed.png                 [771 B]
+│   │   │   │   ├── dropset.png                         [945 B]
+│   │   │   │   ├── dropset_hover.png                   [949 B]
+│   │   │   │   ├── dropset_pressed.png                 [946 B]
+│   │   │   │   ├── exceltoset.png                      [941 B]
+│   │   │   │   ├── exceltoset_hover.png                [942 B]
+│   │   │   │   ├── exceltoset_pressed.png              [932 B]
+│   │   │   │   ├── first.png                           [341 B]
+│   │   │   │   ├── first_hover.png                     [373 B]
+│   │   │   │   ├── first_pressed.png                   [361 B]
+│   │   │   │   ├── last.png                            [347 B]
+│   │   │   │   ├── last_hover.png                      [384 B]
+│   │   │   │   ├── last_pressed.png                    [381 B]
+│   │   │   │   ├── login.png                           [2.0 KB]
+│   │   │   │   ├── login_hover.png                     [1.8 KB]
+│   │   │   │   ├── login_pressed.png                   [1.8 KB]
+│   │   │   │   ├── next.png                            [354 B]
+│   │   │   │   ├── next_hover.png                      [374 B]
+│   │   │   │   ├── next_pressed.png                    [344 B]
+│   │   │   │   ├── pause.png                           [286 B]
+│   │   │   │   ├── pause_hover.png                     [293 B]
+│   │   │   │   ├── pause_pressed.png                   [282 B]
+│   │   │   │   ├── play.png                            [321 B]
+│   │   │   │   ├── play_hover.png                      [339 B]
+│   │   │   │   ├── play_pressed.png                    [343 B]
+│   │   │   │   ├── prev.png                            [352 B]
+│   │   │   │   ├── prev_hover.png                      [426 B]
+│   │   │   │   ├── prev_pressed.png                    [351 B]
+│   │   │   │   ├── quit.png                            [432 B]
+│   │   │   │   ├── quit_hover.png                      [427 B]
+│   │   │   │   ├── quit_pressed.png                    [422 B]
+│   │   │   │   ├── register.png                        [2.3 KB]
+│   │   │   │   ├── register_hover.png                  [2.0 KB]
+│   │   │   │   ├── register_pressed.png                [2.0 KB]
+│   │   │   │   ├── SA_AppIcons.png                     [3.6 KB]
+│   │   │   │   ├── SA_AppIconsGirl.ico                 [5.6 KB]
+│   │   │   │   ├── SA_AppIconsGirl.png                 [4.1 KB]
+│   │   │   │   ├── settings.png                        [517 B]
+│   │   │   │   ├── settings_hover.png                  [664 B]
+│   │   │   │   ├── settings_pressed.png                [672 B]
+│   │   │   │   ├── settodb.png                         [777 B]
+│   │   │   │   ├── settodb_hover.png                   [776 B]
+│   │   │   │   ├── settodb_pressed.png                 [764 B]
+│   │   │   │   ├── settoexcel.png                      [916 B]
+│   │   │   │   ├── settoexcel_hover.png                [916 B]
+│   │   │   │   ├── settoexcel_pressed.png              [908 B]
+│   │   │   │   ├── SoundLanguageStudio.ico             [1.6 MB]
+│   │   │   │   ├── stop.png                            [273 B]
+│   │   │   │   ├── stop_hover.png                      [284 B]
+│   │   │   │   └── stop_pressed.png                    [259 B]
+│   │   │   ├── SLS_logo_info.png                   [1.9 MB]
+│   │   │   └── SLS_logo_info_.png                  [1.9 MB]
+│   │   └── sounds
+│   │       └── sound_language_studio_intro_v2_cinematic.wav [534.1 KB]
+│   ├── dialogs
+│   │   ├── __init__.py                         [0 B]
+│   │   ├── about_dialog.py                     [0 B]
+│   │   ├── dialog.py                           [18.3 KB]
+│   │   ├── exit_dialog.py                      [3.0 KB]
+│   │   └── settings_dialog.py                  [0 B]
+│   ├── panels
+│   │   ├── __init__.py                         [0 B]
+│   │   ├── control_panel.py                    [7.0 KB]
+│   │   ├── control_panel_db.py                 [4.1 KB]
+│   │   ├── database_panel.py                   [0 B]
+│   │   ├── player_panel.py                     [0 B]
+│   │   └── settings_panel.py                   [0 B]
+│   ├── services
+│   │   ├── font_manager.py                     [699 B]
+│   │   └── image_loader.py                     [773 B]
+│   ├── widgets
+│   │   ├── __init__.py                         [0 B]
+│   │   ├── busy_indicator.py                   [4.1 KB]
+│   │   ├── check_box.py                        [4.0 KB]
+│   │   ├── hint.py                             [2.6 KB]
+│   │   ├── horizontal_slider.py                [5.2 KB]
+│   │   ├── image_button.py                     [1.8 KB]
+│   │   ├── label.py                            [0 B]
+│   │   ├── list_selection.py                   [13.2 KB]
+│   │   ├── text_button.py                      [4.4 KB]
+│   │   ├── text_edit.py                        [28.0 KB]
+│   │   └── text_window.py                      [5.1 KB]
+│   ├── __init__.py                         [0 B]
+│   ├── database_window.py                  [47.4 KB]
+│   ├── file_dialog.py                      [1.4 KB]
+│   ├── layout.py                           [4.6 KB]
+│   ├── login_register_window.py            [23.0 KB]
+│   ├── main_window.py                      [7.6 KB]
+│   ├── manager.py                          [412 B]
+│   ├── settings_window.py                  [62.8 KB]
+│   ├── splash_screen.py                    [2.3 KB]
+│   ├── theme.json                          [132 B]
+│   └── theme.py                            [4.5 KB]
+├── logs
+│   └── sa_03.log                           [686.6 KB]
+├── services
+│   ├── __init__.py                         [0 B]
+│   ├── scheduler.py                        [0 B]
+│   ├── settings.py                         [0 B]
+│   ├── statistics.py                       [0 B]
+│   └── training.py                         [0 B]
+├── session
+│   ├── providers
+│   │   ├── __init__.py                         [0 B]
+│   │   ├── guest_provider.py                   [6.1 KB]
+│   │   └── sql_provider.py                     [0 B]
+│   ├── __init__.py                         [0 B]
+│   ├── session.py                          [7.8 KB]
+│   └── session_excel.py                    [30.6 KB]
+├── test_output
+│   └── session_export.xlsx                 [38.9 KB]
+├── tests
+│   ├── __init__.py                         [0 B]
+│   ├── test_api_client.py                  [482 B]
+│   ├── test_async_runner.py                [576 B]
+│   ├── test_asyncio.py                     [542 B]
+│   ├── test_asyncio_loop.py                [638 B]
+│   ├── test_audio.py                       [842 B]
+│   ├── test_auth.py                        [420 B]
+│   ├── test_database.py                    [0 B]
+│   ├── test_dictation_pause.py             [1.1 KB]
+│   ├── test_dictation_plan.py              [3.1 KB]
+│   ├── test_dictation_segmentation.py      [904 B]
+│   ├── test_dictation_validator.py         [1.6 KB]
+│   ├── test_franch_voice.py                [501 B]
+│   ├── test_generator_router.py            [511 B]
+│   ├── test_import_to_session.py           [7.6 KB]
+│   ├── test_openai.py                      [211 B]
+│   ├── test_real_session_excel.py          [1.6 KB]
+│   ├── test_session_excel.py               [4.2 KB]
+│   ├── test_shadowing_generator.py         [1.9 KB]
+│   ├── test_shadowing_pause.py             [540 B]
+│   ├── test_shadowing_segmenter.py         [1.0 KB]
+│   ├── test_state.py                       [0 B]
+│   ├── test_tts_languages.py               [594 B]
+│   └── test_tts_voices.py                  [733 B]
+├── tmp
+│   └── tmp.mp3                             [22.8 KB]
+├── utils
+│   ├── __init__.py                         [0 B]
+│   ├── helpers.py                          [0 B]
+│   ├── paths.py                            [254 B]
+│   └── validators.py                       [0 B]
+├── .env                                [200 B]
+├── main.py                             [188 B]
+├── project_structure.txt               [14.5 KB]
+├── project_tree.py                     [8.1 KB]
+├── README.md                           [223 B]
+├── requirements.txt                    [111 B]
+├── SLStudio.lnk                        [2.8 KB]
+└── test_environment.py                 [737 B]
+
+
+EXCLUDED DIRECTORIES
+======================================================================
+- .git
+- .idea
+- .mypy_cache
+- .pytest_cache
+- .ruff_cache
+- .venv
+- .vscode
+- __pycache__
+- venv
+
+
+EMPTY DIRECTORIES
+======================================================================
+- data\exports
+- data\logs
+- database\migrations
+- gui\assets\images\backgrounds
+
+
+EMPTY FILES
+======================================================================
+- ai\__init__.py
+- api\__init__.py
+- audio\__init__.py
+- core\__init__.py
+- database\__init__.py
+- database\connection.py
+- database\models.py
+- database\repository.py
+- gui\__init__.py
+- gui\dialogs\__init__.py
+- gui\dialogs\about_dialog.py
+- gui\dialogs\settings_dialog.py
+- gui\panels\__init__.py
+- gui\panels\database_panel.py
+- gui\panels\player_panel.py
+- gui\panels\settings_panel.py
+- gui\widgets\__init__.py
+- gui\widgets\label.py
+- services\__init__.py
+- services\scheduler.py
+- services\settings.py
+- services\statistics.py
+- services\training.py
+- session\__init__.py
+- session\providers\__init__.py
+- session\providers\sql_provider.py
+- tests\__init__.py
+- tests\test_database.py
+- tests\test_state.py
+- utils\__init__.py
+- utils\helpers.py
+- utils\validators.py
+
+
+PYTHON FILES
+======================================================================
+Total: 110
+
+ai\__init__.py
+ai\dictation_pause.py
+ai\dictation_plan.py
+ai\dictation_segmenter.py
+ai\dictation_validator.py
+ai\generators\dictation_generator.py
+ai\generators\generator_router.py
+ai\generators\shadowing_generator.py
+ai\language_detector.py
+ai\models.py
+ai\openai_client.py
+ai\shadowing_pause.py
+ai\shadowing_plan.py
+ai\shadowing_segmenter.py
+ai\shadowing_validator.py
+api\__init__.py
+api\client.py
+audio\__init__.py
+audio\async_runner.py
+audio\cache.py
+audio\mixer.py
+audio\player.py
+audio\provider.py
+audio\scenario_provider.py
+audio\tts.py
+core\__init__.py
+core\application.py
+core\config.py
+core\logger.py
+core\state.py
+database\__init__.py
+database\connection.py
+database\models.py
+database\repository.py
+gui\__init__.py
+gui\database_window.py
+gui\dialogs\__init__.py
+gui\dialogs\about_dialog.py
+gui\dialogs\dialog.py
+gui\dialogs\exit_dialog.py
+gui\dialogs\settings_dialog.py
+gui\file_dialog.py
+gui\layout.py
+gui\login_register_window.py
+gui\main_window.py
+gui\manager.py
+gui\panels\__init__.py
+gui\panels\control_panel.py
+gui\panels\control_panel_db.py
+gui\panels\database_panel.py
+gui\panels\player_panel.py
+gui\panels\settings_panel.py
+gui\services\font_manager.py
+gui\services\image_loader.py
+gui\settings_window.py
+gui\splash_screen.py
+gui\theme.py
+gui\widgets\__init__.py
+gui\widgets\busy_indicator.py
+gui\widgets\check_box.py
+gui\widgets\hint.py
+gui\widgets\horizontal_slider.py
+gui\widgets\image_button.py
+gui\widgets\label.py
+gui\widgets\list_selection.py
+gui\widgets\text_button.py
+gui\widgets\text_edit.py
+gui\widgets\text_window.py
+main.py
+project_tree.py
+services\__init__.py
+services\scheduler.py
+services\settings.py
+services\statistics.py
+services\training.py
+session\__init__.py
+session\providers\__init__.py
+session\providers\guest_provider.py
+session\providers\sql_provider.py
+session\session.py
+session\session_excel.py
+test_environment.py
+tests\__init__.py
+tests\test_api_client.py
+tests\test_async_runner.py
+tests\test_asyncio.py
+tests\test_asyncio_loop.py
+tests\test_audio.py
+tests\test_auth.py
+tests\test_database.py
+tests\test_dictation_pause.py
+tests\test_dictation_plan.py
+tests\test_dictation_segmentation.py
+tests\test_dictation_validator.py
+tests\test_franch_voice.py
+tests\test_generator_router.py
+tests\test_import_to_session.py
+tests\test_openai.py
+tests\test_real_session_excel.py
+tests\test_session_excel.py
+tests\test_shadowing_generator.py
+tests\test_shadowing_pause.py
+tests\test_shadowing_segmenter.py
+tests\test_state.py
+tests\test_tts_languages.py
+tests\test_tts_voices.py
+utils\__init__.py
+utils\helpers.py
+utils\paths.py
+utils\validators.py
+
+
+SUMMARY
+======================================================================
+Python files      : 110
+Empty files       : 32
+Empty directories : 4

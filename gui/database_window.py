@@ -1313,8 +1313,8 @@ class DatabaseWindow:
 
                     if name == "login":
 
-                        self.show_buttons_dialog("login")
-
+                        #self.show_buttons_dialog("login")
+                        self.login_register_window.show("login")
                         return
 
                     # --------------------------------------------------
@@ -1323,8 +1323,8 @@ class DatabaseWindow:
 
                     if name == "register":
 
-                        self.show_buttons_dialog("register")
-
+                        #self.show_buttons_dialog("register")
+                        self.login_register_window.show("register")
                         return
 
                     # --------------------------------------------------
