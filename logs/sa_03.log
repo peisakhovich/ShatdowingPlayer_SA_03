@@ -9634,3 +9634,77 @@ przy urządzeniach elektrycznych? | pause: 2960 | repeat: 1
 2026-09-09 15:19:27 DEBUG    [SA_03] Selected set: Polish  Shadowing A1-B1
 2026-09-09 15:20:44 INFO     [SA_03] Finish Application
 2026-09-09 15:20:52 INFO     [SA_03] Finish Application
+2026-09-09 15:59:58 INFO     [SA_03] Start Application
+2026-09-09 16:00:00 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-ZofiaNeural
+2026-09-09 16:00:00 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-09 16:00:01 DEBUG    [SA_03] Button: settings
+2026-09-09 16:00:01 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-ZofiaNeural
+2026-09-09 16:00:01 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-09 16:00:01 DEBUG    [SA_03] Target language: en
+2026-09-09 16:00:01 DEBUG    [SA_03] Target locale: en-US
+2026-09-09 16:00:06 DEBUG    [SA_03] Button: db
+2026-09-09 16:00:07 INFO     [SA_03] Database sets loaded: 23
+2026-09-09 16:00:07 DEBUG    [SA_03] Selected set: English A1
+2026-09-09 16:00:11 DEBUG    [SA_03] Button: play
+2026-09-09 16:00:11 DEBUG    [SA_03] PREPARE_ITEM #0
+2026-09-09 16:00:11 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-09 16:00:11 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-09 16:00:11 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-09 16:00:11 DEBUG    [SA_03] TEXT PLAY
+2026-09-09 16:00:12 DEBUG    [SA_03] TEXT_END
+2026-09-09 16:00:12 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-09 16:00:15 DEBUG    [SA_03] PAUSE_END
+2026-09-09 16:00:15 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'bottom', 'content': 'translate_text'}
+2026-09-09 16:00:15 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'translate_text'}
+2026-09-09 16:00:15 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-09 16:00:15 DEBUG    [SA_03] TRANSLATION PLAY
+2026-09-09 16:00:17 DEBUG    [SA_03] TRANSLATION_END
+2026-09-09 16:00:17 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_between_sentences'}
+2026-09-09 16:00:19 DEBUG    [SA_03] PAUSE_END
+2026-09-09 16:00:19 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'top'}
+2026-09-09 16:00:19 DEBUG    [SA_03] ACTION: {'action': 'HIDE', 'target': 'bottom'}
+2026-09-09 16:00:19 INFO     [SA_03] SCENARIO FINISHED
+2026-09-09 16:00:19 DEBUG    [SA_03] FINISH_ITEM: repeat 1/2
+2026-09-09 16:00:19 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-09 16:00:19 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-09 16:00:19 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-09 16:00:19 DEBUG    [SA_03] TEXT PLAY
+2026-09-09 16:00:21 DEBUG    [SA_03] TEXT_END
+2026-09-09 16:00:21 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-09 16:00:23 INFO     [SA_03] Finish Application
+2026-09-09 16:38:43 INFO     [SA_03] Start Application
+2026-09-09 16:38:44 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-ZofiaNeural
+2026-09-09 16:38:44 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-09 16:38:46 DEBUG    [SA_03] Button: db
+2026-09-09 16:38:47 INFO     [SA_03] Database sets loaded: 23
+2026-09-09 16:38:47 DEBUG    [SA_03] Selected set: English A1
+2026-09-09 16:38:48 DEBUG    [SA_03] Button: login
+2026-09-09 16:38:52 DEBUG    [SA_03] Button: settings
+2026-09-09 16:38:52 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-ZofiaNeural
+2026-09-09 16:38:52 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-09 16:38:53 DEBUG    [SA_03] Target language: en
+2026-09-09 16:38:53 DEBUG    [SA_03] Target locale: en-US
+2026-09-09 16:38:55 DEBUG    [SA_03] Button: play
+2026-09-09 16:38:55 DEBUG    [SA_03] PREPARE_ITEM #0
+2026-09-09 16:38:55 DEBUG    [SA_03] ACTION: {'action': 'SHOW', 'target': 'top', 'content': 'phrase_text'}
+2026-09-09 16:38:55 DEBUG    [SA_03] ACTION: {'action': 'PLAY', 'source': 'phrase_text'}
+2026-09-09 16:38:55 DEBUG    [SA_03] AudioProvider: CACHE HIT
+2026-09-09 16:38:55 DEBUG    [SA_03] TEXT PLAY
+2026-09-09 16:38:57 DEBUG    [SA_03] TEXT_END
+2026-09-09 16:38:57 DEBUG    [SA_03] ACTION: {'action': 'WAIT', 'source': 'pause_before_translation'}
+2026-09-09 16:38:58 DEBUG    [SA_03] Button: pause
+2026-09-09 16:39:00 INFO     [SA_03] Finish Application
+2026-09-09 17:01:45 INFO     [SA_03] Start Application
+2026-09-09 17:01:46 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-ZofiaNeural
+2026-09-09 17:01:46 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-09 17:01:47 DEBUG    [SA_03] Button: settings
+2026-09-09 17:01:47 DEBUG    [SA_03] INITIAL ITEM: phrase_code = pl phrase_locale = pl-PL phrase_voice = pl-PL-ZofiaNeural
+2026-09-09 17:01:47 DEBUG    [SA_03] INITIAL SOURCE: language = pl locale = pl-PL voice = 
+2026-09-09 17:01:47 DEBUG    [SA_03] Target language: en
+2026-09-09 17:01:47 DEBUG    [SA_03] Target locale: en-US
+2026-09-09 17:01:49 DEBUG    [SA_03] Button: db
+2026-09-09 17:01:50 INFO     [SA_03] Database sets loaded: 23
+2026-09-09 17:01:50 DEBUG    [SA_03] Selected set: English A1
+2026-09-09 17:01:51 DEBUG    [SA_03] Button: register
+2026-09-09 17:01:54 DEBUG    [SA_03] Button: datatodb
+2026-09-09 17:01:58 INFO     [SA_03] Finish Application

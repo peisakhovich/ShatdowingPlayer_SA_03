@@ -1,3 +1,17 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    gui.file_dialog
+
+Purpose:
+    Provides simple file open and save dialogs for the application.
+
+ru:
+    Предоставляет простые диалоги открытия и сохранения файлов
+    для приложения.
+"""
 import tkinter as tk
 from tkinter import filedialog
 

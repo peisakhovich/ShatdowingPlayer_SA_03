@@ -1,3 +1,17 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    gui.services.font_manager
+
+Purpose:
+    Loads and caches Pygame fonts used by the application interface.
+
+ru:
+    Загружает и кэширует шрифты Pygame, используемые
+    интерфейсом приложения.
+"""
 import os
 import pygame
 
@@ -10,8 +24,7 @@ class FontManager:
 
         self._cache = {}
 
-    # --------------------------------------------------
-
+   
     def load(
         self,
         size,

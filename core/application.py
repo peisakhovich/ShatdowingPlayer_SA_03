@@ -1,4 +1,18 @@
+"""
+Sound Language Studio
+---------------------
 
+Module:
+    core.application
+
+Purpose:
+    Creates and runs the main application, initializing the audio,
+    session, GUI, splash screen, and main event loop.
+
+ru:
+    Создаёт и запускает основное приложение, инициализируя аудио,
+    сессию, GUI, заставку и главный цикл обработки событий.
+"""
 import os
 
 import pygame

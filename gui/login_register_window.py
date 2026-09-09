@@ -1,4 +1,18 @@
+"""
+Sound Language Studio
+---------------------
 
+Module:
+    gui.login_register_window
+
+Purpose:
+    Provides the Login and Register window for user authentication
+    and account creation.
+
+ru:
+    Предоставляет окно Login и Register для авторизации пользователя
+    и создания учётной записи.
+"""
 import pygame
 
 from gui.theme import Theme

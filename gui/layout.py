@@ -1,3 +1,18 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    gui.layout
+
+Purpose:
+    Defines centralized layout constants and UI element configurations
+    for application windows, panels, buttons, checkboxes, and sliders.
+
+ru:
+    Содержит централизованные параметры размещения и конфигурации
+    элементов интерфейса: окон, панелей, кнопок, флажков и слайдеров.
+"""
 import pygame
 
 class Layout:

@@ -1,3 +1,18 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    api.client
+
+Purpose:
+    Provides the HTTP client for communication with the application API,
+    including authentication and training set operations.
+
+ru:
+    Предоставляет HTTP-клиент для взаимодействия приложения с API,
+    включая авторизацию и операции с учебными наборами.
+"""
 import os
 
 import httpx

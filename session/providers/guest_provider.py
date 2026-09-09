@@ -1,13 +1,16 @@
 """
-guest_provider.py
+Sound Language Studio
+---------------------
 
-Создает тестовую сессию приложения SA_03.
+Module:
+    session.providers.guest_provider
 
-Используется только при первом запуске, когда файл
-plan_session.json отсутствует.
+Purpose:
+    Creates a default guest training session when no session file exists.
 
-После появления SqlProvider будет заменен без изменения
-остальной архитектуры приложения.
+ru:
+    Создаёт стандартную гостевую учебную сессию,
+    если файл сессии отсутствует.
 """
 
 from __future__ import annotations

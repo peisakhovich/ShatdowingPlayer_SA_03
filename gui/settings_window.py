@@ -1,3 +1,19 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    gui.settings_window
+
+Purpose:
+    Provides the settings window for selecting training scenarios,
+    source and target languages, voices, text input, and AI plan generation.
+
+ru:
+    Предоставляет окно настроек для выбора сценария тренировки,
+    исходного и целевого языков, голосов, ввода текста и генерации
+    учебного плана с помощью AI.
+"""
 from __future__ import annotations
 
 import asyncio

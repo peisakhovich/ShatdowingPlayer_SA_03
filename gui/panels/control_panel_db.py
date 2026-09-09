@@ -1,3 +1,18 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    gui.panels.control_panel_db
+
+Purpose:
+    Provides the database control panel with action buttons
+    and interaction hints.
+
+ru:
+    Предоставляет панель управления базой данных с кнопками действий
+    и подсказками.
+"""
 import pygame
 from pygame import surface
 

@@ -1,3 +1,16 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    main
+
+Purpose:
+    Application entry point.
+
+ru:
+    Точка входа приложения.
+"""
 from dotenv import load_dotenv
 from core.application import Application
 

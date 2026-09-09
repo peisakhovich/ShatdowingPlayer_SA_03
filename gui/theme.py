@@ -1,3 +1,18 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    gui.theme
+
+Purpose:
+    Defines centralized visual styles and colors for the application's
+    custom Pygame-based widgets and UI elements.
+
+ru:
+    Содержит централизованные стили, цвета и параметры отображения
+    для пользовательских виджетов и элементов интерфейса Pygame.
+"""
 import pygame
 #--------------------------------------
 # темы для виджетов на базе pgame.rect

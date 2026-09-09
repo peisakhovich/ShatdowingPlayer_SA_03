@@ -1,3 +1,18 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    session.session_excel
+
+Purpose:
+    Provides Excel import and export for training sessions,
+    including training set data, items, voices, and data validation.
+
+ru:
+    Обеспечивает импорт и экспорт учебных сессий в Excel,
+    включая данные набора, элементы, голоса и проверку данных.
+"""
 from __future__ import annotations
 
 from pathlib import Path

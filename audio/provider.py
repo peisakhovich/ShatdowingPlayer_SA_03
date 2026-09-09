@@ -1,3 +1,18 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    audio.provider
+
+Purpose:
+    Provides ready-to-use audio files by retrieving them from the cache
+    or generating new audio through TTS.
+
+ru:
+    Предоставляет готовые аудиофайлы, получая их из кэша
+    или создавая новые с помощью TTS.
+"""
 
 from pathlib import Path
 import tempfile

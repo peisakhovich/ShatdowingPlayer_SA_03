@@ -1,3 +1,17 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    audio.mixer
+
+Purpose:
+    Provides low-level audio playback control through the Pygame mixer.
+
+ru:
+    Обеспечивает низкоуровневое управление воспроизведением аудио
+    через аудиомикшер Pygame.
+"""
 import pygame
 
 

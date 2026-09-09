@@ -1,3 +1,18 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    audio.scenario_provider
+
+Purpose:
+    Loads, manages, and persists the current training scenario
+    and provides access to scenario definitions.
+
+ru:
+    Загружает, управляет и сохраняет текущий сценарий тренировки,
+    а также предоставляет доступ к определениям сценариев.
+"""
 import json
 from core.logger import logger
 

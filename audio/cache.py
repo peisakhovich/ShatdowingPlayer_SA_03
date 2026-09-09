@@ -1,3 +1,18 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    audio.cache
+
+Purpose:
+    Manages the local cache of generated audio files and creates
+    deterministic file names based on text, voice, and playback speed.
+
+ru:
+    Управляет локальным кэшем сгенерированных аудиофайлов и создаёт
+    уникальные имена файлов на основе текста, голоса и скорости.
+"""
 from pathlib import Path
 import hashlib
 import shutil

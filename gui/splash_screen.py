@@ -1,3 +1,18 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    gui.splash_screen
+
+Purpose:
+    Displays the application splash screen with optional intro audio
+    and handles startup completion or cancellation.
+
+ru:
+    Отображает заставку приложения с дополнительной звуковой дорожкой
+    и обрабатывает завершение или отмену запуска.
+"""
 from pathlib import Path
 
 import pygame

@@ -1,3 +1,18 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    audio.async_runner
+
+Purpose:
+    Runs asyncio coroutines in a dedicated background thread
+    without blocking the main application thread.
+
+ru:
+    Запускает asyncio-корутины в отдельном фоновом потоке,
+    не блокируя основной поток приложения.
+"""
 import asyncio
 import threading
 

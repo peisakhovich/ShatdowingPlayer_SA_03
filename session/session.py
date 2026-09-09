@@ -1,20 +1,17 @@
 """
-session.py
+Sound Language Studio
+---------------------
 
-Рабочая сессия приложения SA_03.
+Module:
+    session.session
 
-Хранит:
-    - текущего пользователя (user_id, user_nickname)
-    - данные набора (set)
-    - элементы набора (items)
-    - кэшируемое состояние (state)
+Purpose:
+    Manages the current application session, including the active user,
+    training set, items, session state, and item navigation.
 
-Не хранит:
-    - скорость воспроизведения
-    - параметры Player
-    - кэш аудио
-
-Автор: SA_03
+ru:
+    Управляет текущей сессией приложения, включая пользователя,
+    набор упражнений, элементы, состояние и навигацию по элементам.
 """
 
 from __future__ import annotations

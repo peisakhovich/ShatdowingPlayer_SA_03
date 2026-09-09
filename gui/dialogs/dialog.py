@@ -1,3 +1,18 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    gui.dialogs.dialog
+
+Purpose:
+    Provides a reusable modal dialog with message display,
+    button interaction, keyboard navigation, and focus handling.
+
+ru:
+    Предоставляет универсальный модальный диалог с отображением
+    сообщения, обработкой кнопок, навигацией с клавиатуры и фокусом.
+"""
 import pygame
 
 from core.config import Config

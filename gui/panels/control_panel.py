@@ -1,3 +1,18 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    gui.panels.control_panel
+
+Purpose:
+    Provides the main control panel for playback, sliders,
+    checkboxes, buttons, and interaction hints.
+
+ru:
+    Предоставляет основную панель управления воспроизведением,
+    слайдерами, флажками, кнопками и подсказками.
+"""
 import pygame
 from pygame import surface
 

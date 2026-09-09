@@ -1,3 +1,18 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    gui.manager
+
+Purpose:
+    Manages the pygame_gui interface, including event processing,
+    UI updates, and rendering.
+
+ru:
+    Управляет интерфейсом pygame_gui, включая обработку событий,
+    обновление элементов интерфейса и их отображение.
+"""
 import pygame_gui
 
 

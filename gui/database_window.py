@@ -1,3 +1,19 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    gui.database_window
+
+Purpose:
+    Provides the database window for managing training sets,
+    user authentication, session synchronization, and Excel import/export.
+
+ru:
+    Предоставляет окно работы с базой данных для управления учебными
+    наборами, авторизации пользователей, обмена данными с сессией
+    и импорта/экспорта Excel.
+"""
 from __future__ import annotations
 
 import asyncio

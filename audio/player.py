@@ -1,3 +1,19 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    audio.player
+
+Purpose:
+    Controls audio playback, playback state, scenario actions,
+    session navigation, and the playback state machine.
+
+ru:
+    Управляет воспроизведением аудио, состоянием проигрывателя,
+    действиями сценария, навигацией по сессии и конечным автоматом
+    воспроизведения.
+"""
 
 """
 Player lifecycle and playback FSM.

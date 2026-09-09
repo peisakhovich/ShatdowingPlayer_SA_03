@@ -1,3 +1,18 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    gui.services.image_loader
+
+Purpose:
+    Loads and caches images used by the application interface,
+    with optional fallback images.
+
+ru:
+    Загружает и кэширует изображения интерфейса приложения
+    с возможностью использования изображения по умолчанию.
+"""
 import pygame
 import os
 

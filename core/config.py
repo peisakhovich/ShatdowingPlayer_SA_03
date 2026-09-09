@@ -1,3 +1,19 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    core.config
+
+Purpose:
+    Defines application-wide configuration values, including paths,
+    UI settings, audio, logging, API, and splash screen options.
+
+ru:
+    Содержит основные настройки приложения: пути,
+    параметры интерфейса, аудио, логирования, API и заставки.
+"""
+
 from pathlib import Path
 
 class Config:

@@ -1,3 +1,17 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    gui.dialogs.exit_dialog
+
+Purpose:
+    Provides a standalone exit confirmation dialog for the application.
+
+ru:
+    Предоставляет отдельный диалог подтверждения выхода
+    из приложения.
+"""
 import pygame
 
 

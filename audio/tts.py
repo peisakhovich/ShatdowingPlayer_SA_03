@@ -1,3 +1,18 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    audio.tts
+
+Purpose:
+    Provides text-to-speech synthesis and access to the Edge TTS
+    voice, language, and locale catalog.
+
+ru:
+    Обеспечивает синтез речи и доступ к справочнику голосов,
+    языков и locale сервиса Edge TTS.
+"""
 import edge_tts
 
 

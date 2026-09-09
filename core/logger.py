@@ -1,3 +1,18 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    core.logger
+
+Purpose:
+    Provides centralized application logging with configurable
+    output modes.
+
+ru:
+    Предоставляет централизованное логирование приложения
+    с настраиваемым режимом вывода.
+"""
 import logging
 
 from core.config import Config

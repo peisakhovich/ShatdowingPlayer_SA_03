@@ -1,14 +1,31 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    gui.main_window
+
+Purpose:
+    Controls the main application window, handling user input,
+    dialogs, training controls, settings, database access, updates,
+    and rendering.
+
+ru:
+    Управляет главным окном приложения: обработкой ввода,
+    диалогами, управлением тренировкой, настройками,
+    базой данных, обновлением и отображением интерфейса.
+"""
 import pygame
 
 
+from core.config import Config 
+from core.logger import logger
 from gui.panels.control_panel import ControlPanel
 from gui.dialogs.dialog import Dialog
 from gui.widgets.text_window import TextWindow
-from core.config import Config 
 from gui.layout import Layout
 from gui.settings_window import SettingsWindow
 from gui.database_window import DatabaseWindow
-from core.logger import logger
 
 
 class MainWindow:

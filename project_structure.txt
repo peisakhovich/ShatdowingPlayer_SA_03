@@ -40,13 +40,6 @@ SA_03
 │   ├── logger.py                           [4.0 KB]
 │   └── state.py                            [200 B]
 ├── data
-│   ├── audio_cache
-│   │   ├── 19ee8b061f0b2d2ed6a09450bd2e87cceb0a7754198575cbadefa0f10a64011f.mp3 [26.0 KB]
-│   │   ├── 518e46e83c26ad0cd6a9dcf3bc0d8e19fa57e4d4bf8e9e4b2bb2d349e0715013.mp3 [22.8 KB]
-│   │   ├── 65d60be08f86659422beba1d14db9c2d49ed3c85486971a3a42e293cd7a70d41.mp3 [27.6 KB]
-│   │   ├── 7dde4226ae743a94270a170a59681c7062abf6ef1cd25b11ff7f3b8faa12231c.mp3 [28.5 KB]
-│   │   ├── 85940429e5b46391e6997566333e14114cb07cc14a0a532b49555ad5746a8cb9.mp3 [22.8 KB]
-│   │   └── c270e7b6a58a4f0e58c4f708e328c28a07e9964f149ed13a66a262aec6de2e7e.mp3 [22.8 KB]
 │   ├── cache
 │   │   ├── en_pl_de_session.json               [13.0 KB]
 │   │   ├── en_session_.json                    [16.5 KB]
@@ -55,17 +48,9 @@ SA_03
 │   │   ├── plan_session_.json                  [20.8 KB]
 │   │   ├── plan_session_8.json                 [38.8 KB]
 │   │   └── plan_session__.json                 [8.7 KB]
-│   ├── database
-│   │   ├── 008_set_items_en_b2.sql             [3.6 KB]
-│   │   └── SQLQuery4.sql                       [34 B]
-│   ├── exports
-│   └── logs
-├── database
-│   ├── migrations
-│   ├── __init__.py                         [0 B]
-│   ├── connection.py                       [0 B]
-│   ├── models.py                           [0 B]
-│   └── repository.py                       [0 B]
+│   └── database
+│       ├── 008_set_items_en_b2.sql             [3.6 KB]
+│       └── SQLQuery4.sql                       [34 B]
 ├── docs
 │   ├── erd
 │   │   ├── data.zip                            [5.6 KB]
@@ -79,22 +64,6 @@ SA_03
 │   │   ├── SA_03.vpp.bak                       [692.0 KB]
 │   │   ├── SA_03.vpp.bak2                      [836.0 KB]
 │   │   ├── SA_03.vpp.bak_000f                  [692.0 KB]
-│   │   ├── SA_03.vpp.bak_001d                  [216.0 KB]
-│   │   ├── SA_03.vpp.bak_002d                  [236.0 KB]
-│   │   ├── SA_03.vpp.bak_003d                  [296.0 KB]
-│   │   ├── SA_03.vpp.bak_004d                  [224.0 KB]
-│   │   ├── SA_03.vpp.bak_005d                  [292.0 KB]
-│   │   ├── SA_03.vpp.bak_006d                  [268.0 KB]
-│   │   ├── SA_03.vpp.bak_007d                  [288.0 KB]
-│   │   ├── SA_03.vpp.bak_008d                  [236.0 KB]
-│   │   ├── SA_03.vpp.bak_009d                  [308.0 KB]
-│   │   ├── SA_03.vpp.bak_010d                  [276.0 KB]
-│   │   ├── SA_03.vpp.bak_011d                  [228.0 KB]
-│   │   ├── SA_03.vpp.bak_012d                  [228.0 KB]
-│   │   ├── SA_03.vpp.bak_013d                  [220.0 KB]
-│   │   ├── SA_03.vpp.bak_014d                  [228.0 KB]
-│   │   ├── SA_03.vpp.bak_015d                  [220.0 KB]
-│   │   ├── SA_03.vpp.bak_016d                  [188.0 KB]
 │   │   ├── shadowing - sa - dbo.png            [46.7 KB]
 │   │   └── Диаграмма без названия.drawio       [10.3 KB]
 │   ├── EnvCreate_BeforeNewApp.txt          [3.8 KB]
@@ -111,7 +80,6 @@ SA_03
 │   │   │       ├── Inter_Italic.ttf                    [338.4 KB]
 │   │   │       └── Inter_Regular.ttf                   [334.6 KB]
 │   │   ├── images
-│   │   │   ├── backgrounds
 │   │   │   ├── icons
 │   │   │   │   ├── datatodb.png                        [763 B]
 │   │   │   │   ├── datatodb_hover.png                  [762 B]
@@ -177,17 +145,12 @@ SA_03
 │   │       └── sound_language_studio_intro_v2_cinematic.wav [534.1 KB]
 │   ├── dialogs
 │   │   ├── __init__.py                         [0 B]
-│   │   ├── about_dialog.py                     [0 B]
 │   │   ├── dialog.py                           [18.3 KB]
-│   │   ├── exit_dialog.py                      [3.0 KB]
-│   │   └── settings_dialog.py                  [0 B]
+│   │   └── exit_dialog.py                      [3.0 KB]
 │   ├── panels
 │   │   ├── __init__.py                         [0 B]
 │   │   ├── control_panel.py                    [7.0 KB]
-│   │   ├── control_panel_db.py                 [4.1 KB]
-│   │   ├── database_panel.py                   [0 B]
-│   │   ├── player_panel.py                     [0 B]
-│   │   └── settings_panel.py                   [0 B]
+│   │   └── control_panel_db.py                 [4.1 KB]
 │   ├── services
 │   │   ├── font_manager.py                     [699 B]
 │   │   └── image_loader.py                     [773 B]
@@ -215,13 +178,7 @@ SA_03
 │   ├── theme.json                          [132 B]
 │   └── theme.py                            [4.5 KB]
 ├── logs
-│   └── sa_03.log                           [686.6 KB]
-├── services
-│   ├── __init__.py                         [0 B]
-│   ├── scheduler.py                        [0 B]
-│   ├── settings.py                         [0 B]
-│   ├── statistics.py                       [0 B]
-│   └── training.py                         [0 B]
+│   └── sa_03.log                           [689.3 KB]
 ├── session
 │   ├── providers
 │   │   ├── __init__.py                         [0 B]
@@ -261,12 +218,10 @@ SA_03
 │   └── tmp.mp3                             [22.8 KB]
 ├── utils
 │   ├── __init__.py                         [0 B]
-│   ├── helpers.py                          [0 B]
-│   ├── paths.py                            [254 B]
-│   └── validators.py                       [0 B]
+│   └── paths.py                            [254 B]
 ├── .env                                [200 B]
 ├── main.py                             [188 B]
-├── project_structure.txt               [14.5 KB]
+├── project_structure.txt               [17.8 KB]
 ├── project_tree.py                     [8.1 KB]
 ├── README.md                           [223 B]
 ├── requirements.txt                    [111 B]
@@ -289,10 +244,7 @@ EXCLUDED DIRECTORIES
 
 EMPTY DIRECTORIES
 ======================================================================
-- data\exports
-- data\logs
-- database\migrations
-- gui\assets\images\backgrounds
+None
 
 
 EMPTY FILES
@@ -301,25 +253,11 @@ EMPTY FILES
 - api\__init__.py
 - audio\__init__.py
 - core\__init__.py
-- database\__init__.py
-- database\connection.py
-- database\models.py
-- database\repository.py
 - gui\__init__.py
 - gui\dialogs\__init__.py
-- gui\dialogs\about_dialog.py
-- gui\dialogs\settings_dialog.py
 - gui\panels\__init__.py
-- gui\panels\database_panel.py
-- gui\panels\player_panel.py
-- gui\panels\settings_panel.py
 - gui\widgets\__init__.py
 - gui\widgets\label.py
-- services\__init__.py
-- services\scheduler.py
-- services\settings.py
-- services\statistics.py
-- services\training.py
 - session\__init__.py
 - session\providers\__init__.py
 - session\providers\sql_provider.py
@@ -327,13 +265,11 @@ EMPTY FILES
 - tests\test_database.py
 - tests\test_state.py
 - utils\__init__.py
-- utils\helpers.py
-- utils\validators.py
 
 
 PYTHON FILES
 ======================================================================
-Total: 110
+Total: 94
 
 ai\__init__.py
 ai\dictation_pause.py
@@ -365,17 +301,11 @@ core\application.py
 core\config.py
 core\logger.py
 core\state.py
-database\__init__.py
-database\connection.py
-database\models.py
-database\repository.py
 gui\__init__.py
 gui\database_window.py
 gui\dialogs\__init__.py
-gui\dialogs\about_dialog.py
 gui\dialogs\dialog.py
 gui\dialogs\exit_dialog.py
-gui\dialogs\settings_dialog.py
 gui\file_dialog.py
 gui\layout.py
 gui\login_register_window.py
@@ -384,9 +314,6 @@ gui\manager.py
 gui\panels\__init__.py
 gui\panels\control_panel.py
 gui\panels\control_panel_db.py
-gui\panels\database_panel.py
-gui\panels\player_panel.py
-gui\panels\settings_panel.py
 gui\services\font_manager.py
 gui\services\image_loader.py
 gui\settings_window.py
@@ -405,11 +332,6 @@ gui\widgets\text_edit.py
 gui\widgets\text_window.py
 main.py
 project_tree.py
-services\__init__.py
-services\scheduler.py
-services\settings.py
-services\statistics.py
-services\training.py
 session\__init__.py
 session\providers\__init__.py
 session\providers\guest_provider.py
@@ -442,13 +364,11 @@ tests\test_state.py
 tests\test_tts_languages.py
 tests\test_tts_voices.py
 utils\__init__.py
-utils\helpers.py
 utils\paths.py
-utils\validators.py
 
 
 SUMMARY
 ======================================================================
-Python files      : 110
-Empty files       : 32
-Empty directories : 4
+Python files      : 94
+Empty files       : 16
+Empty directories : 0
