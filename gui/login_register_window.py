@@ -659,7 +659,7 @@ class LoginRegisterWindow:
 
         pygame.draw.rect(
             screen,
-            Theme.DIALOG_BORDER_COLOR,
+            Theme.TB_FOCUS_BORDER_COLOR,
             self.rect,
             width=Theme.TB_BORDER_WIDTH,
             border_radius=Theme.DIALOG_RADIUS
@@ -770,8 +770,16 @@ class LoginRegisterWindow:
 
         pygame.draw.rect(
             screen,
-            Theme.DIALOG_BORDER_COLOR,
+            Theme.TB_BACKGROUND_COLOR,
             self.action_rect,
+            border_radius=6
+        )
+
+        pygame.draw.rect(
+            screen,
+            Theme.TB_FOCUS_BORDER_COLOR,
+            self.action_rect,
+            Theme.TB_BORDER_WIDTH,
             border_radius=6
         )
 
@@ -798,6 +806,14 @@ class LoginRegisterWindow:
             "Create account"
             if self.mode == "login"
             else "Back to login"
+        )
+
+        pygame.draw.rect(
+            screen,
+            Theme.TB_FOCUS_BORDER_COLOR,
+            self.switch_rect,
+            Theme.TB_BORDER_WIDTH,
+            border_radius=6
         )
 
         text = self.message_font.render(

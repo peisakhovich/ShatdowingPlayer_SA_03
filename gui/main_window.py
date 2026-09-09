@@ -65,7 +65,7 @@ class MainWindow:
 
             rect=(20, 20, Layout.WIDTH-40, Height_Texts*60/100),
             font=font_manager.load(
-                32,
+                48,
                 Config.FONT_REGULAR
             ),
             text=self.text,

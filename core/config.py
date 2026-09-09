@@ -2,7 +2,7 @@ from pathlib import Path
 
 class Config:
 
-    TITLE = "SA_03 Shadowing App"
+    TITLE = "Sound Language Studio"
 
     THEME = "gui/theme.json"
 
@@ -23,7 +23,6 @@ class Config:
     FONT_BOLDITALIC = "Inter_BoldItalic.ttf"
     FONT_ITALIC = "Inter_Italic.ttf"
 
-    #AUDIO_CACHE_PATH = "SA_O3/data/audio_cache"
     AUDIO_CACHE_PATH = f"C:\\Users\\liudm\\SadowingApp\\tmp\\audio_cache"
 
     # Logging
@@ -31,3 +30,10 @@ class Config:
     LOG_FILE = Path("logs/sa_03.log")
 
     API_BASE_URL = "https://sa03-api-gxd7gve7a9gafnaz.polandcentral-01.azurewebsites.net/api"
+
+    # Splash screen
+    SHOW_SPLASH = True
+    SPLASH_DURATION = 10.0
+    SPLASH_IMAGE = "gui/assets/images/SLS_logo_info.png"
+    SPLASH_SOUND_ENABLED = True
+    SPLASH_SOUND = "gui/assets/sounds/sound_language_studio_intro_v2_cinematic.wav"

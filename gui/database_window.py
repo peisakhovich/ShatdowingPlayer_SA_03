@@ -105,7 +105,7 @@ class DatabaseWindow:
                 self.rect.centerx - 250,
                 self.rect.centery - 320,
                 500,
-                500
+                550
             ),
             font_manager,
             session,
