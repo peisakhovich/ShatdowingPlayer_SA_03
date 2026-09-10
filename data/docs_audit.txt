@@ -1,0 +1,278 @@
+
+ai.dictation_plan
+  CLASS MISSING: DictationPlanBuilder
+  METHOD MISSING: DictationPlanBuilder.build
+  METHOD MISSING: DictationPlanBuilder.save
+
+ai.dictation_segmenter
+  CLASS MISSING: DictationSegmenter
+  METHOD MISSING: DictationSegmenter.segment
+
+ai.dictation_validator
+  CLASS MISSING: DictationValidationError
+  CLASS MISSING: DictationValidator
+  METHOD MISSING: DictationValidator.normalize_text
+  METHOD MISSING: DictationValidator.validate
+
+ai.generators.dictation_generator
+  METHOD MISSING: DictationGenerator.generate
+
+ai.generators.generator_router
+  METHOD MISSING: GeneratorRouter.get_generator
+
+ai.language_detector
+  CLASS MISSING: LanguageDetector
+  METHOD MISSING: LanguageDetector.detect
+
+ai.models
+  CLASS MISSING: DictationChunk
+  CLASS MISSING: DictationSegmentation
+  CLASS MISSING: ShadowingChunk
+  CLASS MISSING: ShadowingSegmentation
+  CLASS MISSING: DetectedLanguage
+
+ai.openai_client
+  CLASS MISSING: OpenAIClient
+  METHOD MISSING: OpenAIClient.ask
+  METHOD MISSING: OpenAIClient.ask_structured
+
+ai.shadowing_plan
+  CLASS MISSING: ShadowingPlanBuilder
+  METHOD MISSING: ShadowingPlanBuilder.build
+  METHOD MISSING: ShadowingPlanBuilder.save
+
+ai.shadowing_segmenter
+  CLASS MISSING: ShadowingSegmenter
+  METHOD MISSING: ShadowingSegmenter.segment
+
+ai.shadowing_validator
+  METHOD MISSING: ShadowingValidator.validate
+
+api.client
+  CLASS MISSING: ApiClient
+  METHOD MISSING: ApiClient.login
+  METHOD MISSING: ApiClient.register
+  METHOD MISSING: ApiClient.get_sets
+  METHOD MISSING: ApiClient.get_set
+  METHOD MISSING: ApiClient.save_set
+  METHOD MISSING: ApiClient.update_set
+  METHOD MISSING: ApiClient.delete_set
+
+audio.player
+  CLASS MISSING: Player
+  METHOD MISSING: Player.get_msg_top
+  METHOD MISSING: Player.get_msg_bottom
+  METHOD MISSING: Player.get_msg_info
+  METHOD MISSING: Player.set_msg_top
+  METHOD MISSING: Player.set_msg_bottom
+  METHOD MISSING: Player.set_msg_info
+  METHOD MISSING: Player.update_info
+  METHOD MISSING: Player.set_option
+  METHOD MISSING: Player.play
+  METHOD MISSING: Player.pause
+  METHOD MISSING: Player.stop
+  METHOD MISSING: Player.set_speed
+  METHOD MISSING: Player.set_pause_before_translation
+  METHOD MISSING: Player.set_factor_pause_before_translation
+  METHOD MISSING: Player.set_pause_between_sentences
+  METHOD MISSING: Player.next
+  METHOD MISSING: Player.prev
+  METHOD MISSING: Player.first
+  METHOD MISSING: Player.last
+  METHOD MISSING: Player.update
+
+audio.scenario_provider
+  CLASS MISSING: ScenarioProvider
+  METHOD MISSING: ScenarioProvider.get_scenarios
+  METHOD MISSING: ScenarioProvider.get_current
+  METHOD MISSING: ScenarioProvider.set_current
+  METHOD MISSING: ScenarioProvider.get_scenario
+  METHOD MISSING: ScenarioProvider.get_scenario_list
+  METHOD MISSING: ScenarioProvider.get_current_scenario_index
+
+core.application
+  CLASS MISSING: Application
+  METHOD MISSING: Application.run
+
+core.config
+  CLASS MISSING: Config
+
+core.logger
+  METHOD MISSING: Logger.debug
+  METHOD MISSING: Logger.info
+  METHOD MISSING: Logger.warning
+  METHOD MISSING: Logger.error
+
+gui.database_window
+  METHOD MISSING: DatabaseWindow.show_buttons_dialog
+  METHOD MISSING: DatabaseWindow.show
+  METHOD MISSING: DatabaseWindow.hide
+  METHOD MISSING: DatabaseWindow.update
+  METHOD MISSING: DatabaseWindow.handle_event
+  METHOD MISSING: DatabaseWindow.draw
+
+gui.dialogs.dialog
+  CLASS MISSING: Dialog
+  METHOD MISSING: Dialog.show
+  METHOD MISSING: Dialog.hide
+  METHOD MISSING: Dialog.handle_event
+  METHOD MISSING: Dialog.update
+  METHOD MISSING: Dialog.draw
+
+gui.dialogs.exit_dialog
+  CLASS MISSING: ExitDialog
+  METHOD MISSING: ExitDialog.handle_event
+  METHOD MISSING: ExitDialog.draw
+
+gui.file_dialog
+  CLASS MISSING: FileDialog
+  METHOD MISSING: FileDialog.open_file
+  METHOD MISSING: FileDialog.save_file
+
+gui.layout
+  CLASS MISSING: Layout
+
+gui.login_register_window
+  METHOD MISSING: LoginRegisterWindow.set_mode
+  METHOD MISSING: LoginRegisterWindow.show
+  METHOD MISSING: LoginRegisterWindow.hide
+  METHOD MISSING: LoginRegisterWindow.update
+  METHOD MISSING: LoginRegisterWindow.handle_event
+  METHOD MISSING: LoginRegisterWindow.draw
+
+gui.main_window
+  CLASS MISSING: MainWindow
+  METHOD MISSING: MainWindow.show_exit_dialog
+  METHOD MISSING: MainWindow.handle_event
+  METHOD MISSING: MainWindow.update
+  METHOD MISSING: MainWindow.draw
+
+gui.manager
+  CLASS MISSING: GUIManager
+  METHOD MISSING: GUIManager.process_events
+  METHOD MISSING: GUIManager.update
+  METHOD MISSING: GUIManager.draw
+
+gui.panels.control_panel
+  CLASS MISSING: ControlPanel
+  METHOD MISSING: ControlPanel.handle_event
+  METHOD MISSING: ControlPanel.update
+  METHOD MISSING: ControlPanel.draw
+
+gui.panels.control_panel_db
+  CLASS MISSING: ControlPanel
+  METHOD MISSING: ControlPanel.handle_event
+  METHOD MISSING: ControlPanel.update
+  METHOD MISSING: ControlPanel.draw
+
+gui.services.font_manager
+  CLASS MISSING: FontManager
+  METHOD MISSING: FontManager.load
+
+gui.services.image_loader
+  CLASS MISSING: ImageLoader
+  METHOD MISSING: ImageLoader.load
+  METHOD MISSING: ImageLoader.clear_cache
+
+gui.settings_window
+  METHOD MISSING: SettingsWindow.show
+  METHOD MISSING: SettingsWindow.hide
+  METHOD MISSING: SettingsWindow.update
+  METHOD MISSING: SettingsWindow.handle_event
+  METHOD MISSING: SettingsWindow.draw
+
+gui.splash_screen
+  CLASS MISSING: SplashScreen
+
+gui.theme
+  CLASS MISSING: Theme
+
+gui.widgets.busy_indicator
+  CLASS MISSING: BusyIndicator
+  METHOD MISSING: BusyIndicator.show
+  METHOD MISSING: BusyIndicator.hide
+  METHOD MISSING: BusyIndicator.update
+  METHOD MISSING: BusyIndicator.draw
+
+gui.widgets.check_box
+  CLASS MISSING: CheckBox
+  METHOD MISSING: CheckBox.handle_event
+  METHOD MISSING: CheckBox.update
+  METHOD MISSING: CheckBox.draw
+
+gui.widgets.hint
+  CLASS MISSING: Hint
+  METHOD MISSING: Hint.update
+  METHOD MISSING: Hint.hide
+  METHOD MISSING: Hint.draw
+
+gui.widgets.horizontal_slider
+  CLASS MISSING: HorizontalSlider
+  METHOD MISSING: HorizontalSlider.handle_event
+  METHOD MISSING: HorizontalSlider.update
+  METHOD MISSING: HorizontalSlider.draw
+  METHOD MISSING: HorizontalSlider.set_value
+
+gui.widgets.image_button
+  CLASS MISSING: ImageButton
+  METHOD MISSING: ImageButton.handle_event
+  METHOD MISSING: ImageButton.update
+  METHOD MISSING: ImageButton.draw
+  METHOD MISSING: ImageButton.was_clicked
+
+gui.widgets.list_selection
+  CLASS MISSING: ListSelection
+  METHOD MISSING: ListSelection.handle_event
+  METHOD MISSING: ListSelection.draw
+
+gui.widgets.text_button
+  CLASS MISSING: TextButton
+  METHOD MISSING: TextButton.handle_event
+  METHOD MISSING: TextButton.update
+  METHOD MISSING: TextButton.draw
+
+gui.widgets.text_edit
+  CLASS MISSING: TextEdit
+  METHOD MISSING: TextEdit.set_text
+  METHOD MISSING: TextEdit.get_text
+  METHOD MISSING: TextEdit.clear
+  METHOD MISSING: TextEdit.handle_event
+  METHOD MISSING: TextEdit.update
+  METHOD MISSING: TextEdit.draw
+
+gui.widgets.text_window
+  CLASS MISSING: TextWindow
+  METHOD MISSING: TextWindow.handle_event
+  METHOD MISSING: TextWindow.update
+  METHOD MISSING: TextWindow.draw
+  METHOD MISSING: TextWindow.set_text
+  METHOD MISSING: TextWindow.get_text
+
+session.providers.guest_provider
+  CLASS MISSING: GuestProvider
+
+session.session
+  METHOD MISSING: Session.set_randomize
+  METHOD MISSING: Session.current
+  METHOD MISSING: Session.first
+  METHOD MISSING: Session.last
+  METHOD MISSING: Session.next
+  METHOD MISSING: Session.prev
+  METHOD MISSING: Session.goto
+  METHOD MISSING: Session.count
+  METHOD MISSING: Session.is_empty
+  METHOD MISSING: Session.is_first
+  METHOD MISSING: Session.is_last
+
+session.session_excel
+  METHOD MISSING: SessionExcel.import_
+
+============================================================
+Documentation Audit Summary
+============================================================
+Modules checked:       55
+Modules with problems: 44
+Missing classes:       40
+Missing methods:       140
+Errors:                0
+============================================================

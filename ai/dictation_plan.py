@@ -22,6 +22,7 @@ from ai.dictation_pause import calculate_dictation_pause
 
 
 class DictationPlanBuilder:
+    """Формирует учебный план для сценария диктовки."""
 
     def __init__(
         self,
@@ -54,6 +55,7 @@ class DictationPlanBuilder:
         self.set_description = set_description
 
     def build(self, validated_data: dict) -> dict:
+        """Формирует учебный план на основе проверенных данных."""
 
         chunks = validated_data["chunks"]
 
@@ -124,7 +126,7 @@ class DictationPlanBuilder:
 
     @staticmethod
     def save(data: dict, filename: str | Path) -> None:
-
+        """Сохраняет учебный план в JSON-файл."""
         filename = Path(filename)
 
         filename.parent.mkdir(

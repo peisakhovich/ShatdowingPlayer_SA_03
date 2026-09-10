@@ -1,0 +1,3 @@
+# Config
+
+::: core.config

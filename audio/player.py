@@ -62,8 +62,10 @@ class PlaybackPhase:
 
 
 class Player:
+    """Центральный объект управления воспроизведением."""
 
     def __init__(self, session,scenario):
+        """Инициализация Player с сессией и сценарием."""
 
         self._session = session
 
@@ -173,6 +175,7 @@ class Player:
     # ---------------------------------------------------------
     # Message get/set metods 
     # ---------------------------------------------------------
+    
 
     def get_msg_top(self):
         return self._msg_top
@@ -190,9 +193,11 @@ class Player:
         self._msg_bottom = value
 
     def set_msg_info(self, value):
+        ""
         self._msg_info = value        
 
     def update_info(self, current_item_index):
+        """Обновляет информационное сообщение о текущем состоянии воспроизведения."""
         session = self.session
 
         set_data = session._set
@@ -229,6 +234,7 @@ class Player:
     # ---------------------------------------------------------
 
     def _cancel_audio_task(self):
+        """Отменяет текущую фоновую задачу подготовки аудио, если она существует."""
 
         if self._audio_task is not None:
 
@@ -238,7 +244,7 @@ class Player:
             self._audio_task = None
 
     async def _prepare_text_audio(self):
-
+        """Подготавливает аудио текста."""
         
         path = await self._audio_provider.get_audio(
             text=self._current_item["phrase_text"],
@@ -250,6 +256,7 @@ class Player:
 
 
     async def _prepare_translation_audio(self):
+        """Подготавливает аудио перевода."""
 
         text = self._current_item.get(
             "translate_text",
@@ -291,6 +298,7 @@ class Player:
     # ---------------------------------------------------------
 
     def set_option(self, name, checked):
+        """Устанавливает опцию воспроизведения и синхронизирует её с Session."""
         setattr(self, "_" + name, checked)
         if name == "randomize":
             self.session.set_randomize(checked)
@@ -302,7 +310,7 @@ class Player:
     # ---------------------------------------------------------
 
     def play(self):
-
+        """Запускает воспроизведение с текущего item Session."""
         if self._session is None:
             return
         
@@ -358,11 +366,11 @@ class Player:
     # ---------------------------------------------------------
     # Navigation
     # ---------------------------------------------------------
-
+    
     def _navigate(self, action):
-
-        # При навигации текущее аудио и незавершённая
-        # подготовка аудио должны быть остановлены.
+        """При навигации по сессии выполняет указанное действие.
+        Останавливает текущее аудио и отменяет незавершённую подготовку""" 
+        
         self._cancel_audio_task() 
         self._audio_mixer.stop()
 
@@ -388,6 +396,7 @@ class Player:
     # ---------------------------------------------------------
 
     def update(self, dt: int):
+        """Обновляет состояние воспроизведения и выполняет действия сценария."""
 
         if self._state != PlayerState.PLAYING:
             return

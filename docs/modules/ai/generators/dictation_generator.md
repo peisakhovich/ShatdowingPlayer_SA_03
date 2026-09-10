@@ -1,0 +1,3 @@
+# Dictation Generator
+
+::: core.config

@@ -24,6 +24,7 @@ class DictationValidationError(Exception):
 
 
 class DictationValidator:
+    """Класс для проверки корректности сегментации диктовки."""
 
     @staticmethod
     def normalize_text(text):

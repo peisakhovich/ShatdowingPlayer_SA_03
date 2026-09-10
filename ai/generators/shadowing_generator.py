@@ -22,6 +22,7 @@ from ai.shadowing_plan import ShadowingPlanBuilder
 
 class ShadowingGenerator:
 
+    """Генератор учебного плана для сценария Shadowing."""
     def __init__(self, client=None):
         self.segmenter = ShadowingSegmenter(
             client=client
@@ -56,6 +57,9 @@ class ShadowingGenerator:
         set_description: str = "Generated shadowing session",
     ) -> dict:
 
+        """
+        Сформировать учебный план Shadowing.
+        """
         # --------------------------------------------------
         # AI segmentation + translation
         # --------------------------------------------------

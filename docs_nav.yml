@@ -1,0 +1,71 @@
+nav:
+  - Sound Language Studio: index.md
+  - Modules:
+      - AI:
+          - Generators:
+              - Dictation Generator: modules/ai/generators/dictation_generator.md
+              - Generator Router: modules/ai/generators/generator_router.md
+              - Shadowing Generator: modules/ai/generators/shadowing_generator.md
+          - Dictation Pause: modules/ai/dictation_pause.md
+          - Dictation Plan: modules/ai/dictation_plan.md
+          - Dictation Segmenter: modules/ai/dictation_segmenter.md
+          - Dictation Validator: modules/ai/dictation_validator.md
+          - Language Detector: modules/ai/language_detector.md
+          - Models: modules/ai/models.md
+          - OpenAI Client: modules/ai/openai_client.md
+          - Shadowing Pause: modules/ai/shadowing_pause.md
+          - Shadowing Plan: modules/ai/shadowing_plan.md
+          - Shadowing Segmenter: modules/ai/shadowing_segmenter.md
+          - Shadowing Validator: modules/ai/shadowing_validator.md
+      - API:
+          - Client: modules/api/client.md
+      - Audio:
+          - Async Runner: modules/audio/async_runner.md
+          - Cache: modules/audio/cache.md
+          - Mixer: modules/audio/mixer.md
+          - Player: modules/audio/player.md
+          - Provider: modules/audio/provider.md
+          - Scenario Provider: modules/audio/scenario_provider.md
+          - TTS: modules/audio/tts.md
+      - Core:
+          - Application: modules/core/application.md
+          - Config: modules/core/config.md
+          - Logger: modules/core/logger.md
+      - GUI:
+          - Dialogs:
+              - Dialog: modules/gui/dialogs/dialog.md
+              - Exit Dialog: modules/gui/dialogs/exit_dialog.md
+          - Panels:
+              - Control Panel: modules/gui/panels/control_panel.md
+              - Control Panel Db: modules/gui/panels/control_panel_db.md
+          - Services:
+              - Font Manager: modules/gui/services/font_manager.md
+              - Image Loader: modules/gui/services/image_loader.md
+          - Widgets:
+              - Busy Indicator: modules/gui/widgets/busy_indicator.md
+              - Check Box: modules/gui/widgets/check_box.md
+              - Hint: modules/gui/widgets/hint.md
+              - Horizontal Slider: modules/gui/widgets/horizontal_slider.md
+              - Image Button: modules/gui/widgets/image_button.md
+              - Label: modules/gui/widgets/label.md
+              - List Selection: modules/gui/widgets/list_selection.md
+              - Text Button: modules/gui/widgets/text_button.md
+              - Text Edit: modules/gui/widgets/text_edit.md
+              - Text Window: modules/gui/widgets/text_window.md
+          - Database Window: modules/gui/database_window.md
+          - File Dialog: modules/gui/file_dialog.md
+          - Layout: modules/gui/layout.md
+          - Login Register Window: modules/gui/login_register_window.md
+          - Main Window: modules/gui/main_window.md
+          - Manager: modules/gui/manager.md
+          - Settings Window: modules/gui/settings_window.md
+          - Splash Screen: modules/gui/splash_screen.md
+          - Theme: modules/gui/theme.md
+      - Session:
+          - Providers:
+              - Guest Provider: modules/session/providers/guest_provider.md
+          - Session: modules/session/session.md
+          - Session Excel: modules/session/session_excel.md
+      - Utils:
+          - Paths: modules/utils/paths.md
+      - Main: modules/main.md
