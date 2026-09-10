@@ -1,9 +1,23 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    ai.shadowing_validator
+
+Purpose:
+    Validates AI-generated Shadowing segmentation by checking the
+    original text, chunks, translations, chunk count, and text preservation.
+
+ru:
+    Проверяет результат AI-сегментации Shadowing: исходный текст,
+    фрагменты, переводы, их количество и сохранность исходного текста.
+"""
 from __future__ import annotations
 
 import re
 
 from ai.models import ShadowingSegmentation
-
 
 class ShadowingValidator:
     """Проверяет результат ShadowingSegmenter."""

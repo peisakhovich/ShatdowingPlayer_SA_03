@@ -1,3 +1,18 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    ai.generators.generator_router
+
+Purpose:
+    Selects and creates the appropriate training-plan generator
+    according to the selected learning scenario.
+
+ru:
+    Выбирает и создаёт соответствующий генератор учебного плана
+    в зависимости от выбранного сценария обучения.
+"""
 from __future__ import annotations
 
 from ai.generators.dictation_generator import DictationGenerator

@@ -1,3 +1,23 @@
+"""
+Sound Language Studio
+
+---------------------
+
+Module:
+
+    utils.paths
+
+Purpose:
+
+    Defines centralized filesystem paths for the project root,
+    GUI assets, images, fonts, and application data.
+
+ru:
+
+    Определяет централизованные пути к корню проекта, ресурсам GUI,
+    изображениям, шрифтам и данным приложения.
+
+"""
 from pathlib import Path
 
 

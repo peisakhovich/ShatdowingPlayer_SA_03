@@ -1,3 +1,19 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    ai.shadowing_pause
+
+Purpose:
+    Calculates pause duration for shadowing exercises based on text
+    length, word count, punctuation, and a configurable factor.
+
+ru:
+    Рассчитывает длительность паузы для упражнения Shadowing
+    на основе длины текста, количества слов, знаков препинания
+    и настраиваемого коэффициента.
+"""
 def calculate_shadowing_pause(
     text: str,
     factor: float = 1.0,

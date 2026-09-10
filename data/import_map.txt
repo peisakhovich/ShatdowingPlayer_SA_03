@@ -1,0 +1,1356 @@
+SOUND LANGUAGE STUDIO
+PROJECT IMPORT MAP
+======================================================================
+
+Project root: C:\Users\liudm\SadowingApp\SA_03\SA_03
+Python files scanned: 94
+Project modules found: 94
+
+======================================================================
+APPLICATION MODULES
+======================================================================
+    ai
+    ai.dictation_pause
+    ai.dictation_plan
+    ai.dictation_segmenter
+    ai.dictation_validator
+    ai.generators.dictation_generator
+    ai.generators.generator_router
+    ai.generators.shadowing_generator
+    ai.language_detector
+    ai.models
+    ai.openai_client
+    ai.shadowing_pause
+    ai.shadowing_plan
+    ai.shadowing_segmenter
+    ai.shadowing_validator
+    api
+    api.client
+    audio
+    audio.async_runner
+    audio.cache
+    audio.mixer
+    audio.player
+    audio.provider
+    audio.scenario_provider
+    audio.tts
+    core
+    core.application
+    core.config
+    core.logger
+    gui
+    gui.database_window
+    gui.dialogs
+    gui.dialogs.dialog
+    gui.dialogs.exit_dialog
+    gui.file_dialog
+    gui.layout
+    gui.login_register_window
+    gui.main_window
+    gui.manager
+    gui.panels
+    gui.panels.control_panel
+    gui.panels.control_panel_db
+    gui.services.font_manager
+    gui.services.image_loader
+    gui.settings_window
+    gui.splash_screen
+    gui.theme
+    gui.widgets
+    gui.widgets.busy_indicator
+    gui.widgets.check_box
+    gui.widgets.hint
+    gui.widgets.horizontal_slider
+    gui.widgets.image_button
+    gui.widgets.label
+    gui.widgets.list_selection
+    gui.widgets.text_button
+    gui.widgets.text_edit
+    gui.widgets.text_window
+    main
+    session
+    session.providers
+    session.providers.guest_provider
+    session.session
+    session.session_excel
+    utils
+    utils.paths
+
+======================================================================
+INTERNAL DEPENDENCIES
+======================================================================
+
+ai
+    → None
+
+ai.dictation_pause
+    → None
+
+ai.dictation_plan
+    → ai.dictation_pause
+
+ai.dictation_segmenter
+    → ai.dictation_validator
+    → ai.models
+    → ai.openai_client
+
+ai.dictation_validator
+    → ai.models
+
+ai.generators.dictation_generator
+    → ai.dictation_plan
+    → ai.dictation_segmenter
+
+ai.generators.generator_router
+    → ai.generators.dictation_generator
+    → ai.generators.shadowing_generator
+
+ai.generators.shadowing_generator
+    → ai.shadowing_plan
+    → ai.shadowing_segmenter
+
+ai.language_detector
+    → ai.models
+    → ai.openai_client
+
+ai.models
+    → None
+
+ai.openai_client
+    → None
+
+ai.shadowing_pause
+    → None
+
+ai.shadowing_plan
+    → ai.shadowing_pause
+
+ai.shadowing_segmenter
+    → ai.models
+    → ai.openai_client
+    → ai.shadowing_validator
+
+ai.shadowing_validator
+    → ai.models
+
+api
+    → None
+
+api.client
+    → None
+
+audio
+    → None
+
+audio.async_runner
+    → None
+
+audio.cache
+    → core.config
+
+audio.mixer
+    → None
+
+audio.player
+    → audio.async_runner
+    → audio.cache
+    → audio.mixer
+    → audio.provider
+    → audio.tts
+    → core.logger
+
+audio.provider
+    → audio.cache
+    → audio.tts
+    → core.logger
+
+audio.scenario_provider
+    → core.logger
+
+audio.tts
+    → None
+
+core
+    → None
+
+core.application
+    → audio.player
+    → audio.scenario_provider
+    → core.config
+    → core.logger
+    → gui.layout
+    → gui.main_window
+    → gui.manager
+    → gui.services.font_manager
+    → gui.services.image_loader
+    → gui.splash_screen
+    → session.providers.guest_provider
+    → session.session
+
+core.config
+    → None
+
+core.logger
+    → core.config
+
+gui
+    → None
+
+gui.database_window
+    → api.client
+    → audio.async_runner
+    → audio.tts
+    → core.config
+    → core.logger
+    → gui.dialogs.dialog
+    → gui.file_dialog
+    → gui.layout
+    → gui.login_register_window
+    → gui.panels.control_panel_db
+    → gui.theme
+    → gui.widgets.busy_indicator
+    → gui.widgets.list_selection
+    → gui.widgets.text_edit
+    → session.session_excel
+
+gui.dialogs
+    → None
+
+gui.dialogs.dialog
+    → core.config
+    → gui.theme
+    → gui.widgets.text_button
+
+gui.dialogs.exit_dialog
+    → None
+
+gui.file_dialog
+    → None
+
+gui.layout
+    → None
+
+gui.login_register_window
+    → gui.theme
+    → gui.widgets.text_edit
+
+gui.main_window
+    → core.config
+    → core.logger
+    → gui.database_window
+    → gui.dialogs.dialog
+    → gui.layout
+    → gui.panels.control_panel
+    → gui.settings_window
+    → gui.widgets.text_window
+
+gui.manager
+    → None
+
+gui.panels
+    → None
+
+gui.panels.control_panel
+    → core.config
+    → gui.layout
+    → gui.theme
+    → gui.widgets.check_box
+    → gui.widgets.hint
+    → gui.widgets.horizontal_slider
+    → gui.widgets.image_button
+    → gui.widgets.text_button
+
+gui.panels.control_panel_db
+    → core.config
+    → gui.layout
+    → gui.theme
+    → gui.widgets.hint
+    → gui.widgets.image_button
+
+gui.services.font_manager
+    → core.config
+
+gui.services.image_loader
+    → None
+
+gui.settings_window
+    → ai.generators.generator_router
+    → ai.language_detector
+    → audio.async_runner
+    → audio.tts
+    → core.config
+    → core.logger
+    → gui.dialogs.dialog
+    → gui.file_dialog
+    → gui.layout
+    → gui.theme
+    → gui.widgets.busy_indicator
+    → gui.widgets.list_selection
+    → gui.widgets.text_edit
+
+gui.splash_screen
+    → core.config
+
+gui.theme
+    → None
+
+gui.widgets
+    → None
+
+gui.widgets.busy_indicator
+    → gui.theme
+
+gui.widgets.check_box
+    → gui.theme
+
+gui.widgets.hint
+    → gui.theme
+
+gui.widgets.horizontal_slider
+    → gui.theme
+
+gui.widgets.image_button
+    → None
+
+gui.widgets.label
+    → None
+
+gui.widgets.list_selection
+    → None
+
+gui.widgets.text_button
+    → gui.theme
+
+gui.widgets.text_edit
+    → gui.theme
+
+gui.widgets.text_window
+    → gui.theme
+
+main
+    → core.application
+
+project_dependencies
+    → None
+
+project_import_map
+    → None
+
+project_tree
+    → None
+
+session
+    → None
+
+session.providers
+    → None
+
+session.providers.guest_provider
+    → None
+
+session.session
+    → None
+
+session.session_excel
+    → None
+
+test_environment
+    → None
+
+tests
+    → None
+
+tests.test_api_client
+    → api.client
+    → core.config
+
+tests.test_async_runner
+    → audio.async_runner
+
+tests.test_asyncio
+    → None
+
+tests.test_asyncio_loop
+    → None
+
+tests.test_audio
+    → audio.cache
+    → audio.mixer
+    → audio.provider
+    → audio.tts
+
+tests.test_auth
+    → api.client
+    → core.config
+
+tests.test_database
+    → None
+
+tests.test_dictation_pause
+    → ai.dictation_pause
+
+tests.test_dictation_plan
+    → ai.dictation_plan
+
+tests.test_dictation_segmentation
+    → ai.dictation_segmenter
+
+tests.test_dictation_validator
+    → ai.dictation_validator
+    → ai.models
+
+tests.test_franch_voice
+    → None
+
+tests.test_generator_router
+    → ai.generators.dictation_generator
+    → ai.generators.generator_router
+    → ai.generators.shadowing_generator
+
+tests.test_import_to_session
+    → session.session
+    → session.session_excel
+
+tests.test_openai
+    → ai.openai_client
+
+tests.test_real_session_excel
+    → audio.tts
+    → session.session
+    → session.session_excel
+
+tests.test_session_excel
+    → session.session_excel
+
+tests.test_shadowing_generator
+    → ai.generators.shadowing_generator
+
+tests.test_shadowing_pause
+    → ai.shadowing_pause
+
+tests.test_shadowing_segmenter
+    → ai.shadowing_segmenter
+
+tests.test_state
+    → None
+
+tests.test_tts_languages
+    → audio.tts
+
+tests.test_tts_voices
+    → audio.tts
+
+utils
+    → None
+
+utils.paths
+    → None
+
+======================================================================
+PYTHON STANDARD LIBRARY
+======================================================================
+
+ai
+    → None
+
+ai.dictation_pause
+    → None
+
+ai.dictation_plan
+    → __future__
+    → json
+    → pathlib
+
+ai.dictation_segmenter
+    → None
+
+ai.dictation_validator
+    → re
+
+ai.generators.dictation_generator
+    → __future__
+
+ai.generators.generator_router
+    → __future__
+
+ai.generators.shadowing_generator
+    → __future__
+
+ai.language_detector
+    → None
+
+ai.models
+    → None
+
+ai.openai_client
+    → None
+
+ai.shadowing_pause
+    → None
+
+ai.shadowing_plan
+    → __future__
+    → json
+    → pathlib
+
+ai.shadowing_segmenter
+    → __future__
+
+ai.shadowing_validator
+    → __future__
+    → re
+
+api
+    → None
+
+api.client
+    → os
+
+audio
+    → None
+
+audio.async_runner
+    → asyncio
+    → threading
+
+audio.cache
+    → hashlib
+    → pathlib
+    → shutil
+
+audio.mixer
+    → None
+
+audio.player
+    → asyncio
+    → datetime
+
+audio.provider
+    → pathlib
+    → tempfile
+
+audio.scenario_provider
+    → json
+
+audio.tts
+    → None
+
+core
+    → None
+
+core.application
+    → os
+
+core.config
+    → pathlib
+
+core.logger
+    → logging
+
+gui
+    → None
+
+gui.database_window
+    → __future__
+    → asyncio
+
+gui.dialogs
+    → None
+
+gui.dialogs.dialog
+    → None
+
+gui.dialogs.exit_dialog
+    → None
+
+gui.file_dialog
+    → tkinter
+
+gui.layout
+    → None
+
+gui.login_register_window
+    → None
+
+gui.main_window
+    → None
+
+gui.manager
+    → None
+
+gui.panels
+    → None
+
+gui.panels.control_panel
+    → None
+
+gui.panels.control_panel_db
+    → None
+
+gui.services.font_manager
+    → os
+
+gui.services.image_loader
+    → os
+
+gui.settings_window
+    → __future__
+    → asyncio
+    → pathlib
+
+gui.splash_screen
+    → pathlib
+
+gui.theme
+    → None
+
+gui.widgets
+    → None
+
+gui.widgets.busy_indicator
+    → math
+
+gui.widgets.check_box
+    → None
+
+gui.widgets.hint
+    → None
+
+gui.widgets.horizontal_slider
+    → None
+
+gui.widgets.image_button
+    → None
+
+gui.widgets.label
+    → None
+
+gui.widgets.list_selection
+    → __future__
+
+gui.widgets.text_button
+    → None
+
+gui.widgets.text_edit
+    → None
+
+gui.widgets.text_window
+    → None
+
+main
+    → None
+
+project_dependencies
+    → __future__
+    → ast
+    → pathlib
+    → sys
+
+project_import_map
+    → __future__
+    → ast
+    → pathlib
+    → sys
+
+project_tree
+    → pathlib
+
+session
+    → None
+
+session.providers
+    → None
+
+session.providers.guest_provider
+    → __future__
+    → json
+    → pathlib
+
+session.session
+    → __future__
+    → json
+    → pathlib
+    → random
+
+session.session_excel
+    → __future__
+    → pathlib
+
+test_environment
+    → None
+
+tests
+    → None
+
+tests.test_api_client
+    → os
+
+tests.test_async_runner
+    → asyncio
+    → time
+
+tests.test_asyncio
+    → asyncio
+    → time
+
+tests.test_asyncio_loop
+    → asyncio
+    → threading
+    → time
+
+tests.test_audio
+    → asyncio
+    → time
+
+tests.test_auth
+    → None
+
+tests.test_database
+    → None
+
+tests.test_dictation_pause
+    → None
+
+tests.test_dictation_plan
+    → pathlib
+
+tests.test_dictation_segmentation
+    → None
+
+tests.test_dictation_validator
+    → None
+
+tests.test_franch_voice
+    → asyncio
+
+tests.test_generator_router
+    → None
+
+tests.test_import_to_session
+    → None
+
+tests.test_openai
+    → None
+
+tests.test_real_session_excel
+    → asyncio
+    → pathlib
+
+tests.test_session_excel
+    → pathlib
+
+tests.test_shadowing_generator
+    → None
+
+tests.test_shadowing_pause
+    → None
+
+tests.test_shadowing_segmenter
+    → None
+
+tests.test_state
+    → None
+
+tests.test_tts_languages
+    → asyncio
+
+tests.test_tts_voices
+    → asyncio
+
+utils
+    → None
+
+utils.paths
+    → pathlib
+
+======================================================================
+THIRD-PARTY LIBRARIES
+======================================================================
+
+ai
+    → None
+
+ai.dictation_pause
+    → None
+
+ai.dictation_plan
+    → None
+
+ai.dictation_segmenter
+    → None
+
+ai.dictation_validator
+    → None
+
+ai.generators.dictation_generator
+    → None
+
+ai.generators.generator_router
+    → None
+
+ai.generators.shadowing_generator
+    → None
+
+ai.language_detector
+    → None
+
+ai.models
+    → pydantic
+
+ai.openai_client
+    → openai
+
+ai.shadowing_pause
+    → None
+
+ai.shadowing_plan
+    → None
+
+ai.shadowing_segmenter
+    → None
+
+ai.shadowing_validator
+    → None
+
+api
+    → None
+
+api.client
+    → httpx
+
+audio
+    → None
+
+audio.async_runner
+    → None
+
+audio.cache
+    → None
+
+audio.mixer
+    → pygame
+
+audio.player
+    → None
+
+audio.provider
+    → None
+
+audio.scenario_provider
+    → None
+
+audio.tts
+    → edge_tts
+
+core
+    → None
+
+core.application
+    → pygame
+
+core.config
+    → None
+
+core.logger
+    → None
+
+gui
+    → None
+
+gui.database_window
+    → pygame
+
+gui.dialogs
+    → None
+
+gui.dialogs.dialog
+    → pygame
+
+gui.dialogs.exit_dialog
+    → pygame
+
+gui.file_dialog
+    → None
+
+gui.layout
+    → pygame
+
+gui.login_register_window
+    → pygame
+
+gui.main_window
+    → pygame
+
+gui.manager
+    → pygame_gui
+
+gui.panels
+    → None
+
+gui.panels.control_panel
+    → pygame
+
+gui.panels.control_panel_db
+    → pygame
+
+gui.services.font_manager
+    → pygame
+
+gui.services.image_loader
+    → pygame
+
+gui.settings_window
+    → pygame
+
+gui.splash_screen
+    → pygame
+
+gui.theme
+    → pygame
+
+gui.widgets
+    → None
+
+gui.widgets.busy_indicator
+    → pygame
+
+gui.widgets.check_box
+    → pygame
+
+gui.widgets.hint
+    → pygame
+
+gui.widgets.horizontal_slider
+    → pygame
+
+gui.widgets.image_button
+    → pygame
+
+gui.widgets.label
+    → None
+
+gui.widgets.list_selection
+    → pygame
+
+gui.widgets.text_button
+    → pygame
+
+gui.widgets.text_edit
+    → pygame
+
+gui.widgets.text_window
+    → pygame
+
+main
+    → dotenv
+
+project_dependencies
+    → None
+
+project_import_map
+    → None
+
+project_tree
+    → None
+
+session
+    → None
+
+session.providers
+    → None
+
+session.providers.guest_provider
+    → None
+
+session.session
+    → None
+
+session.session_excel
+    → openpyxl
+
+test_environment
+    → pygame
+    → pygame_gui
+
+tests
+    → None
+
+tests.test_api_client
+    → dotenv
+
+tests.test_async_runner
+    → None
+
+tests.test_asyncio
+    → None
+
+tests.test_asyncio_loop
+    → None
+
+tests.test_audio
+    → None
+
+tests.test_auth
+    → dotenv
+
+tests.test_database
+    → None
+
+tests.test_dictation_pause
+    → None
+
+tests.test_dictation_plan
+    → None
+
+tests.test_dictation_segmentation
+    → dotenv
+
+tests.test_dictation_validator
+    → None
+
+tests.test_franch_voice
+    → edge_tts
+
+tests.test_generator_router
+    → dotenv
+
+tests.test_import_to_session
+    → openpyxl
+
+tests.test_openai
+    → dotenv
+
+tests.test_real_session_excel
+    → None
+
+tests.test_session_excel
+    → openpyxl
+
+tests.test_shadowing_generator
+    → dotenv
+
+tests.test_shadowing_pause
+    → None
+
+tests.test_shadowing_segmenter
+    → dotenv
+
+tests.test_state
+    → None
+
+tests.test_tts_languages
+    → None
+
+tests.test_tts_voices
+    → None
+
+utils
+    → None
+
+utils.paths
+    → None
+
+======================================================================
+MODULE USAGE
+======================================================================
+
+ai.dictation_pause
+    → ai.dictation_plan
+    → tests.test_dictation_pause
+
+ai.dictation_plan
+    → ai.generators.dictation_generator
+    → tests.test_dictation_plan
+
+ai.dictation_segmenter
+    → ai.generators.dictation_generator
+    → tests.test_dictation_segmentation
+
+ai.dictation_validator
+    → ai.dictation_segmenter
+    → tests.test_dictation_validator
+
+ai.generators.dictation_generator
+    → ai.generators.generator_router
+    → tests.test_generator_router
+
+ai.generators.generator_router
+    → gui.settings_window
+    → tests.test_generator_router
+
+ai.generators.shadowing_generator
+    → ai.generators.generator_router
+    → tests.test_generator_router
+    → tests.test_shadowing_generator
+
+ai.language_detector
+    → gui.settings_window
+
+ai.models
+    → ai.dictation_segmenter
+    → ai.dictation_validator
+    → ai.language_detector
+    → ai.shadowing_segmenter
+    → ai.shadowing_validator
+    → tests.test_dictation_validator
+
+ai.openai_client
+    → ai.dictation_segmenter
+    → ai.language_detector
+    → ai.shadowing_segmenter
+    → tests.test_openai
+
+ai.shadowing_pause
+    → ai.shadowing_plan
+    → tests.test_shadowing_pause
+
+ai.shadowing_plan
+    → ai.generators.shadowing_generator
+
+ai.shadowing_segmenter
+    → ai.generators.shadowing_generator
+    → tests.test_shadowing_segmenter
+
+ai.shadowing_validator
+    → ai.shadowing_segmenter
+
+api.client
+    → gui.database_window
+    → tests.test_api_client
+    → tests.test_auth
+
+audio.async_runner
+    → audio.player
+    → gui.database_window
+    → gui.settings_window
+    → tests.test_async_runner
+
+audio.cache
+    → audio.player
+    → audio.provider
+    → tests.test_audio
+
+audio.mixer
+    → audio.player
+    → tests.test_audio
+
+audio.player
+    → core.application
+
+audio.provider
+    → audio.player
+    → tests.test_audio
+
+audio.scenario_provider
+    → core.application
+
+audio.tts
+    → audio.player
+    → audio.provider
+    → gui.database_window
+    → gui.settings_window
+    → tests.test_audio
+    → tests.test_real_session_excel
+    → tests.test_tts_languages
+    → tests.test_tts_voices
+
+core.application
+    → main
+
+core.config
+    → audio.cache
+    → core.application
+    → core.logger
+    → gui.database_window
+    → gui.dialogs.dialog
+    → gui.main_window
+    → gui.panels.control_panel
+    → gui.panels.control_panel_db
+    → gui.services.font_manager
+    → gui.settings_window
+    → gui.splash_screen
+    → tests.test_api_client
+    → tests.test_auth
+
+core.logger
+    → audio.player
+    → audio.provider
+    → audio.scenario_provider
+    → core.application
+    → gui.database_window
+    → gui.main_window
+    → gui.settings_window
+
+gui.database_window
+    → gui.main_window
+
+gui.dialogs.dialog
+    → gui.database_window
+    → gui.main_window
+    → gui.settings_window
+
+gui.file_dialog
+    → gui.database_window
+    → gui.settings_window
+
+gui.layout
+    → core.application
+    → gui.database_window
+    → gui.main_window
+    → gui.panels.control_panel
+    → gui.panels.control_panel_db
+    → gui.settings_window
+
+gui.login_register_window
+    → gui.database_window
+
+gui.main_window
+    → core.application
+
+gui.manager
+    → core.application
+
+gui.panels.control_panel
+    → gui.main_window
+
+gui.panels.control_panel_db
+    → gui.database_window
+
+gui.services.font_manager
+    → core.application
+
+gui.services.image_loader
+    → core.application
+
+gui.settings_window
+    → gui.main_window
+
+gui.splash_screen
+    → core.application
+
+gui.theme
+    → gui.database_window
+    → gui.dialogs.dialog
+    → gui.login_register_window
+    → gui.panels.control_panel
+    → gui.panels.control_panel_db
+    → gui.settings_window
+    → gui.widgets.busy_indicator
+    → gui.widgets.check_box
+    → gui.widgets.hint
+    → gui.widgets.horizontal_slider
+    → gui.widgets.text_button
+    → gui.widgets.text_edit
+    → gui.widgets.text_window
+
+gui.widgets.busy_indicator
+    → gui.database_window
+    → gui.settings_window
+
+gui.widgets.check_box
+    → gui.panels.control_panel
+
+gui.widgets.hint
+    → gui.panels.control_panel
+    → gui.panels.control_panel_db
+
+gui.widgets.horizontal_slider
+    → gui.panels.control_panel
+
+gui.widgets.image_button
+    → gui.panels.control_panel
+    → gui.panels.control_panel_db
+
+gui.widgets.list_selection
+    → gui.database_window
+    → gui.settings_window
+
+gui.widgets.text_button
+    → gui.dialogs.dialog
+    → gui.panels.control_panel
+
+gui.widgets.text_edit
+    → gui.database_window
+    → gui.login_register_window
+    → gui.settings_window
+
+gui.widgets.text_window
+    → gui.main_window
+
+session.providers.guest_provider
+    → core.application
+
+session.session
+    → core.application
+    → tests.test_import_to_session
+    → tests.test_real_session_excel
+
+session.session_excel
+    → gui.database_window
+    → tests.test_import_to_session
+    → tests.test_real_session_excel
+    → tests.test_session_excel
+
+======================================================================
+ARCHITECTURAL ROOTS
+======================================================================
+    ai
+    api
+    audio
+    core
+    gui
+    gui.dialogs
+    gui.dialogs.exit_dialog
+    gui.panels
+    gui.widgets
+    gui.widgets.label
+    main
+    session
+    session.providers
+    utils
+    utils.paths
+
+======================================================================
+DEVELOPMENT / TEST MODULES
+======================================================================
+    project_dependencies
+    project_import_map
+    project_tree
+    test_environment
+    tests
+    tests.test_api_client
+    tests.test_async_runner
+    tests.test_asyncio
+    tests.test_asyncio_loop
+    tests.test_audio
+    tests.test_auth
+    tests.test_database
+    tests.test_dictation_pause
+    tests.test_dictation_plan
+    tests.test_dictation_segmentation
+    tests.test_dictation_validator
+    tests.test_franch_voice
+    tests.test_generator_router
+    tests.test_import_to_session
+    tests.test_openai
+    tests.test_real_session_excel
+    tests.test_session_excel
+    tests.test_shadowing_generator
+    tests.test_shadowing_pause
+    tests.test_shadowing_segmenter
+    tests.test_state
+    tests.test_tts_languages
+    tests.test_tts_voices
+
+======================================================================
+SUMMARY
+======================================================================
+Python files scanned       : 94
+Project modules found      : 94
+Application modules        : 66
+Development modules        : 28
+Modules with internal imports                   : 51
+Modules without internal imports                   : 43
+Standard-library modules   : 18
+Third-party libraries      : 8
+Architectural roots        : 15

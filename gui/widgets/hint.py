@@ -1,3 +1,23 @@
+"""
+Sound Language Studio
+
+---------------------
+
+Module:
+
+    gui.widgets.hint
+
+Purpose:
+
+    Displays delayed contextual hints for interface controls when the
+    mouse cursor remains over a button.
+
+ru:
+
+    Отображает контекстные подсказки для элементов интерфейса после
+    заданной задержки при наведении курсора на кнопку.
+
+"""
 import pygame
 from gui.theme import Theme
 

@@ -1,3 +1,23 @@
+"""
+Sound Language Studio
+
+---------------------
+
+Module:
+
+    gui.widgets.check_box
+
+Purpose:
+
+    Provides a clickable checkbox control with hover and pressed states,
+    configurable appearance, and a text caption.
+
+ru:
+
+    Предоставляет интерактивный элемент CheckBox с состояниями наведения
+    и нажатия, настраиваемым оформлением и текстовой подписью.
+
+"""
 import pygame
 
 from gui.theme import Theme

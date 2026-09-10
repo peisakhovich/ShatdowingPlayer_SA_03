@@ -1,9 +1,26 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    ai.shadowing_plan
+
+Purpose:
+    Builds and saves Shadowing training plans from segmented text,
+    including translations, language levels, voice settings,
+    repetition parameters, and calculated pauses.
+
+ru:
+    Формирует и сохраняет учебные планы для сценария Shadowing
+    на основе сегментированного текста, включая переводы, уровни языка,
+    параметры голосов, повторения и рассчитанные паузы.
+"""
 from __future__ import annotations
 
 import json
-from pathlib import Path
 
 from ai.shadowing_pause import calculate_shadowing_pause
+from pathlib import Path
 
 
 class ShadowingPlanBuilder:

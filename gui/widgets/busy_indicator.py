@@ -1,3 +1,23 @@
+"""
+Sound Language Studio
+
+---------------------
+
+Module:
+
+    gui.widgets.busy_indicator
+
+Purpose:
+
+    Displays a busy overlay with an animated spinner and a status message
+    while a background operation is in progress.
+
+ru:
+
+    Отображает блокирующий экран с анимированным индикатором выполнения
+    и сообщением о состоянии фоновой операции.
+
+"""
 import math
 import pygame
 

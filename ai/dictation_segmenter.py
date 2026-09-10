@@ -1,3 +1,19 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    ai.dictation_segmenter
+
+Purpose:
+    Uses OpenAI to segment source text into natural dictation chunks,
+    assigns a CEFR language level to each chunk, and validates the result.
+
+ru:
+    Использует OpenAI для разбиения исходного текста на естественные
+    фрагменты диктовки, определяет уровень CEFR для каждого фрагмента
+    и проверяет полученный результат.
+"""
 from ai.models import DictationSegmentation
 from ai.openai_client import OpenAIClient
 from ai.dictation_validator import DictationValidator

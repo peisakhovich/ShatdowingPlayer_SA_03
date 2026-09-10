@@ -1,3 +1,19 @@
+
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    ai.dictation_validator
+
+Purpose:
+    Validates AI-generated dictation segmentation by checking the
+    original text, chunk count, chunk content, and text reconstruction.
+
+ru:
+    Проверяет результат AI-сегментации диктовки: исходный текст,
+    количество фрагментов, их содержимое и точность восстановления текста.
+"""
 import re
 
 from ai.models import DictationSegmentation

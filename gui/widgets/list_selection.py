@@ -1,3 +1,23 @@
+"""
+Sound Language Studio
+
+---------------------
+
+Module:
+
+    gui.widgets.list_selection
+
+Purpose:
+
+    Provides a dropdown list control with selection, scrolling,
+    mouse interaction, and visual state rendering.
+
+ru:
+
+    Предоставляет выпадающий список с выбором элементов, прокруткой,
+    обработкой мыши и визуальным отображением состояний.
+
+"""
 from __future__ import annotations
 import pygame
 

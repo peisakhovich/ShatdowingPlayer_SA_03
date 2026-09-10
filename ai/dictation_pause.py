@@ -1,3 +1,18 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    ai.dictation_pause
+
+Purpose:
+    Calculates pause duration for dictation exercises based on text
+    length, word count, punctuation, and a configurable factor.
+
+ru:
+    Рассчитывает длительность паузы для диктовки на основе длины текста,
+    количества слов, знаков препинания и настраиваемого коэффициента.
+"""
 def calculate_dictation_pause(
     text: str,
     factor: float = 2.0,

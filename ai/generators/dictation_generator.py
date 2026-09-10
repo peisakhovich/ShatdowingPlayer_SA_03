@@ -1,3 +1,18 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    ai.generators.dictation_generator
+
+Purpose:
+    Generates a Dictation training plan by combining AI text segmentation
+    with plan construction and scenario-specific settings.
+
+ru:
+    Формирует учебный план для сценария Dictation, объединяя
+    AI-сегментацию текста, построение плана и настройки сценария.
+"""
 from __future__ import annotations
 
 from ai.dictation_segmenter import DictationSegmenter

@@ -1,3 +1,19 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    ai.generators.shadowing_generator
+
+Purpose:
+    Generates a Shadowing training plan by combining AI segmentation
+    and translation with plan construction and audio settings.
+
+ru:
+    Формирует учебный план для сценария Shadowing, объединяя
+    AI-сегментацию и перевод текста с построением плана
+    и настройками аудио.
+"""
 from __future__ import annotations
 
 from ai.shadowing_segmenter import ShadowingSegmenter

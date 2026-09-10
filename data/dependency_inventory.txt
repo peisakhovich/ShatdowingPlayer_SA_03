@@ -1,0 +1,277 @@
+SOUND LANGUAGE STUDIO
+DEPENDENCY INVENTORY
+======================================================================
+
+Project root: C:\Users\liudm\SadowingApp\SA_03\SA_03
+Python files scanned: 93
+
+This report contains modules imported by the Python source files.
+Modules are classified as standard library, third-party,
+or project modules.
+
+======================================================================
+PYTHON STANDARD LIBRARY
+======================================================================
+
+__future__
+    ai\dictation_plan.py
+    ai\generators\dictation_generator.py
+    ai\generators\generator_router.py
+    ai\generators\shadowing_generator.py
+    ai\shadowing_plan.py
+    ai\shadowing_segmenter.py
+    ai\shadowing_validator.py
+    gui\database_window.py
+    gui\settings_window.py
+    gui\widgets\list_selection.py
+    project_dependencies.py
+    session\providers\guest_provider.py
+    session\session.py
+    session\session_excel.py
+
+ast
+    project_dependencies.py
+
+asyncio
+    audio\async_runner.py
+    audio\player.py
+    gui\database_window.py
+    gui\settings_window.py
+    tests\test_async_runner.py
+    tests\test_asyncio.py
+    tests\test_asyncio_loop.py
+    tests\test_audio.py
+    tests\test_franch_voice.py
+    tests\test_real_session_excel.py
+    tests\test_tts_languages.py
+    tests\test_tts_voices.py
+
+datetime
+    audio\player.py
+
+hashlib
+    audio\cache.py
+
+json
+    ai\dictation_plan.py
+    ai\shadowing_plan.py
+    audio\scenario_provider.py
+    session\providers\guest_provider.py
+    session\session.py
+
+logging
+    core\logger.py
+
+math
+    gui\widgets\busy_indicator.py
+
+os
+    api\client.py
+    core\application.py
+    gui\services\font_manager.py
+    gui\services\image_loader.py
+    tests\test_api_client.py
+
+pathlib
+    ai\dictation_plan.py
+    ai\shadowing_plan.py
+    audio\cache.py
+    audio\provider.py
+    core\config.py
+    gui\settings_window.py
+    gui\splash_screen.py
+    project_dependencies.py
+    project_tree.py
+    session\providers\guest_provider.py
+    session\session.py
+    session\session_excel.py
+    tests\test_dictation_plan.py
+    tests\test_real_session_excel.py
+    tests\test_session_excel.py
+    utils\paths.py
+
+random
+    session\session.py
+
+re
+    ai\dictation_validator.py
+    ai\shadowing_validator.py
+
+shutil
+    audio\cache.py
+
+sys
+    project_dependencies.py
+
+tempfile
+    audio\provider.py
+
+threading
+    audio\async_runner.py
+    tests\test_asyncio_loop.py
+
+time
+    tests\test_async_runner.py
+    tests\test_asyncio.py
+    tests\test_asyncio_loop.py
+    tests\test_audio.py
+
+tkinter
+    gui\file_dialog.py
+
+======================================================================
+THIRD-PARTY LIBRARIES
+======================================================================
+
+dotenv
+    main.py
+    tests\test_api_client.py
+    tests\test_auth.py
+    tests\test_dictation_segmentation.py
+    tests\test_generator_router.py
+    tests\test_openai.py
+    tests\test_shadowing_generator.py
+    tests\test_shadowing_segmenter.py
+
+edge_tts
+    audio\tts.py
+    tests\test_franch_voice.py
+
+httpx
+    api\client.py
+
+openai
+    ai\openai_client.py
+
+openpyxl
+    session\session_excel.py
+    tests\test_import_to_session.py
+    tests\test_session_excel.py
+
+pydantic
+    ai\models.py
+
+pygame
+    audio\mixer.py
+    core\application.py
+    gui\database_window.py
+    gui\dialogs\dialog.py
+    gui\dialogs\exit_dialog.py
+    gui\layout.py
+    gui\login_register_window.py
+    gui\main_window.py
+    gui\panels\control_panel.py
+    gui\panels\control_panel_db.py
+    gui\services\font_manager.py
+    gui\services\image_loader.py
+    gui\settings_window.py
+    gui\splash_screen.py
+    gui\theme.py
+    gui\widgets\busy_indicator.py
+    gui\widgets\check_box.py
+    gui\widgets\hint.py
+    gui\widgets\horizontal_slider.py
+    gui\widgets\image_button.py
+    gui\widgets\list_selection.py
+    gui\widgets\text_button.py
+    gui\widgets\text_edit.py
+    gui\widgets\text_window.py
+    test_environment.py
+
+pygame_gui
+    gui\manager.py
+    test_environment.py
+
+======================================================================
+PROJECT MODULES
+======================================================================
+
+ai
+    ai\dictation_plan.py
+    ai\dictation_segmenter.py
+    ai\dictation_validator.py
+    ai\generators\dictation_generator.py
+    ai\generators\generator_router.py
+    ai\generators\shadowing_generator.py
+    ai\language_detector.py
+    ai\shadowing_plan.py
+    ai\shadowing_segmenter.py
+    ai\shadowing_validator.py
+    gui\settings_window.py
+    tests\test_dictation_pause.py
+    tests\test_dictation_plan.py
+    tests\test_dictation_segmentation.py
+    tests\test_dictation_validator.py
+    tests\test_generator_router.py
+    tests\test_openai.py
+    tests\test_shadowing_generator.py
+    tests\test_shadowing_pause.py
+    tests\test_shadowing_segmenter.py
+
+api
+    gui\database_window.py
+    tests\test_api_client.py
+    tests\test_auth.py
+
+audio
+    audio\player.py
+    audio\provider.py
+    core\application.py
+    gui\database_window.py
+    gui\settings_window.py
+    tests\test_async_runner.py
+    tests\test_audio.py
+    tests\test_real_session_excel.py
+    tests\test_tts_languages.py
+    tests\test_tts_voices.py
+
+core
+    audio\cache.py
+    audio\player.py
+    audio\provider.py
+    audio\scenario_provider.py
+    core\application.py
+    core\logger.py
+    gui\database_window.py
+    gui\dialogs\dialog.py
+    gui\main_window.py
+    gui\panels\control_panel.py
+    gui\panels\control_panel_db.py
+    gui\services\font_manager.py
+    gui\settings_window.py
+    gui\splash_screen.py
+    main.py
+    tests\test_api_client.py
+    tests\test_auth.py
+
+gui
+    core\application.py
+    gui\database_window.py
+    gui\dialogs\dialog.py
+    gui\login_register_window.py
+    gui\main_window.py
+    gui\panels\control_panel.py
+    gui\panels\control_panel_db.py
+    gui\settings_window.py
+    gui\widgets\busy_indicator.py
+    gui\widgets\check_box.py
+    gui\widgets\hint.py
+    gui\widgets\horizontal_slider.py
+    gui\widgets\text_button.py
+    gui\widgets\text_edit.py
+    gui\widgets\text_window.py
+
+session
+    core\application.py
+    gui\database_window.py
+    tests\test_import_to_session.py
+    tests\test_real_session_excel.py
+    tests\test_session_excel.py
+
+======================================================================
+SUMMARY
+======================================================================
+Python files scanned       : 93
+Standard library modules  : 18
+Third-party libraries     : 8
+Project packages          : 6

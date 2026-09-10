@@ -1,3 +1,23 @@
+"""
+Sound Language Studio
+
+---------------------
+
+Module:
+
+    gui.widgets.text_edit
+
+Purpose:
+
+    Provides a multiline text editing control with keyboard navigation,
+    text selection, clipboard operations, scrolling, and cursor handling.
+
+ru:
+
+    Предоставляет многострочный текстовый редактор с навигацией клавиатурой,
+    выделением текста, операциями буфера обмена, прокруткой и курсором.
+
+"""
 import pygame
 
 from gui.theme import Theme

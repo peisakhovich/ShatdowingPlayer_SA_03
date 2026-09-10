@@ -1,3 +1,18 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    ai.language_detector
+
+Purpose:
+    Detects the language of input text using the OpenAI API and
+    returns its ISO 639-1 language code.
+
+ru:
+    Определяет язык исходного текста с помощью OpenAI API
+    и возвращает его двухбуквенный код ISO 639-1.
+"""
 from ai.models import DetectedLanguage
 from ai.openai_client import OpenAIClient
 
@@ -22,7 +37,6 @@ TEXT:
 
 {text}
 """
-
 
 class LanguageDetector:
 

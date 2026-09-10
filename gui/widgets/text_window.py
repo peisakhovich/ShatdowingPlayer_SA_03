@@ -1,3 +1,23 @@
+"""
+Sound Language Studio
+
+---------------------
+
+Module:
+
+    gui.widgets.text_window
+
+Purpose:
+
+    Provides a read-only text display control with word wrapping,
+    horizontal alignment, and themed rendering.
+
+ru:
+
+    Предоставляет элемент отображения текста с переносом слов,
+    горизонтальным выравниванием и оформлением через Theme.
+
+"""
 import pygame
 from gui.theme import Theme
 

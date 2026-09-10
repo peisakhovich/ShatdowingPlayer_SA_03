@@ -1,3 +1,23 @@
+"""
+Sound Language Studio
+
+---------------------
+
+Module:
+
+    gui.widgets.text_button
+
+Purpose:
+
+    Provides a text-based button with normal, hover, pressed, and
+    keyboard-focused states, configurable geometry, and themed rendering.
+
+ru:
+
+    Предоставляет текстовую кнопку с состояниями normal, hover, pressed
+    и фокусом клавиатуры, настраиваемой геометрией и оформлением через Theme.
+
+"""
 import pygame
 
 from gui.theme import Theme

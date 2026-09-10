@@ -1,3 +1,23 @@
+"""
+Sound Language Studio
+
+---------------------
+
+Module:
+
+    gui.widgets.horizontal_slider
+
+Purpose:
+
+    Provides an interactive horizontal slider for selecting and displaying
+    a numeric value within a defined range.
+
+ru:
+
+    Предоставляет интерактивный горизонтальный ползунок для выбора
+    и отображения числового значения в заданном диапазоне.
+
+"""
 import pygame
 
 from gui.theme import Theme

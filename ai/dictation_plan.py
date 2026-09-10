@@ -1,3 +1,18 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    ai.dictation_plan
+
+Purpose:
+    Builds and saves training plans for the dictation scenario from
+    validated text chunks and calculated pause parameters.
+
+ru:
+    Формирует и сохраняет учебные планы для сценария диктовки
+    на основе проверенных фрагментов текста и рассчитанных пауз.
+"""
 from __future__ import annotations
 
 import json

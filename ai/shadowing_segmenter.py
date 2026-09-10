@@ -1,3 +1,19 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    ai.shadowing_segmenter
+
+Purpose:
+    Uses OpenAI to divide source text into natural Shadowing units,
+    generate translations, assign CEFR levels, and validate the result.
+
+ru:
+    Использует OpenAI для разбиения исходного текста на естественные
+    речевые фрагменты Shadowing, создания переводов, определения уровней
+    CEFR и проверки полученного результата.
+"""
 from __future__ import annotations
 
 from ai.models import ShadowingSegmentation

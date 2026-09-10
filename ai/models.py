@@ -1,3 +1,18 @@
+"""
+Sound Language Studio
+---------------------
+
+Module:
+    ai.models
+
+Purpose:
+    Defines Pydantic data models used for language detection,
+    text segmentation, and training-plan generation.
+
+ru:
+    Содержит модели Pydantic для определения языка,
+    сегментации текста и генерации учебных планов.
+"""
 from pydantic import BaseModel
 
 

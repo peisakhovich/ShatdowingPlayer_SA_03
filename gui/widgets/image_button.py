@@ -1,3 +1,24 @@
+"""
+Sound Language Studio
+
+---------------------
+
+Module:
+
+    gui.widgets.image_button
+
+Purpose:
+
+    Provides an image-based button with normal, hover, and pressed states,
+    mouse interaction, optional hints, and click state polling.
+
+ru:
+
+    Предоставляет кнопку на основе изображения с состояниями normal,
+    hover и pressed, обработкой мыши, опциональной подсказкой и
+    возможностью опроса состояния нажатия.
+
+"""
 import pygame
 
 
