@@ -11,8 +11,18 @@ IMPORT_MAP_FILE = (
 )
 
 
-def _get_internal_dependencies(module_name: str) -> str:
-    """Возвращает внутренние зависимости модуля из import_map.txt."""
+SECTION_NAMES = {
+    "internal_dependencies": "INTERNAL DEPENDENCIES",
+    "standard_library": "PYTHON STANDARD LIBRARY",
+    "third_party": "THIRD-PARTY LIBRARIES",
+}
+
+
+def _get_module_section(
+    module_name: str,
+    section_name: str,
+) -> str:
+    """Возвращает зависимости модуля из указанной секции import_map.txt."""
 
     if not IMPORT_MAP_FILE.exists():
         return (
@@ -26,25 +36,34 @@ def _get_internal_dependencies(module_name: str) -> str:
 
     lines = text.splitlines()
 
-    # Находим начало секции INTERNAL DEPENDENCIES.
-    try:
-        section_start = lines.index(
-            "INTERNAL DEPENDENCIES"
+    section_title = SECTION_NAMES.get(section_name)
+
+    if section_title is None:
+        return (
+            f"> **Unknown import-map section:** "
+            f"`{section_name}`"
         )
+
+    # Находим начало нужной секции.
+    try:
+        section_start = lines.index(section_title)
     except ValueError:
         return (
-            "> **INTERNAL DEPENDENCIES section not found.**"
+            f"> **Section not found:** "
+            f"`{section_title}`"
         )
 
-    # Пропускаем заголовок секции и строки =====.
     index = section_start + 1
 
+    # Пропускаем пустые строки и линии =====.
     while index < len(lines):
-        if lines[index].strip() == "":
+        line = lines[index].strip()
+
+        if not line:
             index += 1
             continue
 
-        if set(lines[index].strip()) == {"="}:
+        if set(line) == {"="}:
             index += 1
             continue
 
@@ -55,15 +74,15 @@ def _get_internal_dependencies(module_name: str) -> str:
 
         line = lines[index]
 
-        # Следующая секция import_map.txt.
+        # Началась следующая секция.
         if (
             line.strip()
-            and not line.startswith(" ")
             and set(line.strip()) == {"="}
         ):
             break
 
         if line.strip() == module_name:
+
             dependencies = []
 
             index += 1
@@ -77,9 +96,14 @@ def _get_internal_dependencies(module_name: str) -> str:
 
                 # Строки с отступом являются зависимостями.
                 if dependency_line.startswith("    "):
-                    dependencies.append(
-                        dependency_line
-                    )
+                    dependency = dependency_line.strip()
+
+                    # None означает отсутствие зависимостей.
+                    if dependency != "→ None":
+                        dependencies.append(
+                            dependency
+                        )
+
                     index += 1
                     continue
 
@@ -89,7 +113,7 @@ def _get_internal_dependencies(module_name: str) -> str:
             if not dependencies:
                 return (
                     f"`{module_name}` "
-                    "has no internal dependencies."
+                    "has no dependencies."
                 )
 
             return (
@@ -104,6 +128,7 @@ def _get_internal_dependencies(module_name: str) -> str:
     return (
         f"> **Module not found:** `{module_name}`"
     )
+
 
 def on_page_markdown(
     markdown,
@@ -121,12 +146,12 @@ def on_page_markdown(
         module_name = match.group(1).strip()
         section_name = match.group(2).strip()
 
-        if section_name == "internal_dependencies":
-            return _get_internal_dependencies(module_name)
-
-        return (
-            f"> **Unknown import-map section:** "
-            f"`{section_name}`"
+        return _get_module_section(
+            module_name,
+            section_name,
         )
 
-    return pattern.sub(replace, markdown)
+    return pattern.sub(
+        replace,
+        markdown,
+    )
