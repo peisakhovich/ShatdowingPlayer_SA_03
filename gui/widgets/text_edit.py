@@ -10,14 +10,17 @@ Module:
 Purpose:
 
     Provides a multiline text editing control with keyboard navigation,
-    text selection, clipboard operations, scrolling, and cursor handling.
+    text selection, clipboard operations, scrolling, cursor handling,
+    and optional password masking.
 
 ru:
 
     Предоставляет многострочный текстовый редактор с навигацией клавиатурой,
-    выделением текста, операциями буфера обмена, прокруткой и курсором.
+    выделением текста, операциями буфера обмена, прокруткой, курсором
+    и дополнительной маской для полей пароля.
 
 """
+
 import pygame
 
 from gui.theme import Theme
@@ -29,8 +32,15 @@ class TextEdit:
         self,
         rect,
         font,
-        text=""
+        text="",
+        password=False
     ):
+
+        # -------------------------
+        # Маска для полей типа пароль
+        # -------------------------
+        self.password = password
+        self.password_char = "•"
 
         # -------------------------
         # Параметры
@@ -94,9 +104,6 @@ class TextEdit:
         # -------------------------
         self.lines = []
 
-     
-       
-
     # ==================================================
     # TEXT
     # ==================================================
@@ -112,6 +119,15 @@ class TextEdit:
     def get_text(self):
 
         return self.text
+
+    # --------------------------------------------------
+
+    def _get_display_text(self, text):
+
+        if not self.password:
+            return text
+
+        return self.password_char * len(text)
 
     # --------------------------------------------------
 
@@ -145,7 +161,6 @@ class TextEdit:
 
             return
 
-
         # --------------------------------------------------
         # Mouse
         # --------------------------------------------------
@@ -171,7 +186,6 @@ class TextEdit:
 
                     pygame.key.stop_text_input()
 
-                    #return
         # --------------------------------------------------
         # Text input
         # --------------------------------------------------
@@ -230,8 +244,6 @@ class TextEdit:
                 self._paste()
                 return
 
-
-
             # -------------------------
             # Navigation / editing
             # -------------------------
@@ -271,7 +283,7 @@ class TextEdit:
                 self._clear_selection()
                 self._move_end()
                 self._start_repeat(event.key)
-                
+
             elif event.key == pygame.K_BACKSPACE:
 
                 self._backspace()
@@ -310,7 +322,10 @@ class TextEdit:
 
                     now = pygame.time.get_ticks()
 
-                    if now - self.repeat_start_time >= self.repeat_delay:
+                    if (
+                        now - self.repeat_start_time
+                        >= self.repeat_delay
+                    ):
 
                         if (
                             now - self.repeat_last_time
@@ -323,11 +338,16 @@ class TextEdit:
                                 self.repeat_key
                             )
 
-        if self.cursor_position != self._last_cursor_position:
+        if (
+            self.cursor_position
+            != self._last_cursor_position
+        ):
 
             self._ensure_cursor_visible()
 
-            self._last_cursor_position = self.cursor_position
+            self._last_cursor_position = (
+                self.cursor_position
+            )
 
     # ==================================================
     # REPEAT
@@ -449,7 +469,6 @@ class TextEdit:
         )
 
         self.cursor_position = line_start
-
         self.cursor_column = 0
 
     # --------------------------------------------------
@@ -464,7 +483,9 @@ class TextEdit:
 
         self.cursor_column = (
             line_end
-            - self._get_line_bounds(self.cursor_position)[0]
+            - self._get_line_bounds(
+                self.cursor_position
+            )[0]
         )
 
     # --------------------------------------------------
@@ -477,9 +498,7 @@ class TextEdit:
 
     def _move_down(self):
 
-
         self._move_vertical(1)
-
 
     # --------------------------------------------------
 
@@ -499,6 +518,7 @@ class TextEdit:
             ):
 
                 current_line = index
+
                 current_column = (
                     self.cursor_position
                     - line["start"]
@@ -621,6 +641,7 @@ class TextEdit:
                         if self.font.size(
                             candidate
                         )[0] > max_width:
+
                             break
 
                         end += 1
@@ -650,6 +671,7 @@ class TextEdit:
                     start < len(paragraph)
                     and paragraph[start] == " "
                 ):
+
                     start += 1
 
             global_position += len(paragraph) + 1
@@ -714,12 +736,13 @@ class TextEdit:
 
         x = (
             self.rect.x
-            + Theme.TE_PADDING_X 
+            + Theme.TE_PADDING_X
         )
 
         y = (
             self.rect.y
-            + Theme.TE_PADDING_Y - self.scroll_y
+            + Theme.TE_PADDING_Y
+            - self.scroll_y
         )
 
         line_height = self.font.get_linesize()
@@ -734,11 +757,12 @@ class TextEdit:
             pygame.Rect(
                 self.rect.x + Theme.TE_BORDER_WIDTH,
                 self.rect.y + Theme.TE_BORDER_WIDTH,
-                self.rect.width - Theme.TE_BORDER_WIDTH * 2,
-                self.rect.height - Theme.TE_BORDER_WIDTH * 2
+                self.rect.width
+                - Theme.TE_BORDER_WIDTH * 2,
+                self.rect.height
+                - Theme.TE_BORDER_WIDTH * 2
             )
         )
-
 
         # -------------------------
         # Selection
@@ -753,7 +777,7 @@ class TextEdit:
 
         # -------------------------
         # Visual lines
-        # -------------------------        
+        # -------------------------
 
         for line in visual_lines:
 
@@ -761,8 +785,12 @@ class TextEdit:
                 line["start"]:line["end"]
             ]
 
+            display_text = self._get_display_text(
+                line_text
+            )
+
             text_surface = self.font.render(
-                line_text,
+                display_text,
                 True,
                 Theme.TE_TEXT_COLOR
             )
@@ -828,21 +856,25 @@ class TextEdit:
                 break
 
         line_text = self.text[
-            visual_lines[cursor_line]["start"]
-            :
+            visual_lines[cursor_line]["start"]:
             visual_lines[cursor_line]["start"]
             + cursor_column
         ]
 
+        display_text = self._get_display_text(
+            line_text
+        )
+
         cursor_x = (
             x
-            + self.font.size(line_text)[0]
+            + self.font.size(display_text)[0]
         )
 
         cursor_y = (
             self.rect.y
             + Theme.TE_PADDING_Y
-            + cursor_line * line_height - self.scroll_y
+            + cursor_line * line_height
+            - self.scroll_y
         )
 
         pygame.draw.line(
@@ -852,6 +884,8 @@ class TextEdit:
             (cursor_x, cursor_y + line_height),
             2
         )
+
+    # --------------------------------------------------
 
     def _set_cursor_from_mouse(self, mouse_pos):
 
@@ -866,7 +900,8 @@ class TextEdit:
         y = (
             mouse_pos[1]
             - self.rect.y
-            - Theme.TE_PADDING_Y + self.scroll_y
+            - Theme.TE_PADDING_Y
+            + self.scroll_y
         )
 
         line_height = self.font.get_linesize()
@@ -913,8 +948,12 @@ class TextEdit:
 
             candidate = line_text[:i]
 
-            candidate_width = self.font.size(
+            display_candidate = self._get_display_text(
                 candidate
+            )
+
+            candidate_width = self.font.size(
+                display_candidate
             )[0]
 
             distance = abs(
@@ -932,9 +971,10 @@ class TextEdit:
 
         self.cursor_column = best_position
 
-    #---------------
-    # Selection
-    #---------------
+    # ==================================================
+    # SELECTION
+    # ==================================================
+
     def _has_selection(self):
 
         return (
@@ -951,8 +991,14 @@ class TextEdit:
             return None, None
 
         return (
-            min(self.selection_start, self.selection_end),
-            max(self.selection_start, self.selection_end)
+            min(
+                self.selection_start,
+                self.selection_end
+            ),
+            max(
+                self.selection_start,
+                self.selection_end
+            )
         )
 
     # --------------------------------------------------
@@ -972,9 +1018,10 @@ class TextEdit:
         self.cursor_position = len(self.text)
         self.cursor_column = None
 
-    #---------------
-    # Deletation
-    #---------------
+    # ==================================================
+    # DELETION
+    # ==================================================
+
     def _delete_selection(self):
 
         start, end = self._selection_bounds()
@@ -993,10 +1040,11 @@ class TextEdit:
         self._clear_selection()
 
         return True
-    
-    #---------------
-    # Draw selection
-    #---------------
+
+    # ==================================================
+    # DRAW SELECTION
+    # ==================================================
+
     def _draw_selection(
         self,
         screen,
@@ -1049,19 +1097,32 @@ class TextEdit:
                 start_column:end_column
             ]
 
+            # Для password-поля ширина выделения
+            # должна соответствовать отображаемой маске.
+            display_before = self._get_display_text(
+                before
+            )
+
+            display_selected = self._get_display_text(
+                selected
+            )
+
             start_x = (
                 x
-                + self.font.size(before)[0]
+                + self.font.size(
+                    display_before
+                )[0]
             )
 
             selection_width = self.font.size(
-                selected
+                display_selected
             )[0]
 
             y = (
                 self.rect.y
                 + Theme.TE_PADDING_Y
-                + line_index * line_height - self.scroll_y
+                + line_index * line_height
+                - self.scroll_y
             )
 
             pygame.draw.rect(
@@ -1073,7 +1134,12 @@ class TextEdit:
                     max(selection_width, 2),
                     line_height
                 )
-            )    
+            )
+
+    # ==================================================
+    # CLIPBOARD
+    # ==================================================
+
     def _copy_selection(self):
 
         start, end = self._selection_bounds()
@@ -1102,12 +1168,13 @@ class TextEdit:
     def _paste(self):
 
         try:
+
             text = pygame.scrap.get_text()
 
         except pygame.error:
+
             return
 
-       
         if not text:
             return
 
@@ -1119,7 +1186,11 @@ class TextEdit:
         # сначала его удаляем.
         self._delete_selection()
 
-        self._insert_text(text)    
+        self._insert_text(text)
+
+    # ==================================================
+    # SCROLL
+    # ==================================================
 
     def _limit_scroll(self):
 
@@ -1147,7 +1218,10 @@ class TextEdit:
             )
         )
 
-    # автоматическое перемещение к курсору
+    # ==================================================
+    # CURSOR VISIBILITY
+    # ==================================================
+
     def _ensure_cursor_visible(self):
 
         visual_lines = self._build_visual_lines()

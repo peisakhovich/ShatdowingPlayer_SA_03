@@ -3,8 +3,8 @@ PROJECT IMPORT MAP
 ======================================================================
 
 Project root: C:\Users\liudm\SadowingApp\SA_03\SA_03
-Python files scanned: 94
-Project modules found: 94
+Python files scanned: 101
+Project modules found: 101
 
 ======================================================================
 APPLICATION MODULES
@@ -14,6 +14,7 @@ APPLICATION MODULES
     ai.dictation_plan
     ai.dictation_segmenter
     ai.dictation_validator
+    ai.generators
     ai.generators.dictation_generator
     ai.generators.generator_router
     ai.generators.shadowing_generator
@@ -42,7 +43,6 @@ APPLICATION MODULES
     gui.database_window
     gui.dialogs
     gui.dialogs.dialog
-    gui.dialogs.exit_dialog
     gui.file_dialog
     gui.layout
     gui.login_register_window
@@ -51,6 +51,7 @@ APPLICATION MODULES
     gui.panels
     gui.panels.control_panel
     gui.panels.control_panel_db
+    gui.services
     gui.services.font_manager
     gui.services.image_loader
     gui.settings_window
@@ -96,6 +97,9 @@ ai.dictation_segmenter
 
 ai.dictation_validator
     → ai.models
+
+ai.generators
+    → None
 
 ai.generators.dictation_generator
     → ai.dictation_plan
@@ -193,6 +197,18 @@ core.config
 core.logger
     → core.config
 
+docs.modules.gui.services
+    → None
+
+docs_audit
+    → None
+
+docs_generator
+    → None
+
+docs_nav_generator
+    → None
+
 gui
     → None
 
@@ -220,9 +236,6 @@ gui.dialogs.dialog
     → core.config
     → gui.theme
     → gui.widgets.text_button
-
-gui.dialogs.exit_dialog
-    → None
 
 gui.file_dialog
     → None
@@ -266,6 +279,9 @@ gui.panels.control_panel_db
     → gui.theme
     → gui.widgets.hint
     → gui.widgets.image_button
+
+gui.services
+    → None
 
 gui.services.font_manager
     → core.config
@@ -327,6 +343,9 @@ gui.widgets.text_edit
 gui.widgets.text_window
     → gui.theme
 
+hooks.import_map
+    → None
+
 main
     → core.application
 
@@ -352,6 +371,9 @@ session.session
     → None
 
 session.session_excel
+    → None
+
+site.modules.gui.services
     → None
 
 test_environment
@@ -467,6 +489,9 @@ ai.dictation_segmenter
 ai.dictation_validator
     → re
 
+ai.generators
+    → None
+
 ai.generators.dictation_generator
     → __future__
 
@@ -547,6 +572,18 @@ core.config
 core.logger
     → logging
 
+docs.modules.gui.services
+    → None
+
+docs_audit
+    → pathlib
+
+docs_generator
+    → pathlib
+
+docs_nav_generator
+    → pathlib
+
 gui
     → None
 
@@ -558,9 +595,6 @@ gui.dialogs
     → None
 
 gui.dialogs.dialog
-    → None
-
-gui.dialogs.exit_dialog
     → None
 
 gui.file_dialog
@@ -585,6 +619,9 @@ gui.panels.control_panel
     → None
 
 gui.panels.control_panel_db
+    → None
+
+gui.services
     → None
 
 gui.services.font_manager
@@ -637,6 +674,11 @@ gui.widgets.text_edit
 gui.widgets.text_window
     → None
 
+hooks.import_map
+    → __future__
+    → pathlib
+    → re
+
 main
     → None
 
@@ -675,6 +717,9 @@ session.session
 session.session_excel
     → __future__
     → pathlib
+
+site.modules.gui.services
+    → None
 
 test_environment
     → None
@@ -782,6 +827,9 @@ ai.dictation_segmenter
 ai.dictation_validator
     → None
 
+ai.generators
+    → None
+
 ai.generators.dictation_generator
     → None
 
@@ -854,6 +902,18 @@ core.config
 core.logger
     → None
 
+docs.modules.gui.services
+    → None
+
+docs_audit
+    → griffe
+
+docs_generator
+    → None
+
+docs_nav_generator
+    → None
+
 gui
     → None
 
@@ -864,9 +924,6 @@ gui.dialogs
     → None
 
 gui.dialogs.dialog
-    → pygame
-
-gui.dialogs.exit_dialog
     → pygame
 
 gui.file_dialog
@@ -892,6 +949,9 @@ gui.panels.control_panel
 
 gui.panels.control_panel_db
     → pygame
+
+gui.services
+    → None
 
 gui.services.font_manager
     → pygame
@@ -941,6 +1001,9 @@ gui.widgets.text_edit
 gui.widgets.text_window
     → pygame
 
+hooks.import_map
+    → None
+
 main
     → dotenv
 
@@ -967,6 +1030,9 @@ session.session
 
 session.session_excel
     → openpyxl
+
+site.modules.gui.services
+    → None
 
 test_environment
     → pygame
@@ -1295,13 +1361,14 @@ session.session_excel
 ARCHITECTURAL ROOTS
 ======================================================================
     ai
+    ai.generators
     api
     audio
     core
     gui
     gui.dialogs
-    gui.dialogs.exit_dialog
     gui.panels
+    gui.services
     gui.widgets
     gui.widgets.label
     main
@@ -1345,12 +1412,12 @@ DEVELOPMENT / TEST MODULES
 ======================================================================
 SUMMARY
 ======================================================================
-Python files scanned       : 94
-Project modules found      : 94
-Application modules        : 66
+Python files scanned       : 101
+Project modules found      : 101
+Application modules        : 67
 Development modules        : 28
 Modules with internal imports                   : 51
-Modules without internal imports                   : 43
+Modules without internal imports                   : 50
 Standard-library modules   : 18
-Third-party libraries      : 8
-Architectural roots        : 15
+Third-party libraries      : 9
+Architectural roots        : 16

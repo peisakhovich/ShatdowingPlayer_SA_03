@@ -186,6 +186,9 @@ class DatabaseWindow:
         elif action == "register":
             message = "Do you want to register?"
 
+        elif action == "change_password":
+            message = "Do you want to change_password off current user ?"
+
         elif action == "dropset":
             message = "Do you want to delete this set?"
 
@@ -1244,7 +1247,7 @@ class DatabaseWindow:
                 if action == "login":
                     self.login_register_window.show("login")
 
-                elif action == "chpass":
+                elif action == "change_password":
                     self.login_register_window.show("change_password")
 
                 elif action == "register":
@@ -1331,8 +1334,7 @@ class DatabaseWindow:
                     # --------------------------------------------------
 
                     if name == "login":
-
-                        #self.show_buttons_dialog("login")
+                        
                         self.login_register_window.show("login")
                         return
 
@@ -1341,8 +1343,7 @@ class DatabaseWindow:
                     # --------------------------------------------------
 
                     if name == "register":
-
-                        #self.show_buttons_dialog("register")
+                        
                         self.login_register_window.show("register")
                         return
 
@@ -1352,7 +1353,8 @@ class DatabaseWindow:
 
                     if name == "chpass":
 
-                        self.login_register_window.show("change_password")
+                        self.show_buttons_dialog("change_password")    
+                        #self.login_register_window.show("change_password")
                         return
 
 

@@ -205,7 +205,10 @@ class LoginRegisterWindow:
 
             self.password_edit = TextEdit(
                 self.password_rect,
-                self.edit_font
+                self.edit_font,
+                password=True
+
+
             )
 
             y += gap
@@ -223,7 +226,9 @@ class LoginRegisterWindow:
 
             self.repeat_password_edit = TextEdit(
                 self.repeat_password_rect,
-                self.edit_font
+                self.edit_font,
+                password=True
+
             )
 
             y += gap
@@ -241,7 +246,8 @@ class LoginRegisterWindow:
 
             self.first_name_edit = TextEdit(
                 self.first_name_rect,
-                self.edit_font
+                self.edit_font,
+                password=True
             )
 
             y += 55
@@ -279,7 +285,8 @@ class LoginRegisterWindow:
 
             self.password_edit = TextEdit(
                 self.password_rect,
-                self.edit_font
+                self.edit_font,
+                password=True
             )
 
             y += gap
@@ -303,7 +310,8 @@ class LoginRegisterWindow:
 
                 self.repeat_password_edit = TextEdit(
                     self.repeat_password_rect,
-                    self.edit_font
+                    self.edit_font,
+                    password=True
                 )
 
                 y += gap
