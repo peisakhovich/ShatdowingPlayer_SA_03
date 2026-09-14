@@ -150,24 +150,6 @@ class Logger:
         self._write(self.ERROR, *args)
 
 
-
-    # --------------------------------------------------
-    # Public interface
-    # --------------------------------------------------
-
-    def debug(self, *args):
-        self._write(self.DEBUG, *args)
-
-    def info(self, *args):
-        self._write(self.INFO, *args)
-
-    def warning(self, *args):
-        self._write(self.WARNING, *args)
-
-    def error(self, *args):
-        self._write(self.ERROR, *args)
-
-
 # ------------------------------------------------------
 # Global application logger
 # ------------------------------------------------------

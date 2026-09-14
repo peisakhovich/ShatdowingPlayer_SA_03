@@ -24,7 +24,8 @@ class DictationValidationError(Exception):
 
 
 class DictationValidator:
-    """Класс для проверки корректности сегментации диктовки."""
+    """Класс для проверки корректности сегментации диктовки.\n
+    Cодержит статические методы: normalize_text, validate"""
 
     @staticmethod
     def normalize_text(text):

@@ -14,9 +14,10 @@ ru:
     включая генерацию текста и структурированных ответов.
 """
 from openai import OpenAI
-
+    
 
 class OpenAIClient:
+    """Обеспечивает взаимодействие с OpenAI API для генерации текста и структурированных ответов."""
 
     def __init__(self):
         self.client = OpenAI()

@@ -62,10 +62,26 @@ class PlaybackPhase:
 
 
 class Player:
-    """Центральный объект управления воспроизведением."""
+    """Центральный объект управления воспроизведением.
+    содержит следующие методы:\n
+    __init__(session, scenario) - инициализация Player с сессией и сценарием.\n
+    play() - запускает воспроизведение с текущего item Session.\n
+    pause() - приостанавливает воспроизведение.\n
+    stop() - останавливает воспроизведение.\n
+    set_option(name, checked) - устанавливает опцию воспроизведения и синхронизирует её с Session.\n
+    set_speed(value) - устанавливает скорость воспроизведения.\n
+    set_pause_before_translation(value) - устанавливает паузу перед переводом.\n
+    set_factor_pause_before_translation(value) - устанавливает коэффициент паузы перед переводом.\n
+    set_pause_between_sentences(value) - устанавливает паузу между предложениями.\n
+    next() - переходит к следующему item Session.\n
+    prev() - переходит к предыдущему item Session.\n
+    first() - переходит к первому item Session.\n
+    last() - переходит к последнему item Session.\n
+    update(dt) - обновляет состояние воспроизведения и выполняет действия сценария.
+    """
 
     def __init__(self, session,scenario):
-        """Инициализация Player с сессией и сценарием."""
+        #Инициализация Player с сессией и сценарием.
 
         self._session = session
 
@@ -193,11 +209,10 @@ class Player:
         self._msg_bottom = value
 
     def set_msg_info(self, value):
-        ""
         self._msg_info = value        
 
     def update_info(self, current_item_index):
-        """Обновляет информационное сообщение о текущем состоянии воспроизведения."""
+        #Обновляет информационное сообщение о текущем состоянии воспроизведения.
         session = self.session
 
         set_data = session._set
@@ -234,7 +249,7 @@ class Player:
     # ---------------------------------------------------------
 
     def _cancel_audio_task(self):
-        """Отменяет текущую фоновую задачу подготовки аудио, если она существует."""
+        #Отменяет текущую фоновую задачу подготовки аудио, если она существует.
 
         if self._audio_task is not None:
 
@@ -244,7 +259,7 @@ class Player:
             self._audio_task = None
 
     async def _prepare_text_audio(self):
-        """Подготавливает аудио текста."""
+        #Подготавливает аудио текста.
         
         path = await self._audio_provider.get_audio(
             text=self._current_item["phrase_text"],
@@ -256,7 +271,7 @@ class Player:
 
 
     async def _prepare_translation_audio(self):
-        """Подготавливает аудио перевода."""
+        #Подготавливает аудио перевода.
 
         text = self._current_item.get(
             "translate_text",
@@ -298,7 +313,7 @@ class Player:
     # ---------------------------------------------------------
 
     def set_option(self, name, checked):
-        """Устанавливает опцию воспроизведения и синхронизирует её с Session."""
+        #Устанавливает опцию воспроизведения и синхронизирует её с Session.
         setattr(self, "_" + name, checked)
         if name == "randomize":
             self.session.set_randomize(checked)
@@ -310,7 +325,7 @@ class Player:
     # ---------------------------------------------------------
 
     def play(self):
-        """Запускает воспроизведение с текущего item Session."""
+        #Запускает воспроизведение с текущего item Session.
         if self._session is None:
             return
         
@@ -368,8 +383,8 @@ class Player:
     # ---------------------------------------------------------
     
     def _navigate(self, action):
-        """При навигации по сессии выполняет указанное действие.
-        Останавливает текущее аудио и отменяет незавершённую подготовку""" 
+        #При навигации по сессии выполняет указанное действие.
+        #Останавливает текущее аудио и отменяет незавершённую подготовку 
         
         self._cancel_audio_task() 
         self._audio_mixer.stop()
@@ -396,7 +411,7 @@ class Player:
     # ---------------------------------------------------------
 
     def update(self, dt: int):
-        """Обновляет состояние воспроизведения и выполняет действия сценария."""
+        #Обновляет состояние воспроизведения и выполняет действия сценария.
 
         if self._state != PlayerState.PLAYING:
             return

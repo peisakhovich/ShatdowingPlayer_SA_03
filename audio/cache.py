@@ -20,7 +20,14 @@ from core.config import Config
 
 
 class AudioCache:
-    """Хранилище сгенерированных аудиофайлов."""
+    """Хранилище сгенерированных аудиофайлов.
+    содержит следующие методы:\n
+    _normalize_speed(speed) - округляет скорость до ближайшего шага 0.1.\n
+    _make_key(text, voice, speed) - создаёт уникальный ключ для text + voice + speed.\n
+    get_path(text, voice, speed) - возвращает путь к mp3 для text + voice + speed.\n
+    exists(text, voice, speed) - проверяет наличие аудио в кэше.\n
+    save(source_path, text, voice, speed) - сохраняет готовый MP3 в кэш.  """
+
 
     SPEED_STEP = 0.1
 
@@ -29,7 +36,7 @@ class AudioCache:
         self.cache_dir.mkdir(parents=True, exist_ok=True)
        
     def _normalize_speed(self, speed: float) -> float:
-        """Округляет скорость до ближайшего шага 0.1."""
+        #Округляет скорость до ближайшего шага 0.1.
 
         return round(speed / self.SPEED_STEP) * self.SPEED_STEP
 
@@ -39,7 +46,7 @@ class AudioCache:
         voice: str,
         speed: float,
     ) -> str:
-        """Создаёт уникальный ключ для text + voice + speed."""
+        #Создаёт уникальный ключ для text + voice + speed.
 
         speed = self._normalize_speed(speed)
 
@@ -55,7 +62,7 @@ class AudioCache:
         voice: str,
         speed: float,
     ) -> Path:
-        """Возвращает путь к mp3 для text + voice + speed."""
+        #Возвращает путь к mp3 для text + voice + speed.
 
         key = self._make_key(
             text,
@@ -71,7 +78,7 @@ class AudioCache:
         voice: str,
         speed: float,
     ) -> bool:
-        """Проверяет наличие аудио в кэше."""
+        #Проверяет наличие аудио в кэше.
 
         return self.get_path(
             text,
@@ -86,7 +93,7 @@ class AudioCache:
         voice: str,
         speed: float,
     ) -> Path:
-        """Сохраняет готовый MP3 в кэш."""
+        #Сохраняет готовый MP3 в кэш.
 
         source_path = Path(source_path)
 

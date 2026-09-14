@@ -15,12 +15,19 @@ ru:
     и настраиваемого коэффициента.
 """
 def calculate_shadowing_pause(
+     
     text: str,
     factor: float = 1.0,
     min_pause: int = 500,
     max_pause: int = 5000,
 ) -> int:
+    """Args:\n
+        text (str): Текст для анализа.\n
+        factor (float): Настройка коэффициента длительности паузы.\n
+        min_pause (int): Минимальная длительность паузы.\n
+        max_pause (int): Максимальная длительность паузы.
 
+    """
     text = (text or "").strip()
 
     if not text:

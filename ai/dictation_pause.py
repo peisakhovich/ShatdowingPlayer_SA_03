@@ -19,7 +19,7 @@ def calculate_dictation_pause(
     min_pause: int = 300,
     max_pause: int = 10000,
 ) -> int:
-
+    """ Рассчитать длительность паузы для диктовки на основе текста. """
     text = (text or "").strip()
 
     # Empty text

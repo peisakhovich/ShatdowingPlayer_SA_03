@@ -74,9 +74,10 @@ TEXT:
 {text}
 """
 
-
-
 class DictationSegmenter:
+    """Segments text into natural dictation chunks.
+    Сегментирует текст на естественные фрагменты диктовки.\n
+    Содержит следующие методы: segment"""
 
     def __init__(self, client=None):
         self.client = client or OpenAIClient()

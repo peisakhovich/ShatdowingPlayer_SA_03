@@ -11,7 +11,8 @@ Purpose:
 
 ru:
     Содержит модели Pydantic для определения языка,
-    сегментации текста и генерации учебных планов.
+    сегментации текста и генерации учебных планов.\n
+Содержит следующие модели (классы): DetectedLanguage, DictationChunk, DictationSegmentation, ShadowingChunk, ShadowingSegmentation    
 """
 from pydantic import BaseModel
 

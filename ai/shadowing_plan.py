@@ -24,6 +24,7 @@ from pathlib import Path
 
 
 class ShadowingPlanBuilder:
+    """Содержит следующие методы: build, save"""
 
     def __init__(
         self,
@@ -43,7 +44,7 @@ class ShadowingPlanBuilder:
 
         pause_factor: float = 1.0,
         pause_min: int = 500,
-        pause_max: int = 5000,
+        pause_max: int = 10000,
 
         set_name: str = "Shadowing",
         set_description: str = "Generated shadowing session",

@@ -17,8 +17,13 @@ ru:
 from pathlib import Path
 
 class Config:
+    """Класс конфигурации приложения."""
 
     TITLE = "Sound Language Studio"
+
+    USER_DATA_DIR = Path.home() / "SoundLanguageStudio"
+
+    AUDIO_CACHE_PATH = USER_DATA_DIR / "tmp" / "audio_cache"
 
     THEME = "gui/theme.json"
 
@@ -39,7 +44,7 @@ class Config:
     FONT_BOLDITALIC = "Inter_BoldItalic.ttf"
     FONT_ITALIC = "Inter_Italic.ttf"
 
-    AUDIO_CACHE_PATH = f"C:\\Users\\liudm\\SadowingApp\\tmp\\audio_cache"
+    
 
     # Logging
     LOG_MODE = "logging"      # "print" | "logging" | "stop"

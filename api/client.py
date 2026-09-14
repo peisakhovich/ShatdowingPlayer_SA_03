@@ -19,7 +19,7 @@ import httpx
 
 
 class ApiError(Exception):
-    """Ошибка API с HTTP status code и сообщением сервера."""
+    """Класс содежит только сообщение об ошибке и код состояния HTTP, если он доступен."""
 
     def __init__(self, message: str, status_code: int | None = None):
 
@@ -30,6 +30,8 @@ class ApiError(Exception):
 
 
 class ApiClient:
+    """Класс содержит следующие методы для взаимодействия с API:\n
+      login, register, get_sets, get_set, save_set, update_set, delete_set"""
 
     def __init__(self, base_url: str):
 
@@ -174,6 +176,90 @@ class ApiClient:
 
                 message = (
                     f"HTTP {response.status_code}"
+                )
+
+            raise ApiError(
+                message,
+                response.status_code
+            )
+
+        # --------------------------------------------------
+        # Success
+        # --------------------------------------------------
+
+        try:
+
+            return response.json()
+
+        except ValueError as e:
+
+            raise ApiError(
+                "Invalid JSON response from API",
+                response.status_code
+            ) from e
+
+
+    # ==================================================
+    # CHANGE PASSWORD
+    # ==================================================
+
+    def change_password(
+        self,
+        user_id: int,
+        current_password: str,
+        new_password: str
+    ):
+
+        url = f"{self.base_url}/change-password"
+
+        headers = {
+            "X-API-Key": self.api_key,
+            "Content-Type": "application/json"
+        }
+
+        try:
+
+            response = httpx.post(
+                url,
+                headers=headers,
+                json={
+                    "user_id": user_id,
+                    "current_password": current_password,
+                    "new_password": new_password
+                },
+                timeout=10.0
+            )
+
+        except httpx.RequestError as e:
+
+            raise ApiError(
+                f"API connection error: {e}"
+            ) from e
+
+        # --------------------------------------------------
+        # HTTP error
+        # --------------------------------------------------
+
+        if response.status_code >= 400:
+
+            try:
+                error_data = response.json()
+
+                message = error_data.get(
+                    "error",
+                    "API error"
+                )
+
+                detail = error_data.get("message")
+
+                if detail:
+                    message = f"{message}: {detail}"
+
+            except (ValueError, AttributeError):
+
+                message = (
+                    f"HTTP {response.status_code}: "
+                    f"{response.text}"
                 )
 
             raise ApiError(

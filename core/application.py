@@ -34,9 +34,12 @@ from session.providers.guest_provider import GuestProvider
 from session.session import Session
 
 class Application:
+    """Содерит следующие модули:\n
+    run - Главный цикл приложения
+    """
 
     def __init__(self):
-
+        """Инициализацатор класса"""
         logger.info("Start Application")
         pygame.init()
 
@@ -89,6 +92,7 @@ class Application:
         )
 
     def run(self):
+        #Главный цикл приложения
 
         if self.startup_cancelled:
             pygame.quit()

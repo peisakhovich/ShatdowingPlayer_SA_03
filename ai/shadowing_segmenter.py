@@ -96,6 +96,7 @@ TEXT:
 
 
 class ShadowingSegmenter:
+    """Содержит метод segment, который делит текст на фрагменты для Shadowing и генерирует переводы."""
 
     def __init__(self, client=None):
 

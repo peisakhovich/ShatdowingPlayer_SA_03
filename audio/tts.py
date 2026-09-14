@@ -17,20 +17,23 @@ import edge_tts
 
 
 class TTS:
-    """Генератор аудио и справочник голосов Edge TTS."""
+    """Содержит следующие методы:\n
+    get_voices() - возвращает все доступные голоса Edge TTS.\n
+    get_voices_for_language(language) - возвращает голоса для указанного языка.\n
+    get_locales_for_language(language) - возвращает список locale для указанного языка.\n
+    get_voices_for_locale(locale) - возвращает голоса для указанного locale.\n
+    synthesize(text, voice, speed, output_path) - генерирует MP3 для заданного текста и голоса.\n
+    get_languages() - возвращает список доступных двухбуквенных кодов языков.
+    """
 
     async def get_voices(self):
-        """Возвращает все доступные голоса Edge TTS."""
+        #Возвращает все доступные голоса Edge TTS.
         return await edge_tts.list_voices()
 
     async def get_voices_for_language(self, language: str):
-        """
-        Возвращает голоса для указанного языка.
-
-        language:
-            двухбуквенный код языка, например:
-            en, pl, ru
-        """
+        #Возвращает голоса для указанного языка.
+        #language:    двухбуквенный код языка, например:    en, pl, ru
+        
 
         if not language:
             return []
@@ -64,14 +67,12 @@ class TTS:
         return result
 
     async def get_locales_for_language(self, language: str):
-        """
-        Возвращает список locale для указанного языка.
-
-        Например:
-            en -> ["en-AU", "en-CA", ...]
-            pl -> ["pl-PL"]
-            ru -> ["ru-RU"]
-        """
+        # Возвращает список locale для указанного языка.
+        # Например:
+        #     en -> ["en-AU", "en-CA", ...]
+        #     pl -> ["pl-PL"]
+        #     ru -> ["ru-RU"]
+        
 
         if not language:
             return []
@@ -97,9 +98,8 @@ class TTS:
         return sorted(locales)
 
     async def get_voices_for_locale(self, locale: str):
-        """
-        Возвращает голоса для указанного locale.
-        """
+        #Возвращает голоса для указанного locale.
+        #locale:    locale, например:    en-US, pl-PL, ru-RU
 
         if not locale:
             return []
@@ -133,7 +133,7 @@ class TTS:
         speed: float,
         output_path: str,
     ):
-        """Генерирует MP3 для заданного текста и голоса."""
+        #Генерирует MP3 для заданного текста и голоса.
 
         if not text or not voice:
             return
@@ -150,7 +150,7 @@ class TTS:
         await communicate.save(output_path)
 
     async def get_languages(self):
-        """Возвращает список доступных двухбуквенных кодов языков."""
+        #Возвращает список доступных двухбуквенных кодов языков.
 
         voices = await self.get_voices()
 

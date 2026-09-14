@@ -20,7 +20,7 @@ import re
 from ai.models import ShadowingSegmentation
 
 class ShadowingValidator:
-    """Проверяет результат ShadowingSegmenter."""
+    """Содержит следующие методы: _normalize, validate"""
 
     @staticmethod
     def _normalize(text: str) -> str:

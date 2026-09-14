@@ -16,38 +16,46 @@ import pygame
 
 
 class AudioMixer:
-    """Низкоуровневое управление воспроизведением MP3."""
+    """Низкоуровневое управление воспроизведением MP3.
+    содержит следующие методы:\n
+    load(path) - загружает аудиофайл.\n
+    play() - начинает воспроизведение.\n
+    pause() - приостанавливает воспроизведение.\n
+    resume() - продолжает воспроизведение.\n
+    stop() - останавливает воспроизведение.\n
+    is_playing() - возвращает True, если музыка сейчас проигрывается.  """
+
 
     def __init__(self):
         if not pygame.mixer.get_init():
             pygame.mixer.init()
 
     def load(self, path):
-        """Загружает аудиофайл."""
+        #Загружает аудиофайл.
 
         pygame.mixer.music.load(str(path))
       
     def play(self):
-        """Начинает воспроизведение."""
+        #Начинает воспроизведение.
 
         pygame.mixer.music.play()
 
     def pause(self):
-        """Приостанавливает воспроизведение."""
+        #Приостанавливает воспроизведение.
 
         pygame.mixer.music.pause()
 
     def resume(self):
-        """Продолжает воспроизведение."""
+        #Продолжает воспроизведение.
 
         pygame.mixer.music.unpause()
 
     def stop(self):
-        """Останавливает воспроизведение."""
+        #Останавливает воспроизведение.
 
         pygame.mixer.music.stop()
 
     def is_playing(self):
-        """Возвращает True, если музыка сейчас проигрывается."""
+        #Возвращает True, если музыка сейчас проигрывается.
 
         return pygame.mixer.music.get_busy()

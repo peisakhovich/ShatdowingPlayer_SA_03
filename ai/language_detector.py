@@ -39,7 +39,8 @@ TEXT:
 """
 
 class LanguageDetector:
-    """Определяет язык текста и возвращает его код ISO 639-1."""
+    """Определяет язык текста и возвращает его код ISO 639-1.\n
+    Содержит метод: detect"""
     def __init__(self, client=None):
 
         self.client = client or OpenAIClient()

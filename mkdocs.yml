@@ -22,7 +22,8 @@ plugins:
       handlers:
         python:
           paths: [.]
-          
+      
+
 nav:
   - Sound Language Studio: index.md
   - Modules:
@@ -59,7 +60,6 @@ nav:
       - GUI:
           - Dialogs:
               - Dialog: modules/gui/dialogs/dialog.md
-              - Exit Dialog: modules/gui/dialogs/exit_dialog.md
           - Panels:
               - Control Panel: modules/gui/panels/control_panel.md
               - Control Panel Db: modules/gui/panels/control_panel_db.md

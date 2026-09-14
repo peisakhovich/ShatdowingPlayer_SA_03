@@ -17,6 +17,13 @@ import json
 from core.logger import logger
 
 class ScenarioProvider:
+    """Содежит следующие методы:\n
+    get_scenarios() - возвращает все сценарии.\n
+    get_current() - возвращает текущий сценарий.\n
+    set_current(name) - устанавливает текущий сценарий.\n
+    get_scenario(name) - возвращает сценарий по имени.
+    """ 
+
 
     def __init__(self, filename):
         self._filename = filename
