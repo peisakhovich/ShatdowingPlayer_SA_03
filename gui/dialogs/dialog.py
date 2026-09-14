@@ -21,7 +21,25 @@ from gui.widgets.text_button import TextButton
 
 
 class Dialog:
+    """Базовый диалог приложения.
 
+    Содержит следующие методы:
+
+        show() — показывает диалог.
+        hide() — скрывает диалог.
+        handle_event(event) — обрабатывает событие.
+        update() — обновляет состояние диалога.
+        draw(surface) — отображает диалог.
+
+            внутренние методы класса:
+                _calculate_geometry()
+                _wrap_message()
+                _split_long_word()
+                ...
+                _draw_title                
+                _draw_message()
+                _draw_buttons()
+    """
     def __init__(
         self,
         parent_rect,

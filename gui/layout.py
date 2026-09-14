@@ -155,6 +155,7 @@ class Layout:
     {"name": "datatodb",   "hint": "Save session name and description to database"},
     {"name": "login",      "hint": "Login"},
     {"name": "register",   "hint": "Register new user"},
+    {"name": "chpass",     "hint": "Change password"},
 ]
 
     DB_CP_HEIGHT=100

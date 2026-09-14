@@ -6,12 +6,13 @@ Module:
     gui.login_register_window
 
 Purpose:
-    Provides the Login and Register window for user authentication
-    and account creation.
+    Provides the Login, Register and Change Password window
+    for user authentication and account management.
 
 ru:
-    Предоставляет окно Login и Register для авторизации пользователя
-    и создания учётной записи.
+    Предоставляет окно Login, Register и Change Password
+    для авторизации пользователя, создания учётной записи
+    и изменения пароля.
 """
 import pygame
 
@@ -20,7 +21,7 @@ from gui.widgets.text_edit import TextEdit
 
 
 class LoginRegisterWindow:
-    """Общее окно Login / Register."""
+    """Общее окно Login / Register / Change Password."""
 
     def __init__(
         self,
@@ -42,7 +43,11 @@ class LoginRegisterWindow:
 
         self.visible = False
 
-        if mode not in ("login", "register"):
+        if mode not in (
+            "login",
+            "register",
+            "change_password"
+        ):
             raise ValueError(
                 "Invalid LoginRegisterWindow mode"
             )
@@ -64,6 +69,7 @@ class LoginRegisterWindow:
         # ==================================================
         # Fonts
         # ==================================================
+
         self.title_font = self.font_manager.load(
             28
         )
@@ -131,7 +137,11 @@ class LoginRegisterWindow:
 
     def set_mode(self, mode):
 
-        if mode not in ("login", "register"):
+        if mode not in (
+            "login",
+            "register",
+            "change_password"
+        ):
             raise ValueError(
                 "Invalid LoginRegisterWindow mode"
             )
@@ -158,49 +168,50 @@ class LoginRegisterWindow:
         gap = 70
 
         # ==================================================
-        # Nickname
+        # Clear fields from previous mode
         # ==================================================
 
-        self.nickname_rect = pygame.Rect(
-            left,
-            y,
-            width,
-            edit_height
-        )
+        self.nickname_rect = None
+        self.nickname_edit = None
 
-        self.nickname_edit = TextEdit(
-            self.nickname_rect,
-            self.edit_font
-        )
+        self.password_rect = None
+        self.password_edit = None
 
-        y += gap
+        self.repeat_password_rect = None
+        self.repeat_password_edit = None
 
-        # ==================================================
-        # Password
-        # ==================================================
+        self.first_name_rect = None
+        self.first_name_edit = None
 
-        self.password_rect = pygame.Rect(
-            left,
-            y,
-            width,
-            edit_height
-        )
-
-        self.password_edit = TextEdit(
-            self.password_rect,
-            self.edit_font
-        )
-
-        y += gap
+        self.last_name_rect = None
+        self.last_name_edit = None
 
         # ==================================================
-        # REGISTER FIELDS
+        # CHANGE PASSWORD
         # ==================================================
 
-        if self.mode == "register":
+        if self.mode == "change_password":
 
             # --------------------------------------------------
-            # Repeat password
+            # Current password
+            # --------------------------------------------------
+
+            self.password_rect = pygame.Rect(
+                left,
+                y,
+                width,
+                edit_height
+            )
+
+            self.password_edit = TextEdit(
+                self.password_rect,
+                self.edit_font
+            )
+
+            y += gap
+
+            # --------------------------------------------------
+            # New password
             # --------------------------------------------------
 
             self.repeat_password_rect = pygame.Rect(
@@ -218,7 +229,7 @@ class LoginRegisterWindow:
             y += gap
 
             # --------------------------------------------------
-            # First name
+            # Repeat new password
             # --------------------------------------------------
 
             self.first_name_rect = pygame.Rect(
@@ -233,48 +244,119 @@ class LoginRegisterWindow:
                 self.edit_font
             )
 
-            y += gap
+            y += 55
 
-            # --------------------------------------------------
-            # Last name
-            # --------------------------------------------------
+        else:
 
-            self.last_name_rect = pygame.Rect(
+            # ==================================================
+            # Nickname
+            # ==================================================
+
+            self.nickname_rect = pygame.Rect(
                 left,
                 y,
                 width,
                 edit_height
             )
 
-            self.last_name_edit = TextEdit(
-                self.last_name_rect,
+            self.nickname_edit = TextEdit(
+                self.nickname_rect,
                 self.edit_font
             )
 
-            y += 55
+            y += gap
 
-        else:
+            # ==================================================
+            # Password
+            # ==================================================
 
-            # Login
-            y += 15
+            self.password_rect = pygame.Rect(
+                left,
+                y,
+                width,
+                edit_height
+            )
 
-            self.repeat_password_rect = None
-            self.repeat_password_edit = None
+            self.password_edit = TextEdit(
+                self.password_rect,
+                self.edit_font
+            )
 
-            self.first_name_rect = None
-            self.first_name_edit = None
+            y += gap
 
-            self.last_name_rect = None
-            self.last_name_edit = None
+            # ==================================================
+            # REGISTER FIELDS
+            # ==================================================
+
+            if self.mode == "register":
+
+                # --------------------------------------------------
+                # Repeat password
+                # --------------------------------------------------
+
+                self.repeat_password_rect = pygame.Rect(
+                    left,
+                    y,
+                    width,
+                    edit_height
+                )
+
+                self.repeat_password_edit = TextEdit(
+                    self.repeat_password_rect,
+                    self.edit_font
+                )
+
+                y += gap
+
+                # --------------------------------------------------
+                # First name
+                # --------------------------------------------------
+
+                self.first_name_rect = pygame.Rect(
+                    left,
+                    y,
+                    width,
+                    edit_height
+                )
+
+                self.first_name_edit = TextEdit(
+                    self.first_name_rect,
+                    self.edit_font
+                )
+
+                y += gap
+
+                # --------------------------------------------------
+                # Last name
+                # --------------------------------------------------
+
+                self.last_name_rect = pygame.Rect(
+                    left,
+                    y,
+                    width,
+                    edit_height
+                )
+
+                self.last_name_edit = TextEdit(
+                    self.last_name_rect,
+                    self.edit_font
+                )
+
+                y += 55
+
+            else:
+
+                # Login
+                y += 15
 
         # ==================================================
         # Action button
         # ==================================================
 
         self.action_rect = pygame.Rect(
-            self.rect.centerx - 70,
+            self.rect.centerx - 120,
             y,
-            140,
+            240,
             36
         )
 
@@ -398,21 +480,35 @@ class LoginRegisterWindow:
             if self.action_rect.collidepoint(event.pos):
 
                 if self.mode == "login":
+
                     self._login()
-                else:
+
+                elif self.mode == "register":
+
                     self._register()
+
+                else:
+
+                    self._change_password()
 
                 return
 
             # --------------------------------------------------
-            # Switch Login / Register
+            # Switch
             # --------------------------------------------------
 
             if self.switch_rect.collidepoint(event.pos):
 
                 if self.mode == "login":
+
                     self.set_mode("register")
+
+                elif self.mode == "register":
+
+                    self.set_mode("login")
+
                 else:
+
                     self.set_mode("login")
 
                 return
@@ -454,7 +550,7 @@ class LoginRegisterWindow:
 
             self._clear_focus()
             return
-        
+
         # --------------------------------------------------
         # Tab — переход между полями
         # --------------------------------------------------
@@ -542,12 +638,11 @@ class LoginRegisterWindow:
         # --------------------------------------------------
         # Success
         # --------------------------------------------------
-        
+
         self.session.set_user(
             user["user_id"],
             user["nickname"]
         )
-
 
         self.result = {
             "action": "login",
@@ -648,6 +743,92 @@ class LoginRegisterWindow:
         self._clear_focus()
 
     # ==================================================
+    # CHANGE PASSWORD
+    # ==================================================
+
+    def _change_password(self):
+
+        current_password = (
+            self.password_edit
+            .get_text()
+        )
+
+        new_password = (
+            self.repeat_password_edit
+            .get_text()
+        )
+
+        repeat_password = (
+            self.first_name_edit
+            .get_text()
+        )
+
+        # --------------------------------------------------
+        # Validation
+        # --------------------------------------------------
+
+        if not current_password:
+
+            self.message = "Enter current password"
+            return
+
+        if not new_password:
+
+            self.message = "Enter new password"
+            return
+
+        if not repeat_password:
+
+            self.message = "Repeat new password"
+            return
+
+        if new_password != repeat_password:
+
+            self.message = "Passwords do not match"
+            return
+
+        # --------------------------------------------------
+        # Current user
+        # --------------------------------------------------
+
+        user_id = self.session.user_id
+
+        if not user_id:
+
+            self.message = "User is not logged in"
+            return
+
+        # --------------------------------------------------
+        # API
+        # --------------------------------------------------
+
+        try:
+
+            result = self.api_client.change_password(
+                user_id=user_id,
+                current_password=current_password,
+                new_password=new_password
+            )
+
+        except Exception as e:
+
+            self.message = str(e)
+            return
+
+        # --------------------------------------------------
+        # Success
+        # --------------------------------------------------
+
+        self.result = {
+            "action": "change_password",
+            "result": result
+        }
+
+        self.message = "Password changed successfully"
+
+        self._clear_focus()
+
+    # ==================================================
     # DRAW
     # ==================================================
 
@@ -683,11 +864,17 @@ class LoginRegisterWindow:
         # Title
         # ==================================================
 
-        title_text = (
-            "Login"
-            if self.mode == "login"
-            else "Register"
-        )
+        if self.mode == "login":
+
+            title_text = "Login"
+
+        elif self.mode == "register":
+
+            title_text = "Register"
+
+        else:
+
+            title_text = "Change password"
 
         title = self.title_font.render(
             title_text,
@@ -731,37 +918,59 @@ class LoginRegisterWindow:
         # Captions
         # ==================================================
 
-        self._draw_caption(
-            screen,
-            "Nickname",
-            self.nickname_rect
-        )
-
-        self._draw_caption(
-            screen,
-            "Password",
-            self.password_rect
-        )
-
-        if self.mode == "register":
+        if self.mode == "change_password":
 
             self._draw_caption(
                 screen,
-                "Repeat password",
+                "Current password",
+                self.password_rect
+            )
+
+            self._draw_caption(
+                screen,
+                "New password",
                 self.repeat_password_rect
             )
 
             self._draw_caption(
                 screen,
-                "First name",
+                "Repeat new password",
                 self.first_name_rect
+            )
+
+        else:
+
+            self._draw_caption(
+                screen,
+                "Nickname",
+                self.nickname_rect
             )
 
             self._draw_caption(
                 screen,
-                "Last name",
-                self.last_name_rect
+                "Password",
+                self.password_rect
             )
+
+            if self.mode == "register":
+
+                self._draw_caption(
+                    screen,
+                    "Repeat password",
+                    self.repeat_password_rect
+                )
+
+                self._draw_caption(
+                    screen,
+                    "First name",
+                    self.first_name_rect
+                )
+
+                self._draw_caption(
+                    screen,
+                    "Last name",
+                    self.last_name_rect
+                )
 
         # ==================================================
         # TextEdit
@@ -776,11 +985,17 @@ class LoginRegisterWindow:
         # Action button
         # ==================================================
 
-        action_text = (
-            "Login"
-            if self.mode == "login"
-            else "Register"
-        )
+        if self.mode == "login":
+
+            action_text = "Login"
+
+        elif self.mode == "register":
+
+            action_text = "Register"
+
+        else:
+
+            action_text = "Change password"
 
         pygame.draw.rect(
             screen,
@@ -816,11 +1031,13 @@ class LoginRegisterWindow:
         # Switch
         # ==================================================
 
-        switch_text = (
-            "Create account"
-            if self.mode == "login"
-            else "Back to login"
-        )
+        if self.mode == "login":
+
+            switch_text = "Create account"
+
+        else:
+
+            switch_text = "Back to login"
 
         pygame.draw.rect(
             screen,
@@ -895,6 +1112,10 @@ class LoginRegisterWindow:
             )
         )
 
+    # ==================================================
+    # FOCUS
+    # ==================================================
+
     def _focus_next_edit(self, backward=False):
 
         edits = [
@@ -926,11 +1147,13 @@ class LoginRegisterWindow:
         else:
 
             if backward:
+
                 next_index = (
                     current_index - 1
                 ) % len(edits)
 
             else:
+
                 next_index = (
                     current_index + 1
                 ) % len(edits)

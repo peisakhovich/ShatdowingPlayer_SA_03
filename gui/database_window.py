@@ -1244,8 +1244,11 @@ class DatabaseWindow:
                 if action == "login":
                     self.login_register_window.show("login")
 
+                elif action == "chpass":
+                    self.login_register_window.show("change_password")
+
                 elif action == "register":
-                    self.login_register_window.show("register")
+                    self.login_register_window.show("register")    
 
                 elif action == "dropset":
                     self._delete_selected_set()
@@ -1342,6 +1345,16 @@ class DatabaseWindow:
                         #self.show_buttons_dialog("register")
                         self.login_register_window.show("register")
                         return
+
+                    # --------------------------------------------------
+                    # CHANGE PASSWORD
+                    # --------------------------------------------------
+
+                    if name == "chpass":
+
+                        self.login_register_window.show("change_password")
+                        return
+
 
                     # --------------------------------------------------
                     # DB -> SESSION
