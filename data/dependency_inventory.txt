@@ -3,7 +3,7 @@ DEPENDENCY INVENTORY
 ======================================================================
 
 Project root: C:\Users\liudm\SadowingApp\SA_03\SA_03
-Python files scanned: 93
+Python files scanned: 101
 
 This report contains modules imported by the Python source files.
 Modules are classified as standard library, third-party,
@@ -24,13 +24,16 @@ __future__
     gui\database_window.py
     gui\settings_window.py
     gui\widgets\list_selection.py
+    hooks\import_map.py
     project_dependencies.py
+    project_import_map.py
     session\providers\guest_provider.py
     session\session.py
     session\session_excel.py
 
 ast
     project_dependencies.py
+    project_import_map.py
 
 asyncio
     audio\async_runner.py
@@ -78,9 +81,14 @@ pathlib
     audio\cache.py
     audio\provider.py
     core\config.py
+    docs_audit.py
+    docs_generator.py
+    docs_nav_generator.py
     gui\settings_window.py
     gui\splash_screen.py
+    hooks\import_map.py
     project_dependencies.py
+    project_import_map.py
     project_tree.py
     session\providers\guest_provider.py
     session\session.py
@@ -96,12 +104,14 @@ random
 re
     ai\dictation_validator.py
     ai\shadowing_validator.py
+    hooks\import_map.py
 
 shutil
     audio\cache.py
 
 sys
     project_dependencies.py
+    project_import_map.py
 
 tempfile
     audio\provider.py
@@ -137,6 +147,9 @@ edge_tts
     audio\tts.py
     tests\test_franch_voice.py
 
+griffe
+    docs_audit.py
+
 httpx
     api\client.py
 
@@ -156,7 +169,6 @@ pygame
     core\application.py
     gui\database_window.py
     gui\dialogs\dialog.py
-    gui\dialogs\exit_dialog.py
     gui\layout.py
     gui\login_register_window.py
     gui\main_window.py
@@ -271,7 +283,7 @@ session
 ======================================================================
 SUMMARY
 ======================================================================
-Python files scanned       : 93
+Python files scanned       : 101
 Standard library modules  : 18
-Third-party libraries     : 8
+Third-party libraries     : 9
 Project packages          : 6

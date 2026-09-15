@@ -33,6 +33,7 @@ from gui.splash_screen import SplashScreen
 from session.providers.guest_provider import GuestProvider
 from session.session import Session
 
+
 class Application:
     """Содерит следующие модули:\n
     run - Главный цикл приложения
@@ -48,7 +49,7 @@ class Application:
         
         self.session = Session.load(Config.PLAN_SESSION_FILE)
 
-        self.scenario_provider = ScenarioProvider("audio/scenarios.json")
+        self.scenario_provider = ScenarioProvider(Config.SCENARIOS_FILE)
 
         self.player = Player(self.session,self.scenario_provider)
 

@@ -15,6 +15,7 @@ ru:
 """
 
 from pathlib import Path
+from utils.paths import BASE_DIR
 
 class Config:
     """Класс конфигурации приложения."""
@@ -29,7 +30,9 @@ class Config:
 
     FPS = 60
 
-    PLAN_SESSION_FILE = Path("data/cache/plan_session.json")
+    PLAN_SESSION_FILE = BASE_DIR / "data" / "cache" / "plan_session.json"
+
+    SCENARIOS_FILE = BASE_DIR / "audio" / "scenarios.json"
 
     ICON_APP = "SA_AppIconsGirl.png"
 

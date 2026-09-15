@@ -5,51 +5,55 @@ PROJECT STRUCTURE
 SA_03
 ├── ai
 │   ├── generators
+│   │   ├── __init__.py                         [0 B]
 │   │   ├── dictation_generator.py              [2.7 KB]
 │   │   ├── generator_router.py                 [1.2 KB]
 │   │   └── shadowing_generator.py              [3.4 KB]
 │   ├── __init__.py                         [0 B]
-│   ├── dictation_pause.py                  [1.5 KB]
-│   ├── dictation_plan.py                   [3.8 KB]
-│   ├── dictation_segmenter.py              [3.1 KB]
-│   ├── dictation_validator.py              [2.7 KB]
-│   ├── language_detector.py                [1.2 KB]
-│   ├── models.py                           [1002 B]
-│   ├── openai_client.py                    [952 B]
-│   ├── shadowing_pause.py                  [1.4 KB]
-│   ├── shadowing_plan.py                   [4.7 KB]
-│   ├── shadowing_segmenter.py              [4.0 KB]
+│   ├── dictation_pause.py                  [1.7 KB]
+│   ├── dictation_plan.py                   [4.0 KB]
+│   ├── dictation_segmenter.py              [3.3 KB]
+│   ├── dictation_validator.py              [2.9 KB]
+│   ├── language_detector.py                [1.3 KB]
+│   ├── models.py                           [1.1 KB]
+│   ├── openai_client.py                    [1.1 KB]
+│   ├── shadowing_pause.py                  [1.8 KB]
+│   ├── shadowing_plan.py                   [4.8 KB]
+│   ├── shadowing_segmenter.py              [4.1 KB]
 │   └── shadowing_validator.py              [3.7 KB]
 ├── api
 │   ├── __init__.py                         [0 B]
-│   └── client.py                           [11.7 KB]
+│   └── client.py                           [14.0 KB]
 ├── audio
 │   ├── __init__.py                         [0 B]
-│   ├── async_runner.py                     [1.3 KB]
-│   ├── cache.py                            [2.5 KB]
-│   ├── mixer.py                            [1.4 KB]
-│   ├── player.py                           [19.5 KB]
-│   ├── provider.py                         [3.3 KB]
-│   ├── scenario_provider.py                [2.1 KB]
+│   ├── async_runner.py                     [1.6 KB]
+│   ├── cache.py                            [3.1 KB]
+│   ├── mixer.py                            [1.9 KB]
+│   ├── player.py                           [22.0 KB]
+│   ├── provider.py                         [3.4 KB]
+│   ├── scenario_provider.py                [2.4 KB]
 │   ├── scenarios.json                      [4.7 KB]
-│   └── tts.py                              [4.2 KB]
+│   └── tts.py                              [4.9 KB]
 ├── core
 │   ├── __init__.py                         [0 B]
-│   ├── application.py                      [3.3 KB]
-│   ├── config.py                           [1.5 KB]
-│   └── logger.py                           [4.3 KB]
+│   ├── application.py                      [3.5 KB]
+│   ├── config.py                           [1.6 KB]
+│   └── logger.py                           [3.9 KB]
 ├── data
 │   ├── cache
 │   │   ├── en_pl_de_session.json               [13.0 KB]
 │   │   ├── en_session_.json                    [16.5 KB]
 │   │   ├── pl_SEP_session.json                 [20.8 KB]
-│   │   ├── plan_session.json                   [36.9 KB]
+│   │   ├── plan_session.json                   [43.0 KB]
 │   │   ├── plan_session_.json                  [20.8 KB]
 │   │   ├── plan_session_8.json                 [38.8 KB]
 │   │   └── plan_session__.json                 [8.7 KB]
-│   └── database
-│       ├── 008_set_items_en_b2.sql             [3.6 KB]
-│       └── SQLQuery4.sql                       [34 B]
+│   ├── database
+│   │   ├── 008_set_items_en_b2.sql             [3.6 KB]
+│   │   └── SQLQuery4.sql                       [34 B]
+│   ├── dependency_inventory.txt            [6.6 KB]
+│   ├── docs_audit.txt                      [8.0 KB]
+│   └── import_map.txt                      [23.7 KB]
 ├── docs
 │   ├── erd
 │   │   ├── data.zip                            [5.6 KB]
@@ -65,7 +69,85 @@ SA_03
 │   │   ├── SA_03.vpp.bak_000f                  [692.0 KB]
 │   │   ├── shadowing - sa - dbo.png            [46.7 KB]
 │   │   └── Диаграмма без названия.drawio       [10.3 KB]
-│   └── EnvCreate_BeforeNewApp.txt          [3.8 KB]
+│   ├── includes
+│   │   └── player_dependencies.md              [162 B]
+│   ├── modules
+│   │   ├── ai
+│   │   │   ├── generators
+│   │   │   │   ├── dictation_generator.md              [418 B]
+│   │   │   │   ├── generator_router.md                 [405 B]
+│   │   │   │   └── shadowing_generator.md              [420 B]
+│   │   │   ├── dictation_pause.md                  [354 B]
+│   │   │   ├── dictation_plan.md                   [349 B]
+│   │   │   ├── dictation_segmenter.md              [374 B]
+│   │   │   ├── dictation_validator.md              [376 B]
+│   │   │   ├── language_detector.md                [366 B]
+│   │   │   ├── models.md                           [377 B]
+│   │   │   ├── openai_client.md                    [346 B]
+│   │   │   ├── shadowing_pause.md                  [356 B]
+│   │   │   ├── shadowing_plan.md                   [351 B]
+│   │   │   ├── shadowing_segmenter.md              [376 B]
+│   │   │   └── shadowing_validator.md              [376 B]
+│   │   ├── api
+│   │   │   └── client.md                           [315 B]
+│   │   ├── audio
+│   │   │   ├── async_runner.md                     [351 B]
+│   │   │   ├── cache.md                            [316 B]
+│   │   │   ├── mixer.md                            [316 B]
+│   │   │   ├── player.md                           [437 B]
+│   │   │   ├── provider.md                         [331 B]
+│   │   │   ├── scenario_provider.md                [376 B]
+│   │   │   └── tts.md                              [306 B]
+│   │   ├── core
+│   │   │   ├── application.md                      [344 B]
+│   │   │   ├── config.md                           [319 B]
+│   │   │   └── logger.md                           [319 B]
+│   │   ├── gui
+│   │   │   ├── dialogs
+│   │   │   │   └── dialog.md                           [347 B]
+│   │   │   ├── panels
+│   │   │   │   ├── control_panel.md                    [378 B]
+│   │   │   │   └── control_panel_db.md                 [393 B]
+│   │   │   ├── services
+│   │   │   │   ├── __init__.py                         [0 B]
+│   │   │   │   ├── font_manager.md                     [381 B]
+│   │   │   │   └── image_loader.md                     [381 B]
+│   │   │   ├── widgets
+│   │   │   │   ├── busy_indicator.md                   [387 B]
+│   │   │   │   ├── check_box.md                        [362 B]
+│   │   │   │   ├── hint.md                             [337 B]
+│   │   │   │   ├── horizontal_slider.md                [402 B]
+│   │   │   │   ├── image_button.md                     [377 B]
+│   │   │   │   ├── label.md                            [342 B]
+│   │   │   │   ├── list_selection.md                   [387 B]
+│   │   │   │   ├── text_button.md                      [372 B]
+│   │   │   │   ├── text_edit.md                        [362 B]
+│   │   │   │   └── text_window.md                      [372 B]
+│   │   │   ├── database_window.md                  [360 B]
+│   │   │   ├── file_dialog.md                      [340 B]
+│   │   │   ├── layout.md                           [315 B]
+│   │   │   ├── login_register_window.md            [390 B]
+│   │   │   ├── main_window.md                      [340 B]
+│   │   │   ├── manager.md                          [320 B]
+│   │   │   ├── settings_window.md                  [360 B]
+│   │   │   ├── splash_screen.md                    [350 B]
+│   │   │   └── theme.md                            [310 B]
+│   │   ├── hooks
+│   │   │   └── import_map.md                       [343 B]
+│   │   ├── session
+│   │   │   ├── providers
+│   │   │   │   └── guest_provider.md                   [411 B]
+│   │   │   ├── session.md                          [336 B]
+│   │   │   └── session_excel.md                    [366 B]
+│   │   ├── utils
+│   │   │   └── paths.md                            [318 B]
+│   │   ├── docs_audit.md                       [319 B]
+│   │   ├── docs_nav_generator.md               [359 B]
+│   │   └── main.md                             [289 B]
+│   ├── stylesheets
+│   │   └── extra.css                           [55 B]
+│   ├── EnvCreate_BeforeNewApp.txt          [3.8 KB]
+│   └── index.md                            [93 B]
 ├── gui
 │   ├── assets
 │   │   ├── fonts
@@ -76,6 +158,9 @@ SA_03
 │   │   │       └── Inter_Regular.ttf                   [334.6 KB]
 │   │   ├── images
 │   │   │   ├── icons
+│   │   │   │   ├── chpass.png                          [3.0 KB]
+│   │   │   │   ├── chpass_hover.png                    [2.8 KB]
+│   │   │   │   ├── chpass_pressed.png                  [2.8 KB]
 │   │   │   │   ├── datatodb.png                        [763 B]
 │   │   │   │   ├── datatodb_hover.png                  [762 B]
 │   │   │   │   ├── datatodb_pressed.png                [754 B]
@@ -130,6 +215,9 @@ SA_03
 │   │   │   │   ├── settoexcel.png                      [916 B]
 │   │   │   │   ├── settoexcel_hover.png                [916 B]
 │   │   │   │   ├── settoexcel_pressed.png              [908 B]
+│   │   │   │   ├── sls.ico                             [127.3 KB]
+│   │   │   │   ├── sls256.ico                          [80.8 KB]
+│   │   │   │   ├── sls_doc256.ico                      [27.2 KB]
 │   │   │   │   ├── SoundLanguageStudio.ico             [1.6 MB]
 │   │   │   │   ├── stop.png                            [273 B]
 │   │   │   │   ├── stop_hover.png                      [284 B]
@@ -140,40 +228,42 @@ SA_03
 │   │       └── sound_language_studio_intro_v2_cinematic.wav [534.1 KB]
 │   ├── dialogs
 │   │   ├── __init__.py                         [0 B]
-│   │   ├── dialog.py                           [18.8 KB]
-│   │   └── exit_dialog.py                      [3.3 KB]
+│   │   └── dialog.py                           [19.5 KB]
 │   ├── panels
 │   │   ├── __init__.py                         [0 B]
 │   │   ├── control_panel.py                    [7.4 KB]
 │   │   └── control_panel_db.py                 [4.4 KB]
 │   ├── services
+│   │   ├── __init__.py                         [0 B]
 │   │   ├── font_manager.py                     [971 B]
 │   │   └── image_loader.py                     [1.2 KB]
 │   ├── widgets
 │   │   ├── __init__.py                         [0 B]
-│   │   ├── busy_indicator.py                   [4.1 KB]
-│   │   ├── check_box.py                        [4.0 KB]
-│   │   ├── hint.py                             [2.6 KB]
-│   │   ├── horizontal_slider.py                [5.2 KB]
-│   │   ├── image_button.py                     [1.8 KB]
+│   │   ├── busy_indicator.py                   [4.5 KB]
+│   │   ├── check_box.py                        [4.5 KB]
+│   │   ├── hint.py                             [3.1 KB]
+│   │   ├── horizontal_slider.py                [5.7 KB]
+│   │   ├── image_button.py                     [2.3 KB]
 │   │   ├── label.py                            [0 B]
-│   │   ├── list_selection.py                   [13.2 KB]
-│   │   ├── text_button.py                      [4.4 KB]
-│   │   ├── text_edit.py                        [28.0 KB]
-│   │   └── text_window.py                      [5.1 KB]
+│   │   ├── list_selection.py                   [13.6 KB]
+│   │   ├── text_button.py                      [5.0 KB]
+│   │   ├── text_edit.py                        [30.7 KB]
+│   │   └── text_window.py                      [5.6 KB]
 │   ├── __init__.py                         [0 B]
-│   ├── database_window.py                  [47.9 KB]
+│   ├── database_window.py                  [48.5 KB]
 │   ├── file_dialog.py                      [1.7 KB]
 │   ├── layout.py                           [5.1 KB]
-│   ├── login_register_window.py            [23.4 KB]
+│   ├── login_register_window.py            [29.2 KB]
 │   ├── main_window.py                      [8.2 KB]
 │   ├── manager.py                          [821 B]
 │   ├── settings_window.py                  [63.4 KB]
 │   ├── splash_screen.py                    [2.8 KB]
 │   ├── theme.json                          [132 B]
 │   └── theme.py                            [5.0 KB]
+├── hooks
+│   └── import_map.py                       [3.7 KB]
 ├── logs
-│   └── sa_03.log                           [806.1 KB]
+│   └── sa_03.log                           [915.5 KB]
 ├── session
 │   ├── providers
 │   │   ├── __init__.py                         [0 B]
@@ -181,6 +271,198 @@ SA_03
 │   ├── __init__.py                         [0 B]
 │   ├── session.py                          [7.8 KB]
 │   └── session_excel.py                    [31.0 KB]
+├── site
+│   ├── assets
+│   │   └── _mkdocstrings.css                   [972 B]
+│   ├── css
+│   │   ├── fonts
+│   │   │   ├── fontawesome-webfont.eot             [161.9 KB]
+│   │   │   ├── fontawesome-webfont.svg             [434.0 KB]
+│   │   │   ├── fontawesome-webfont.ttf             [161.7 KB]
+│   │   │   ├── fontawesome-webfont.woff            [95.7 KB]
+│   │   │   ├── fontawesome-webfont.woff2           [75.4 KB]
+│   │   │   ├── lato-bold-italic.woff               [315.8 KB]
+│   │   │   ├── lato-bold-italic.woff2              [188.8 KB]
+│   │   │   ├── lato-bold.woff                      [302.5 KB]
+│   │   │   ├── lato-bold.woff2                     [180.6 KB]
+│   │   │   ├── lato-normal-italic.woff             [320.7 KB]
+│   │   │   ├── lato-normal-italic.woff2            [191.1 KB]
+│   │   │   ├── lato-normal.woff                    [301.9 KB]
+│   │   │   ├── lato-normal.woff2                   [178.4 KB]
+│   │   │   ├── Roboto-Slab-Bold.woff               [85.6 KB]
+│   │   │   ├── Roboto-Slab-Bold.woff2              [65.7 KB]
+│   │   │   ├── Roboto-Slab-Regular.woff            [84.3 KB]
+│   │   │   └── Roboto-Slab-Regular.woff2           [64.9 KB]
+│   │   ├── theme.css                           [132.4 KB]
+│   │   └── theme_extra.css                     [4.5 KB]
+│   ├── erd
+│   │   ├── data.zip                            [5.6 KB]
+│   │   ├── project.xml                         [75.5 KB]
+│   │   ├── SA03.ddl                            [736 B]
+│   │   ├── SA03.sql                            [7.7 KB]
+│   │   ├── SA03_ERD_view.xlsx                  [14.1 KB]
+│   │   ├── SA_03.drawio                        [12.9 KB]
+│   │   ├── SA_03.jpg                           [127.2 KB]
+│   │   ├── SA_03.vpp                           [836.0 KB]
+│   │   ├── SA_03.vpp.bak                       [692.0 KB]
+│   │   ├── SA_03.vpp.bak2                      [836.0 KB]
+│   │   ├── SA_03.vpp.bak_000f                  [692.0 KB]
+│   │   ├── shadowing - sa - dbo.png            [46.7 KB]
+│   │   └── Диаграмма без названия.drawio       [10.3 KB]
+│   ├── img
+│   │   └── favicon.ico                         [1.1 KB]
+│   ├── includes
+│   │   └── player_dependencies
+│   │       └── index.html                          [13.6 KB]
+│   ├── js
+│   │   ├── html5shiv.min.js                    [2.7 KB]
+│   │   ├── jquery-3.6.0.min.js                 [87.4 KB]
+│   │   ├── theme.js                            [4.9 KB]
+│   │   └── theme_extra.js                      [195 B]
+│   ├── modules
+│   │   ├── ai
+│   │   │   ├── dictation_pause
+│   │   │   │   └── index.html                          [23.8 KB]
+│   │   │   ├── dictation_plan
+│   │   │   │   └── index.html                          [33.7 KB]
+│   │   │   ├── dictation_segmenter
+│   │   │   │   └── index.html                          [19.8 KB]
+│   │   │   ├── dictation_validator
+│   │   │   │   └── index.html                          [25.0 KB]
+│   │   │   ├── generators
+│   │   │   │   ├── dictation_generator
+│   │   │   │   │   └── index.html                          [25.1 KB]
+│   │   │   │   ├── generator_router
+│   │   │   │   │   └── index.html                          [19.3 KB]
+│   │   │   │   └── shadowing_generator
+│   │   │   │       └── index.html                          [29.1 KB]
+│   │   │   ├── language_detector
+│   │   │   │   └── index.html                          [19.3 KB]
+│   │   │   ├── models
+│   │   │   │   └── index.html                          [23.6 KB]
+│   │   │   ├── openai_client
+│   │   │   │   └── index.html                          [19.9 KB]
+│   │   │   ├── shadowing_pause
+│   │   │   │   └── index.html                          [24.2 KB]
+│   │   │   ├── shadowing_plan
+│   │   │   │   └── index.html                          [36.8 KB]
+│   │   │   ├── shadowing_segmenter
+│   │   │   │   └── index.html                          [21.1 KB]
+│   │   │   └── shadowing_validator
+│   │   │       └── index.html                          [29.0 KB]
+│   │   ├── api
+│   │   │   └── client
+│   │   │       └── index.html                          [79.4 KB]
+│   │   ├── audio
+│   │   │   ├── async_runner
+│   │   │   │   └── index.html                          [22.0 KB]
+│   │   │   ├── cache
+│   │   │   │   └── index.html                          [28.8 KB]
+│   │   │   ├── mixer
+│   │   │   │   └── index.html                          [22.7 KB]
+│   │   │   ├── player
+│   │   │   │   └── index.html                          [104.0 KB]
+│   │   │   ├── provider
+│   │   │   │   └── index.html                          [28.1 KB]
+│   │   │   ├── scenario_provider
+│   │   │   │   └── index.html                          [26.6 KB]
+│   │   │   └── tts
+│   │   │       └── index.html                          [37.2 KB]
+│   │   ├── core
+│   │   │   ├── application
+│   │   │   │   └── index.html                          [39.8 KB]
+│   │   │   ├── config
+│   │   │   │   └── index.html                          [21.2 KB]
+│   │   │   └── logger
+│   │   │       └── index.html                          [32.8 KB]
+│   │   ├── docs_audit
+│   │   │   └── index.html                          [13.4 KB]
+│   │   ├── docs_nav_generator
+│   │   │   └── index.html                          [13.5 KB]
+│   │   ├── gui
+│   │   │   ├── database_window
+│   │   │   │   └── index.html                          [218.7 KB]
+│   │   │   ├── dialogs
+│   │   │   │   └── dialog
+│   │   │   │       └── index.html                          [95.4 KB]
+│   │   │   ├── file_dialog
+│   │   │   │   └── index.html                          [15.6 KB]
+│   │   │   ├── layout
+│   │   │   │   └── index.html                          [15.7 KB]
+│   │   │   ├── login_register_window
+│   │   │   │   └── index.html                          [138.7 KB]
+│   │   │   ├── main_window
+│   │   │   │   └── index.html                          [16.0 KB]
+│   │   │   ├── manager
+│   │   │   │   └── index.html                          [15.6 KB]
+│   │   │   ├── panels
+│   │   │   │   ├── control_panel
+│   │   │   │   │   └── index.html                          [15.7 KB]
+│   │   │   │   └── control_panel_db
+│   │   │   │       └── index.html                          [15.6 KB]
+│   │   │   ├── services
+│   │   │   │   ├── font_manager
+│   │   │   │   │   └── index.html                          [15.4 KB]
+│   │   │   │   ├── image_loader
+│   │   │   │   │   └── index.html                          [15.5 KB]
+│   │   │   │   └── __init__.py                         [0 B]
+│   │   │   ├── settings_window
+│   │   │   │   └── index.html                          [282.7 KB]
+│   │   │   ├── splash_screen
+│   │   │   │   └── index.html                          [42.0 KB]
+│   │   │   ├── theme
+│   │   │   │   └── index.html                          [15.7 KB]
+│   │   │   └── widgets
+│   │   │       ├── busy_indicator
+│   │   │       │   └── index.html                          [15.3 KB]
+│   │   │       ├── check_box
+│   │   │       │   └── index.html                          [15.2 KB]
+│   │   │       ├── hint
+│   │   │       │   └── index.html                          [15.2 KB]
+│   │   │       ├── horizontal_slider
+│   │   │       │   └── index.html                          [15.3 KB]
+│   │   │       ├── image_button
+│   │   │       │   └── index.html                          [15.3 KB]
+│   │   │       ├── label
+│   │   │       │   └── index.html                          [14.6 KB]
+│   │   │       ├── list_selection
+│   │   │       │   └── index.html                          [15.3 KB]
+│   │   │       ├── text_button
+│   │   │       │   └── index.html                          [35.1 KB]
+│   │   │       ├── text_edit
+│   │   │       │   └── index.html                          [15.3 KB]
+│   │   │       └── text_window
+│   │   │           └── index.html                          [15.3 KB]
+│   │   ├── hooks
+│   │   │   └── import_map
+│   │   │       └── index.html                          [13.7 KB]
+│   │   ├── main
+│   │   │   └── index.html                          [15.0 KB]
+│   │   ├── session
+│   │   │   ├── providers
+│   │   │   │   └── guest_provider
+│   │   │   │       └── index.html                          [61.7 KB]
+│   │   │   ├── session
+│   │   │   │   └── index.html                          [71.8 KB]
+│   │   │   └── session_excel
+│   │   │       └── index.html                          [174.7 KB]
+│   │   └── utils
+│   │       └── paths
+│   │           └── index.html                          [15.5 KB]
+│   ├── search
+│   │   ├── lunr.js                             [97.5 KB]
+│   │   ├── main.js                             [3.1 KB]
+│   │   ├── search_index.json                   [813.7 KB]
+│   │   └── worker.js                           [3.6 KB]
+│   ├── stylesheets
+│   │   └── extra.css                           [55 B]
+│   ├── 404.html                            [12.8 KB]
+│   ├── EnvCreate_BeforeNewApp.txt          [3.8 KB]
+│   ├── index.html                          [13.6 KB]
+│   ├── objects.inv                         [1.5 KB]
+│   ├── search.html                         [13.3 KB]
+│   ├── sitemap.xml                         [109 B]
+│   └── sitemap.xml.gz                      [127 B]
 ├── test_output
 │   └── session_export.xlsx                 [38.9 KB]
 ├── tests
@@ -212,13 +494,22 @@ SA_03
 │   └── tmp.mp3                             [22.8 KB]
 ├── utils
 │   ├── __init__.py                         [0 B]
-│   └── paths.py                            [254 B]
+│   └── paths.py                            [689 B]
 ├── .env                                [200 B]
+├── docs_audit.py                       [4.7 KB]
+├── docs_generator.py                   [3.9 KB]
+├── docs_nav.yml                        [3.4 KB]
+├── docs_nav_generator.py               [2.7 KB]
 ├── main.py                             [363 B]
+├── mkdocs.yml                          [3.7 KB]
+├── project_dependencies.py             [7.9 KB]
+├── project_import_map.py               [16.5 KB]
 ├── project_structure.txt               [16.7 KB]
 ├── project_tree.py                     [8.1 KB]
 ├── README.md                           [223 B]
-├── requirements.txt                    [111 B]
+├── requirements.txt                    [119 B]
+├── run_docs.bat                        [131 B]
+├── run_docs.vbs                        [972 B]
 ├── SLStudio.lnk                        [2.8 KB]
 └── test_environment.py                 [737 B]
 
@@ -244,16 +535,20 @@ None
 EMPTY FILES
 ======================================================================
 - ai\__init__.py
+- ai\generators\__init__.py
 - api\__init__.py
 - audio\__init__.py
 - core\__init__.py
+- docs\modules\gui\services\__init__.py
 - gui\__init__.py
 - gui\dialogs\__init__.py
 - gui\panels\__init__.py
+- gui\services\__init__.py
 - gui\widgets\__init__.py
 - gui\widgets\label.py
 - session\__init__.py
 - session\providers\__init__.py
+- site\modules\gui\services\__init__.py
 - tests\__init__.py
 - tests\test_database.py
 - tests\test_state.py
@@ -262,13 +557,14 @@ EMPTY FILES
 
 PYTHON FILES
 ======================================================================
-Total: 92
+Total: 101
 
 ai\__init__.py
 ai\dictation_pause.py
 ai\dictation_plan.py
 ai\dictation_segmenter.py
 ai\dictation_validator.py
+ai\generators\__init__.py
 ai\generators\dictation_generator.py
 ai\generators\generator_router.py
 ai\generators\shadowing_generator.py
@@ -293,11 +589,14 @@ core\__init__.py
 core\application.py
 core\config.py
 core\logger.py
+docs\modules\gui\services\__init__.py
+docs_audit.py
+docs_generator.py
+docs_nav_generator.py
 gui\__init__.py
 gui\database_window.py
 gui\dialogs\__init__.py
 gui\dialogs\dialog.py
-gui\dialogs\exit_dialog.py
 gui\file_dialog.py
 gui\layout.py
 gui\login_register_window.py
@@ -306,6 +605,7 @@ gui\manager.py
 gui\panels\__init__.py
 gui\panels\control_panel.py
 gui\panels\control_panel_db.py
+gui\services\__init__.py
 gui\services\font_manager.py
 gui\services\image_loader.py
 gui\settings_window.py
@@ -322,13 +622,17 @@ gui\widgets\list_selection.py
 gui\widgets\text_button.py
 gui\widgets\text_edit.py
 gui\widgets\text_window.py
+hooks\import_map.py
 main.py
+project_dependencies.py
+project_import_map.py
 project_tree.py
 session\__init__.py
 session\providers\__init__.py
 session\providers\guest_provider.py
 session\session.py
 session\session_excel.py
+site\modules\gui\services\__init__.py
 test_environment.py
 tests\__init__.py
 tests\test_api_client.py
@@ -360,6 +664,6 @@ utils\paths.py
 
 SUMMARY
 ======================================================================
-Python files      : 92
-Empty files       : 15
+Python files      : 101
+Empty files       : 19
 Empty directories : 0
