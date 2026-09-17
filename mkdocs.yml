@@ -31,6 +31,7 @@ plugins:
 nav:
   - Sound Language Studio: index.md
   - Architecture: architecture.md
+  - Project Statistics: project_statistics.md
   - Modules:
       - AI:
           - Generators:
