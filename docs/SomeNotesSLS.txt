@@ -1,0 +1,10 @@
+
+# Просмотр наличия процессов сервера документации
+
+Get-CimInstance Win32_Process |
+     Where-Object { $_.CommandLine -match "mkdocs.*serve" } |   
+     Select-Object ProcessId, ParentProcessId, CommandLine
+
+#удаление ветки процессов
+
+taskkill /PID <номер родительского процесса> /T /F  

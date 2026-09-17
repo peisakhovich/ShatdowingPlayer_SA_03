@@ -8,6 +8,10 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js
+  - javascripts/mermaid.js
+
 markdown_extensions:
   - pymdownx.snippets:
       base_path: docs
@@ -26,6 +30,7 @@ plugins:
 
 nav:
   - Sound Language Studio: index.md
+  - Architecture: architecture.md
   - Modules:
       - AI:
           - Generators:
