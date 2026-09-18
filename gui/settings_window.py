@@ -175,6 +175,11 @@ class SettingsWindow:
         # --------------------------------------------------
         # Source text
         # --------------------------------------------------
+     
+        if self._ai_available:
+            text_color=Theme.DIALOG_TITLE_COLOR
+        else:
+            text_color=Theme.DIALOG_WARNING_COLOR    
 
         self.text_edit = TextEdit(
             pygame.Rect(
@@ -182,8 +187,10 @@ class SettingsWindow:
                 self.rect.y + 150,
                 self.rect.width - 60,
                 self.rect.height -500
+                
             ),
-            self.font_manager.load(Layout.SETTINGS_TEXT_FONT)
+            self.font_manager.load(Layout.SETTINGS_TEXT_FONT),
+            text_color=text_color
             
         )
         self.text_edit.set_text(self.source_text) # Inserting help as first one text
@@ -2208,10 +2215,11 @@ class SettingsWindow:
         # TextEdit
         # --------------------------------------------------
 
+
         caption = caption_font.render(
             "Text",
             True,
-            Theme.DIALOG_TEXT_COLOR
+            Theme.DIALOG_TITLE_COLOR
         )
 
         screen.blit(

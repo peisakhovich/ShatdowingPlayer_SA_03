@@ -13,13 +13,14 @@ ru:
     Предоставляет HTTP-клиент для взаимодействия приложения с API,
     включая авторизацию и операции с учебными наборами.
 """
+
 import os
 
 import httpx
 
 
 class ApiError(Exception):
-    """Класс содежит только сообщение об ошибке и код состояния HTTP, если он доступен."""
+    """Класс содержит только сообщение об ошибке и код состояния HTTP, если он доступен."""
 
     def __init__(self, message: str, status_code: int | None = None):
 
@@ -30,8 +31,9 @@ class ApiError(Exception):
 
 
 class ApiClient:
-    """Класс содержит следующие методы для взаимодействия с API:\n
-      login, register, get_sets, get_set, save_set, update_set, delete_set"""
+    """Класс содержит методы для взаимодействия с API:
+    login, register, get_sets, get_set, save_set, update_set, delete_set.
+    """
 
     def __init__(self, base_url: str):
 
@@ -79,10 +81,6 @@ class ApiClient:
                 f"API connection error: {e}"
             ) from e
 
-        # --------------------------------------------------
-        # HTTP error
-        # --------------------------------------------------
-
         if response.status_code >= 400:
 
             try:
@@ -103,10 +101,6 @@ class ApiClient:
                 message,
                 response.status_code
             )
-
-        # --------------------------------------------------
-        # Success
-        # --------------------------------------------------
 
         try:
 
@@ -158,10 +152,6 @@ class ApiClient:
                 f"API connection error: {e}"
             ) from e
 
-        # --------------------------------------------------
-        # HTTP error
-        # --------------------------------------------------
-
         if response.status_code >= 400:
 
             try:
@@ -183,10 +173,6 @@ class ApiClient:
                 response.status_code
             )
 
-        # --------------------------------------------------
-        # Success
-        # --------------------------------------------------
-
         try:
 
             return response.json()
@@ -197,7 +183,6 @@ class ApiClient:
                 "Invalid JSON response from API",
                 response.status_code
             ) from e
-
 
     # ==================================================
     # CHANGE PASSWORD
@@ -236,9 +221,72 @@ class ApiClient:
                 f"API connection error: {e}"
             ) from e
 
-        # --------------------------------------------------
-        # HTTP error
-        # --------------------------------------------------
+        if response.status_code >= 400:
+
+            try:
+                error_data = response.json()
+
+                message = error_data.get(
+                    "error",
+                    "API error"
+                )
+
+                detail = error_data.get("message")
+
+                if detail:
+                    message = f"{message}: {detail}"
+
+            except (ValueError, AttributeError):
+
+                message = (
+                    f"HTTP {response.status_code}: "
+                    f"{response.text}"
+                )
+
+            raise ApiError(
+                message,
+                response.status_code
+            )
+
+        try:
+
+            return response.json()
+
+        except ValueError as e:
+
+            raise ApiError(
+                "Invalid JSON response from API",
+                response.status_code
+            ) from e
+
+    # ==================================================
+    # GET SETS
+    # ==================================================
+
+    def get_sets(self, user_id: int):
+
+        url = f"{self.base_url}/sets"
+
+        headers = {
+            "X-API-Key": self.api_key
+        }
+
+        try:
+
+            response = httpx.get(
+                url,
+                params={
+                    "user_id": user_id
+                },
+                headers=headers,
+                timeout=10.0
+            )
+
+        except httpx.RequestError as e:
+
+            raise ApiError(
+                f"API connection error: {e}"
+            ) from e
 
         if response.status_code >= 400:
 
@@ -267,10 +315,6 @@ class ApiClient:
                 response.status_code
             )
 
-        # --------------------------------------------------
-        # Success
-        # --------------------------------------------------
-
         try:
 
             return response.json()
@@ -283,10 +327,10 @@ class ApiClient:
             ) from e
 
     # ==================================================
-    # GET SETS
+    # HEALTH CHECK
     # ==================================================
 
-    def get_sets(self, user_id: int):
+    def health_check(self, user_id: int):
 
         url = f"{self.base_url}/sets"
 
@@ -294,18 +338,53 @@ class ApiClient:
             "X-API-Key": self.api_key
         }
 
-        response = httpx.get(
-            url,
-            params={
-                "user_id": user_id
-            },
-            headers=headers,
-            timeout=10.0
-        )
+        try:
 
-        response.raise_for_status()
+            response = httpx.get(
+                url,
+                params={
+                    "user_id": user_id
+                },
+                headers=headers,
+                timeout=10.0
+            )
 
-        return response.json()
+        except httpx.RequestError as e:
+
+            raise ApiError(
+                f"API connection error: {e}"
+            ) from e
+
+        if response.status_code >= 400:
+
+            try:
+                error_data = response.json()
+
+                message = error_data.get(
+                    "error",
+                    "API error"
+                )
+
+                detail = error_data.get("message")
+
+                if detail:
+                    message = f"{message}: {detail}"
+
+            except (ValueError, AttributeError):
+
+                message = (
+                    f"HTTP {response.status_code}: "
+                    f"{response.text}"
+                )
+
+            raise ApiError(
+                message,
+                response.status_code
+            )
+
+        return True
+
+
 
     # ==================================================
     # GET SET JSON
@@ -319,15 +398,57 @@ class ApiClient:
             "X-API-Key": self.api_key
         }
 
-        response = httpx.get(
-            url,
-            headers=headers,
-            timeout=10.0
-        )
+        try:
 
-        response.raise_for_status()
+            response = httpx.get(
+                url,
+                headers=headers,
+                timeout=10.0
+            )
 
-        return response.json()
+        except httpx.RequestError as e:
+
+            raise ApiError(
+                f"API connection error: {e}"
+            ) from e
+
+        if response.status_code >= 400:
+
+            try:
+                error_data = response.json()
+
+                message = error_data.get(
+                    "error",
+                    "API error"
+                )
+
+                detail = error_data.get("message")
+
+                if detail:
+                    message = f"{message}: {detail}"
+
+            except (ValueError, AttributeError):
+
+                message = (
+                    f"HTTP {response.status_code}: "
+                    f"{response.text}"
+                )
+
+            raise ApiError(
+                message,
+                response.status_code
+            )
+
+        try:
+
+            return response.json()
+
+        except ValueError as e:
+
+            raise ApiError(
+                "Invalid JSON response from API",
+                response.status_code
+            ) from e
 
     # ==================================================
     # SAVE SET JSON
@@ -360,10 +481,6 @@ class ApiClient:
                 f"API connection error: {e}"
             ) from e
 
-        # --------------------------------------------------
-        # HTTP error
-        # --------------------------------------------------
-
         if response.status_code >= 400:
 
             try:
@@ -374,8 +491,6 @@ class ApiClient:
                     "API error"
                 )
 
-                # Если API дополнительно передал message,
-                # добавляем его для диагностики.
                 detail = error_data.get("message")
 
                 if detail:
@@ -392,10 +507,6 @@ class ApiClient:
                 message,
                 response.status_code
             )
-
-        # --------------------------------------------------
-        # Success
-        # --------------------------------------------------
 
         try:
 
@@ -444,10 +555,6 @@ class ApiClient:
                 f"API connection error: {e}"
             ) from e
 
-        # --------------------------------------------------
-        # HTTP error
-        # --------------------------------------------------
-
         if response.status_code >= 400:
 
             try:
@@ -475,10 +582,6 @@ class ApiClient:
                 response.status_code
             )
 
-        # --------------------------------------------------
-        # Success
-        # --------------------------------------------------
-
         try:
 
             return response.json()
@@ -488,7 +591,7 @@ class ApiClient:
             raise ApiError(
                 "Invalid JSON response from API",
                 response.status_code
-            ) from e        
+            ) from e
 
     # ==================================================
     # DELETE SET
@@ -519,10 +622,6 @@ class ApiClient:
                 f"API connection error: {e}"
             ) from e
 
-        # --------------------------------------------------
-        # HTTP error
-        # --------------------------------------------------
-
         if response.status_code >= 400:
 
             try:
@@ -549,10 +648,6 @@ class ApiClient:
                 message,
                 response.status_code
             )
-
-        # --------------------------------------------------
-        # Success
-        # --------------------------------------------------
 
         try:
 

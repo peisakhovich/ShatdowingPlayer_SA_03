@@ -33,7 +33,8 @@ class TextEdit:
         rect,
         font,
         text="",
-        password=False
+        password=False,
+        text_color=Theme.TE_TEXT_COLOR
     ):
 
         # -------------------------
@@ -47,6 +48,7 @@ class TextEdit:
         # -------------------------
         self.font = font
         self.rect = pygame.Rect(rect)
+        self.text_color = text_color
 
         # -------------------------
         # Текст
@@ -792,7 +794,7 @@ class TextEdit:
             text_surface = self.font.render(
                 display_text,
                 True,
-                Theme.TE_TEXT_COLOR
+                self.text_color
             )
 
             screen.blit(

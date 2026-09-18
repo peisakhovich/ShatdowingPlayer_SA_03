@@ -63,6 +63,7 @@ class DatabaseWindow:
 
         self._async_runner = AsyncRunner()
 
+        self._health_check_task = None
         self._get_sets_task = None
         self._get_set_task = None
         self._save_set_task = None
@@ -80,7 +81,9 @@ class DatabaseWindow:
         self.sets = []
         self.selected_set = None
         self._pending_selected_set_id = None
-        
+
+        self.api_available = None
+        self.api_error_message = ""
 
 
 
@@ -236,6 +239,11 @@ class DatabaseWindow:
 
         self.visible = True
 
+        user_id = self.session.user_id
+
+        if user_id:
+            self._check_api(user_id)
+
         self._load_sets()
 
     # --------------------------------------------------
@@ -304,6 +312,26 @@ class DatabaseWindow:
     # ==================================================
     # API
     # ==================================================
+        
+    def _check_api(self, user_id: int):
+
+        if self._health_check_task is not None:
+            return
+
+        self.api_available = None
+        self.api_error_message = ""
+
+        self._health_check_task = self._async_runner.submit(
+            self._health_check_async(user_id)
+        )
+
+    async def _health_check_async(self, user_id: int):
+
+        return await asyncio.to_thread(
+            self.api_client.health_check,
+            user_id
+        )
+
 
     def _load_sets(self):
 
@@ -398,6 +426,40 @@ class DatabaseWindow:
             set_id
         )
 
+    # ==================================================
+    # PROCESS HEALTH CHECK TASK
+    # ==================================================
+
+    def _process_health_check_task(self):
+
+        if self._health_check_task is None:
+            return
+
+        if not self._health_check_task.done():
+            return
+
+        try:
+
+            result = self._health_check_task.result()
+
+            self.api_available = bool(result)
+            self.api_error_message = ""
+
+            logger.info(
+                "Database API health check: available"
+            )
+
+        except Exception as e:
+
+            self.api_available = False
+            self.api_error_message = str(e)
+
+            logger.error(
+                 f"Database API health check error: {e}")
+
+        finally:
+
+            self._health_check_task = None
 
     # ==================================================
     # PROCESS GET SETS RESULT
@@ -1198,6 +1260,8 @@ class DatabaseWindow:
         if not self.visible:
             return
 
+        self._process_health_check_task()
+
         if self.active_dialog:
 
             self.active_dialog.update()     
@@ -1807,6 +1871,90 @@ class DatabaseWindow:
         self.description_edit.draw(
             screen
         )
+
+        if self.api_available is None:
+            api_status = "Checking Database API..."
+        elif self.api_available:
+            api_status = "Database API: Available"
+        else:
+            if self.api_error_message == "Unauthorized":
+                api_status = (
+                    "Database API: authorization failed. "
+                    "Please contact the developer."
+                )
+            else:
+                api_status = f"Database API: {self.api_error_message}"
+
+
+        # api_text = caption_font.render(
+        #     api_status,
+        #     True,
+        #     Theme.DIALOG_TEXT_COLOR
+        # )
+
+        if self.api_available is False:
+
+            api_color = Theme.DIALOG_WARNING_COLOR
+
+            api_text = caption_font.render(
+                api_status,
+                True,
+                api_color
+            )
+
+            warning_x = self.description_edit.rect.x
+            warning_y = self.description_edit.rect.bottom + 13
+
+            triangle = [
+                (warning_x, warning_y - 8),
+                (warning_x + 8, warning_y + 7),
+                (warning_x - 8, warning_y + 7),
+            ]
+
+            pygame.draw.polygon(
+                screen,
+                api_color,
+                triangle
+            )
+
+            pygame.draw.line(
+                screen,
+                Theme.DIALOG_BACKGROUND_COLOR,
+                (warning_x, warning_y - 4),
+                (warning_x, warning_y + 3),
+                2,
+            )
+
+            pygame.draw.circle(
+                screen,
+                Theme.DIALOG_BACKGROUND_COLOR,
+                (warning_x, warning_y + 5),
+                1,
+            )
+
+            screen.blit(
+                api_text,
+                (
+                    warning_x + 15,
+                    self.description_edit.rect.bottom + 5
+                )
+            )
+
+        else:
+
+            api_text = caption_font.render(
+                api_status,
+                True,
+                Theme.DIALOG_TEXT_COLOR
+            )
+
+            screen.blit(
+                api_text,
+                (
+                    self.description_edit.rect.x,
+                    self.description_edit.rect.bottom + 8
+                )
+            )
 
 
         # --------------------------------------------------
