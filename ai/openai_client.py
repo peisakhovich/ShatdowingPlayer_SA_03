@@ -14,6 +14,8 @@ ru:
     включая генерацию текста и структурированных ответов.
 """
 from openai import OpenAI
+
+from core.logger import logger
     
 
 class OpenAIClient:
@@ -38,3 +40,20 @@ class OpenAIClient:
         )
 
         return response.output_parsed
+
+    def is_available(self):
+        try:
+            self.client.responses.create(
+                model="gpt-5.6",
+                input="OK",
+                max_output_tokens=16
+            )
+
+            logger.info("OpenAI API is available")
+            return True
+
+        except Exception as e:
+            logger.warning(
+               f"OpenAI API is unavailable: {e}"
+            )
+            return False

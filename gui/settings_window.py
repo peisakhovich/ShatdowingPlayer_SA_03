@@ -22,6 +22,7 @@ import pygame
 
 from ai.language_detector import LanguageDetector
 from ai.generators.generator_router import GeneratorRouter
+from ai.openai_client import OpenAIClient
 
 from audio.tts import TTS
 from audio.async_runner import AsyncRunner
@@ -75,25 +76,7 @@ class SettingsWindow:
 
         self._language_check_for_generate = False
         self._detected_generate_language = ""
-
-
-        # --------------------------------------------------
-        # Source text
-        # --------------------------------------------------
-
-        self.source_file = ""
-
-        self.source_text = ( #Initial help in the text window
-            'You can type text here or load text from a file. '
-            'To do this, press the "Choose file..." button. '
-            'After loading, the source locale and voice will be detected automatically. '
-            'For some scenarios, you can generate a training session from the text. '
-            'Press "Generate" to create the plan.'
-        )
-
-        self.source_language = "en"
-        self.phrase_locale = "en-US"
-        
+     
 
 
         # --------------------------------------------------
@@ -104,8 +87,49 @@ class SettingsWindow:
         self._async_runner = AsyncRunner()
 
         # --------------------------------------------------
-        # AI language detection
+        # AI language instruments
         # --------------------------------------------------
+        try:
+            self._openai_client = OpenAIClient()
+            self._ai_available = self._openai_client.is_available()
+        except Exception as e:
+            logger.warning(
+                f"OpenAI initialization failed: {e}"
+            )
+            self._openai_client = None
+            self._ai_available = False    
+
+        # --------------------------------------------------
+        # Source initial text
+        # --------------------------------------------------
+
+
+        if self._ai_available:
+
+            self.source_text = (
+                'AI is available.\n\n'
+                'You can type text here or load text from a file. '
+                'To do this, press the "Choose file..." button. '
+                'After loading, the source locale and voice will be detected automatically. '
+                'For some scenarios, you can generate a training session from the text. '
+                'Press "Generate" to create the plan.'
+            )
+
+        else:
+
+            self.source_text = (
+                'AI is currently unavailable.\n\n'
+                'You can still type text here or load text from a file and select a training scenario. AI language detection '
+                'and training plan generation are unavailable. '
+                'To enable AI features, get an OpenAI API key from your OpenAI account and add it to the '
+                'OPENAI_API_KEY variable in the .env file located in the application folder.'
+            )
+
+
+        self.source_file = ""
+
+        self.source_language = "en"
+        self.phrase_locale = "en-US"
 
         self._language_detector = LanguageDetector()
         self._generator_router = GeneratorRouter()
