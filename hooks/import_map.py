@@ -118,10 +118,8 @@ def _get_module_section(
 
             return (
                 "```text\n"
-                + "\n".join(
-                    dependency.lstrip("→ ").strip()
-                    for dependency in dependencies
-                )
+                #f"{module_name}\n"
+                + "\n".join(dependencies)
                 + "\n```"
             )
 
