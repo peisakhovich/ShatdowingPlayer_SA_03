@@ -9,16 +9,16 @@ The data is generated from the current Python project structure and import analy
 
 | Metric | Value |
 |---|---:|
-| Python files | 100 |
-| Project modules | 100 |
-| Application modules | 66 |
-| Development / test modules | 29 |
-| Other modules | 5 |
-| Modules with internal imports | 53 |
-| Modules without internal imports | 47 |
-| Standard-library libraries | 17 |
+| Python files | 103 |
+| Project modules | 103 |
+| Application modules | 68 |
+| Development / test modules | 28 |
+| Other modules | 7 |
+| Modules with internal imports | 55 |
+| Modules without internal imports | 48 |
+| Standard-library libraries | 18 |
 | Third-party libraries | 9 |
-| Architectural roots | 47 |
+| Architectural roots | 15 |
 
 
 ## Python Standard Library Usage
@@ -27,21 +27,22 @@ Number of project modules importing each standard-library module.
 
 | Library | Modules using it |
 |---|---:|
-| `pathlib` | 22 |
+| `pathlib` | 23 |
+| `__future__` | 17 |
 | `asyncio` | 12 |
 | `json` | 5 |
 | `os` | 5 |
 | `time` | 4 |
 | `re` | 3 |
 | `ast` | 2 |
+| `shutil` | 2 |
+| `sys` | 2 |
 | `threading` | 2 |
 | `datetime` | 1 |
 | `hashlib` | 1 |
 | `logging` | 1 |
 | `math` | 1 |
 | `random` | 1 |
-| `shutil` | 1 |
-| `sys` | 1 |
 | `tempfile` | 1 |
 | `tkinter` | 1 |
 
@@ -52,7 +53,7 @@ Number of project modules importing each third-party library.
 
 | Library | Modules using it |
 |---|---:|
-| `pygame` | 24 |
+| `pygame` | 25 |
 | `dotenv` | 8 |
 | `openpyxl` | 3 |
 | `edge_tts` | 2 |
@@ -72,47 +73,15 @@ Project modules identified as architectural roots by the import analysis.
 - `api`
 - `audio`
 - `core`
-- `docs_audit`
-- `docs_generator`
-- `docs_nav_generator`
 - `gui`
 - `gui.dialogs`
 - `gui.panels`
 - `gui.services`
 - `gui.widgets`
 - `gui.widgets.label`
-- `hooks.import_map`
 - `main`
-- `project_dependencies`
-- `project_statistics`
-- `project_tree`
 - `session`
 - `session.providers`
-- `test_environment`
-- `tests`
-- `tests.test_api_client`
-- `tests.test_async_runner`
-- `tests.test_asyncio`
-- `tests.test_asyncio_loop`
-- `tests.test_audio`
-- `tests.test_auth`
-- `tests.test_database`
-- `tests.test_dictation_pause`
-- `tests.test_dictation_plan`
-- `tests.test_dictation_segmentation`
-- `tests.test_dictation_validator`
-- `tests.test_franch_voice`
-- `tests.test_generator_router`
-- `tests.test_import_to_session`
-- `tests.test_openai`
-- `tests.test_real_session_excel`
-- `tests.test_session_excel`
-- `tests.test_shadowing_generator`
-- `tests.test_shadowing_pause`
-- `tests.test_shadowing_segmenter`
-- `tests.test_state`
-- `tests.test_tts_languages`
-- `tests.test_tts_voices`
 - `utils`
 
 
@@ -174,9 +143,11 @@ Project modules identified as architectural roots by the import analysis.
 - `gui.widgets.image_button`
 - `gui.widgets.label`
 - `gui.widgets.list_selection`
+- `gui.widgets.status_message`
 - `gui.widgets.text_button`
 - `gui.widgets.text_edit`
 - `gui.widgets.text_window`
+- `main`
 - `session`
 - `session.providers`
 - `session.providers.guest_provider`
@@ -190,7 +161,6 @@ Project modules identified as architectural roots by the import analysis.
 
 - `project_dependencies`
 - `project_import_map`
-- `project_statistics`
 - `project_tree`
 - `test_environment`
 - `tests`
@@ -227,7 +197,6 @@ These modules do not import another project module.
 - `ai.dictation_pause`
 - `ai.generators`
 - `ai.models`
-- `ai.openai_client`
 - `ai.shadowing_pause`
 - `api`
 - `api.client`
@@ -236,6 +205,7 @@ These modules do not import another project module.
 - `audio.mixer`
 - `audio.tts`
 - `core`
+- `docs.modules.gui.services`
 - `docs_audit`
 - `docs_generator`
 - `docs_nav_generator`
@@ -261,6 +231,7 @@ These modules do not import another project module.
 - `session.providers.guest_provider`
 - `session.session`
 - `session.session_excel`
+- `site.modules.gui.services`
 - `test_environment`
 - `tests`
 - `tests.test_asyncio`

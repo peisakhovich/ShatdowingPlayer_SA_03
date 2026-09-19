@@ -3,8 +3,8 @@ PROJECT IMPORT MAP
 ======================================================================
 
 Project root: C:\Users\liudm\SadowingApp\SA_03\SA_03
-Python files scanned: 102
-Project modules found: 102
+Python files scanned: 103
+Project modules found: 103
 
 ======================================================================
 APPLICATION MODULES
@@ -65,6 +65,7 @@ APPLICATION MODULES
     gui.widgets.image_button
     gui.widgets.label
     gui.widgets.list_selection
+    gui.widgets.status_message
     gui.widgets.text_button
     gui.widgets.text_edit
     gui.widgets.text_window
@@ -121,7 +122,7 @@ ai.models
     → None
 
 ai.openai_client
-    → None
+    → core.logger
 
 ai.shadowing_pause
     → None
@@ -226,6 +227,7 @@ gui.database_window
     → gui.theme
     → gui.widgets.busy_indicator
     → gui.widgets.list_selection
+    → gui.widgets.status_message
     → gui.widgets.text_edit
     → session.session_excel
 
@@ -245,6 +247,7 @@ gui.layout
 
 gui.login_register_window
     → gui.theme
+    → gui.widgets.status_message
     → gui.widgets.text_edit
 
 gui.main_window
@@ -292,6 +295,7 @@ gui.services.image_loader
 gui.settings_window
     → ai.generators.generator_router
     → ai.language_detector
+    → ai.openai_client
     → audio.async_runner
     → audio.tts
     → core.config
@@ -302,6 +306,7 @@ gui.settings_window
     → gui.theme
     → gui.widgets.busy_indicator
     → gui.widgets.list_selection
+    → gui.widgets.status_message
     → gui.widgets.text_edit
 
 gui.splash_screen
@@ -333,6 +338,9 @@ gui.widgets.label
 
 gui.widgets.list_selection
     → None
+
+gui.widgets.status_message
+    → gui.theme
 
 gui.widgets.text_button
     → gui.theme
@@ -668,6 +676,9 @@ gui.widgets.label
 gui.widgets.list_selection
     → __future__
 
+gui.widgets.status_message
+    → None
+
 gui.widgets.text_button
     → None
 
@@ -683,7 +694,8 @@ hooks.import_map
     → re
 
 main
-    → None
+    → pathlib
+    → shutil
 
 project_dependencies
     → __future__
@@ -999,6 +1011,9 @@ gui.widgets.label
 gui.widgets.list_selection
     → pygame
 
+gui.widgets.status_message
+    → pygame
+
 gui.widgets.text_button
     → pygame
 
@@ -1174,6 +1189,7 @@ ai.openai_client
     → ai.dictation_segmenter
     → ai.language_detector
     → ai.shadowing_segmenter
+    → gui.settings_window
     → tests.test_openai
 
 ai.shadowing_pause
@@ -1249,6 +1265,7 @@ core.config
     → tests.test_auth
 
 core.logger
+    → ai.openai_client
     → audio.player
     → audio.provider
     → audio.scenario_provider
@@ -1315,6 +1332,7 @@ gui.theme
     → gui.widgets.check_box
     → gui.widgets.hint
     → gui.widgets.horizontal_slider
+    → gui.widgets.status_message
     → gui.widgets.text_button
     → gui.widgets.text_edit
     → gui.widgets.text_window
@@ -1339,6 +1357,11 @@ gui.widgets.image_button
 
 gui.widgets.list_selection
     → gui.database_window
+    → gui.settings_window
+
+gui.widgets.status_message
+    → gui.database_window
+    → gui.login_register_window
     → gui.settings_window
 
 gui.widgets.text_button
@@ -1427,12 +1450,12 @@ DEVELOPMENT / TEST MODULES
 ======================================================================
 SUMMARY
 ======================================================================
-Python files scanned       : 102
-Project modules found      : 102
-Application modules        : 67
+Python files scanned       : 103
+Project modules found      : 103
+Application modules        : 68
 Development modules        : 28
-Modules with internal imports                   : 53
-Modules without internal imports                   : 49
+Modules with internal imports                   : 55
+Modules without internal imports                   : 48
 Standard-library modules   : 18
 Third-party libraries      : 9
 Architectural roots        : 15

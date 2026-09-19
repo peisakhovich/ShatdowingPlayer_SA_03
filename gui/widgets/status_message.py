@@ -24,6 +24,7 @@ from gui.theme import Theme
 
 
 class StatusMessage:
+    """All message types prints own icons for messages"""
 
     INFO = "info"
     SUCCESS = "success"

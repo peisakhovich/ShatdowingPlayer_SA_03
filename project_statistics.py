@@ -16,11 +16,8 @@ from pathlib import Path
 
 from project_import_map import (
     build_import_map,
-    build_library_usage,
-    build_module_map,
     build_reverse_map,
     find_architectural_roots,
-    find_python_files,
     get_module_category,
 )
 
@@ -70,6 +67,41 @@ def add_statistics_table(lines, statistics):
     lines.append("")
 
 
+def build_library_usage(data):
+    """
+    Build reverse usage information for libraries.
+
+    The input dictionary has the form:
+
+        {
+            "module.name": {"library_a", "library_b"},
+            ...
+        }
+
+    The result has the form:
+
+        {
+            "library_a": {"module.name", ...},
+            ...
+        }
+    """
+
+    usage = {}
+
+    for module, libraries in data.items():
+
+        for library in libraries:
+
+            usage.setdefault(
+                library,
+                set(),
+            ).add(
+                module
+            )
+
+    return usage
+
+
 def add_library_table(lines, usage):
     """Add a library usage table."""
 
@@ -85,6 +117,7 @@ def add_library_table(lines, usage):
     )
 
     for library, modules in ordered:
+
         lines.append(
             f"| `{library}` | {len(modules)} |"
         )
@@ -96,11 +129,14 @@ def add_module_list(lines, modules):
     """Add a sorted Markdown list of modules."""
 
     if not modules:
+
         lines.append("- None")
         lines.append("")
+
         return
 
     for module in sorted(modules):
+
         lines.append(
             f"- `{module}`"
         )
@@ -115,28 +151,16 @@ def add_module_list(lines, modules):
 def generate_statistics_page():
     """Generate the MkDocs project statistics page."""
 
-    files = find_python_files()
-
-    project_modules = build_module_map(
-        files
-    )
-
     (
+        python_files,
+        project_modules,
         internal,
         standard,
         third_party,
-    ) = build_import_map(
-        files,
-        project_modules,
-    )
+    ) = build_import_map()
 
     reverse = build_reverse_map(
         internal
-    )
-
-    roots = find_architectural_roots(
-        internal,
-        project_modules,
     )
 
     application_modules = []
@@ -150,17 +174,28 @@ def generate_statistics_page():
         )
 
         if category == "application":
-            application_modules.append(module)
+
+            application_modules.append(
+                module
+            )
 
         elif category == "development":
-            development_modules.append(module)
+
+            development_modules.append(
+                module
+            )
 
         else:
-            other_modules.append(module)
 
-    modules_with_internal_imports = set(
-        internal
-    )
+            other_modules.append(
+                module
+            )
+
+    modules_with_internal_imports = {
+        module
+        for module, dependencies in internal.items()
+        if dependencies
+    }
 
     modules_without_internal_imports = (
         set(project_modules)
@@ -183,15 +218,19 @@ def generate_statistics_page():
 
     lines.append("# Project Statistics")
     lines.append("")
+
     lines.append(
         "Automatically generated statistics for "
         "**Sound Language Studio**."
     )
+
     lines.append("")
+
     lines.append(
         "The data is generated from the current Python "
         "project structure and import analysis."
     )
+
     lines.append("")
 
     # ------------------------------------------------------------------
@@ -206,7 +245,7 @@ def generate_statistics_page():
     statistics = [
         (
             "Python files",
-            len(files),
+            len(python_files),
         ),
         (
             "Project modules",
@@ -242,7 +281,12 @@ def generate_statistics_page():
         ),
         (
             "Architectural roots",
-            len(roots),
+            len(
+                find_architectural_roots(
+                    internal,
+                    set(application_modules),
+                )
+            ),
         ),
     ]
 
@@ -264,6 +308,7 @@ def generate_statistics_page():
         "Number of project modules importing each "
         "standard-library module."
     )
+
     lines.append("")
 
     add_library_table(
@@ -284,6 +329,7 @@ def generate_statistics_page():
         "Number of project modules importing each "
         "third-party library."
     )
+
     lines.append("")
 
     add_library_table(
@@ -295,6 +341,11 @@ def generate_statistics_page():
     # Architectural roots
     # ------------------------------------------------------------------
 
+    roots = find_architectural_roots(
+        internal,
+        set(application_modules),
+    )
+
     add_heading(
         lines,
         "Architectural Roots",
@@ -304,6 +355,7 @@ def generate_statistics_page():
         "Project modules identified as architectural roots "
         "by the import analysis."
     )
+
     lines.append("")
 
     add_module_list(
@@ -351,6 +403,7 @@ def generate_statistics_page():
     lines.append(
         "These modules do not import another project module."
     )
+
     lines.append("")
 
     add_module_list(
@@ -362,14 +415,14 @@ def generate_statistics_page():
     # Footer
     # ------------------------------------------------------------------
 
-    lines.append(
-        "---"
-    )
+    lines.append("---")
     lines.append("")
+
     lines.append(
         "*Generated automatically by "
         "`project_statistics.py`.*"
     )
+
     lines.append("")
 
     # ------------------------------------------------------------------
@@ -387,8 +440,9 @@ def generate_statistics_page():
     )
 
     print(
-        f"Project statistics generated:"
+        "Project statistics generated:"
     )
+
     print(
         OUTPUT_FILE
     )
@@ -399,7 +453,7 @@ def generate_statistics_page():
 # ---------------------------------------------------------------------------
 
 def main():
-    """Generate the project statistics Markdown page."""
+    """Generate the MkDocs project statistics Markdown page."""
 
     generate_statistics_page()
 

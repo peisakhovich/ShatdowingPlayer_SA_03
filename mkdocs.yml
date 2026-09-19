@@ -30,8 +30,6 @@ plugins:
 
 nav:
   - Sound Language Studio: index.md
-  - Architecture: architecture.md
-  - Project Statistics: project_statistics.md
   - Modules:
       - AI:
           - Generators:
@@ -80,6 +78,7 @@ nav:
               - Image Button: modules/gui/widgets/image_button.md
               - Label: modules/gui/widgets/label.md
               - List Selection: modules/gui/widgets/list_selection.md
+              - Status Message: modules/gui/widgets/status_message.md
               - Text Button: modules/gui/widgets/text_button.md
               - Text Edit: modules/gui/widgets/text_edit.md
               - Text Window: modules/gui/widgets/text_window.md
@@ -92,6 +91,8 @@ nav:
           - Settings Window: modules/gui/settings_window.md
           - Splash Screen: modules/gui/splash_screen.md
           - Theme: modules/gui/theme.md
+      - Hooks:
+          - Import Map: modules/hooks/import_map.md
       - Session:
           - Providers:
               - Guest Provider: modules/session/providers/guest_provider.md
@@ -99,4 +100,7 @@ nav:
           - Session Excel: modules/session/session_excel.md
       - Utils:
           - Paths: modules/utils/paths.md
+      - Docs Audit: modules/docs_audit.md
+      - Docs Nav Generator: modules/docs_nav_generator.md
       - Main: modules/main.md
+      - Project Statistics: modules/project_statistics.md
