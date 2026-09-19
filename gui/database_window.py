@@ -1907,7 +1907,6 @@ class DatabaseWindow:
 
         status_message = StatusMessage(
             message=api_status,
-            #message_type=message_type,
             message_type=message_type,
             position=(
                 self.description_edit.rect.x + 8,

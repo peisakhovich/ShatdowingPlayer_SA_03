@@ -18,7 +18,7 @@ import pygame
 
 from gui.theme import Theme
 from gui.widgets.text_edit import TextEdit
-
+from gui.widgets.status_message import StatusMessage
 
 class LoginRegisterWindow:
     """Общее окно Login / Register / Change Password."""
@@ -65,6 +65,7 @@ class LoginRegisterWindow:
         # ==================================================
 
         self.message = ""
+        self.message_type = StatusMessage.INFO
 
         # ==================================================
         # Fonts
@@ -149,6 +150,7 @@ class LoginRegisterWindow:
         self.mode = mode
         self.message = ""
         self.result = None
+        self.message_type = StatusMessage.INFO
 
         self._clear_focus()
         self._build()
@@ -391,6 +393,7 @@ class LoginRegisterWindow:
         self.visible = True
 
         self.message = ""
+        self.message_type = StatusMessage.INFO
         self.result = None
 
         pygame.key.stop_text_input()
@@ -620,11 +623,13 @@ class LoginRegisterWindow:
         if not nickname:
 
             self.message = "Enter nickname"
+            self.message_type = StatusMessage.WARNING
             return
 
         if not password:
 
             self.message = "Enter password"
+            self.message_type = StatusMessage.WARNING
             return
 
         # --------------------------------------------------
@@ -641,6 +646,7 @@ class LoginRegisterWindow:
         except Exception as e:
 
             self.message = str(e)
+            self.message_type = StatusMessage.ERROR
             return
 
         # --------------------------------------------------
@@ -658,6 +664,7 @@ class LoginRegisterWindow:
         }
 
         self.message = "Login successful"
+        self.message_type = StatusMessage.SUCCESS
 
         self._clear_focus()
 
@@ -702,16 +709,19 @@ class LoginRegisterWindow:
         if not nickname:
 
             self.message = "Enter nickname"
+            self.message_type = StatusMessage.WARNING
             return
 
         if not password:
 
             self.message = "Enter password"
+            self.message_type = StatusMessage.WARNING
             return
 
         if password != repeat_password:
 
             self.message = "Passwords do not match"
+            self.message_type = StatusMessage.WARNING
             return
 
         # --------------------------------------------------
@@ -730,6 +740,7 @@ class LoginRegisterWindow:
         except Exception as e:
 
             self.message = str(e)
+            self.message_type = StatusMessage.ERROR
             return
 
         # --------------------------------------------------
@@ -747,6 +758,7 @@ class LoginRegisterWindow:
         }
 
         self.message = "Registration successful"
+        self.message_type = StatusMessage.SUCCESS
 
         self._clear_focus()
 
@@ -778,21 +790,25 @@ class LoginRegisterWindow:
         if not current_password:
 
             self.message = "Enter current password"
+            self.message_type = StatusMessage.WARNING
             return
 
         if not new_password:
 
             self.message = "Enter new password"
+            self.message_type = StatusMessage.WARNING
             return
 
         if not repeat_password:
 
             self.message = "Repeat new password"
+            self.message_type = StatusMessage.WARNING
             return
 
         if new_password != repeat_password:
 
             self.message = "Passwords do not match"
+            self.message_type = StatusMessage.WARNING
             return
 
         # --------------------------------------------------
@@ -804,6 +820,7 @@ class LoginRegisterWindow:
         if not user_id:
 
             self.message = "User is not logged in"
+            self.message_type = StatusMessage.WARNING
             return
 
         # --------------------------------------------------
@@ -821,6 +838,7 @@ class LoginRegisterWindow:
         except Exception as e:
 
             self.message = str(e)
+            self.message_type = StatusMessage.ERROR
             return
 
         # --------------------------------------------------
@@ -833,6 +851,7 @@ class LoginRegisterWindow:
         }
 
         self.message = "Password changed successfully"
+        self.message_type = StatusMessage.SUCCESS
 
         self._clear_focus()
 
@@ -1071,26 +1090,22 @@ class LoginRegisterWindow:
         )
 
         # ==================================================
-        # Message
+        # Status message
         # ==================================================
 
         if self.message:
 
-            text = self.message_font.render(
-                self.message,
-                True,
-                Theme.DIALOG_TEXT_COLOR
+            status_message = StatusMessage(
+                message=self.message,
+                message_type=self.message_type,
+                position=(
+                    self.rect.x + 35,
+                    self.rect.bottom - 28
+                ),
+                font=self.message_font
             )
 
-            text_rect = text.get_rect(
-                centerx=self.rect.centerx,
-                bottom=self.rect.bottom - 15
-            )
-
-            screen.blit(
-                text,
-                text_rect
-            )
+            status_message.draw(screen)
 
     # ==================================================
     # CAPTION

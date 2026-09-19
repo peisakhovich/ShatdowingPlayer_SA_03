@@ -36,6 +36,7 @@ from gui.widgets.list_selection import ListSelection
 from gui.file_dialog import FileDialog
 from gui.widgets.text_edit import TextEdit
 from gui.widgets.busy_indicator import BusyIndicator
+from gui.widgets.status_message import StatusMessage
 from gui.dialogs.dialog import Dialog
 
 from pathlib import Path
@@ -134,6 +135,9 @@ class SettingsWindow:
         self._language_detector = LanguageDetector()
         self._generator_router = GeneratorRouter()
 
+        self.msg_status=StatusMessage.INFO
+        self.msg_text=""
+
         # --------------------------------------------------
         # Close button
         # --------------------------------------------------
@@ -173,13 +177,17 @@ class SettingsWindow:
         )
 
         # --------------------------------------------------
-        # Source text
+        # Source text & status MSG
         # --------------------------------------------------
      
         if self._ai_available:
             text_color=Theme.DIALOG_TITLE_COLOR
+            self.msg_status=StatusMessage.SUCCESS
+            self.msg_text="OpenAI is available"
         else:
             text_color=Theme.DIALOG_WARNING_COLOR    
+            self.msg_status=StatusMessage.WARNING
+            self.msg_text="OpenAI is unavailable"
 
         self.text_edit = TextEdit(
             pygame.Rect(
@@ -2075,10 +2083,26 @@ class SettingsWindow:
         screen.blit(
             title,
             (
-                self.rect.x + 15,
+                self.rect.x + 30,
                 self.rect.y + 12
             )
         )
+
+        # --------------------------------------------------
+        # Status MSG
+        # --------------------------------------------------
+        status_message = StatusMessage(
+            message=self.msg_text,
+            message_type=self.msg_status,
+            position=(
+                    self.rect.x + 370,
+                    self.rect.y + 130,
+            ),
+            font=caption_font
+        )
+
+        status_message.draw(screen)       
+
 
         # --------------------------------------------------
         # Close button
