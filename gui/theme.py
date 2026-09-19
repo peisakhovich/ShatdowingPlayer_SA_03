@@ -110,7 +110,10 @@ class Theme:
     DIALOG_SEPARATOR_COLOR = pygame.Color("#4A5966")
 
     DIALOG_TITLE_COLOR = pygame.Color("#91E5FF")
-    DIALOG_WARNING_COLOR = pygame.Color("#F7C75F")
+    DIALOG_WARNING_COLOR = pygame.Color("#F7F456")
+    DIALOG_SUCCESS_COLOR = pygame.Color("#5CF748")
+    DIALOG_ERROR_COLOR = pygame.Color("#FA5959")
+    DIALOG_INFO_COLOR = pygame.Color("#2EFADF")
     DIALOG_TEXT_COLOR = pygame.Color("#E0E0E0")
 
     DIALOG_BUTTON_COLOR = pygame.Color("#364049")

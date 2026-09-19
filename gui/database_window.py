@@ -28,6 +28,7 @@ from audio.tts import TTS
 from gui.theme import Theme
 from gui.widgets.busy_indicator import BusyIndicator
 from gui.widgets.list_selection import ListSelection
+from gui.widgets.status_message import StatusMessage
 from gui.panels.control_panel_db import ControlPanel
 from gui.login_register_window import LoginRegisterWindow
 from gui.widgets.text_edit import TextEdit
@@ -1872,90 +1873,51 @@ class DatabaseWindow:
             screen
         )
 
+        # --------------------------------------------------
+        # Status message
+        # --------------------------------------------------
+
         if self.api_available is None:
+
             api_status = "Checking Database API..."
+            message_type = StatusMessage.INFO
+
         elif self.api_available:
+
             api_status = "Database API: Available"
+            message_type = StatusMessage.SUCCESS
+
         else:
+
             if self.api_error_message == "Unauthorized":
+
                 api_status = (
                     "Database API: authorization failed. "
                     "Please contact the developer."
                 )
+
             else:
-                api_status = f"Database API: {self.api_error_message}"
 
-
-        # api_text = caption_font.render(
-        #     api_status,
-        #     True,
-        #     Theme.DIALOG_TEXT_COLOR
-        # )
-
-        if self.api_available is False:
-
-            api_color = Theme.DIALOG_WARNING_COLOR
-
-            api_text = caption_font.render(
-                api_status,
-                True,
-                api_color
-            )
-
-            warning_x = self.description_edit.rect.x
-            warning_y = self.description_edit.rect.bottom + 13
-
-            triangle = [
-                (warning_x, warning_y - 8),
-                (warning_x + 8, warning_y + 7),
-                (warning_x - 8, warning_y + 7),
-            ]
-
-            pygame.draw.polygon(
-                screen,
-                api_color,
-                triangle
-            )
-
-            pygame.draw.line(
-                screen,
-                Theme.DIALOG_BACKGROUND_COLOR,
-                (warning_x, warning_y - 4),
-                (warning_x, warning_y + 3),
-                2,
-            )
-
-            pygame.draw.circle(
-                screen,
-                Theme.DIALOG_BACKGROUND_COLOR,
-                (warning_x, warning_y + 5),
-                1,
-            )
-
-            screen.blit(
-                api_text,
-                (
-                    warning_x + 15,
-                    self.description_edit.rect.bottom + 5
+                api_status = (
+                    f"Database API: {self.api_error_message}"
                 )
-            )
 
-        else:
+            message_type = StatusMessage.WARNING
 
-            api_text = caption_font.render(
-                api_status,
-                True,
-                Theme.DIALOG_TEXT_COLOR
-            )
 
-            screen.blit(
-                api_text,
-                (
-                    self.description_edit.rect.x,
-                    self.description_edit.rect.bottom + 8
-                )
-            )
+        status_message = StatusMessage(
+            message=api_status,
+            #message_type=message_type,
+            message_type=message_type,
+            position=(
+                self.description_edit.rect.x + 8,
+                self.description_edit.rect.bottom + 22
+            ),
+            font=caption_font
+        )
 
+        status_message.draw(screen)       
+        
 
         # --------------------------------------------------
         # ListSelection
