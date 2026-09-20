@@ -14,7 +14,9 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from project_import_map import (
+from tools.project_paths import PROJECT_ROOT
+
+from tools.project_import_map import (
     build_import_map,
     build_reverse_map,
     find_architectural_roots,
@@ -26,7 +28,7 @@ from project_import_map import (
 # Configuration
 # ---------------------------------------------------------------------------
 
-BASE_DIR = Path(__file__).resolve().parent
+BASE_DIR = PROJECT_ROOT
 
 OUTPUT_FILE = (
     BASE_DIR
@@ -40,13 +42,13 @@ OUTPUT_FILE = (
 # ---------------------------------------------------------------------------
 
 def format_number(value):
-    """Format an integer for Markdown output."""
+    # Format an integer for Markdown output.
 
     return f"{value:,}".replace(",", " ")
 
 
 def add_heading(lines, title, level=2):
-    """Add a Markdown heading."""
+    # Add a Markdown heading.
 
     lines.append("")
     lines.append(f'{"#" * level} {title}')
@@ -54,7 +56,7 @@ def add_heading(lines, title, level=2):
 
 
 def add_statistics_table(lines, statistics):
-    """Add the main project statistics table."""
+    # Add the main project statistics table.
 
     lines.append("| Metric | Value |")
     lines.append("|---|---:|")
@@ -68,24 +70,23 @@ def add_statistics_table(lines, statistics):
 
 
 def build_library_usage(data):
-    """
-    Build reverse usage information for libraries.
+    
+    # Build reverse usage information for libraries.
 
-    The input dictionary has the form:
+    # The input dictionary has the form:
 
-        {
-            "module.name": {"library_a", "library_b"},
-            ...
-        }
+    #     {
+    #         "module.name": {"library_a", "library_b"},
+    #         ...
+    #     }
 
-    The result has the form:
+    # The result has the form:
 
-        {
-            "library_a": {"module.name", ...},
-            ...
-        }
-    """
-
+    #     {
+    #         "library_a": {"module.name", ...},
+    #         ...
+    #     }
+    
     usage = {}
 
     for module, libraries in data.items():
@@ -103,7 +104,7 @@ def build_library_usage(data):
 
 
 def add_library_table(lines, usage):
-    """Add a library usage table."""
+    # Add a library usage table.
 
     lines.append("| Library | Modules using it |")
     lines.append("|---|---:|")
@@ -126,7 +127,7 @@ def add_library_table(lines, usage):
 
 
 def add_module_list(lines, modules):
-    """Add a sorted Markdown list of modules."""
+    # Add a sorted Markdown list of modules.
 
     if not modules:
 
@@ -453,7 +454,7 @@ def generate_statistics_page():
 # ---------------------------------------------------------------------------
 
 def main():
-    """Generate the MkDocs project statistics Markdown page."""
+    # Generate the MkDocs project statistics Markdown page.
 
     generate_statistics_page()
 

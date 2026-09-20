@@ -2,8 +2,9 @@ from pathlib import Path
 
 from griffe import load
 
+from tools.project_paths import PROJECT_ROOT
 
-PROJECT_ROOT = Path(__file__).resolve().parent
+
 OUTPUT_FILE = PROJECT_ROOT / "data" / "docs_audit.txt"
 
 

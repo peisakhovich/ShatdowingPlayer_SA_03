@@ -29,6 +29,7 @@ from gui.database_window import DatabaseWindow
 
 
 class MainWindow:
+    """Main window of application"""
 
     def __init__(
         self,

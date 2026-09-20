@@ -3,7 +3,7 @@ DEPENDENCY INVENTORY
 ======================================================================
 
 Project root: C:\Users\liudm\SadowingApp\SA_03\SA_03
-Python files scanned: 101
+Python files scanned: 105
 
 This report contains modules imported by the Python source files.
 Modules are classified as standard library, third-party,
@@ -25,15 +25,16 @@ __future__
     gui\settings_window.py
     gui\widgets\list_selection.py
     hooks\import_map.py
-    project_dependencies.py
-    project_import_map.py
     session\providers\guest_provider.py
     session\session.py
     session\session_excel.py
+    tools\project_dependencies.py
+    tools\project_import_map.py
+    tools\project_statistics.py
 
 ast
-    project_dependencies.py
-    project_import_map.py
+    tools\project_dependencies.py
+    tools\project_import_map.py
 
 asyncio
     audio\async_runner.py
@@ -81,21 +82,24 @@ pathlib
     audio\cache.py
     audio\provider.py
     core\config.py
-    docs_audit.py
-    docs_generator.py
-    docs_nav_generator.py
     gui\settings_window.py
     gui\splash_screen.py
     hooks\import_map.py
-    project_dependencies.py
-    project_import_map.py
-    project_tree.py
+    main.py
     session\providers\guest_provider.py
     session\session.py
     session\session_excel.py
     tests\test_dictation_plan.py
     tests\test_real_session_excel.py
     tests\test_session_excel.py
+    tools\docs_audit.py
+    tools\docs_generator.py
+    tools\docs_nav_generator.py
+    tools\project_dependencies.py
+    tools\project_import_map.py
+    tools\project_paths.py
+    tools\project_statistics.py
+    tools\project_tree.py
     utils\paths.py
 
 random
@@ -108,10 +112,11 @@ re
 
 shutil
     audio\cache.py
+    main.py
 
 sys
-    project_dependencies.py
-    project_import_map.py
+    tools\project_dependencies.py
+    tools\project_import_map.py
 
 tempfile
     audio\provider.py
@@ -148,7 +153,7 @@ edge_tts
     tests\test_franch_voice.py
 
 griffe
-    docs_audit.py
+    tools\docs_audit.py
 
 httpx
     api\client.py
@@ -185,6 +190,7 @@ pygame
     gui\widgets\horizontal_slider.py
     gui\widgets\image_button.py
     gui\widgets\list_selection.py
+    gui\widgets\status_message.py
     gui\widgets\text_button.py
     gui\widgets\text_edit.py
     gui\widgets\text_window.py
@@ -193,6 +199,15 @@ pygame
 pygame_gui
     gui\manager.py
     test_environment.py
+
+tools
+    tools\docs_audit.py
+    tools\docs_generator.py
+    tools\docs_nav_generator.py
+    tools\project_dependencies.py
+    tools\project_import_map.py
+    tools\project_statistics.py
+    tools\project_tree.py
 
 ======================================================================
 PROJECT MODULES
@@ -238,6 +253,7 @@ audio
     tests\test_tts_voices.py
 
 core
+    ai\openai_client.py
     audio\cache.py
     audio\player.py
     audio\provider.py
@@ -269,6 +285,7 @@ gui
     gui\widgets\check_box.py
     gui\widgets\hint.py
     gui\widgets\horizontal_slider.py
+    gui\widgets\status_message.py
     gui\widgets\text_button.py
     gui\widgets\text_edit.py
     gui\widgets\text_window.py
@@ -280,10 +297,13 @@ session
     tests\test_real_session_excel.py
     tests\test_session_excel.py
 
+utils
+    core\config.py
+
 ======================================================================
 SUMMARY
 ======================================================================
-Python files scanned       : 101
+Python files scanned       : 105
 Standard library modules  : 18
-Third-party libraries     : 9
-Project packages          : 6
+Third-party libraries     : 10
+Project packages          : 7

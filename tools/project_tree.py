@@ -1,4 +1,5 @@
 from pathlib import Path
+from tools.project_paths import PROJECT_ROOT
 
 
 # ============================================================
@@ -39,7 +40,7 @@ EXCLUDED_FILES = {
 }
 
 
-OUTPUT_FILE = "project_structure.txt"
+OUTPUT_FILE = "docs/project_structure.txt"
 
 
 def is_excluded(path: Path) -> bool:
@@ -203,7 +204,7 @@ def find_python_files(root: Path) -> list[Path]:
 
 def main():
 
-    root = Path(__file__).resolve().parent
+    root = PROJECT_ROOT
 
     print()
     print("=" * 70)

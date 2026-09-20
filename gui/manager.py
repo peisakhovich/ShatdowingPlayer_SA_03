@@ -17,6 +17,8 @@ import pygame_gui
 
 
 class GUIManager:
+    """ Создание главног диспетчера системы всех графических элементов UI приложения
+    """
 
     def __init__(self, size):
 

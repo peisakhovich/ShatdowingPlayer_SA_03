@@ -9,13 +9,13 @@ The data is generated from the current Python project structure and import analy
 
 | Metric | Value |
 |---|---:|
-| Python files | 103 |
-| Project modules | 103 |
+| Python files | 105 |
+| Project modules | 105 |
 | Application modules | 68 |
-| Development / test modules | 28 |
-| Other modules | 7 |
-| Modules with internal imports | 55 |
-| Modules without internal imports | 48 |
+| Development / test modules | 25 |
+| Other modules | 12 |
+| Modules with internal imports | 61 |
+| Modules without internal imports | 44 |
 | Standard-library libraries | 18 |
 | Third-party libraries | 9 |
 | Architectural roots | 15 |
@@ -27,7 +27,7 @@ Number of project modules importing each standard-library module.
 
 | Library | Modules using it |
 |---|---:|
-| `pathlib` | 23 |
+| `pathlib` | 24 |
 | `__future__` | 17 |
 | `asyncio` | 12 |
 | `json` | 5 |
@@ -159,9 +159,6 @@ Project modules identified as architectural roots by the import analysis.
 
 ## Development / Test Modules
 
-- `project_dependencies`
-- `project_import_map`
-- `project_tree`
 - `test_environment`
 - `tests`
 - `tests.test_api_client`
@@ -206,9 +203,6 @@ These modules do not import another project module.
 - `audio.tts`
 - `core`
 - `docs.modules.gui.services`
-- `docs_audit`
-- `docs_generator`
-- `docs_nav_generator`
 - `gui`
 - `gui.dialogs`
 - `gui.file_dialog`
@@ -223,9 +217,6 @@ These modules do not import another project module.
 - `gui.widgets.label`
 - `gui.widgets.list_selection`
 - `hooks.import_map`
-- `project_dependencies`
-- `project_import_map`
-- `project_tree`
 - `session`
 - `session.providers`
 - `session.providers.guest_provider`
@@ -239,6 +230,8 @@ These modules do not import another project module.
 - `tests.test_database`
 - `tests.test_franch_voice`
 - `tests.test_state`
+- `tools`
+- `tools.project_paths`
 - `utils`
 - `utils.paths`
 

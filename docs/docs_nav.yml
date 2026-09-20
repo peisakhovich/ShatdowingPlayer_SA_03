@@ -1,5 +1,7 @@
 nav:
   - Sound Language Studio: index.md
+  - Architecture: architecture.md
+  - Project Statistics: project_statistics.md
   - Modules:
       - AI:
           - Generators:
@@ -68,9 +70,11 @@ nav:
               - Guest Provider: modules/session/providers/guest_provider.md
           - Session: modules/session/session.md
           - Session Excel: modules/session/session_excel.md
+      - Tools:
+          - Docs Audit: modules/tools/docs_audit.md
+          - Docs Nav Generator: modules/tools/docs_nav_generator.md
+          - Project Paths: modules/tools/project_paths.md
+          - Project Statistics: modules/tools/project_statistics.md
       - Utils:
           - Paths: modules/utils/paths.md
-      - Docs Audit: modules/docs_audit.md
-      - Docs Nav Generator: modules/docs_nav_generator.md
       - Main: modules/main.md
-      - Project Statistics: modules/project_statistics.md

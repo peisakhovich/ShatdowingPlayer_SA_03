@@ -24,13 +24,14 @@ from __future__ import annotations
 import ast
 import sys
 from pathlib import Path
+from tools.project_paths import PROJECT_ROOT
 
 
 # ==================================================
 # CONFIGURATION
 # ==================================================
 
-BASE_DIR = Path(__file__).resolve().parent
+BASE_DIR = PROJECT_ROOT
 
 OUTPUT_FILE = (
     BASE_DIR

@@ -1,7 +1,8 @@
 from pathlib import Path
 
+from tools.project_paths import PROJECT_ROOT
 
-PROJECT_ROOT = Path(__file__).resolve().parent
+
 DOCS_ROOT = PROJECT_ROOT / "docs" / "modules"
 
 

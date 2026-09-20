@@ -1,10 +1,11 @@
 from pathlib import Path
 
+from tools.project_paths import PROJECT_ROOT
 
-PROJECT_ROOT = Path(__file__).resolve().parent
+
 DOCS_MODULES = PROJECT_ROOT / "docs" / "modules"
 MKDOCS_FILE = PROJECT_ROOT / "mkdocs.yml"
-DOCS_NAV_FILE = PROJECT_ROOT / "docs_nav.yml"
+DOCS_NAV_FILE = PROJECT_ROOT / "docs" / "docs_nav.yml"
 
 
 def make_title(name: str) -> str:
@@ -32,6 +33,7 @@ def build_tree(path: Path, indent: int = 0) -> list[str]:
 
     files = sorted(
         item for item in path.iterdir()
+        
         if item.is_file() and item.suffix == ".md"
     )
 
@@ -62,6 +64,8 @@ def build_tree(path: Path, indent: int = 0) -> list[str]:
 def build_nav() -> list[str]:
     lines = [
         "  - Sound Language Studio: index.md",
+        "  - Architecture: architecture.md",
+        "  - Project Statistics: project_statistics.md",
         "  - Modules:",
     ]
 

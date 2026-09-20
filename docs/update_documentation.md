@@ -1,29 +1,29 @@
 # Обновление документации
 
-После изменений в Python-коде выполнить из корня проекта:
+После изменений в Python-коде выполнить из корня проекта.
 
 ### 1. Обновить страницы модулей
 
 ```powershell
-py docs_generator.py
+py -m tools.docs_generator
 ```
 
 ### 2. Обновить карту импортов
 
 ```powershell
-py project_import_map.py
+py -m tools.project_import_map
 ```
 
 ### 3. Обновить навигацию
 
 ```powershell
-py docs_nav_generator.py
+py -m tools.docs_nav_generator
 ```
 
 ### 4. Обновить статистику проекта
 
 ```powershell
-py project_statistics.py
+py -m tools.project_statistics
 ```
 
 ### 5. Проверить сборку
@@ -54,10 +54,10 @@ git diff
 ## Полная последовательность
 
 ```powershell
-py docs_generator.py
-py project_import_map.py
-py docs_nav_generator.py
-py project_statistics.py
+py -m tools.docs_generator
+py -m tools.project_import_map
+py -m tools.docs_nav_generator
+py -m tools.project_statistics
 mkdocs build --strict
 .\run_docs.bat
 git status

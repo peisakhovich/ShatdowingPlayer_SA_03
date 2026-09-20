@@ -1,16 +1,13 @@
 
 ai.dictation_plan
-  CLASS MISSING: DictationPlanBuilder
   METHOD MISSING: DictationPlanBuilder.build
   METHOD MISSING: DictationPlanBuilder.save
 
 ai.dictation_segmenter
-  CLASS MISSING: DictationSegmenter
   METHOD MISSING: DictationSegmenter.segment
 
 ai.dictation_validator
   CLASS MISSING: DictationValidationError
-  CLASS MISSING: DictationValidator
   METHOD MISSING: DictationValidator.normalize_text
   METHOD MISSING: DictationValidator.validate
 
@@ -20,8 +17,10 @@ ai.generators.dictation_generator
 ai.generators.generator_router
   METHOD MISSING: GeneratorRouter.get_generator
 
+ai.generators.shadowing_generator
+  METHOD MISSING: ShadowingGenerator.generate
+
 ai.language_detector
-  CLASS MISSING: LanguageDetector
   METHOD MISSING: LanguageDetector.detect
 
 ai.models
@@ -32,34 +31,49 @@ ai.models
   CLASS MISSING: DetectedLanguage
 
 ai.openai_client
-  CLASS MISSING: OpenAIClient
   METHOD MISSING: OpenAIClient.ask
   METHOD MISSING: OpenAIClient.ask_structured
+  METHOD MISSING: OpenAIClient.is_available
 
 ai.shadowing_plan
-  CLASS MISSING: ShadowingPlanBuilder
   METHOD MISSING: ShadowingPlanBuilder.build
   METHOD MISSING: ShadowingPlanBuilder.save
 
 ai.shadowing_segmenter
-  CLASS MISSING: ShadowingSegmenter
   METHOD MISSING: ShadowingSegmenter.segment
 
 ai.shadowing_validator
   METHOD MISSING: ShadowingValidator.validate
 
 api.client
-  CLASS MISSING: ApiClient
   METHOD MISSING: ApiClient.login
   METHOD MISSING: ApiClient.register
+  METHOD MISSING: ApiClient.change_password
   METHOD MISSING: ApiClient.get_sets
+  METHOD MISSING: ApiClient.health_check
   METHOD MISSING: ApiClient.get_set
   METHOD MISSING: ApiClient.save_set
   METHOD MISSING: ApiClient.update_set
   METHOD MISSING: ApiClient.delete_set
 
+audio.async_runner
+  METHOD MISSING: AsyncRunner.submit
+  METHOD MISSING: AsyncRunner.stop
+
+audio.cache
+  METHOD MISSING: AudioCache.get_path
+  METHOD MISSING: AudioCache.exists
+  METHOD MISSING: AudioCache.save
+
+audio.mixer
+  METHOD MISSING: AudioMixer.load
+  METHOD MISSING: AudioMixer.play
+  METHOD MISSING: AudioMixer.pause
+  METHOD MISSING: AudioMixer.resume
+  METHOD MISSING: AudioMixer.stop
+  METHOD MISSING: AudioMixer.is_playing
+
 audio.player
-  CLASS MISSING: Player
   METHOD MISSING: Player.get_msg_top
   METHOD MISSING: Player.get_msg_bottom
   METHOD MISSING: Player.get_msg_info
@@ -81,8 +95,10 @@ audio.player
   METHOD MISSING: Player.last
   METHOD MISSING: Player.update
 
+audio.provider
+  METHOD MISSING: AudioProvider.get_audio
+
 audio.scenario_provider
-  CLASS MISSING: ScenarioProvider
   METHOD MISSING: ScenarioProvider.get_scenarios
   METHOD MISSING: ScenarioProvider.get_current
   METHOD MISSING: ScenarioProvider.set_current
@@ -90,12 +106,16 @@ audio.scenario_provider
   METHOD MISSING: ScenarioProvider.get_scenario_list
   METHOD MISSING: ScenarioProvider.get_current_scenario_index
 
-core.application
-  CLASS MISSING: Application
-  METHOD MISSING: Application.run
+audio.tts
+  METHOD MISSING: TTS.get_voices
+  METHOD MISSING: TTS.get_voices_for_language
+  METHOD MISSING: TTS.get_locales_for_language
+  METHOD MISSING: TTS.get_voices_for_locale
+  METHOD MISSING: TTS.synthesize
+  METHOD MISSING: TTS.get_languages
 
-core.config
-  CLASS MISSING: Config
+core.application
+  METHOD MISSING: Application.run
 
 core.logger
   METHOD MISSING: Logger.debug
@@ -112,17 +132,11 @@ gui.database_window
   METHOD MISSING: DatabaseWindow.draw
 
 gui.dialogs.dialog
-  CLASS MISSING: Dialog
   METHOD MISSING: Dialog.show
   METHOD MISSING: Dialog.hide
   METHOD MISSING: Dialog.handle_event
   METHOD MISSING: Dialog.update
   METHOD MISSING: Dialog.draw
-
-gui.dialogs.exit_dialog
-  CLASS MISSING: ExitDialog
-  METHOD MISSING: ExitDialog.handle_event
-  METHOD MISSING: ExitDialog.draw
 
 gui.file_dialog
   CLASS MISSING: FileDialog
@@ -141,14 +155,12 @@ gui.login_register_window
   METHOD MISSING: LoginRegisterWindow.draw
 
 gui.main_window
-  CLASS MISSING: MainWindow
   METHOD MISSING: MainWindow.show_exit_dialog
   METHOD MISSING: MainWindow.handle_event
   METHOD MISSING: MainWindow.update
   METHOD MISSING: MainWindow.draw
 
 gui.manager
-  CLASS MISSING: GUIManager
   METHOD MISSING: GUIManager.process_events
   METHOD MISSING: GUIManager.update
   METHOD MISSING: GUIManager.draw
@@ -225,6 +237,9 @@ gui.widgets.list_selection
   METHOD MISSING: ListSelection.handle_event
   METHOD MISSING: ListSelection.draw
 
+gui.widgets.status_message
+  METHOD MISSING: StatusMessage.draw
+
 gui.widgets.text_button
   CLASS MISSING: TextButton
   METHOD MISSING: TextButton.handle_event
@@ -270,9 +285,9 @@ session.session_excel
 ============================================================
 Documentation Audit Summary
 ============================================================
-Modules checked:       55
-Modules with problems: 44
-Missing classes:       40
-Missing methods:       140
+Modules checked:       58
+Modules with problems: 49
+Missing classes:       24
+Missing methods:       161
 Errors:                0
 ============================================================

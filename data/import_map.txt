@@ -3,8 +3,8 @@ PROJECT IMPORT MAP
 ======================================================================
 
 Project root: C:\Users\liudm\SadowingApp\SA_03\SA_03
-Python files scanned: 103
-Project modules found: 103
+Python files scanned: 105
+Project modules found: 105
 
 ======================================================================
 APPLICATION MODULES
@@ -201,15 +201,6 @@ core.logger
 docs.modules.gui.services
     → None
 
-docs_audit
-    → None
-
-docs_generator
-    → None
-
-docs_nav_generator
-    → None
-
 gui
     → None
 
@@ -357,18 +348,6 @@ hooks.import_map
 main
     → core.application
 
-project_dependencies
-    → None
-
-project_import_map
-    → None
-
-project_statistics
-    → project_import_map
-
-project_tree
-    → None
-
 session
     → None
 
@@ -472,6 +451,34 @@ tests.test_tts_languages
 
 tests.test_tts_voices
     → audio.tts
+
+tools
+    → None
+
+tools.docs_audit
+    → tools.project_paths
+
+tools.docs_generator
+    → tools.project_paths
+
+tools.docs_nav_generator
+    → tools.project_paths
+
+tools.project_dependencies
+    → tools.project_paths
+
+tools.project_import_map
+    → tools.project_paths
+
+tools.project_paths
+    → None
+
+tools.project_statistics
+    → tools.project_import_map
+    → tools.project_paths
+
+tools.project_tree
+    → tools.project_paths
 
 utils
     → None
@@ -586,15 +593,6 @@ core.logger
 docs.modules.gui.services
     → None
 
-docs_audit
-    → pathlib
-
-docs_generator
-    → pathlib
-
-docs_nav_generator
-    → pathlib
-
 gui
     → None
 
@@ -696,25 +694,6 @@ hooks.import_map
 main
     → pathlib
     → shutil
-
-project_dependencies
-    → __future__
-    → ast
-    → pathlib
-    → sys
-
-project_import_map
-    → __future__
-    → ast
-    → pathlib
-    → sys
-
-project_statistics
-    → __future__
-    → pathlib
-
-project_tree
-    → pathlib
 
 session
     → None
@@ -821,6 +800,40 @@ tests.test_tts_languages
 tests.test_tts_voices
     → asyncio
 
+tools
+    → None
+
+tools.docs_audit
+    → pathlib
+
+tools.docs_generator
+    → pathlib
+
+tools.docs_nav_generator
+    → pathlib
+
+tools.project_dependencies
+    → __future__
+    → ast
+    → pathlib
+    → sys
+
+tools.project_import_map
+    → __future__
+    → ast
+    → pathlib
+    → sys
+
+tools.project_paths
+    → pathlib
+
+tools.project_statistics
+    → __future__
+    → pathlib
+
+tools.project_tree
+    → pathlib
+
 utils
     → None
 
@@ -924,15 +937,6 @@ core.logger
 docs.modules.gui.services
     → None
 
-docs_audit
-    → griffe
-
-docs_generator
-    → None
-
-docs_nav_generator
-    → None
-
 gui
     → None
 
@@ -1029,18 +1033,6 @@ hooks.import_map
 main
     → dotenv
 
-project_dependencies
-    → None
-
-project_import_map
-    → None
-
-project_statistics
-    → None
-
-project_tree
-    → None
-
 session
     → None
 
@@ -1133,6 +1125,33 @@ tests.test_tts_languages
     → None
 
 tests.test_tts_voices
+    → None
+
+tools
+    → None
+
+tools.docs_audit
+    → griffe
+
+tools.docs_generator
+    → None
+
+tools.docs_nav_generator
+    → None
+
+tools.project_dependencies
+    → None
+
+tools.project_import_map
+    → None
+
+tools.project_paths
+    → None
+
+tools.project_statistics
+    → None
+
+tools.project_tree
     → None
 
 utils
@@ -1376,9 +1395,6 @@ gui.widgets.text_edit
 gui.widgets.text_window
     → gui.main_window
 
-project_import_map
-    → project_statistics
-
 session.providers.guest_provider
     → core.application
 
@@ -1392,6 +1408,18 @@ session.session_excel
     → tests.test_import_to_session
     → tests.test_real_session_excel
     → tests.test_session_excel
+
+tools.project_import_map
+    → tools.project_statistics
+
+tools.project_paths
+    → tools.docs_audit
+    → tools.docs_generator
+    → tools.docs_nav_generator
+    → tools.project_dependencies
+    → tools.project_import_map
+    → tools.project_statistics
+    → tools.project_tree
 
 utils.paths
     → core.config
@@ -1418,9 +1446,6 @@ ARCHITECTURAL ROOTS
 ======================================================================
 DEVELOPMENT / TEST MODULES
 ======================================================================
-    project_dependencies
-    project_import_map
-    project_tree
     test_environment
     tests
     tests.test_api_client
@@ -1450,12 +1475,12 @@ DEVELOPMENT / TEST MODULES
 ======================================================================
 SUMMARY
 ======================================================================
-Python files scanned       : 103
-Project modules found      : 103
+Python files scanned       : 105
+Project modules found      : 105
 Application modules        : 68
-Development modules        : 28
-Modules with internal imports                   : 55
-Modules without internal imports                   : 48
+Development modules        : 25
+Modules with internal imports                   : 61
+Modules without internal imports                   : 44
 Standard-library modules   : 18
 Third-party libraries      : 9
 Architectural roots        : 15
