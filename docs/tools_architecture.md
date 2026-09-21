@@ -1,5 +1,11 @@
 # Tools Architecture
 
+<p align="center">
+  <img src="../images/Architectute_doc_tools.png"
+       alt="Tools documentation architecture"
+       style="max-width: 100%; height: auto;">
+</p>
+
 ## Назначение
 
 Пакет `tools` содержит служебные модули Sound Language Studio, предназначенные для анализа проекта, формирования документации и контроля её состояния.
