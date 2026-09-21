@@ -1,3 +1,24 @@
+"""
+Sound Language Studio
+
+---------------------
+
+Module:
+
+    docs_generator
+
+Purpose:
+
+    Generates Markdown documentation pages for Python modules
+    and preserves the existing documentation structure.
+
+ru:
+
+    Создаёт Markdown-страницы документации для Python-модулей
+    и сохраняет существующую структуру документации.
+"""
+
+
 from pathlib import Path
 
 from tools.project_paths import PROJECT_ROOT
@@ -48,6 +69,13 @@ def module_name(py_file: Path) -> str:
     return ".".join(parts)
 
 
+def is_tools_module(py_file: Path) -> bool:
+    """Проверяет, относится ли модуль к каталогу tools."""
+    relative = py_file.relative_to(PROJECT_ROOT)
+
+    return relative.parts[0] == "tools"
+
+
 def module_page_content(module: str, title: str) -> str:
     """Формирует стандартное содержимое страницы модуля."""
     return f"""# {title}
@@ -72,6 +100,25 @@ def module_page_content(module: str, title: str) -> str:
 """
 
 
+def tools_module_page_content(
+    py_file: Path,
+    title: str,
+) -> str:
+    """Формирует страницу tools-модуля со сворачиваемым исходным кодом."""
+    source = py_file.read_text(
+        encoding="utf-8",
+    )
+
+    return (
+        f"# {title}\n\n"
+        "## Source Code\n\n"
+        "<details>\n"
+        "<summary>Show source code</summary>\n\n"
+        "```python\n"
+        f"{source}\n"
+        "```\n\n"
+        "</details>\n"
+    )
 def is_old_module_page(content: str, module: str) -> bool:
     """
     Проверяет, является ли существующая Markdown-страница
@@ -104,9 +151,8 @@ def is_old_module_page(content: str, module: str) -> bool:
 
     return True
 
-
 def create_module_page(py_file: Path) -> None:
-    """Создаёт или обновляет стандартную страницу MkDocs."""
+    """Создаёт или обновляет страницу документации Python-модуля."""
     relative = py_file.relative_to(PROJECT_ROOT)
 
     parts = list(relative.parts)
@@ -120,7 +166,28 @@ def create_module_page(py_file: Path) -> None:
     module = module_name(py_file)
     title = py_file.stem.replace("_", " ").title()
 
-    new_content = module_page_content(module, title)
+    if is_tools_module(py_file):
+        new_content = tools_module_page_content(
+            py_file,
+            title,
+        )
+
+        output_file.write_text(
+            new_content,
+            encoding="utf-8",
+        )
+
+        print(
+            f"Updated: "
+            f"{output_file.relative_to(PROJECT_ROOT)}"
+        )
+
+        return
+
+    new_content = module_page_content(
+        module,
+        title,
+    )
 
     if not output_file.exists():
         output_file.write_text(
@@ -156,7 +223,6 @@ def create_module_page(py_file: Path) -> None:
         f"Skipped: "
         f"{output_file.relative_to(PROJECT_ROOT)}"
     )
-
 
 def main() -> None:
     """Создаёт и обновляет страницы документации Python-модулей."""

@@ -1,25 +1,26 @@
+"""
+Sound Language Studio
+
+---------------------
+
+Module:
+
+    project_tree
+
+Purpose:
+
+    Generates a project structure report, including file sizes,
+    empty files, empty directories, and Python source files.
+
+ru:
+
+    Формирует отчёт о структуре проекта, включая размеры файлов,
+    пустые файлы, пустые каталоги и Python-файлы.
+"""
 from pathlib import Path
 from tools.project_paths import PROJECT_ROOT
 
 
-# ============================================================
-# Sound Language Studio
-# Project Structure Analyzer
-#
-# RU:
-# Создаёт отчёт о структуре проекта и выявляет пустые
-# файлы и каталоги. Служебные каталоги исключаются.
-# Размер каждого файла отображается непосредственно
-# в дереве проекта.
-#
-# EN:
-# Creates a project structure report and detects empty files
-# and directories. Service directories are excluded.
-# The size of each file is displayed directly in the tree.
-# ============================================================
-
-
-# Directories that should not be included in the report.
 EXCLUDED_DIRS = {
     ".venv",
     "venv",

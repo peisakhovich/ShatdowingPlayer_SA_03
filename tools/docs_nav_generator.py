@@ -1,3 +1,22 @@
+"""
+Sound Language Studio
+
+---------------------
+
+Module:
+
+    docs_nav_generator
+
+Purpose:
+
+    Generates the MkDocs navigation structure from
+    the project documentation tree.
+
+ru:
+
+    Формирует структуру навигации MkDocs на основе
+    дерева документации проекта.
+"""
 from pathlib import Path
 
 from tools.project_paths import PROJECT_ROOT

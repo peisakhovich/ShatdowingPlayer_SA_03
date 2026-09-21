@@ -1,3 +1,28 @@
+"""
+Sound Language Studio
+
+---------------------
+
+Module:
+
+    docs_audit
+
+Purpose:
+
+    Audits Python modules for missing documentation of classes
+    and public methods.
+
+ru:
+
+    Проверяет Python-модули на отсутствие документации
+    у классов и публичных методов.
+"""
+
+from pathlib import Path
+
+from griffe import load
+
+from tools.project_paths import PROJECT_ROOT
 from pathlib import Path
 
 from griffe import load

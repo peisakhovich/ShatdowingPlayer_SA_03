@@ -1,19 +1,15 @@
 # Project Paths
 
-## Архитектура
+## Source Code
 
-### Internal dependencies
+<details>
+<summary>Show source code</summary>
 
-<!-- import-map: tools.project_paths: internal_dependencies -->
+```python
+from pathlib import Path
 
-### Python standard library
 
-<!-- import-map: tools.project_paths: standard_library -->
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+```
 
-### Third-party libraries
-
-<!-- import-map: tools.project_paths: third_party -->
-
-## API
-
-::: tools.project_paths
+</details>

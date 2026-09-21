@@ -1,13 +1,21 @@
 """
 Sound Language Studio
+
 ---------------------
 
-Project utility:
-    project_statistics.py
+Module:
+
+    project_statistics
 
 Purpose:
+
     Generates a Markdown project statistics page for MkDocs
-    using the same project analysis as project_import_map.py.
+    using the project structure and import analysis.
+
+ru:
+
+    Формирует Markdown-страницу со статистикой проекта для MkDocs
+    на основе структуры проекта и анализа импортов.
 """
 
 from __future__ import annotations
