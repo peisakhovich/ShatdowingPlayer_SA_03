@@ -9,13 +9,14 @@ The data is generated from the current Python project structure and import analy
 
 | Metric | Value |
 |---|---:|
-| Python files | 105 |
-| Project modules | 105 |
+| Python files | 104 |
+| Project modules | 104 |
 | Application modules | 68 |
-| Development / test modules | 25 |
+| Development / test modules | 24 |
+| Tools | 8 |
 | Other modules | 12 |
 | Modules with internal imports | 61 |
-| Modules without internal imports | 44 |
+| Modules without internal imports | 43 |
 | Standard-library libraries | 18 |
 | Third-party libraries | 9 |
 | Architectural roots | 15 |
@@ -53,15 +54,15 @@ Number of project modules importing each third-party library.
 
 | Library | Modules using it |
 |---|---:|
-| `pygame` | 25 |
+| `pygame` | 24 |
 | `dotenv` | 8 |
 | `openpyxl` | 3 |
 | `edge_tts` | 2 |
-| `pygame_gui` | 2 |
 | `griffe` | 1 |
 | `httpx` | 1 |
 | `openai` | 1 |
 | `pydantic` | 1 |
+| `pygame_gui` | 1 |
 
 
 ## Architectural Roots
@@ -159,7 +160,6 @@ Project modules identified as architectural roots by the import analysis.
 
 ## Development / Test Modules
 
-- `test_environment`
 - `tests`
 - `tests.test_api_client`
 - `tests.test_async_runner`
@@ -184,6 +184,20 @@ Project modules identified as architectural roots by the import analysis.
 - `tests.test_state`
 - `tests.test_tts_languages`
 - `tests.test_tts_voices`
+
+
+## Tools
+
+Project utility modules used for analysis, documentation generation, and project maintenance.
+
+- `tools.docs_audit`
+- `tools.docs_generator`
+- `tools.docs_nav_generator`
+- `tools.project_dependencies`
+- `tools.project_import_map`
+- `tools.project_paths`
+- `tools.project_statistics`
+- `tools.project_tree`
 
 
 ## Modules Without Internal Dependencies
@@ -223,7 +237,6 @@ These modules do not import another project module.
 - `session.session`
 - `session.session_excel`
 - `site.modules.gui.services`
-- `test_environment`
 - `tests`
 - `tests.test_asyncio`
 - `tests.test_asyncio_loop`

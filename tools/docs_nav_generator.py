@@ -8,6 +8,15 @@ MKDOCS_FILE = PROJECT_ROOT / "mkdocs.yml"
 DOCS_NAV_FILE = PROJECT_ROOT / "docs" / "docs_nav.yml"
 
 
+EXCLUDED_DIRS = {
+    "hooks",
+}
+
+EXCLUDED_FILES = {
+    "test_environment.md",
+}
+
+
 def make_title(name: str) -> str:
     special_titles = {
         "ai": "AI",
@@ -27,20 +36,26 @@ def build_tree(path: Path, indent: int = 0) -> list[str]:
     lines = []
 
     directories = sorted(
-        item for item in path.iterdir()
+        item
+        for item in path.iterdir()
         if item.is_dir()
+        and item.name not in EXCLUDED_DIRS
     )
 
     files = sorted(
-        item for item in path.iterdir()
-        
-        if item.is_file() and item.suffix == ".md"
+        item
+        for item in path.iterdir()
+        if item.is_file()
+        and item.suffix == ".md"
+        and item.name not in EXCLUDED_FILES
     )
 
     for directory in directories:
         title = make_title(directory.name)
 
-        lines.append(" " * indent + f"- {title}:")
+        lines.append(
+            " " * indent + f"- {title}:"
+        )
 
         lines.extend(
             build_tree(directory, indent + 4)
@@ -70,7 +85,14 @@ def build_nav() -> list[str]:
     ]
 
     lines.extend(
-        build_tree(DOCS_MODULES, indent=6)
+        build_tree(
+            DOCS_MODULES,
+            indent=6,
+        )
+    )
+
+    lines.append(
+        "  - Tools Architecture: tools_architecture.md"
     )
 
     return lines

@@ -63,8 +63,6 @@ nav:
           - Settings Window: modules/gui/settings_window.md
           - Splash Screen: modules/gui/splash_screen.md
           - Theme: modules/gui/theme.md
-      - Hooks:
-          - Import Map: modules/hooks/import_map.md
       - Session:
           - Providers:
               - Guest Provider: modules/session/providers/guest_provider.md
@@ -72,9 +70,14 @@ nav:
           - Session Excel: modules/session/session_excel.md
       - Tools:
           - Docs Audit: modules/tools/docs_audit.md
+          - Docs Generator: modules/tools/docs_generator.md
           - Docs Nav Generator: modules/tools/docs_nav_generator.md
+          - Project Dependencies: modules/tools/project_dependencies.md
+          - Project Import Map: modules/tools/project_import_map.md
           - Project Paths: modules/tools/project_paths.md
           - Project Statistics: modules/tools/project_statistics.md
+          - Project Tree: modules/tools/project_tree.md
       - Utils:
           - Paths: modules/utils/paths.md
       - Main: modules/main.md
+  - Tools Architecture: tools_architecture.md

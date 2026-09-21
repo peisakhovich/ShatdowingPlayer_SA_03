@@ -3,7 +3,7 @@ DEPENDENCY INVENTORY
 ======================================================================
 
 Project root: C:\Users\liudm\SadowingApp\SA_03\SA_03
-Python files scanned: 105
+Python files scanned: 104
 
 This report contains modules imported by the Python source files.
 Modules are classified as standard library, third-party,
@@ -194,11 +194,9 @@ pygame
     gui\widgets\text_button.py
     gui\widgets\text_edit.py
     gui\widgets\text_window.py
-    test_environment.py
 
 pygame_gui
     gui\manager.py
-    test_environment.py
 
 tools
     tools\docs_audit.py
@@ -303,7 +301,7 @@ utils
 ======================================================================
 SUMMARY
 ======================================================================
-Python files scanned       : 105
+Python files scanned       : 104
 Standard library modules  : 18
 Third-party libraries     : 10
 Project packages          : 7

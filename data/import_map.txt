@@ -3,8 +3,8 @@ PROJECT IMPORT MAP
 ======================================================================
 
 Project root: C:\Users\liudm\SadowingApp\SA_03\SA_03
-Python files scanned: 105
-Project modules found: 105
+Python files scanned: 104
+Project modules found: 104
 
 ======================================================================
 APPLICATION MODULES
@@ -366,9 +366,6 @@ session.session_excel
 site.modules.gui.services
     → None
 
-test_environment
-    → None
-
 tests
     → None
 
@@ -719,9 +716,6 @@ session.session_excel
 site.modules.gui.services
     → None
 
-test_environment
-    → None
-
 tests
     → None
 
@@ -1050,10 +1044,6 @@ session.session_excel
 
 site.modules.gui.services
     → None
-
-test_environment
-    → pygame
-    → pygame_gui
 
 tests
     → None
@@ -1446,7 +1436,6 @@ ARCHITECTURAL ROOTS
 ======================================================================
 DEVELOPMENT / TEST MODULES
 ======================================================================
-    test_environment
     tests
     tests.test_api_client
     tests.test_async_runner
@@ -1475,12 +1464,12 @@ DEVELOPMENT / TEST MODULES
 ======================================================================
 SUMMARY
 ======================================================================
-Python files scanned       : 105
-Project modules found      : 105
+Python files scanned       : 104
+Project modules found      : 104
 Application modules        : 68
-Development modules        : 25
+Development modules        : 24
 Modules with internal imports                   : 61
-Modules without internal imports                   : 44
+Modules without internal imports                   : 43
 Standard-library modules   : 18
 Third-party libraries      : 9
 Architectural roots        : 15

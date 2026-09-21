@@ -70,7 +70,7 @@ def add_statistics_table(lines, statistics):
 
 
 def build_library_usage(data):
-    
+
     # Build reverse usage information for libraries.
 
     # The input dictionary has the form:
@@ -86,7 +86,7 @@ def build_library_usage(data):
     #         "library_a": {"module.name", ...},
     #         ...
     #     }
-    
+
     usage = {}
 
     for module, libraries in data.items():
@@ -192,6 +192,12 @@ def generate_statistics_page():
                 module
             )
 
+    tools_modules = [
+        module
+        for module in project_modules
+        if module.startswith("tools.")
+    ]
+
     modules_with_internal_imports = {
         module
         for module, dependencies in internal.items()
@@ -259,6 +265,10 @@ def generate_statistics_page():
         (
             "Development / test modules",
             len(development_modules),
+        ),
+        (
+            "Tools",
+            len(tools_modules),
         ),
         (
             "Other modules",
@@ -390,6 +400,27 @@ def generate_statistics_page():
     add_module_list(
         lines,
         development_modules,
+    )
+
+    # ------------------------------------------------------------------
+    # Tools
+    # ------------------------------------------------------------------
+
+    add_heading(
+        lines,
+        "Tools",
+    )
+
+    lines.append(
+        "Project utility modules used for analysis, "
+        "documentation generation, and project maintenance."
+    )
+
+    lines.append("")
+
+    add_module_list(
+        lines,
+        tools_modules,
     )
 
     # ------------------------------------------------------------------

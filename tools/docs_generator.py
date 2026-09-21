@@ -13,15 +13,17 @@ EXCLUDED_DIRS = {
     "data",
     "logs",
     "tmp",
+    "hooks",
     "test_output",
 }
 
 EXCLUDED_FILES = {
-    "docs_generator.py",
-    "project_tree.py",
-    "project_dependencies.py",
-    "project_import_map.py",
-    "test_environment.py",
+    # "docs_generator.py",
+    # "project_tree.py",
+    # "project_dependencies.py",
+    # "project_import_map.py",
+    # "test_environment.py",
+    "import_map.py",
 }
 
 
