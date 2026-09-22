@@ -2,6 +2,7 @@ nav:
   - Sound Language Studio: index.md
   - Architecture: architecture.md
   - Project Statistics: project_statistics.md
+  - Application Modes & API Configuration: application_modes.md
   - Modules:
       - AI:
           - Generators:

@@ -153,9 +153,41 @@ Suggestions, bug reports, and improvements are welcome.
 
 Before making significant changes, please review the project documentation and the existing application architecture.
 
+## Application Modes
+
+Sound Language Studio can operate in three modes depending on the availability of optional API services.
+
+### Local Mode
+
+No external API services are available.
+
+Core functionality remains available, including:
+
+* Shadowing;
+* Dictation;
+* Text-to-Speech;
+* local learning sets;
+* Excel import and export.
+
+### AI Mode
+
+The AI service is available.
+
+All Local Mode functionality remains available, with additional AI-assisted learning features.
+
+### Full Mode
+
+Both the AI service and Database API are available.
+
+All currently implemented application features are available, including AI-assisted learning and remote learning-set storage.
+
+The AI service and Database API operate independently. If one service is unavailable, the functionality that does not depend on it remains available.
+
+> See [Application Modes & API Configuration](application_modes.md) for details about API configuration and access keys.
+
 ## License
 
-The project license will be defined separately.
+Sound Language Studio is released under the MIT License.
 
 ---
 

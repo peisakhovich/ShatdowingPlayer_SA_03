@@ -100,6 +100,7 @@ def build_nav() -> list[str]:
         "  - Sound Language Studio: index.md",
         "  - Architecture: architecture.md",
         "  - Project Statistics: project_statistics.md",
+        "  - Application Modes & API Configuration: application_modes.md",
         "  - Modules:",
     ]
 
