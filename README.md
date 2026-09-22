@@ -20,7 +20,21 @@ The main goal of the project is to provide a convenient, non-intrusive environme
 
 ## Screenshots
 
-Screenshots of the application will be added here.
+### Start
+
+![Sound Language Studio - Start](docs/images/screenshots/screenshot_start.png)
+
+### Main Window
+
+![Sound Language Studio - Main Window](docs/images/screenshots/screenshot_main_window.png)
+
+### Database
+
+![Sound Language Studio - Database](docs/images/screenshots/screenshot_database_window.png)
+
+### Settings
+
+![Sound Language Studio - Settings](docs/images/screenshots/screenshot_settings_window.png)
 
 ## Documentation
 
@@ -148,3 +162,4 @@ The project license will be defined separately.
 **Sound Language Studio**
 
 *A free desktop environment for language learning through listening, speaking, and interactive practice.*
+
