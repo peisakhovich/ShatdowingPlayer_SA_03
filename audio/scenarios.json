@@ -66,8 +66,8 @@
                 }
             ]
         },
-        "translation_first": {
-            "caption": "Translation first",
+        "revers_shatdowing": {
+            "caption": "Revers Shatdowing",
             "actions": [
                 {
                     "action": "HIDE",
