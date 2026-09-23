@@ -18,6 +18,11 @@ The main goal of the project is to provide a convenient, non-intrusive environme
 * ☁️ **Optional Database API** — store and synchronize learning sets using a remote database.
 * ⚙️ **Service status information** — see the availability of optional external services directly in the application.
 
+## Shadowing
+
+- [Shadowing — Introduction (RU)](docs/shadowing_intro_ru.md)
+- [Shadowing — Introduction (EN)](docs/shadowing_intro_en.md)
+
 ## Screenshots
 
 ### Start
