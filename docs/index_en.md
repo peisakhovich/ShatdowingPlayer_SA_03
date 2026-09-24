@@ -53,6 +53,8 @@ This list is not fixed. The `scenarios.json` file provides a configuration mecha
 
 Thus, **Shadowing** is one of the application's scenarios rather than a limitation of the overall system. **Dictation** is likewise a separate scenario that uses the common application infrastructure.
 
+**what is The Shatdowing:**  [Intro](shadowing_intro_en.md)
+
 ### Main Capabilities
 
 At its current stage of development, Sound Language Studio provides the following capabilities:
