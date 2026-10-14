@@ -1,6 +1,6 @@
 pygame-ce==2.5.7
 pygame_gui==0.6.14
-edge-tts
+edge-tts==7.3.1
 python-dotenv
 openai
 httpx==0.28.1
