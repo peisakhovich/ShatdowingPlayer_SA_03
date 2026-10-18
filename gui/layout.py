@@ -153,6 +153,7 @@ class Layout:
     {"name": "exceltoset", "hint": "Import session from Excel"},
     {"name": "dropset",    "hint": "Delete selected set"},
     {"name": "datatodb",   "hint": "Save session name and description to database"},
+    {"name": "audiotodb",  "hint": "Generate audio and save to database for selected set"},
     {"name": "login",      "hint": "Login"},
     {"name": "register",   "hint": "Register new user"},
     {"name": "chpass",     "hint": "Change password"},

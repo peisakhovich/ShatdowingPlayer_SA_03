@@ -24,6 +24,7 @@ from api.client import ApiClient
 from core.config import Config
 from core.logger import logger
 from audio.async_runner import AsyncRunner
+from audio.mobile_audio import prepare_mobile_audio
 from audio.tts import TTS
 from gui.theme import Theme
 from gui.widgets.busy_indicator import BusyIndicator
@@ -36,6 +37,7 @@ from gui.file_dialog import FileDialog
 from gui.dialogs.dialog import Dialog
 from gui.layout import Layout
 from session.session_excel import SessionExcel
+
 
 
 class DatabaseWindow:
@@ -67,6 +69,7 @@ class DatabaseWindow:
         self._health_check_task = None
         self._get_sets_task = None
         self._get_set_task = None
+        self._mobile_audio_task = None
         self._save_set_task = None
         self._update_set_data_task = None
         self._delete_set_task = None
@@ -391,6 +394,33 @@ class DatabaseWindow:
             self.api_client.get_set,
             set_id
         )
+
+    # --------------------------------------------------
+    async def _prepare_mobile_audio_async(self, set_id):
+        return await prepare_mobile_audio(self.api_client, set_id)
+
+    def _prepare_selected_set_mobile_audio(self):
+        if self.selected_set is None:
+            logger.warning("No set selected")
+            return
+
+        set_id = self.selected_set.get("set_id")
+        if set_id is None:
+            logger.warning("Selected set has no set_id")
+            return
+
+        if (
+            self._mobile_audio_task is not None
+            and not self._mobile_audio_task.done()
+        ):
+            logger.warning("Mobile audio preparation is already running")
+            return
+
+        self.busy_indicator.show("Preparing mobile audio...")
+        self._mobile_audio_task = self._async_runner.submit(
+            self._prepare_mobile_audio_async(set_id)
+        )
+
 
     # --------------------------------------------------
     async def _get_tts_voices_async(self):
@@ -762,7 +792,32 @@ class DatabaseWindow:
 
             self._export_excel_filename = None
 
+    def _process_mobile_audio_task(self):
+        if self._mobile_audio_task is None:
+            return
 
+        if not self._mobile_audio_task.done():
+            return
+
+        task = self._mobile_audio_task
+        self._mobile_audio_task = None
+
+        try:
+            result = task.result()
+
+            logger.info(
+                f"Mobile audio prepared for set {result['set_id']}: "
+                f"{result['items_uploaded']}/{result['items_total']} items"
+            )
+
+        except asyncio.CancelledError:
+            logger.debug("Mobile audio preparation task cancelled")
+
+        except Exception as e:
+            logger.error(f"Mobile audio preparation error: {e}")
+
+        finally:
+            self.busy_indicator.hide()
 
     # ==================================================
     # PROCESS GET SET RESULT
@@ -1164,6 +1219,11 @@ class DatabaseWindow:
 
         self._export_excel_task = None
         self._export_excel_filename = None
+        if self._mobile_audio_task is not None:
+            if not self._mobile_audio_task.done():
+                self._mobile_audio_task.cancel()
+
+        self._mobile_audio_task = None
 
 
     # ==================================================
@@ -1275,6 +1335,7 @@ class DatabaseWindow:
             self._process_update_set_data_task()
             self._process_delete_set_task()
             self._process_export_excel_task()
+            self._process_mobile_audio_task()
 
             
             self.set_name_edit.update()
@@ -1531,7 +1592,23 @@ class DatabaseWindow:
                         self.show_buttons_dialog("dropset")
 
                         return
-                        
+                    # --------------------------------------------------
+                    # PREPARE MOBILE AUDIO
+                    # --------------------------------------------------
+
+                    if name == "audiotodb":
+
+                        if self.selected_set is None:
+
+                            logger.warning(
+                                "No set selected"
+                            )
+
+                            return
+
+                        self._prepare_selected_set_mobile_audio()
+
+                        return
 
         # --------------------------------------------------
         # Close while busy

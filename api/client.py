@@ -659,3 +659,169 @@ class ApiClient:
                 "Invalid JSON response from API",
                 response.status_code
             ) from e
+
+    # ==================================================
+    # MOBILE AUDIO
+    # ==================================================
+
+    def get_mobile_audio_items(self, set_id: int):
+        """Получить фразы и параметры для подготовки мобильного аудио."""
+
+        url = f"{self.base_url}/sets/{set_id}/mobile-audio/items"
+
+        try:
+            response = httpx.get(
+                url,
+                headers={"X-API-Key": self.api_key},
+                timeout=30.0
+            )
+
+        except httpx.RequestError as e:
+            raise ApiError(f"API connection error: {e}") from e
+
+        if response.status_code >= 400:
+            raise ApiError(
+                f"API error: HTTP {response.status_code}: {response.text}",
+                response.status_code
+            )
+
+        try:
+            return response.json()
+
+        except ValueError as e:
+            raise ApiError(
+                "Invalid JSON response from API",
+                response.status_code
+            ) from e
+
+    def start_mobile_audio(self, set_id: int):
+        """Начать подготовку мобильного аудио для набора."""
+
+        url = f"{self.base_url}/sets/{set_id}/mobile-audio/start"
+
+        try:
+            response = httpx.post(
+                url,
+                headers={"X-API-Key": self.api_key},
+                timeout=30.0
+            )
+
+        except httpx.RequestError as e:
+            raise ApiError(f"API connection error: {e}") from e
+
+        if response.status_code >= 400:
+            raise ApiError(
+                f"API error: HTTP {response.status_code}: {response.text}",
+                response.status_code
+            )
+
+        try:
+            return response.json()
+
+        except ValueError as e:
+            raise ApiError(
+                "Invalid JSON response from API",
+                response.status_code
+            ) from e
+
+    def upload_mobile_audio_item(
+        self,
+        set_id: int,
+        si_id: int,
+        phrase_audio_path: str,
+        translate_audio_path: str | None = None
+    ):
+        """Передать MP3-файлы одной фразы в API."""
+
+        url = (
+            f"{self.base_url}/sets/{set_id}"
+            f"/items/{si_id}/mobile-audio"
+        )
+
+        headers = {
+            "X-API-Key": self.api_key
+        }
+
+        try:
+            with open(phrase_audio_path, "rb") as phrase_file:
+
+                files = {
+                    "phrase_audio": (
+                        "phrase.mp3",
+                        phrase_file,
+                        "audio/mpeg"
+                    )
+                }
+
+                if translate_audio_path:
+                    with open(translate_audio_path, "rb") as translate_file:
+                        files["translate_audio"] = (
+                            "translate.mp3",
+                            translate_file,
+                            "audio/mpeg"
+                        )
+
+                        response = httpx.put(
+                            url,
+                            headers=headers,
+                            files=files,
+                            timeout=120.0
+                        )
+                else:
+                    response = httpx.put(
+                        url,
+                        headers=headers,
+                        files=files,
+                        timeout=120.0
+                    )
+
+        except httpx.RequestError as e:
+            raise ApiError(f"API connection error: {e}") from e
+
+        except OSError as e:
+            raise ApiError(f"Cannot read audio file: {e}") from e
+
+        if response.status_code >= 400:
+            raise ApiError(
+                f"API error: HTTP {response.status_code}: {response.text}",
+                response.status_code
+            )
+
+        try:
+            return response.json()
+
+        except ValueError as e:
+            raise ApiError(
+                "Invalid JSON response from API",
+                response.status_code
+            ) from e
+
+    def finish_mobile_audio(self, set_id: int):
+        """Отметить подготовку мобильного аудио как завершённую."""
+
+        url = f"{self.base_url}/sets/{set_id}/mobile-audio/finish"
+
+        try:
+            response = httpx.post(
+                url,
+                headers={"X-API-Key": self.api_key},
+                timeout=30.0
+            )
+
+        except httpx.RequestError as e:
+            raise ApiError(f"API connection error: {e}") from e
+
+        if response.status_code >= 400:
+            raise ApiError(
+                f"API error: HTTP {response.status_code}: {response.text}",
+                response.status_code
+            )
+
+        try:
+            return response.json()
+
+        except ValueError as e:
+            raise ApiError(
+                "Invalid JSON response from API",
+                response.status_code
+            ) from e
