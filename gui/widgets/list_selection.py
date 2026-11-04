@@ -29,7 +29,7 @@ class ListSelection:
         options,
         selected=0,
         max_visible_items=8,
-        item_height=48,
+        item_height=24,
     ):
 
         self.rect = pygame.Rect(rect)

@@ -27,13 +27,12 @@ class TTS:
     """
 
     async def get_voices(self):
-        #Возвращает все доступные голоса Edge TTS.
+        # Возвращает все доступные голоса Edge TTS.
         return await edge_tts.list_voices()
 
     async def get_voices_for_language(self, language: str):
-        #Возвращает голоса для указанного языка.
-        #language:    двухбуквенный код языка, например:    en, pl, ru
-        
+        # Возвращает голоса для указанного языка.
+        # language: двухбуквенный код языка, например: en, pl, ru
 
         if not language:
             return []
@@ -72,7 +71,6 @@ class TTS:
         #     en -> ["en-AU", "en-CA", ...]
         #     pl -> ["pl-PL"]
         #     ru -> ["ru-RU"]
-        
 
         if not language:
             return []
@@ -98,8 +96,8 @@ class TTS:
         return sorted(locales)
 
     async def get_voices_for_locale(self, locale: str):
-        #Возвращает голоса для указанного locale.
-        #locale:    locale, например:    en-US, pl-PL, ru-RU
+        # Возвращает голоса для указанного locale.
+        # locale: например: en-US, pl-PL, ru-RU
 
         if not locale:
             return []
@@ -123,9 +121,6 @@ class TTS:
 
         return result
 
-
-
-
     async def synthesize(
         self,
         text: str,
@@ -133,10 +128,16 @@ class TTS:
         speed: float,
         output_path: str,
     ):
-        #Генерирует MP3 для заданного текста и голоса.
+        # Генерирует MP3 для заданного текста и голоса.
 
         if not text or not voice:
             return
+
+        # Убираем конечную точку перед отправкой текста в TTS.
+        text = text.rstrip()
+
+        if text.endswith("."):
+            text = text[:-1]
 
         rate_value = (speed - 1) * 100
         rate_str = f"{rate_value:+.0f}%"
@@ -150,7 +151,7 @@ class TTS:
         await communicate.save(output_path)
 
     async def get_languages(self):
-        #Возвращает список доступных двухбуквенных кодов языков.
+        # Возвращает список доступных двухбуквенных кодов языков.
 
         voices = await self.get_voices()
 
@@ -167,4 +168,4 @@ class TTS:
 
             languages.add(language)
 
-        return sorted(languages)        
+        return sorted(languages)
