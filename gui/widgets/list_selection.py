@@ -29,6 +29,7 @@ class ListSelection:
         options,
         selected=0,
         max_visible_items=8,
+        item_height=48,
     ):
 
         self.rect = pygame.Rect(rect)
@@ -43,7 +44,9 @@ class ListSelection:
 
         self.opened = False
 
-        self.item_height = self.rect.height
+        # Высота одной строки в раскрытом списке.
+        # Высота закрытого поля self.rect при этом не меняется.
+        self.item_height = max(1, item_height)
 
         # Максимальное количество элементов,
         # одновременно видимых в dropdown.
@@ -302,8 +305,11 @@ class ListSelection:
             border_radius=6
         )
 
+        # В закрытом поле показываем только первую строку подписи.
+        selected_caption = self.caption.splitlines()[0] if self.caption else ""
+
         text = font.render(
-            self.caption,
+            selected_caption,
             True,
             pygame.Color("#91E5FF")
         )
@@ -428,20 +434,36 @@ class ListSelection:
 
             _, caption = self.options[index]
 
-            text = font.render(
-                caption,
-                True,
-                pygame.Color("#91E5FF")
+            # Поддерживаем одно- и двухстрочные подписи.
+            lines = caption.splitlines() or [""]
+            rendered_lines = [
+                font.render(
+                    line,
+                    True,
+                    pygame.Color("#91E5FF")
+                )
+                for line in lines[:2]
+            ]
+
+            total_text_height = sum(
+                line_surface.get_height()
+                for line_surface in rendered_lines
             )
 
-            screen.blit(
-                text,
-                (
-                    item_rect.x + 10,
-                    item_rect.centery
-                    - text.get_height() // 2
-                )
+            line_y = (
+                item_rect.centery
+                - total_text_height // 2
             )
+
+            for line_surface in rendered_lines:
+                screen.blit(
+                    line_surface,
+                    (
+                        item_rect.x + 10,
+                        line_y
+                    )
+                )
+                line_y += line_surface.get_height()
 
         # ==================================================
         # BORDER

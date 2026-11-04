@@ -148,6 +148,8 @@ class DatabaseWindow:
             ),
             [("", "Loading...")],
             0
+            ,
+            item_height=48
         )
 
  
@@ -590,11 +592,45 @@ class DatabaseWindow:
                 0
             )
 
+            # Дата последней успешной подготовки мобильных MP3
+            mobile_audio_ready_at = item.get(
+                "mobile_audio_ready_at"
+            )
+
+            if mobile_audio_ready_at:
+                try:
+                    from datetime import datetime
+
+                    ready_at = datetime.fromisoformat(
+                        mobile_audio_ready_at
+                    )
+
+                    mobile_audio_date = ready_at.strftime(
+                        "%d.%m.%y"
+                    )
+
+                except (ValueError, TypeError):
+                    mobile_audio_date = str(
+                        mobile_audio_ready_at
+                    )
+            else:
+                mobile_audio_date = ""
+
+            mobile_audio_suffix = (
+                f"  |  mob.{mobile_audio_date}"
+                if mobile_audio_date
+                else ""
+            )
+
+            mobile_audio_label = (
+                f" - mob_{mobile_audio_date}"
+                if mobile_audio_date
+                else ""
+            )
+
             caption = (
-                f"{set_index}  |  "
-                f"{set_name}  |  "
-                f"{set_description}  |  "
-                f"{items_count} items"
+                f"{set_index} | {set_name} - {items_count} items {mobile_audio_label}\n"
+                f"{set_description} "
             )
 
             options.append(
@@ -792,6 +828,7 @@ class DatabaseWindow:
 
             self._export_excel_filename = None
 
+    
     def _process_mobile_audio_task(self):
         if self._mobile_audio_task is None:
             return
@@ -805,19 +842,65 @@ class DatabaseWindow:
         try:
             result = task.result()
 
+            set_id = result["set_id"]
+            uploaded = result["items_uploaded"]
+            total = result["items_total"]
+
             logger.info(
-                f"Mobile audio prepared for set {result['set_id']}: "
-                f"{result['items_uploaded']}/{result['items_total']} items"
+                f"Mobile audio prepared for set {set_id}: "
+                f"{uploaded}/{total} items"
             )
 
+            message = (
+                f"Set ID: {set_id}\n\n"
+                f"Mobile audio preparation completed successfully.\n\n"
+                f"Uploaded items: {uploaded}/{total}"
+            )
+
+            self.active_dialog = Dialog(
+                parent_rect=self.rect,
+                font_manager=self.font_manager,
+                title="Mobile audio",
+                message=message,
+                buttons=["OK"],
+                default_button=0
+            )
+
+            self._pending_action = None
+            self.active_dialog.show()
+
         except asyncio.CancelledError:
-            logger.debug("Mobile audio preparation task cancelled")
+            logger.debug(
+                "Mobile audio preparation task cancelled"
+            )
 
         except Exception as e:
-            logger.error(f"Mobile audio preparation error: {e}")
+            logger.error(
+                f"Mobile audio preparation error: {e}"
+            )
+
+            message = (
+                "Mobile audio preparation FAILED!\n\n"
+                "The set was not marked as ready "
+                "for the mobile application.\n\n"
+                f"Reason:\n{e}"
+            )
+
+            self.active_dialog = Dialog(
+                parent_rect=self.rect,
+                font_manager=self.font_manager,
+                title="Mobile audio - Error",
+                message=message,
+                buttons=["OK"],
+                default_button=0
+            )
+
+            self._pending_action = None
+            self.active_dialog.show()
 
         finally:
             self.busy_indicator.hide()
+
 
     # ==================================================
     # PROCESS GET SET RESULT
