@@ -59,6 +59,22 @@ The documentation contains information about:
 * database API;
 * development and documentation tools.
 
+## Mobile Application
+
+Sound Language Studio also includes a mobile application for learners. The desktop and mobile applications serve different, complementary roles within the same learning platform.
+
+- **Desktop Application** — the environment for creating and editing learning sets, preparing phrases and translations, generating audio, and managing the materials made available to learners.
+- **Server API** — connects the desktop application with the mobile client. It provides user authentication, access to learning sets and audio materials, and server-side processing for Speech Test.
+- **Mobile Application** — a thin client for learners. It downloads the learning materials prepared on the desktop side and provides the tools for practising with them, including **Shadowing** and **Speech Test**.
+
+The mobile application is not intended for authoring or editing learning materials. Its focus is on the learner's experience: accessing assigned materials, practising on an Android device, and keeping the active learning set and audio files locally so that Shadowing sessions can continue without a permanent internet connection. Speech Test requires an internet connection because speech processing is performed by the server using Microsoft Azure AI Speech.
+
+Project links:
+
+- [Mobile application repository](https://github.com/peisakhovich/shatdowing_mobile)
+- [Latest Android release](https://github.com/peisakhovich/shatdowing_mobile/releases/latest)
+- [Server API repository](https://github.com/peisakhovich/sa03-api)
+
 ## Technology
 
 Sound Language Studio is developed with **Python 3.12**.
