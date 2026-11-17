@@ -664,6 +664,60 @@ class ApiClient:
     # SYNCHRONIZE TTS VOICES
     # ==================================================
 
+    def get_language_locales(self) -> list[str]:
+        """Return locales supported by the API database."""
+
+        url = f"{self.base_url}/languages/locales"
+
+        try:
+            response = httpx.get(
+                url,
+                headers={"X-API-Key": self.api_key},
+                timeout=10.0
+            )
+
+        except httpx.RequestError as e:
+            raise ApiError(f"API connection error: {e}") from e
+
+        if response.status_code >= 400:
+            try:
+                error_data = response.json()
+                message = error_data.get("error", "API error")
+                detail = error_data.get("message")
+
+                if detail:
+                    message = f"{message}: {detail}"
+
+            except (ValueError, AttributeError):
+                message = (
+                    f"HTTP {response.status_code}: "
+                    f"{response.text}"
+                )
+
+            raise ApiError(message, response.status_code)
+
+        try:
+            data = response.json()
+        except ValueError as e:
+            raise ApiError(
+                "Invalid JSON response from API",
+                response.status_code
+            ) from e
+
+        locales = data.get("locales") if isinstance(data, dict) else None
+
+        if (
+            not isinstance(locales, list)
+            or any(not isinstance(locale, str) for locale in locales)
+        ):
+            raise ApiError("Invalid language locales response")
+
+        return locales
+
+    # ==================================================
+    # SYNCHRONIZE TTS VOICES
+    # ==================================================
+
     def sync_voices(self, voices: list[dict]):
         """Synchronize the Edge TTS voice catalog with the API database."""
 
