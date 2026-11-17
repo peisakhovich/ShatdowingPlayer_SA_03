@@ -30,6 +30,7 @@ from gui.theme import Theme
 from gui.widgets.busy_indicator import BusyIndicator
 from gui.widgets.list_selection import ListSelection
 from gui.widgets.status_message import StatusMessage
+from gui.widgets.text_button import TextButton
 from gui.panels.control_panel_db import ControlPanel
 from gui.login_register_window import LoginRegisterWindow
 from gui.widgets.text_edit import TextEdit
@@ -70,6 +71,7 @@ class DatabaseWindow:
         self._get_sets_task = None
         self._get_set_task = None
         self._mobile_audio_task = None
+        self._voice_sync_task = None
         self._save_set_task = None
         self._update_set_data_task = None
         self._delete_set_task = None
@@ -179,6 +181,22 @@ class DatabaseWindow:
                 80
             ),
             self.font_manager.load(Layout.DB_TEXT_FONT)
+        )
+
+        # --------------------------------------------------
+        # TTS voice catalog synchronization button
+        # --------------------------------------------------
+
+        self.voice_sync_button = TextButton(
+            rect=(
+                self.description_edit.rect.x + 8,
+                self.description_edit.rect.bottom + 52,
+                250,
+                30
+            ),
+            caption="Synchronize TTS voices",
+            font=self.font_manager.load(Layout.DB_CAPTION_FONT),
+            auto_width=True
         )
 
     # --------------------------------------------------
@@ -428,6 +446,47 @@ class DatabaseWindow:
     async def _get_tts_voices_async(self):
 
         return await TTS().get_voices()
+
+    # --------------------------------------------------
+
+    async def _sync_tts_voices_async(self):
+        voices_raw = await TTS().get_voices()
+
+        voices = [
+            {
+                "locale": voice.get("Locale", ""),
+                "short_name": voice.get("ShortName", ""),
+                "gender": voice.get("Gender", "")
+            }
+            for voice in voices_raw
+        ]
+
+        if not voices:
+            raise RuntimeError("Edge TTS returned an empty voice catalog.")
+
+        return await asyncio.to_thread(
+            self.api_client.sync_voices,
+            voices
+        )
+
+    # --------------------------------------------------
+
+    def _start_voice_catalog_sync(self):
+        if self.api_available is not True:
+            logger.warning("Voice synchronization skipped: API is unavailable")
+            return
+
+        if (
+            self._voice_sync_task is not None
+            and not self._voice_sync_task.done()
+        ):
+            return
+
+        self.busy_indicator.show("Synchronizing TTS voices...")
+
+        self._voice_sync_task = self._async_runner.submit(
+            self._sync_tts_voices_async()
+        )
 
     # --------------------------------------------------
 
@@ -829,7 +888,66 @@ class DatabaseWindow:
             self._export_excel_filename = None
 
     
-    def _process_mobile_audio_task(self):
+    def _process_voice_sync_task(self):
+        if self._voice_sync_task is None:
+            return
+
+        if not self._voice_sync_task.done():
+            return
+
+        task = self._voice_sync_task
+        self._voice_sync_task = None
+
+        try:
+            result = task.result()
+
+            message = (
+                "Voice catalog synchronization completed.\n\n"
+                f"Incoming voices: {result.get('incoming_count', 0)}\n"
+                f"Added: {result.get('added', 0)}\n"
+                f"Updated: {result.get('updated', 0)}\n"
+                f"Unchanged: {result.get('unchanged', 0)}\n"
+                f"Legacy (not removed): {result.get('legacy', 0)}"
+            )
+
+            logger.info(
+                "TTS voice catalog synchronized:",
+                result
+            )
+
+            title = "TTS voices"
+
+        except asyncio.CancelledError:
+            logger.debug("TTS voice synchronization task cancelled")
+            return
+
+        except Exception as e:
+            logger.error(f"TTS voice synchronization error: {e}")
+
+            message = (
+                "Voice catalog synchronization FAILED!\n\n"
+                f"Reason:\n{e}"
+            )
+            title = "TTS voices - Error"
+
+        finally:
+            self.busy_indicator.hide()
+
+        self.active_dialog = Dialog(
+            parent_rect=self.rect,
+            font_manager=self.font_manager,
+            title=title,
+            message=message,
+            buttons=["OK"],
+            default_button=0
+        )
+
+        self._pending_action = None
+        self.active_dialog.show()
+
+    # ==================================================
+    # PROCESS MOBILE AUDIO TASK
+    # ==================================================
         if self._mobile_audio_task is None:
             return
 
@@ -1308,6 +1426,12 @@ class DatabaseWindow:
 
         self._mobile_audio_task = None
 
+        if self._voice_sync_task is not None:
+            if not self._voice_sync_task.done():
+                self._voice_sync_task.cancel()
+
+        self._voice_sync_task = None
+
 
     # ==================================================
     # EXCEL
@@ -1419,6 +1543,7 @@ class DatabaseWindow:
             self._process_delete_set_task()
             self._process_export_excel_task()
             self._process_mobile_audio_task()
+            self._process_voice_sync_task()
 
             
             self.set_name_edit.update()
@@ -1428,6 +1553,7 @@ class DatabaseWindow:
             self.login_register_window.update()
 
             self.busy_indicator.update()
+            self.voice_sync_button.update()
 
     # ==================================================
     # EVENTS
@@ -1520,6 +1646,18 @@ class DatabaseWindow:
                         # Обработали результат.
                         self.login_register_window.result = None
 
+            return
+
+        # --------------------------------------------------
+        # TTS voice catalog synchronization
+        # --------------------------------------------------
+
+        if (
+            self.api_available is True
+            and not self.busy_indicator.visible
+            and self.voice_sync_button.handle_event(event)
+        ):
+            self._start_voice_catalog_sync()
             return
 
         # --------------------------------------------------
@@ -2076,6 +2214,9 @@ class DatabaseWindow:
         )
 
         status_message.draw(screen)       
+
+        if self.api_available is True:
+            self.voice_sync_button.draw(screen)
         
 
         # --------------------------------------------------
