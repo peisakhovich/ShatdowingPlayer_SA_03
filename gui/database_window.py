@@ -467,7 +467,7 @@ class DatabaseWindow:
         skipped = []
 
         field_limits = {
-            "locale": 10,
+            "locale": 20,
             "short_name": 100,
             "gender": 20,
         }
