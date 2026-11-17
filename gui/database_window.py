@@ -948,6 +948,7 @@ class DatabaseWindow:
     # ==================================================
     # PROCESS MOBILE AUDIO TASK
     # ==================================================
+    def _process_mobile_audio_task(self):
         if self._mobile_audio_task is None:
             return
 
