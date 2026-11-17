@@ -452,6 +452,17 @@ class DatabaseWindow:
     async def _sync_tts_voices_async(self):
         voices_raw = await TTS().get_voices()
 
+        supported_locales = await asyncio.to_thread(
+            self.api_client.get_language_locales
+        )
+        supported_locales = set(supported_locales)
+
+        if not supported_locales:
+            raise RuntimeError(
+                "The API returned an empty language locale catalog. "
+                "Voice synchronization was cancelled."
+            )
+
         voices = []
         skipped = []
 
@@ -484,6 +495,11 @@ class DatabaseWindow:
                         f"{field} length {len(value)} exceeds {max_length}"
                     )
 
+            if item["locale"] and item["locale"] not in supported_locales:
+                problems.append(
+                    f"locale '{item['locale']}' is not registered in dbo.language"
+                )
+
             if problems:
                 skipped.append((
                     index,
@@ -502,12 +518,13 @@ class DatabaseWindow:
 
         logger.info(
             f"Edge TTS catalog received: {len(voices_raw)}; "
+            f"database locales: {len(supported_locales)}; "
             f"valid: {len(voices)}; skipped: {len(skipped)}"
         )
 
         if not voices:
             raise RuntimeError(
-                "No valid voices found in the Edge TTS catalog. "
+                "No valid voices found for the database language catalog. "
                 f"Received: {len(voices_raw)}; skipped: {len(skipped)}. "
                 "See logs for details."
             )
@@ -958,7 +975,7 @@ class DatabaseWindow:
                 "Voice catalog synchronization completed.\n\n"
                 f"Edge TTS voices: {result.get('source_count', 0)}\n"
                 f"Sent to database: {result.get('incoming_count', 0)}\n"
-                f"Skipped (invalid): {result.get('skipped_count', 0)}\n\n"
+                f"Skipped (invalid/unsupported locale): {result.get('skipped_count', 0)}\n\n"
                 f"Added: {result.get('added', 0)}\n"
                 f"Updated: {result.get('updated', 0)}\n"
                 f"Unchanged: {result.get('unchanged', 0)}\n"
