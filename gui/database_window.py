@@ -452,22 +452,75 @@ class DatabaseWindow:
     async def _sync_tts_voices_async(self):
         voices_raw = await TTS().get_voices()
 
-        voices = [
-            {
-                "locale": voice.get("Locale", ""),
-                "short_name": voice.get("ShortName", ""),
-                "gender": voice.get("Gender", "")
+        voices = []
+        skipped = []
+
+        field_limits = {
+            "locale": 10,
+            "short_name": 100,
+            "gender": 20,
+        }
+
+        for index, voice in enumerate(voices_raw, start=1):
+            if not isinstance(voice, dict):
+                skipped.append((index, repr(voice), "entry is not a dictionary"))
+                continue
+
+            item = {
+                "locale": str(voice.get("Locale") or "").strip(),
+                "short_name": str(voice.get("ShortName") or "").strip(),
+                "gender": str(voice.get("Gender") or "").strip(),
             }
-            for voice in voices_raw
-        ]
+
+            problems = []
+
+            for field, max_length in field_limits.items():
+                value = item[field]
+
+                if not value:
+                    problems.append(f"{field} is empty")
+                elif len(value) > max_length:
+                    problems.append(
+                        f"{field} length {len(value)} exceeds {max_length}"
+                    )
+
+            if problems:
+                skipped.append((
+                    index,
+                    item,
+                    "; ".join(problems)
+                ))
+                continue
+
+            voices.append(item)
+
+        for index, item, reason in skipped:
+            logger.warning(
+                f"Edge TTS voice skipped at position {index}: "
+                f"{item!r}; reason: {reason}"
+            )
+
+        logger.info(
+            f"Edge TTS catalog received: {len(voices_raw)}; "
+            f"valid: {len(voices)}; skipped: {len(skipped)}"
+        )
 
         if not voices:
-            raise RuntimeError("Edge TTS returned an empty voice catalog.")
+            raise RuntimeError(
+                "No valid voices found in the Edge TTS catalog. "
+                f"Received: {len(voices_raw)}; skipped: {len(skipped)}. "
+                "See logs for details."
+            )
 
-        return await asyncio.to_thread(
+        result = await asyncio.to_thread(
             self.api_client.sync_voices,
             voices
         )
+
+        result["source_count"] = len(voices_raw)
+        result["skipped_count"] = len(skipped)
+
+        return result
 
     # --------------------------------------------------
 
@@ -903,7 +956,9 @@ class DatabaseWindow:
 
             message = (
                 "Voice catalog synchronization completed.\n\n"
-                f"Incoming voices: {result.get('incoming_count', 0)}\n"
+                f"Edge TTS voices: {result.get('source_count', 0)}\n"
+                f"Sent to database: {result.get('incoming_count', 0)}\n"
+                f"Skipped (invalid): {result.get('skipped_count', 0)}\n\n"
                 f"Added: {result.get('added', 0)}\n"
                 f"Updated: {result.get('updated', 0)}\n"
                 f"Unchanged: {result.get('unchanged', 0)}\n"
