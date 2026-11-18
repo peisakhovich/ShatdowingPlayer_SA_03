@@ -111,7 +111,7 @@ class DatabaseWindow:
 
         self.busy_indicator = BusyIndicator(
             self.rect,
-            self.font_manager.load(22)
+            self.font_manager.load(16)
         )
 
         # --------------------------------------------------
