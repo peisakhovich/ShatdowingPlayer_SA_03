@@ -34,6 +34,9 @@ def _raise_item_error(
     callback, *, index, total, si_id, phase,
     completed_steps, total_steps, error
 ):
+    if not isinstance(error, BaseException):
+        error = RuntimeError(str(error))
+
     message = (
         f"Item {index}/{total}; si_id={si_id}; "
         f"Phase: {phase}; Error: {error}"
