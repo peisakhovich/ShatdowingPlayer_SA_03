@@ -105,7 +105,7 @@ class BusyIndicator:
         percent = max(0, min(100, int(progress.get("percent", 0))))
 
         panel_width = min(self.rect.width - 48, 460)
-        panel_height = 126
+        panel_height = 138
         panel = pygame.Rect(
             center_x - panel_width // 2, top, panel_width, panel_height
         )
