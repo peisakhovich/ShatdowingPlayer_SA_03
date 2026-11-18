@@ -71,6 +71,7 @@ class DatabaseWindow:
         self._get_sets_task = None
         self._get_set_task = None
         self._mobile_audio_task = None
+        self._mobile_audio_progress = None
         self._voice_sync_task = None
         self._save_set_task = None
         self._update_set_data_task = None
@@ -417,7 +418,15 @@ class DatabaseWindow:
 
     # --------------------------------------------------
     async def _prepare_mobile_audio_async(self, set_id):
-        return await prepare_mobile_audio(self.api_client, set_id)
+        def report_progress(progress):
+            # Background thread: update data only; Pygame is used in the UI thread.
+            self._mobile_audio_progress = dict(progress)
+
+        return await prepare_mobile_audio(
+            self.api_client,
+            set_id,
+            progress_callback=report_progress,
+        )
 
     def _prepare_selected_set_mobile_audio(self):
         if self.selected_set is None:
@@ -436,6 +445,8 @@ class DatabaseWindow:
             logger.warning("Mobile audio preparation is already running")
             return
 
+        self._mobile_audio_progress = None
+        self.busy_indicator.clear_progress()
         self.busy_indicator.show("Preparing mobile audio...")
         self._mobile_audio_task = self._async_runner.submit(
             self._prepare_mobile_audio_async(set_id)
@@ -1091,6 +1102,7 @@ class DatabaseWindow:
 
         finally:
             self.busy_indicator.hide()
+            self._mobile_audio_progress = None
 
 
     # ==================================================
@@ -1478,6 +1490,7 @@ class DatabaseWindow:
         self._update_set_data_task = None
 
         self.busy_indicator.hide()
+        self._mobile_audio_progress = None
 
         if self._delete_set_task is not None:
 
@@ -1624,6 +1637,9 @@ class DatabaseWindow:
 
             self.control_panel.update()
             self.login_register_window.update()
+
+            if self._mobile_audio_task is not None and not self._mobile_audio_task.done():
+                self.busy_indicator.set_progress(self._mobile_audio_progress)
 
             self.busy_indicator.update()
             self.voice_sync_button.update()
